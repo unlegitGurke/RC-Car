@@ -24,23 +24,23 @@ void setup() {
 }
 
 void loop() {
-  if(Blinker_rechts_an == 1) {
+  if(Blinker_rechts_an == 1 && Blinker_links_an == 0) {
     Blinker_rechts();
   }
   else {
     
   }
-  if(Blinker_links_an == 1) {
+  if(Blinker_links_an == 1 && Blinker_rechts_an == 0) {
     Blinker_links();
   }
   else {
     
   }
   if(analogRead(ESC_Pin) == HIGH) {
-    digitalWrite(Bremslicht, HIGH)
+    digitalWrite(Bremslicht, HIGH);
   }
   else {
-    digitalWrite(Bremslicht, LOW)
+    digitalWrite(Bremslicht, LOW);
   }
 }
 
