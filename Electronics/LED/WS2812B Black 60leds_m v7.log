@@ -1,5 +1,5 @@
 STEP in Solid Edge konvertieren
-Datum: Dienstag,April 20,2021 05:41PM
+Datum: Mittwoch,April 21,2021 05:31PM
 Quelldatei: G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LED\WS2812B Black 60leds_m v7.step
 Autor: JujuGG
 Organisation: Unbekannt
@@ -37,5 +37,14 @@ Als interne Komponenten importieren: Aus
 Pfad importieren: 
 
 Übersetzen in Parasolid-Datentypen...
++Baugruppe 1 beginnen
++SE Assembly-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LED\WS2812B Black 60leds_m v7.asm wurde erstellt
+|--+SE Part-Datei G:\Schule\CPE\2.par wurde erstellt
+|--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LED\WS2812_RGB_LED_updated v3.par wurde erstellt
++Gesamtzahl der Teile: 24
++Baugruppen: 0
++Volumenkörper: 24
++Flächenkörper: 0
++Baugruppe 1 beenden
 Konvertierungsvorgang ist abgeschlossen
 Zur Übersetzung und Nachbearbeitung erforderte Gesamtzeit:00 : 00 : 07
