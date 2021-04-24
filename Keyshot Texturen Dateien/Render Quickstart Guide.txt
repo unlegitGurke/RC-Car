@@ -1,0 +1,17 @@
+---Render Settings---
+
+-GPU Mode
+-128 Samples
+-8k
+
+Dauert ca 5-7min (mit meiner 2080 max-q)
+
+---Bilder und BIP Dateien Bennenen---
+
+[Name][ASM od. Teil][Versions Nummer]
+
+-Versionsnummer von Bildern und BIP am besten gleich halten
+
+---Dateien Komprimieren---
+Die BIP Dateien sind zu Groß für GitHub
+Einfach mit winRAR zu einer RAR Datei hinzufügen, Ich musste keine einstellungen ändern aber bei bedarf Komprimierung höherstellen.
