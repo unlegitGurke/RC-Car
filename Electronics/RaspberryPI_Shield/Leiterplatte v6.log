@@ -1,0 +1,134 @@
+STEP in Solid Edge konvertieren
+Datum: Sonntag,April 25,2021 08:02PM
+Quelldatei: G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\Leiterplatte v6.step
+Autor: Unbekannt
+Organisation: Unbekannt
+Ausgangssystem: Autodesk Translation Framework v10.6.0.1341
+
+Hardware:
+Prozessor: AMD Ryzen 7 3700X 8-Core Processor             
+Betriebssystem: Windows 10 Professional
+Installierter Speicher: 31.91 GB
+
+Software-Informationen
+Parasolid-Version: 32.1.222
+PSBodyShop-Version: 32.1.94
+Step-Adapterversion: 5.0.107
+Solid Edge-Version: 221.00.03.003 x64
+
+Step-Importoptionen
+Facettierte Körper importieren: Ein
+Prüfkörper importieren: Aus
+Kurven importieren: Ein
+DoNotSave importieren: Ein
+Mehrere Körper als Einzelteildatei importieren: Ein
+Flächenvernähung importieren: Ein
+Boolesche Körper importieren: Ein
+Basisformelement erstellen: Ein
+Geometrie vereinfachen: Ein
+Druckkurven importieren: Ein
+Führung importieren: C:
+Flächenvernähung importieren: Ein
+Flächen importieren: Ein
+Ausgabepfad importieren: G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield
+Aktivieren des standardmäßigen Ausgabepfads importieren: Ein
+PMI importieren: Aus
+Als interne Komponenten importieren: Aus
+Pfad importieren: 
+
+Übersetzen in Parasolid-Datentypen...
++Baugruppe 1 beginnen
++SE Assembly-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\Leiterplatte v6.asm wurde erstellt
+|--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\Board.par wurde erstellt
+|--+Baugruppe 2 beginnen
+|--+SE Assembly-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\Packages.asm wurde erstellt
+Körper: 0
+|  |--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\ARDUINO_NANO.par wurde erstellt
+Körper: 0
+Körper: 0
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\ARDUINO_NANO.par wird wiederholt verwendet
+|  |--+Baugruppe 3 beginnen
+|  |--+SE Assembly-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\B3B-XH-A.asm wurde erstellt
+|  |  |--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\B3B-XH-A v1.par wurde erstellt
+|  |--+Gesamtzahl der Teile: 2
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 2
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\B3B-XH-A.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\B3B-XH-A.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\B3B-XH-A.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\B3B-XH-A.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\B3B-XH-A.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\B3B-XH-A.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+SE Assembly-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\TERMBLK_508-2N.asm wurde erstellt
+|  |  |--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\TERMBLK_508_2N v2.par wurde erstellt
+|  |--+Gesamtzahl der Teile: 6
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 6
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\RESAD724W46L381D178B.par wurde erstellt
+Körper: 0
+|  |--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\RPI3.par wurde erstellt
+Körper: 0
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\B3B-XH-A.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|--+Gesamtzahl der Teile: 4
+|--+Baugruppen: 2
+|--+Volumenkörper: 2
+|--+Flächenkörper: 0
+|--+Baugruppe 2 beenden
+|--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\1-copper.par wurde erstellt
+|--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\16-copper.par wurde erstellt
+|--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\1-soldermask.par wurde erstellt
+|--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\16-soldermask.par wurde erstellt
++Gesamtzahl der Teile: 1 227
++Baugruppen: 1
++Volumenkörper: 1 226
++Flächenkörper: 0
++Baugruppe 1 beenden
+Konvertierungsvorgang ist abgeschlossen
+Zur Übersetzung und Nachbearbeitung erforderte Gesamtzeit:00 : 00 : 14
