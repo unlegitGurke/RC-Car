@@ -1,0 +1,80 @@
+STEP in Solid Edge konvertieren
+Datum: Sonntag,Juni 20,2021 05:40PM
+Quelldatei: G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\Castle Neu 2028 Motor.STEP
+Autor: Unbekannt
+Organisation: Unbekannt
+Ausgangssystem: SolidWorks 2015
+
+Hardware:
+Prozessor: AMD Ryzen 7 3700X 8-Core Processor             
+Betriebssystem: Windows 10 Professional
+Installierter Speicher: 31.91 GB
+
+Software-Informationen
+Parasolid-Version: 32.1.222
+PSBodyShop-Version: 32.1.94
+Step-Adapterversion: 5.0.107
+Solid Edge-Version: 221.00.03.003 x64
+
+Step-Importoptionen
+Facettierte Körper importieren: Ein
+Prüfkörper importieren: Aus
+Kurven importieren: Ein
+DoNotSave importieren: Ein
+Mehrere Körper als Einzelteildatei importieren: Ein
+Flächenvernähung importieren: Ein
+Boolesche Körper importieren: Ein
+Basisformelement erstellen: Ein
+Geometrie vereinfachen: Ein
+Druckkurven importieren: Ein
+Führung importieren: C:
+Flächenvernähung importieren: Ein
+Flächen importieren: Ein
+Ausgabepfad importieren: G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor
+Aktivieren des standardmäßigen Ausgabepfads importieren: Ein
+PMI importieren: Aus
+Als interne Komponenten importieren: Aus
+Pfad importieren: 
+
+Übersetzen in Parasolid-Datentypen...
++Baugruppe 1 beginnen
++SE Assembly-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\Castle Neu 2028 Motor.asm wurde erstellt
+|--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\Castle Neu 2028 Can.par wurde erstellt
+|--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\Castle Neu 2028 Front Plate.par wurde erstellt
+|--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\Castle Neu 2028 End Cap.par wurde erstellt
+|--+Baugruppe 2 beginnen
+|--+SE Assembly-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\8mmx16mmx5mm.asm wurde erstellt
+|  |--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\Inner Race 8x16x5mm.par wurde erstellt
+|  |--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\Outer Race 8x16x5mm.par wurde erstellt
+|  |--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\2mm ball.par wurde erstellt
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\2mm ball.par wird wiederholt verwendet
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\2mm ball.par wird wiederholt verwendet
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\2mm ball.par wird wiederholt verwendet
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\2mm ball.par wird wiederholt verwendet
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\2mm ball.par wird wiederholt verwendet
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\2mm ball.par wird wiederholt verwendet
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\2mm ball.par wird wiederholt verwendet
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\2mm ball.par wird wiederholt verwendet
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\2mm ball.par wird wiederholt verwendet
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\2mm ball.par wird wiederholt verwendet
+|  |--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\2mm ball.par wird wiederholt verwendet
+|--+Gesamtzahl der Teile: 17
+|--+Baugruppen: 0
+|--+Volumenkörper: 17
+|--+Flächenkörper: 0
+|--+Baugruppe 2 beenden
+|--+Baugruppe 2 beginnen
+|--+Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\8mmx16mmx5mm.asm wird wiederholt verwendet
+|--+Gesamtzahl der Teile: 0
+|--+Baugruppen: 0
+|--+Volumenkörper: 0
+|--+Flächenkörper: 0
+|--+Baugruppe 2 beenden
+|--+SE Part-Datei G:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Motor\Castle Neu 2028 Rotor.par wurde erstellt
++Gesamtzahl der Teile: 9
++Baugruppen: 1
++Volumenkörper: 8
++Flächenkörper: 0
++Baugruppe 1 beenden
+Konvertierungsvorgang ist abgeschlossen
+Zur Übersetzung und Nachbearbeitung erforderte Gesamtzeit:00 : 00 : 01
