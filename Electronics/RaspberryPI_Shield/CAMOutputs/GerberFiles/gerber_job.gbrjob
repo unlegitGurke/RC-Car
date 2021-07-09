@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2021-07-06T21:01:39Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.7.0"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.57,
+        "LayerNumber": 2,
+        "Name": {
+            "ProjectId": "Leiterplatte v19"
+        },
+        "Owner": "Felix Sandri <felix.sandri05@htl-salzburg.ac.at>",
+        "Size": {
+            "X": 85,
+            "Y": 56
+        }
+    }
+}
