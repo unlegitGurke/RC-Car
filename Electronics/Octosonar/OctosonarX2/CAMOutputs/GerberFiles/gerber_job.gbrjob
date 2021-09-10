@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2021-08-13T22:40:36Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.7.0"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.5723,
+        "LayerNumber": 2,
+        "Name": {
+            "ProjectId": "octosonarX2 v2"
+        },
+        "Owner": "Felix Sandri <felix.sandri05@htl-salzburg.ac.at>",
+        "Size": {
+            "X": 68.58,
+            "Y": 45.72
+        }
+    }
+}
