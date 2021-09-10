@@ -1,0 +1,31 @@
+Solid Edge in STEP konvertieren
+Datum: Freitag,September 10,2021 09:09
+Ausgabedatei: C:\Users\phili\Documents\GitHub\RC-Car\Body\Kotflügel\test Kotflügel.stp
+Autor: Unknown
+Organisation: Unknown
+Ausgangssystem: Solid Edge
+
+Hardware:
+Prozessor: Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz
+Betriebssystem: Windows 10
+Installierter Speicher: 15.94 GB
+
+Software-Informationen
+Parasolid-Version: 32.1.222
+PSBodyShop-Version: 32.1.94
+Step-Adapterversion: 5.0.107
+Solid Edge-Version: 221.00.03.003 x64
+
+STEP-Exportoptionen
+Exportformat: AP214
+Konstruktionsbleche exportieren: Aus
+Konstruktionsvolumen exportieren: Aus
+Konstruktionsdrähte exportieren: Aus
+Nur angezeigte Teile exportieren: Aus
+Einheiten: Millimeters
+Namen von Teilkomponenten exportieren als Unicode: Aus
+PMI exportieren: Aus
+
+Phase 1 von 1 - Parasolid in Fremddatentypen konvertieren...
+Konvertierungsvorgang ist abgeschlossen
+Zum Übersetzen benötigte Zeit:00 : 00 : 08
