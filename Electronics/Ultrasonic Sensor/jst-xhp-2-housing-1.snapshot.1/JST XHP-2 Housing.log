@@ -1,14 +1,14 @@
 STEP in Solid Edge konvertieren
-Datum: Donnerstag,Dezember 16,2021 03:52PM
-Quelldatei: D:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Ultrasonic Sensor\jst-xhp-2-housing-1.snapshot.1\JST XHP-2 Housing.step
+Datum: Donnerstag,Dezember 16,2021 07:31nachm.
+Quelldatei: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Ultrasonic Sensor\jst-xhp-2-housing-1.snapshot.1\JST XHP-2 Housing.step
 Autor: julius.neudecker
 Organisation: Unbekannt
 Ausgangssystem: Autodesk Translation Framework v7.6.0.251
 
 Hardware:
-Prozessor: AMD Ryzen 7 5800H with Radeon Graphics         
+Prozessor: AMD Ryzen 7 3700X 8-Core Processor             
 Betriebssystem: Windows 10 Professional
-Installierter Speicher: 15.85 GB
+Installierter Speicher: 31.91 GB
 
 Software-Informationen
 Parasolid-Version: 32.1.222
@@ -30,12 +30,20 @@ Druckkurven importieren: Ein
 Führung importieren: C:
 Flächenvernähung importieren: Ein
 Flächen importieren: Ein
-Ausgabepfad importieren: D:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Ultrasonic Sensor\jst-xhp-2-housing-1.snapshot.1
+Ausgabepfad importieren: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Ultrasonic Sensor\jst-xhp-2-housing-1.snapshot.1
 Aktivieren des standardmäßigen Ausgabepfads importieren: Ein
 PMI importieren: Aus
 Als interne Komponenten importieren: Aus
 Pfad importieren: 
 
 Übersetzen in Parasolid-Datentypen...
++Baugruppe 1 beginnen
++SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Ultrasonic Sensor\jst-xhp-2-housing-1.snapshot.1\JST XHP-2 Housing.asm wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Ultrasonic Sensor\jst-xhp-2-housing-1.snapshot.1\2Pin Female.par wurde erstellt
++Gesamtzahl der Teile: 2
++Baugruppen: 0
++Volumenkörper: 2
++Flächenkörper: 0
++Baugruppe 1 beenden
 Konvertierungsvorgang ist abgeschlossen
 Zur Übersetzung und Nachbearbeitung erforderte Gesamtzeit:00 : 00 : 01

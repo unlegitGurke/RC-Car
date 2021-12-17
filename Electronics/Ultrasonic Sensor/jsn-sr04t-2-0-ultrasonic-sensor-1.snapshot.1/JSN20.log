@@ -1,0 +1,42 @@
+STEP in Solid Edge konvertieren
+Datum: Donnerstag,Dezember 16,2021 07:46nachm.
+Quelldatei: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Ultrasonic Sensor\jsn-sr04t-2-0-ultrasonic-sensor-1.snapshot.1\JSN20.stp
+Autor: gabri
+Organisation: Unbekannt
+Ausgangssystem: Autodesk Inventor 2019
+
+Hardware:
+Prozessor: AMD Ryzen 7 3700X 8-Core Processor             
+Betriebssystem: Windows 10 Professional
+Installierter Speicher: 31.91 GB
+
+Software-Informationen
+Parasolid-Version: 32.1.222
+PSBodyShop-Version: 32.1.94
+Step-Adapterversion: 5.0.107
+Solid Edge-Version: 221.00.03.003 x64
+
+Step-Importoptionen
+Facettierte Körper importieren: Ein
+Prüfkörper importieren: Aus
+Kurven importieren: Ein
+DoNotSave importieren: Ein
+Mehrere Körper als Einzelteildatei importieren: Ein
+Flächenvernähung importieren: Ein
+Boolesche Körper importieren: Ein
+Basisformelement erstellen: Ein
+Geometrie vereinfachen: Ein
+Druckkurven importieren: Ein
+Führung importieren: C:
+Flächenvernähung importieren: Ein
+Flächen importieren: Ein
+Ausgabepfad importieren: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Ultrasonic Sensor\jsn-sr04t-2-0-ultrasonic-sensor-1.snapshot.1
+Aktivieren des standardmäßigen Ausgabepfads importieren: Ein
+PMI importieren: Aus
+Als interne Komponenten importieren: Aus
+Pfad importieren: 
+
+Übersetzen in Parasolid-Datentypen...
+F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Ultrasonic Sensor\jsn-sr04t-2-0-ultrasonic-sensor-1.snapshot.1\JSN20.par wird platziert
+Konvertierungsvorgang ist abgeschlossen
+Zur Übersetzung und Nachbearbeitung erforderte Gesamtzeit:00 : 00 : 03
