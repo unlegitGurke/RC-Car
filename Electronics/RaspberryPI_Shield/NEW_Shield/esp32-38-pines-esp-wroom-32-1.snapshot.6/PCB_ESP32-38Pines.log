@@ -1,0 +1,78 @@
+STEP in Solid Edge konvertieren
+Datum: Montag,Dezember 27,2021 06:23nachm.
+Quelldatei: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\PCB_ESP32-38Pines.step
+Autor: Unbekannt
+Organisation: Unbekannt
+Ausgangssystem: Autodesk Translation Framework v9.3.0.1241
+
+Hardware:
+Prozessor: AMD Ryzen 7 3700X 8-Core Processor             
+Betriebssystem: Windows 10 Professional
+Installierter Speicher: 31.91 GB
+
+Software-Informationen
+Parasolid-Version: 32.1.222
+PSBodyShop-Version: 32.1.94
+Step-Adapterversion: 5.0.107
+Solid Edge-Version: 221.00.03.003 x64
+
+Step-Importoptionen
+Facettierte Körper importieren: Ein
+Prüfkörper importieren: Aus
+Kurven importieren: Ein
+DoNotSave importieren: Ein
+Mehrere Körper als Einzelteildatei importieren: Ein
+Flächenvernähung importieren: Ein
+Boolesche Körper importieren: Ein
+Basisformelement erstellen: Ein
+Geometrie vereinfachen: Ein
+Druckkurven importieren: Ein
+Führung importieren: C:
+Flächenvernähung importieren: Ein
+Flächen importieren: Ein
+Ausgabepfad importieren: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6
+Aktivieren des standardmäßigen Ausgabepfads importieren: Ein
+PMI importieren: Aus
+Als interne Komponenten importieren: Aus
+Pfad importieren: 
+
+Übersetzen in Parasolid-Datentypen...
++Baugruppe 1 beginnen
++SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\PCB_ESP32-38Pines.asm wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\MicroUSB.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\esp32.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\AMS1173.3V.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\cp2102.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Push_Bottom.par wurde erstellt
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Push_Bottom.par wird wiederholt verwendet
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Diodo_K24.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Cap_Tam_106.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Cap_Tam_106C.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Transistor_smd.par wurde erstellt
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Transistor_smd.par wird wiederholt verwendet
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Led_red_0603.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Cap_0603.par wurde erstellt
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Cap_0603.par wird wiederholt verwendet
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Cap_0603.par wird wiederholt verwendet
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Cap_0603.par wird wiederholt verwendet
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Res_102.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Res_123.par wurde erstellt
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Res_123.par wird wiederholt verwendet
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Res_471.par wurde erstellt
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Res_471.par wird wiederholt verwendet
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Res_471.par wird wiederholt verwendet
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Res_471.par wird wiederholt verwendet
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Res_123.par wird wiederholt verwendet
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Res_512.par wurde erstellt
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Res_512.par wird wiederholt verwendet
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Cap_0603.par wird wiederholt verwendet
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Cap_0603.par wird wiederholt verwendet
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\esp32-38-pines-esp-wroom-32-1.snapshot.6\Cap_0603.par wird wiederholt verwendet
++Gesamtzahl der Teile: 1 680
++Baugruppen: 0
++Volumenkörper: 1 680
++Flächenkörper: 0
++Baugruppe 1 beenden
+Konvertierungsvorgang ist abgeschlossen
+Zur Übersetzung und Nachbearbeitung erforderte Gesamtzeit:00 : 00 : 39

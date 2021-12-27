@@ -1,0 +1,54 @@
+STEP in Solid Edge konvertieren
+Datum: Montag,Dezember 27,2021 04:58nachm.
+Quelldatei: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\molex-5-2-54-mm-1.snapshot.1\Molex-2.54-5pin.STEP
+Autor: Unbekannt
+Organisation: Unbekannt
+Ausgangssystem: SolidWorks 2013
+
+Hardware:
+Prozessor: AMD Ryzen 7 3700X 8-Core Processor             
+Betriebssystem: Windows 10 Professional
+Installierter Speicher: 31.91 GB
+
+Software-Informationen
+Parasolid-Version: 32.1.222
+PSBodyShop-Version: 32.1.94
+Step-Adapterversion: 5.0.107
+Solid Edge-Version: 221.00.03.003 x64
+
+Step-Importoptionen
+Facettierte Körper importieren: Ein
+Prüfkörper importieren: Aus
+Kurven importieren: Ein
+DoNotSave importieren: Ein
+Mehrere Körper als Einzelteildatei importieren: Ein
+Flächenvernähung importieren: Ein
+Boolesche Körper importieren: Ein
+Basisformelement erstellen: Ein
+Geometrie vereinfachen: Ein
+Druckkurven importieren: Ein
+Führung importieren: C:
+Flächenvernähung importieren: Ein
+Flächen importieren: Ein
+Ausgabepfad importieren: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\molex-5-2-54-mm-1.snapshot.1
+Aktivieren des standardmäßigen Ausgabepfads importieren: Ein
+PMI importieren: Aus
+Als interne Komponenten importieren: Aus
+Pfad importieren: 
+
+Übersetzen in Parasolid-Datentypen...
++Baugruppe 1 beginnen
++SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\molex-5-2-54-mm-1.snapshot.1\Molex-2.54-5pin.asm wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\molex-5-2-54-mm-1.snapshot.1\molex_5.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\molex-5-2-54-mm-1.snapshot.1\pin.par wurde erstellt
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\molex-5-2-54-mm-1.snapshot.1\pin.par wird wiederholt verwendet
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\molex-5-2-54-mm-1.snapshot.1\pin.par wird wiederholt verwendet
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\molex-5-2-54-mm-1.snapshot.1\pin.par wird wiederholt verwendet
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\molex-5-2-54-mm-1.snapshot.1\pin.par wird wiederholt verwendet
++Gesamtzahl der Teile: 8
++Baugruppen: 0
++Volumenkörper: 8
++Flächenkörper: 0
++Baugruppe 1 beenden
+Konvertierungsvorgang ist abgeschlossen
+Zur Übersetzung und Nachbearbeitung erforderte Gesamtzeit:00 : 00 : 01

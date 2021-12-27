@@ -1,0 +1,167 @@
+STEP in Solid Edge konvertieren
+Datum: Montag,Dezember 27,2021 05:36nachm.
+Quelldatei: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\Leiterplatte v34.step
+Autor: Unbekannt
+Organisation: Unbekannt
+Ausgangssystem: Autodesk Translation Framework v10.10.0.1391
+
+Hardware:
+Prozessor: AMD Ryzen 7 3700X 8-Core Processor             
+Betriebssystem: Windows 10 Professional
+Installierter Speicher: 31.91 GB
+
+Software-Informationen
+Parasolid-Version: 32.1.222
+PSBodyShop-Version: 32.1.94
+Step-Adapterversion: 5.0.107
+Solid Edge-Version: 221.00.03.003 x64
+
+Step-Importoptionen
+Facettierte Körper importieren: Ein
+Prüfkörper importieren: Aus
+Kurven importieren: Ein
+DoNotSave importieren: Ein
+Mehrere Körper als Einzelteildatei importieren: Ein
+Flächenvernähung importieren: Ein
+Boolesche Körper importieren: Ein
+Basisformelement erstellen: Ein
+Geometrie vereinfachen: Ein
+Druckkurven importieren: Ein
+Führung importieren: C:
+Flächenvernähung importieren: Ein
+Flächen importieren: Ein
+Ausgabepfad importieren: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3
+Aktivieren des standardmäßigen Ausgabepfads importieren: Ein
+PMI importieren: Aus
+Als interne Komponenten importieren: Aus
+Pfad importieren: 
+
+Übersetzen in Parasolid-Datentypen...
++Baugruppe 1 beginnen
++SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\Leiterplatte v34.asm wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\Board.par wurde erstellt
+|--+Baugruppe 2 beginnen
+|--+SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\Packages.asm wurde erstellt
+|  |--+Baugruppe 3 beginnen
+|  |--+SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\B3B-XH-A.asm wurde erstellt
+|  |  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\B3B-XH-A v1.par wurde erstellt
+|  |--+Gesamtzahl der Teile: 2
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 2
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\B3B-XH-A.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\B3B-XH-A.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\B3B-XH-A.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\B3B-XH-A.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\B3B-XH-A.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\B3B-XH-A.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\TERMBLK_508-2N.asm wurde erstellt
+|  |  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\TERMBLK_508_2N v2.par wurde erstellt
+|  |--+Gesamtzahl der Teile: 6
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 6
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\RESAD724W46L381D178B.par wurde erstellt
+Körper: 0
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\RPI3.par wurde erstellt
+Körper: 0
+Körper: 0
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\MODULE_ESP32-DEVKITC-32D.par wurde erstellt
+Körper: 0
+|  |--+Baugruppe 3 beginnen
+|  |--+SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\DIP762W60P254L712H480Q6B.asm wurde erstellt
+|  |  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\Model.par wurde erstellt
+|  |--+Gesamtzahl der Teile: 58
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 58
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\DIP762W60P254L712H480Q6B.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\DIP762W60P254L712H480Q6B.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\DIP762W60P254L712H480Q6B.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\1X03.par wurde erstellt
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\1X03.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\1X03.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\1X03.par wird wiederholt verwendet
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\DIOM5226X290N.par wurde erstellt
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\DIOM5226X290N.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\DIOM5226X290N.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\DIOM5226X290N.par wird wiederholt verwendet
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\DIL14.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\RESC2012X65.par wurde erstellt
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\RESC2012X65.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\RESC2012X65.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\RESC2012X65.par wird wiederholt verwendet
+|--+Gesamtzahl der Teile: 22
+|--+Baugruppen: 3
+|--+Volumenkörper: 19
+|--+Flächenkörper: 0
+|--+Baugruppe 2 beenden
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\1-copper.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\16-copper.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\1-soldermask.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\RaspberryPI_Shield\NEW_Shield\Shield_V3\16-soldermask.par wurde erstellt
++Gesamtzahl der Teile: 1 755
++Baugruppen: 1
++Volumenkörper: 1 754
++Flächenkörper: 0
++Baugruppe 1 beenden
+Konvertierungsvorgang ist abgeschlossen
+Zur Übersetzung und Nachbearbeitung erforderte Gesamtzeit:00 : 01 : 29
