@@ -1,0 +1,62 @@
+STEP in Solid Edge konvertieren
+Datum: Mittwoch,Jänner 05,2022 03:00vorm.
+Quelldatei: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\12mm-flat-round-head-waterproof-momentary-latching-metal-push-button-switch-led-light-car-horn-auto-switches-power-self-recovery-1.snapshot.8\12mm_Switch.step
+Autor: Unbekannt
+Organisation: Unbekannt
+Ausgangssystem: Autodesk Translation Framework v10.10.0.1391
+
+Hardware:
+Prozessor: AMD Ryzen 7 3700X 8-Core Processor             
+Betriebssystem: Windows 10 Professional
+Installierter Speicher: 31.91 GB
+
+Software-Informationen
+Parasolid-Version: 32.1.222
+PSBodyShop-Version: 32.1.94
+Step-Adapterversion: 5.0.107
+Solid Edge-Version: 221.00.03.003 x64
+
+Step-Importoptionen
+Facettierte Körper importieren: Ein
+Prüfkörper importieren: Aus
+Kurven importieren: Ein
+DoNotSave importieren: Ein
+Mehrere Körper als Einzelteildatei importieren: Ein
+Flächenvernähung importieren: Ein
+Boolesche Körper importieren: Ein
+Basisformelement erstellen: Ein
+Geometrie vereinfachen: Ein
+Druckkurven importieren: Ein
+Führung importieren: C:
+Flächenvernähung importieren: Ein
+Flächen importieren: Ein
+Ausgabepfad importieren: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\12mm-flat-round-head-waterproof-momentary-latching-metal-push-button-switch-led-light-car-horn-auto-switches-power-self-recovery-1.snapshot.8
+Aktivieren des standardmäßigen Ausgabepfads importieren: Ein
+PMI importieren: Aus
+Als interne Komponenten importieren: Aus
+Pfad importieren: 
+
+Übersetzen in Parasolid-Datentypen...
++Baugruppe 1 beginnen
++SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\12mm-flat-round-head-waterproof-momentary-latching-metal-push-button-switch-led-light-car-horn-auto-switches-power-self-recovery-1.snapshot.8\12mm_Switch.asm wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\12mm-flat-round-head-waterproof-momentary-latching-metal-push-button-switch-led-light-car-horn-auto-switches-power-self-recovery-1.snapshot.8\Body.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\12mm-flat-round-head-waterproof-momentary-latching-metal-push-button-switch-led-light-car-horn-auto-switches-power-self-recovery-1.snapshot.8\button.par wurde erstellt
+|--+Baugruppe 2 beginnen
+|--+SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\12mm-flat-round-head-waterproof-momentary-latching-metal-push-button-switch-led-light-car-horn-auto-switches-power-self-recovery-1.snapshot.8\latching.asm wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\12mm-flat-round-head-waterproof-momentary-latching-metal-push-button-switch-led-light-car-horn-auto-switches-power-self-recovery-1.snapshot.8\latching.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\12mm-flat-round-head-waterproof-momentary-latching-metal-push-button-switch-led-light-car-horn-auto-switches-power-self-recovery-1.snapshot.8\solderlug.par wurde erstellt
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\12mm-flat-round-head-waterproof-momentary-latching-metal-push-button-switch-led-light-car-horn-auto-switches-power-self-recovery-1.snapshot.8\solderlug.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\12mm-flat-round-head-waterproof-momentary-latching-metal-push-button-switch-led-light-car-horn-auto-switches-power-self-recovery-1.snapshot.8\solderlug.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\12mm-flat-round-head-waterproof-momentary-latching-metal-push-button-switch-led-light-car-horn-auto-switches-power-self-recovery-1.snapshot.8\solderlug.par wird wiederholt verwendet
+|--+Gesamtzahl der Teile: 15
+|--+Baugruppen: 0
+|--+Volumenkörper: 15
+|--+Flächenkörper: 0
+|--+Baugruppe 2 beenden
++Gesamtzahl der Teile: 7
++Baugruppen: 1
++Volumenkörper: 6
++Flächenkörper: 0
++Baugruppe 1 beenden
+Konvertierungsvorgang ist abgeschlossen
+Zur Übersetzung und Nachbearbeitung erforderte Gesamtzeit:00 : 00 : 07
