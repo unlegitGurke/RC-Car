@@ -1,0 +1,41 @@
+STEP in Solid Edge konvertieren
+Datum: Sonntag,Januar 23,2022 07:34
+Quelldatei: C:\Users\phili\Documents\GitHub\RC-Car\Electronics\Akku\Zelle\Sony US21700VTC6A.STEP
+Autor: Unbekannt
+Organisation: Unbekannt
+Ausgangssystem: SolidWorks 2018
+
+Hardware:
+Prozessor: Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz
+Betriebssystem: Windows 10
+Installierter Speicher: 15.94 GB
+
+Software-Informationen
+Parasolid-Version: 32.1.222
+PSBodyShop-Version: 32.1.94
+Step-Adapterversion: 5.0.107
+Solid Edge-Version: 221.00.03.003 x64
+
+Step-Importoptionen
+Facettierte Körper importieren: Ein
+Prüfkörper importieren: Aus
+Kurven importieren: Ein
+DoNotSave importieren: Ein
+Mehrere Körper als Einzelteildatei importieren: Ein
+Flächenvernähung importieren: Ein
+Boolesche Körper importieren: Ein
+Basisformelement erstellen: Ein
+Geometrie vereinfachen: Ein
+Druckkurven importieren: Ein
+Führung importieren: C:
+Flächenvernähung importieren: Ein
+Flächen importieren: Ein
+Ausgabepfad importieren: C:\Users\phili\Documents\GitHub\RC-Car\Electronics\Akku\Zelle
+Aktivieren des standardmäßigen Ausgabepfads importieren: Ein
+PMI importieren: Aus
+Als interne Komponenten importieren: Aus
+Pfad importieren: 
+
+Übersetzen in Parasolid-Datentypen...
+Konvertierungsvorgang ist abgeschlossen
+Zur Übersetzung und Nachbearbeitung erforderte Gesamtzeit:00 : 00 : 05
