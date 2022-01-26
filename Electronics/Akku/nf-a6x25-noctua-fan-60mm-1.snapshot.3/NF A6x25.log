@@ -1,0 +1,41 @@
+STEP in Solid Edge konvertieren
+Datum: Mittwoch,Jänner 26,2022 11:56AM
+Quelldatei: C:\Users\Felix\Documents\GitHub\RC-Car\Electronics\Akku\nf-a6x25-noctua-fan-60mm-1.snapshot.3\NF A6x25.step
+Autor: Unbekannt
+Organisation: Unbekannt
+Ausgangssystem: Autodesk Translation Framework v8.12.0.6
+
+Hardware:
+Prozessor: AMD Ryzen 7 5800H with Radeon Graphics         
+Betriebssystem: Windows 10 Professional
+Installierter Speicher: 15.85 GB
+
+Software-Informationen
+Parasolid-Version: 32.1.222
+PSBodyShop-Version: 32.1.94
+Step-Adapterversion: 5.0.107
+Solid Edge-Version: 221.00.03.003 x64
+
+Step-Importoptionen
+Facettierte Körper importieren: Ein
+Prüfkörper importieren: Aus
+Kurven importieren: Ein
+DoNotSave importieren: Ein
+Mehrere Körper als Einzelteildatei importieren: Ein
+Flächenvernähung importieren: Ein
+Boolesche Körper importieren: Ein
+Basisformelement erstellen: Ein
+Geometrie vereinfachen: Ein
+Druckkurven importieren: Ein
+Führung importieren: C:
+Flächenvernähung importieren: Ein
+Flächen importieren: Ein
+Ausgabepfad importieren: C:\Users\Felix\Documents\GitHub\RC-Car\Electronics\Akku\nf-a6x25-noctua-fan-60mm-1.snapshot.3
+Aktivieren des standardmäßigen Ausgabepfads importieren: Ein
+PMI importieren: Aus
+Als interne Komponenten importieren: Aus
+Pfad importieren: 
+
+Übersetzen in Parasolid-Datentypen...
+Konvertierungsvorgang ist abgeschlossen
+Zur Übersetzung und Nachbearbeitung erforderte Gesamtzeit:00 : 00 : 02
