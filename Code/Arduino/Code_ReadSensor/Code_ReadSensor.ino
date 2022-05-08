@@ -24,7 +24,7 @@ const int TempUnit = 2;   //Choose which Unit the Temperature will be printed in
 
 const int ADCRes = 12;  //Resolution of ADC in Bits (Arduino Nano: 10, ESP32: 12)
 
-const int ErrorLedPin = 9; //Pin for Error LED
+const int ErrorLedPin = 2; //Pin for Error LED
 
 const unsigned int ReadIntervallTemp = 200; //Time between Sensor Readings in milliseconds
 unsigned long previousMillisTemp = 0;
@@ -90,7 +90,7 @@ void SendTemp() {
       Serial.println(Error[i]);
   
       if(Error[i] == 1) {
-        IsError = 1;
+        IsError = 1;              
       }
       
     }
