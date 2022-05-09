@@ -40,6 +40,8 @@ void setup(){
   Serial.begin(115200);
   myOcto.begin(ACTIVE_SONARS);   // initialize bus, pins etc
 
+  pinMode(ErrorLedPin, OUTPUT);
+
 }
 
 void loop(){
