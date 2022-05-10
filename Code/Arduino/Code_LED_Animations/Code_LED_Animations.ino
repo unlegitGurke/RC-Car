@@ -72,6 +72,7 @@ void loop() {
         leds[i] = CRGB::DarkOrange;
         FastLED.show();
         delay(10);
+        
       }
 
       delay(200);
@@ -85,6 +86,4 @@ void loop() {
 
   }
   
-
-
 }
