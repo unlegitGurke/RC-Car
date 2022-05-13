@@ -12,18 +12,24 @@ unsigned int Effekt = 0;
 
 bool buttonState1 = 0;
 bool buttonState2 = 0;
-bool buttonState3 = 0;
+bool buttonState3 = 1;
 bool buttonState4 = 0;
 
-//Declare indicator
+//Define indicator
 float Indicatorsize = 0.33;
+
+//Define Reverse Light
+int endspace = 3;   //Distance from reverslights to end of strip
+int revlightsize = 5;    //Size of Reverslight on each side
 
 void setup() {
 
   FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS);
 
-  pinMode(4, OUTPUT);  
-  pinMode(5, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, INPUT);  
+  pinMode(5, INPUT);
+  pinMode(6, INPUT);
 
   Serial.begin(115200);
 }
@@ -35,7 +41,7 @@ void loop() {
   switch(Effekt) {
     case 0:   //Normal Light
 
-      NormalLight();
+      idle();
       break;
 
     case 1:   //Right indicator
@@ -50,7 +56,7 @@ void loop() {
 
     case 3:   //Brakelight
 
-      Brakelight();      
+      BrakeLight();      
       break;
 
     case 4:   //Reverse Light
@@ -95,7 +101,7 @@ void ReadButtons() {
 
 }
 
-void NormalLight() {
+void idle() {
 
   for(int i = 0;i <= NUM_LEDS;i++) {
     leds[i].setRGB(64,0,0);
@@ -116,12 +122,14 @@ void Indicator(bool dir) {    //dir = 1 for left, dir = 0 for right
      }
 
      delay(250);
+     FastLED.delay(250);
 
      for(int i = size;i >= 0;i--) {
        leds[i].setRGB(64,0,0);               
      }
      FastLED.show();
      delay(500);
+
   }
 
   if(dir == 0) {
@@ -131,17 +139,19 @@ void Indicator(bool dir) {    //dir = 1 for left, dir = 0 for right
       delay(10);
     }    
 
-    delay(250);
+    delay(250);      
 
     for(int i = NUM_LEDS - size;i <= NUM_LEDS;i++) {
       leds[i].setRGB(64,0,0);
     }
+    
     FastLED.show();
     delay(500);
+
   }
 }
 
-void Brakelight() {
+void BrakeLight() {
 
   for(int i = 0;i <= NUM_LEDS;i++) {
     leds[i].setRGB(255,0,0);
@@ -151,5 +161,15 @@ void Brakelight() {
 }
 
 void ReverseLight() {
-  
+
+  for(int i = endspace;i < endspace + revlightsize;i++) {
+    leds[i].setRGB(255,255,255);
+  }
+
+  for(int i = NUM_LEDS - endspace - 1;i > NUM_LEDS - endspace - revlightsize - 1;i--) {
+    leds[i].setRGB(255,255,255);
+  }
+
+  FastLED.show();
+
 }
