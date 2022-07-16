@@ -173,3 +173,17 @@ void ReverseLight() {
   FastLED.show();
 
 }
+
+bool millisdelay(int millisdelay) {   //millisdelay: delay in milliseconds
+
+  unsigned long CurrentTime = millis();
+  unsigned long previousTime;
+
+  if(currentTime - previoustime >= millisdelay) {
+    previousTime = millis();
+    return 1;
+  }    
+
+  return 0;
+
+}
