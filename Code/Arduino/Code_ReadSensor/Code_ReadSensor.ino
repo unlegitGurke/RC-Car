@@ -3,6 +3,21 @@
 TaskHandle_t Task1;
 TaskHandle_t Task2;
 
+//Declare PWM Fan Controller
+
+const int Fan_Pin[4] = {16, 17, 18, 19};
+
+const int PWMChannel[4] = {0, 2, 4, 6};
+
+const int Resolution[4] = {10, 10, 10, 10};
+
+const int Frequency[4] = {25000, 25000, 25000, 25000};
+
+int FanSpeed[4] = {25, 50, 75, 90};
+
+int DutyCycle[4] = {0, 0, 0, 0};
+
+
 //Declare Accelerometer and Gyroscope
 
 #include<Wire.h>
@@ -97,6 +112,18 @@ void Task1setup( void * pvParameters ){    //Task1 Core 0
 
   pinMode(ErrorLedPin, OUTPUT);
 
+  //Fan Control
+
+  ledcAttachPin(Fan_Pin[0], PWMChannel[0]);
+  ledcAttachPin(Fan_Pin[1], PWMChannel[1]);
+  ledcAttachPin(Fan_Pin[2], PWMChannel[2]);
+  ledcAttachPin(Fan_Pin[3], PWMChannel[3]);
+
+  ledcSetup(PWMChannel[0], Frequency[0], Resolution[0]);
+  ledcSetup(PWMChannel[1], Frequency[1], Resolution[1]);
+  ledcSetup(PWMChannel[2], Frequency[2], Resolution[2]);
+  ledcSetup(PWMChannel[3], Frequency[3], Resolution[3]);
+
   for(;;){
     Task1loop();   
   } 
@@ -107,6 +134,7 @@ void Task1loop() {
   ReadTemp();
   ReadSonar();
   ReadIMU();
+  Fan_Control();
 
   delay(1);
 }
@@ -223,4 +251,16 @@ void ReadIMU() {
     Serial.println("  ");
 
   }    
+}
+
+void Fan_Control() {
+
+  for(int i = 0;i < 4;i++) {
+
+    DutyCycle[i] = map(FanSpeed[i], 0, 100, 0, pow(2, Resolution[i]));
+
+    ledcWrite(PWMChannel[i], DutyCycle[i]);
+
+  }
+
 }
