@@ -1,6 +1,6 @@
 Solid Edge in 3MF konvertieren
-Datum: Sonntag,Juli 17,2022 08:26nachm.
-Ausgabedatei: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Exportierte Dateien\Aufhängung\Feder_Mount_Final.3mf
+Datum: Montag,Juli 18,2022 10:39nachm.
+Ausgabedatei: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Exportierte Dateien\Aufhängung\A-Arm_unten.3mf
 Autor: Unknown
 Organisation: Unknown
 Ausgangssystem: SOLID EDGE
@@ -33,9 +33,5 @@ Programmname exportieren:Unknown
 
 Konvertierungsfortschritt:
 Phase 1 von 1 - Parasolid in Fremddatentypen konvertieren...
-Warn: One or more facets generated for a parasolid body in node Feder_Mount_Final_Vorne may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node Feder_Mount_Final_Vorne may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node Feder_Mount_Final_Vorne may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node Feder_Mount_Final_Vorne may not satisfy the specified faceting tolerances
 Konvertierungsvorgang ist abgeschlossen
-Zum Konvertieren benötigte Zeit:00 : 00 : 02
+Zum Konvertieren benötigte Zeit:00 : 00 : 01
