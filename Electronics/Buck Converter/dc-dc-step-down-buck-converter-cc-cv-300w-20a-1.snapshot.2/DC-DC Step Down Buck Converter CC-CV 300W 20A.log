@@ -1,0 +1,122 @@
+STEP in Solid Edge konvertieren
+Datum: Dienstag,August 09,2022 11:26vorm.
+Quelldatei: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\DC-DC Step Down Buck Converter CC-CV 300W 20A.step
+Autor: Unbekannt
+Organisation: Unbekannt
+Ausgangssystem: Autodesk Translation Framework v10.6.0.1341
+
+Hardware:
+Prozessor: AMD Ryzen 7 3700X 8-Core Processor             
+Betriebssystem: Windows 10 Professional
+Installierter Speicher: 31.91 GB
+
+Software-Informationen
+Parasolid-Version: 32.1.222
+PSBodyShop-Version: 32.1.94
+Step-Adapterversion: 5.0.107
+Solid Edge-Version: 221.00.03.003 x64
+
+Step-Importoptionen
+Facettierte Körper importieren: Ein
+Prüfkörper importieren: Aus
+Kurven importieren: Ein
+DoNotSave importieren: Ein
+Mehrere Körper als Einzelteildatei importieren: Ein
+Flächenvernähung importieren: Ein
+Boolesche Körper importieren: Ein
+Basisformelement erstellen: Ein
+Geometrie vereinfachen: Ein
+Druckkurven importieren: Ein
+Führung importieren: C:
+Flächenvernähung importieren: Ein
+Flächen importieren: Ein
+Ausgabepfad importieren: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2
+Aktivieren des standardmäßigen Ausgabepfads importieren: Ein
+PMI importieren: Aus
+Als interne Komponenten importieren: Aus
+Pfad importieren: 
+
+Übersetzen in Parasolid-Datentypen...
++Baugruppe 1 beginnen
++SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\DC-DC Step Down Buck Converter CC-CV 300W 20A.asm wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\heatsink.par wurde erstellt
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\heatsink.par wird wiederholt verwendet
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\pcb board.par wurde erstellt
+|--+Baugruppe 2 beginnen
+|--+SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\2-pin terminal.asm wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Base.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Arandela.par wurde erstellt
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Arandela.par wird wiederholt verwendet
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Tornillo.par wurde erstellt
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Tornillo.par wird wiederholt verwendet
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Terminal.par wurde erstellt
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Terminal.par wird wiederholt verwendet
+|--+Gesamtzahl der Teile: 11
+|--+Baugruppen: 0
+|--+Volumenkörper: 11
+|--+Flächenkörper: 0
+|--+Baugruppe 2 beenden
+|--+Baugruppe 2 beginnen
+|--+SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\2-pin terminal_1.asm wurde erstellt
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Base.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Arandela.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Arandela.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Tornillo.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Tornillo.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Terminal.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Terminal.par wird wiederholt verwendet
+|--+Gesamtzahl der Teile: 7
+|--+Baugruppen: 0
+|--+Volumenkörper: 7
+|--+Flächenkörper: 0
+|--+Baugruppe 2 beenden
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\potentiometer.par wurde erstellt
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\potentiometer.par wird wiederholt verwendet
+|--+Baugruppe 2 beginnen
+|--+SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\inductor.asm wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component35.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component16.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component17.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component18.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component19.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component20.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component21.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component22.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component23.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component24.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component25.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component26.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component27.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component28.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component29.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component30.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component31.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component32.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component33.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component34.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component11.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component12.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component13.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component14.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\Component15.par wurde erstellt
+|--+Gesamtzahl der Teile: 50
+|--+Baugruppen: 0
+|--+Volumenkörper: 50
+|--+Flächenkörper: 0
+|--+Baugruppe 2 beenden
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\elco-a.par wurde erstellt
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\elco-a.par wird wiederholt verwendet
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\elco-b.par wurde erstellt
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\elco-b.par wird wiederholt verwendet
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\elco-b.par wird wiederholt verwendet
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\transistor.par wurde erstellt
+|--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\transistor.par wird wiederholt verwendet
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\led.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\Buck Converter\dc-dc-step-down-buck-converter-cc-cv-300w-20a-1.snapshot.2\switch.par wurde erstellt
++Gesamtzahl der Teile: 25
++Baugruppen: 3
++Volumenkörper: 22
++Flächenkörper: 0
++Baugruppe 1 beenden
+Konvertierungsvorgang ist abgeschlossen
+Zur Übersetzung und Nachbearbeitung erforderte Gesamtzeit:00 : 00 : 04
