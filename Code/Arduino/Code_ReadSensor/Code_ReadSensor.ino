@@ -98,6 +98,8 @@ void loop(){
   
 }
 
+//Core 1
+
 void Task1setup( void * pvParameters ){    //Task1 Core 0
   Serial.print("Task1 running on core ");
   Serial.println(xPortGetCoreID());
@@ -139,19 +141,6 @@ void Task1loop() {
   delay(1);
 }
 
-void Task2setup( void * pvParameters ){    //Task2 Core 1
-  Serial.print("Task2 running on core ");
-  Serial.println(xPortGetCoreID());
-
-  for(;;){
-    Task2loop();
-  }
-}
-
-void Task2loop() {
-  delay(1);
-}
-
 void ReadTemp() {
 
   currentMillisTemp = millis();
@@ -166,7 +155,7 @@ void ReadTemp() {
       Serial.print(i + 1);
       Serial.print(": ");
       Serial.print(temp[i][TempUnit]);
-      Serial.print("°C Error: ");
+      Serial.print(" C Error: ");
       Serial.println(Error[i]);
   
       if(Error[i] == 1) {
@@ -263,4 +252,19 @@ void Fan_Control() {
 
   }
 
+}
+
+//Core 2
+
+void Task2setup( void * pvParameters ){    //Task2 Core 1
+  Serial.print("Task2 running on core ");
+  Serial.println(xPortGetCoreID());
+
+  for(;;){
+    Task2loop();
+  }
+}
+
+void Task2loop() {
+  delay(1);
 }
