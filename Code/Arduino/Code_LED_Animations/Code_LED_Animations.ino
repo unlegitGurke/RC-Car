@@ -19,7 +19,7 @@ bool ReverseLightState = 0;
 bool HazardState = 0;
 
 //Define indicator
-float IndicatorSize = 0.33;
+float IndicatorSize = 0.20;
 
 //Define Reverse Light
 int endspace = 0;   //Distance from reverslights to end of strip
@@ -30,6 +30,13 @@ int revlightsize = NUM_LEDS * IndicatorSize;    //Size of Reverslight on each si
 #define brakecol 0xff0000
 #define indicatorcol 0xff4000
 #define reversecol 0xffffff
+
+//Non-Blocking Delay Variables
+int currentMillis = 0;
+int previousmillis = 0;
+
+int IndicatorAnimTime = 10; //Time between each Indicator LED turning on
+int IndicatorOffTime = 500; //Time between eacht indicator animation
 
 void setup() {
   delay(3000);
@@ -112,41 +119,41 @@ void loop() {
       ReverseLight();
       break;
     
-    case 10:
+    case 10:  //Right Indicator + Reverse Light
 
       BrakeLight();
       ReverseLight();
       Indicator(0);
       break;    
 
-    case 11:
+    case 11:  //Left Indicator + Reverse Light
 
       BrakeLight();
       ReverseLight();
       Indicator(1);
       break;
 
-    case 12:
+    case 12:  //Hazard Lights + Reverse Light
 
       BrakeLight();
       Indicator(2);      
       break;
 
-    case 13:
+    case 13:  //Right Indicator + Brake Light + Reverse Light
       
       BrakeLight();
       ReverseLight();
       Indicator(0);
       break;
 
-    case 14:
+    case 14:  //Left Indicator + Brake Light + Reverse Light
 
       BrakeLight();
       ReverseLight();
       Indicator(1);
       break;
 
-    case 15:
+    case 15:  //Hazard Lights + Brake Light + Reverse Light
     
       BrakeLight();
       Indicator(2);
@@ -158,12 +165,7 @@ void loop() {
 
 void ReadButtons() {
   
-  //Read alle the Buttonstates
-  IndicatorRightState = digitalRead(ButtonPins[0]);
-  IndicatorLeftState = digitalRead(ButtonPins[1]);
-  BrakeLightState = digitalRead(ButtonPins[2]);
-  ReverseLightState = digitalRead(ButtonPins[3]);
-  HazardState = digitalRead(ButtonPins[4]);
+  UpdateButtonState();
 
   if(IndicatorLeftState == HIGH && HazardState == HIGH || IndicatorRightState == HIGH && HazardState == HIGH ){   //If Hazards and Indicators are on at the same time the indicators can be turned off
     IndicatorLeftState == LOW;
@@ -251,6 +253,15 @@ void ReadButtons() {
   }
 }
 
+void UpdateButtonState() {
+  //Read alle the Buttonstates
+  IndicatorRightState = digitalRead(ButtonPins[0]);
+  IndicatorLeftState = digitalRead(ButtonPins[1]);
+  BrakeLightState = digitalRead(ButtonPins[2]);
+  ReverseLightState = digitalRead(ButtonPins[3]);
+  HazardState = digitalRead(ButtonPins[4]);  
+}
+
 void idle() {
 
   for(int i = 0;i <= NUM_LEDS;i++) {    //State of LEDs when nothing is happening
@@ -268,17 +279,30 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
      for(int i = size;i >= 0;i--) {   //Animation 
         leds[i] = indicatorcol; 
         FastLED.show();
-        delay(10);     
+        //delay(IndicatorAnimTime); 
+        currentMillis = previousmillis = millis();
+        while(previousmillis + IndicatorAnimTime >= currentMillis) {
+          BrakeLight();
+          currentMillis = millis();          
+        }              
      }
 
-     delay(250);
-     FastLED.delay(250);
-
+     //delay(250);
+     currentMillis = previousmillis = millis();
+     while(previousmillis + IndicatorOffTime / 2 >= currentMillis) {
+      BrakeLight();
+      currentMillis = millis(); 
+     }
      for(int i = size;i >= 0;i--) {
        leds[i] = idlecol;               
      }
      FastLED.show();
-     delay(500);
+     //delay(500);
+     currentMillis = previousmillis = millis();
+     while(previousmillis + IndicatorOffTime >= currentMillis) {
+      BrakeLight();
+      currentMillis = millis(); 
+     }
 
   }
 
@@ -286,17 +310,32 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
     for(int i = NUM_LEDS - size;i <= NUM_LEDS;i++) {    //Animation
       leds[i] = indicatorcol;
       FastLED.show();
-      delay(10);
+      //delay(IndicatorAnimTime);
+      currentMillis = previousmillis = millis();
+      while(previousmillis + IndicatorAnimTime >= currentMillis) {
+        BrakeLight();
+        currentMillis = millis();  
+      }                
+       
     }    
 
-    delay(250);      
-
+    //delay(250);
+    currentMillis = previousmillis = millis();
+    while(previousmillis + IndicatorOffTime / 2 >= currentMillis) {
+      BrakeLight();
+      currentMillis = millis();      
+    }    
     for(int i = NUM_LEDS - size;i <= NUM_LEDS;i++) {
       leds[i] = idlecol;
     }
     
     FastLED.show();
-    delay(500);
+    //delay(500);
+    currentMillis = previousmillis = millis();
+    while(previousmillis + IndicatorOffTime >= currentMillis) {
+      BrakeLight();
+      currentMillis = millis();
+    }      
     dir = 0;
 
   }
@@ -310,10 +349,20 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
       leds[y] = indicatorcol;
       FastLED.show();
       y--;
-      delay(10);
+      //delay(10);
+      currentMillis = previousmillis = millis();
+      while(previousmillis + IndicatorAnimTime >= currentMillis) {
+        BrakeLight();
+        currentMillis = millis();          
+      }
     }    
 
-    delay(250);  
+    //delay(250);
+    currentMillis = previousmillis = millis();
+    while(previousmillis + IndicatorOffTime / 2 >= currentMillis) {
+      BrakeLight();
+      currentMillis = millis();      
+    }  
         
     y = NUM_LEDS * IndicatorSize;     //Reset y
     
@@ -324,7 +373,12 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
     }
     
     FastLED.show();
-    delay(500);
+    //delay(500);
+    currentMillis = previousmillis = millis();
+    while(previousmillis + IndicatorOffTime >= currentMillis) {
+      BrakeLight();
+      currentMillis = millis();
+    }
 
   } 
 
@@ -332,6 +386,9 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
 }
 
 void BrakeLight() {
+
+  UpdateButtonState();
+  ReverseLight();
 
   //If BrakeLight isnt supposed to be turned on, turn it off
   if(BrakeLightState == LOW) {
@@ -348,12 +405,16 @@ void BrakeLight() {
     }
   }  
   
-  //Checks if Left Blinker is running, if not lights up left side of Strip
-  if(IndicatorLeftState == LOW && ReverseLightState == LOW && IndicatorRightState == LOW) {
+  //Checks if Left Indicator is running, if not lights up left side of Strip
+  if(IndicatorLeftState == LOW && ReverseLightState == LOW && IndicatorRightState == LOW && HazardState == LOW && BrakeLightState == HIGH) {
     for(int i = 0; i <= NUM_LEDS * IndicatorSize;i++) {
       leds[i] = brakecol;
     }
   } 
+
+  else if(IndicatorLeftState == HIGH || HazardState == HIGH || ReverseLightState == HIGH) {
+    
+  }
 
   else {
     for(int i = 0; i <= NUM_LEDS * IndicatorSize;i++) {
@@ -361,12 +422,16 @@ void BrakeLight() {
     }    
   }
 
-  //Checks if Right Blinker is running, if not lights up right side of the Strip
-  if(IndicatorRightState == LOW && ReverseLightState == LOW && IndicatorLeftState == LOW) {
+  //Checks if Right Indicator is running, if not lights up right side of the Strip
+  if(IndicatorRightState == LOW && ReverseLightState == LOW && IndicatorLeftState == LOW && HazardState == LOW && BrakeLightState == HIGH) {
     for(int i = NUM_LEDS - NUM_LEDS * IndicatorSize; i <= NUM_LEDS;i++) {
       leds[i] = brakecol;
     }
   }   
+
+  else if(IndicatorRightState == HIGH || HazardState == HIGH || ReverseLightState == HIGH) {
+    
+  }
   
   else {
     for(int i = NUM_LEDS - NUM_LEDS * IndicatorSize; i <= NUM_LEDS;i++) {
@@ -379,13 +444,13 @@ void BrakeLight() {
 
 void ReverseLight() {  
 
-  if(IndicatorRightState == LOW) {  
+  if(IndicatorRightState == LOW && HazardState == LOW && ReverseLightState == HIGH) {  
     for(int i = NUM_LEDS - NUM_LEDS * IndicatorSize;i <=NUM_LEDS;i++) {
       leds[i] = reversecol;
     }
   }
 
-  if(IndicatorLeftState == LOW) {
+  if(IndicatorLeftState == LOW && HazardState == LOW && ReverseLightState == HIGH) {
     for(int i = NUM_LEDS * IndicatorSize;i >= 0 ;i--) {
       leds[i] = reversecol;
     }
