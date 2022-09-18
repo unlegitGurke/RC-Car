@@ -1,14 +1,14 @@
 Solid Edge in 3MF konvertieren
-Datum: Donnerstag,Juli 28,2022 10:47nachm.
-Ausgabedatei: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Exportierte Dateien\Body\Bumper.3mf
+Datum: Sonntag,August 07,2022 05:36PM
+Ausgabedatei: C:\Users\Felix\Documents\GitHub\RC-Car\Exportierte Dateien\Body\Bumper.3mf
 Autor: Unknown
 Organisation: Unknown
 Ausgangssystem: SOLID EDGE
 
 Hardware:
-Prozessor: AMD Ryzen 7 3700X 8-Core Processor             
+Prozessor: AMD Ryzen 7 5800H with Radeon Graphics         
 Betriebssystem: Windows 10 Professional
-Installierter Speicher: 31.91 GB
+Installierter Speicher: 15.85 GB
 
 Software-Informationen:
 Parasolid-Version: 32.1.222
@@ -34,4 +34,4 @@ Programmname exportieren:Unknown
 Konvertierungsfortschritt:
 Phase 1 von 1 - Parasolid in Fremddatentypen konvertieren...
 Konvertierungsvorgang ist abgeschlossen
-Zum Konvertieren benötigte Zeit:00 : 00 : 01
+Zum Konvertieren benötigte Zeit:00 : 00 : 00
