@@ -1,3 +1,77 @@
+//Create TaskHandles
+
+TaskHandle_t Task1;
+TaskHandle_t Task2;
+
+////////// C O R E 1 //////////
+
+//Declare PWM Fan Controller
+
+const int Fan_Pin[4] = {17, 5, 18, 19};
+
+const int PWMChannel[4] = {0, 2, 4, 6};
+
+const int Resolution[4] = {10, 10, 10, 10};
+
+const int Frequency[4] = {25000, 25000, 25000, 25000};
+
+int FanSpeed[4] = {25, 50, 75, 90};
+
+int DutyCycle[4] = {0, 0, 0, 0};
+
+
+//Declare Accelerometer and Gyroscope
+
+#include<Wire.h>
+const int MPU_addr=0x68;  // I2C address of the MPU-6050
+int16_t AcX,AcY,AcZ,Tmp,GyX,GyY,GyZ;
+
+const unsigned int ReadIntervallIMU = 200; //Time between Sensor Readings in milliseconds
+unsigned long previousMillisIMU = 0;
+unsigned long currentMillisIMU;
+
+
+//Declare Ultrasonic Sensors
+
+#include "OctoSonar.h"
+
+#define SONAR_ADDR 0x20
+#define SONAR_INT 2
+#define ACTIVE_SONARS 0xFFFF
+
+const int ReadIntervallSonar = 200; //Time between Sensor Readingsd in millisceonds
+uint32_t last_print = 0;
+uint8_t SonarValues[16];
+
+OctoSonarX2 myOcto(SONAR_ADDR, SONAR_INT);
+
+//Declare Temperature Sensors
+
+const float temprangemin = 218.15;    //Temperature Range of thermistor in Kelvin
+const float temprangemax = 398.15;
+
+const int NrOfSensors = 6;              //Define Number of Sensors connected to the Analog Pins of the Arduino
+const int SensorPins[NrOfSensors] = {34,35,32,33,25,26}; //Define Pins of Sensors
+
+const int TempUnit = 2;   //Choose which Unit the Temperature will be printed in, 1 for Kelvin, 2 for Celcius, 3 for Fahrenheit
+
+const int ADCRes = 12;  //Resolution of ADC in Bits (Arduino Nano: 10, ESP32: 12)
+
+const int ErrorLedPin = 4; //Pin for Error LED
+
+const unsigned int ReadIntervallTemp = 200; //Time between Sensor Readings in milliseconds
+unsigned long previousMillisTemp = 0;
+unsigned long currentMillisTemp;
+
+float temp[NrOfSensors + 1][3];
+
+bool Error[NrOfSensors];
+bool IsError = 0;
+
+////////// C O R E 2 //////////
+
+//Lighting WS2812B using FastLED
+
 // Declare FastLED
 #include <FastLED.h>
 
@@ -32,13 +106,210 @@ int revlightsize = NUM_LEDS * IndicatorSize;    //Size of Reverslight on each si
 #define reversecol 0xffffff
 
 //Non-Blocking Delay Variables
-int currentMillis = 0;
-int previousmillis = 0;
+int currentMillisLED = 0;
+int previousMillisLED = 0;
 
 int IndicatorAnimTime = 10; //Time between each Indicator LED turning on
+int IndicatorOnTime = 250;
 int IndicatorOffTime = 500; //Time between eacht indicator animation
 
-void setup() {
+void setup(){
+  
+  Serial.begin(115200);
+
+  //create a task that will be executed in the Task1code() function, with priority 1 and executed on core 0
+  xTaskCreatePinnedToCore(
+                    Task1setup,   /* Task function. */
+                    "Task1",     /* name of task. */
+                    10000,       /* Stack size of task */
+                    NULL,        /* parameter of the task */
+                    1,           /* priority of the task */
+                    &Task1,      /* Task handle to keep track of created task */
+                    0);          /* pin task to core 0 */                  
+  delay(500); 
+
+  //create a task that will be executed in the Task2code() function, with priority 1 and executed on core 1
+  xTaskCreatePinnedToCore(
+                    Task2setup,   /* Task function. */
+                    "Task2",     /* name of task. */
+                    10000,       /* Stack size of task */
+                    NULL,        /* parameter of the task */
+                    1,           /* priority of the task */
+                    &Task2,      /* Task handle to keep track of created task */
+                    1);          /* pin task to core 1 */
+  delay(500);
+
+}
+
+void loop(){
+  
+}
+
+////////// C O R E 1 //////////
+
+void Task1setup( void * pvParameters ){    //Task1 Core 0
+  Serial.print("Task1 running on core ");
+  Serial.println(xPortGetCoreID());
+
+  delay(3000);
+
+  Wire.begin();
+  Wire.beginTransmission(MPU_addr);
+  Wire.write(0x6B);  // PWR_MGMT_1 register
+  Wire.write(0);     // set to zero (wakes up the MPU-6050)
+  Wire.endTransmission(true);
+
+  myOcto.begin(ACTIVE_SONARS);   // initialize bus, pins etc
+
+  pinMode(ErrorLedPin, OUTPUT);
+
+  //Fan Control
+
+  ledcAttachPin(Fan_Pin[0], PWMChannel[0]);
+  ledcAttachPin(Fan_Pin[1], PWMChannel[1]);
+  ledcAttachPin(Fan_Pin[2], PWMChannel[2]);
+  ledcAttachPin(Fan_Pin[3], PWMChannel[3]);
+
+  ledcSetup(PWMChannel[0], Frequency[0], Resolution[0]);
+  ledcSetup(PWMChannel[1], Frequency[1], Resolution[1]);
+  ledcSetup(PWMChannel[2], Frequency[2], Resolution[2]);
+  ledcSetup(PWMChannel[3], Frequency[3], Resolution[3]);
+
+  for(;;){
+    Task1loop();   
+  } 
+}
+
+void Task1loop() {
+  
+  ReadTemp();
+  ReadSonar();
+  ReadIMU();
+  Fan_Control();
+
+  delay(1);
+}
+
+void ReadTemp() {
+
+  currentMillisTemp = millis();
+  if(currentMillisTemp - previousMillisTemp >= ReadIntervallTemp) {
+    previousMillisTemp = currentMillisTemp;
+  
+    IsError = 0;
+    
+    for(int i = 0;i <= NrOfSensors - 1;i++){    //Read Temps from all sensors and prints them
+      SaveTemp(SensorPins[i], i);
+      Serial.print("Temp");
+      Serial.print(i + 1);
+      Serial.print(": ");
+      Serial.print(temp[i][TempUnit]);
+      Serial.print(" C Error: ");
+      Serial.println(Error[i]);
+  
+      if(Error[i] == 1) {
+        IsError = 1;              
+      }
+      
+    }
+  
+    if(IsError == 1) {
+      digitalWrite(ErrorLedPin, HIGH);
+      Serial.println("Error!");
+    }
+    else {
+      digitalWrite(ErrorLedPin, LOW);
+    }
+    
+    Serial.println(" ");
+    
+  }
+  
+}
+
+void SaveTemp(int Pin, int Pos) {   //Pin of Sensor and Position of Value in temp Array
+  
+  int tempReading = analogRead(Pin);
+  double tempK = log(10000.0 * ((pow(2,ADCRes) / tempReading - 1)));
+  tempK = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * tempK * tempK )) * tempK );       //  Temp Kelvin
+  float tempC = tempK - 273.15;            // Convert Kelvin to Celcius
+  float tempF = (tempC * 9.0)/ 5.0 + 32.0; // Convert Celcius to Fahrenheit
+
+  if(tempK > temprangemin && tempK < temprangemax) {
+    temp[Pos][1] = tempK;
+    temp[Pos][2] = tempC;
+    temp[Pos][3] = tempF;    
+    Error[Pos] = 0;
+  }
+  else {
+    temp[Pos][1] = 0;
+    temp[Pos][2] = 0;
+    temp[Pos][3] = 0;    
+    Error[Pos] = 1;
+  }
+  
+}
+
+void ReadSonar() {
+  OctoSonar::doSonar();  // call every cycle, OctoSonar handles the spacing
+
+  if (last_print + ReadIntervallSonar < millis()) {   
+    last_print = millis();
+    for (uint8_t i = 0; i < 16; i++) {
+      SonarValues[i] = myOcto.read(i);
+      Serial.print(SonarValues[i]); Serial.print("   ");
+      
+    }
+    Serial.println();
+  }  
+}
+
+void ReadIMU() {
+  currentMillisIMU = millis();
+  if(currentMillisIMU - previousMillisIMU >= ReadIntervallIMU) {
+    previousMillisIMU = currentMillisIMU;
+  
+    Wire.beginTransmission(MPU_addr);
+    Wire.write(0x3B);  // starting with register 0x3B (ACCEL_XOUT_H)
+    Wire.endTransmission(false);
+    Wire.requestFrom(MPU_addr,14,true);  // request a total of 14 registers
+    AcX=Wire.read()<<8|Wire.read();  // 0x3B (ACCEL_XOUT_H) & 0x3C (ACCEL_XOUT_L)    
+    AcY=Wire.read()<<8|Wire.read();  // 0x3D (ACCEL_YOUT_H) & 0x3E (ACCEL_YOUT_L)
+    AcZ=Wire.read()<<8|Wire.read();  // 0x3F (ACCEL_ZOUT_H) & 0x40 (ACCEL_ZOUT_L)
+    Tmp=Wire.read()<<8|Wire.read();  // 0x41 (TEMP_OUT_H) & 0x42 (TEMP_OUT_L)
+    GyX=Wire.read()<<8|Wire.read();  // 0x43 (GYRO_XOUT_H) & 0x44 (GYRO_XOUT_L)
+    GyY=Wire.read()<<8|Wire.read();  // 0x45 (GYRO_YOUT_H) & 0x46 (GYRO_YOUT_L)
+    GyZ=Wire.read()<<8|Wire.read();  // 0x47 (GYRO_ZOUT_H) & 0x48 (GYRO_ZOUT_L)
+    Serial.print("AcX = "); Serial.print(AcX);
+    Serial.print(" | AcY = "); Serial.print(AcY);
+    Serial.print(" | AcZ = "); Serial.print(AcZ);
+    Serial.print(" | Tmp = "); Serial.print(Tmp/340.00+36.53);  //equation for temperature in degrees C from datasheet
+    Serial.print(" | GyX = "); Serial.print(GyX);
+    Serial.print(" | GyY = "); Serial.print(GyY);
+    Serial.print(" | GyZ = "); Serial.println(GyZ);
+    Serial.println("  ");
+
+  }    
+}
+
+void Fan_Control() {
+
+  for(int i = 0;i < 4;i++) {
+
+    DutyCycle[i] = map(FanSpeed[i], 0, 100, 0, pow(2, Resolution[i]));
+
+    ledcWrite(PWMChannel[i], DutyCycle[i]);
+
+  }
+
+}
+
+////////// C O R E 2 //////////
+
+void Task2setup( void * pvParameters ){    //Task2 Core 1
+  Serial.print("Task2 running on core ");
+  Serial.println(xPortGetCoreID());
+
   delay(3000);
 
   FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS);  //Initlialize Back LEDStrip
@@ -53,12 +324,21 @@ void setup() {
 
   fill_solid(leds, NUM_LEDS, CRGB::Black);    //Turn off all LEDs at startup
 
-  Serial.begin(115200);   //Initialize Serial Monitor, Used for Debugging
+  for(;;){
+    Task2loop();
+  }
 }
 
-void loop() {
+void Task2loop() {
 
   ReadButtons();
+  Effect();
+
+  
+  //delay(1);
+}
+
+void Effect() {
   
   //Turns on effects based on Effect Variable, Brake Light is also called when not in use to turn it off
   switch(Effekt) {
@@ -179,77 +459,77 @@ void ReadButtons() {
 
   if(IndicatorRightState == HIGH && IndicatorLeftState == LOW && BrakeLightState == LOW && ReverseLightState == LOW) {
     Effekt = 1;
-    Serial.println("right");
+    //Serial.println("right");
   }  
 
   if(IndicatorRightState == LOW && IndicatorLeftState == HIGH && BrakeLightState == LOW && ReverseLightState == LOW) {
     Effekt = 2;
-    Serial.println("left");
+    //Serial.println("left");
   }
 
   if(IndicatorRightState == LOW && IndicatorLeftState == LOW && BrakeLightState == HIGH && ReverseLightState == LOW) {
     Effekt = 3;
-    Serial.println("Brake");
+    //Serial.println("Brake");
   }  
 
   if(IndicatorRightState == LOW && IndicatorLeftState == LOW && BrakeLightState == LOW && ReverseLightState == HIGH) {
     Effekt = 4; 
-    Serial.println("Reverse");
+    //Serial.println("Reverse");
   }
 
   if(HazardState == HIGH && BrakeLightState == LOW && ReverseLightState == LOW) {
     Effekt = 5; 
-    Serial.println("Hazard Lights");
+    //Serial.println("Hazard Lights");
   }
 
   if(IndicatorRightState == HIGH && IndicatorLeftState == LOW && BrakeLightState == HIGH && ReverseLightState == LOW) {
     Effekt = 6; 
-    Serial.println("Right + Brake");
+    //Serial.println("Right + Brake");
   }
 
   if(IndicatorRightState == LOW && IndicatorLeftState == HIGH && BrakeLightState == HIGH && ReverseLightState == LOW) {
     Effekt = 7; 
-    Serial.println("Left + Brake");
+    //Serial.println("Left + Brake");
   }
 
   if(HazardState == HIGH && BrakeLightState == HIGH && ReverseLightState == LOW) {
     Effekt = 8; 
-    Serial.println("Hazard Lights + Brake");
+    //Serial.println("Hazard Lights + Brake");
   }
 
   if(IndicatorRightState == LOW && IndicatorLeftState == LOW && BrakeLightState == HIGH && ReverseLightState == HIGH) {
     Effekt = 9; 
-    Serial.println("Reverse + Brake");
+    //Serial.println("Reverse + Brake");
   }
 
   if(IndicatorRightState == HIGH && IndicatorLeftState == LOW && BrakeLightState == LOW && ReverseLightState == HIGH) {
     Effekt = 10; 
-    Serial.println("Right + Reverse");
+    //Serial.println("Right + Reverse");
   }
 
   if(IndicatorRightState == LOW && IndicatorLeftState == HIGH && BrakeLightState == LOW && ReverseLightState == HIGH) {
     Effekt = 11; 
-    Serial.println("Left + Reverse");
+    //Serial.println("Left + Reverse");
   }
 
   if(HazardState == HIGH && BrakeLightState == LOW && ReverseLightState == HIGH) {
     Effekt = 12; 
-    Serial.println("Hazard Lights + Reverse");
+    //Serial.println("Hazard Lights + Reverse");
   }
 
   if(IndicatorRightState == HIGH && IndicatorLeftState == LOW && BrakeLightState == HIGH && ReverseLightState == HIGH) {
     Effekt = 13; 
-    Serial.println("Right + Brake + Reverse");
+    //Serial.println("Right + Brake + Reverse");
   }
   
   if(IndicatorRightState == LOW && IndicatorLeftState == HIGH && BrakeLightState == HIGH && ReverseLightState == HIGH) {
     Effekt = 14; 
-    Serial.println("Left + Brake + Reverse");
+    //Serial.println("Left + Brake + Reverse");
   }
 
   if(HazardState == HIGH && BrakeLightState == HIGH && ReverseLightState == HIGH) {
     Effekt = 15; 
-    Serial.println("Hazard Lights + Brake + Reverse");
+    //Serial.println("Hazard Lights + Brake + Reverse");
   }
 }
 
@@ -279,18 +559,18 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
         leds[i] = indicatorcol; 
         FastLED.show();
         //delay(IndicatorAnimTime);
-        mydelay(IndicatorAnimTime);              
+        mydelay(IndicatorAnimTime);             
      }
 
-     //delay(IndicatorOffTime / 2);
-     mydelay(IndicatorOffTime / 2);
+     //delay(IndicatorOnTime);
+     mydelay(IndicatorOnTime);
      
      for(int i = NUM_LEDS * IndicatorSize;i >= 0;i--) {
        leds[i] = idlecol;               
      }
      FastLED.show();
      //delay(IndicatorOffTime);
-     mydelay(IndicatorOffTime);
+     mydelay(IndicatorOffTime);   
 
   }
 
@@ -303,8 +583,8 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
        
     }    
 
-    //delay(IndicatorOffTime / 2);
-    mydelay(IndicatorOffTime / 2);
+    //delay(IndicatorOnTime);
+    mydelay(IndicatorOnTime);
         
     for(int i = NUM_LEDS - NUM_LEDS * IndicatorSize;i <= NUM_LEDS;i++) {
       leds[i] = idlecol;
@@ -314,8 +594,6 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
     
     //delay(IndicatorOffTime);
     mydelay(IndicatorOffTime);
-         
-    dir = 0;
 
   }
 
@@ -328,13 +606,13 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
       leds[y] = indicatorcol;
       FastLED.show();
       y--;
-      //delay(10);
+      //delay(IndicatorAnimTime);
       mydelay(IndicatorAnimTime);
       
     }    
 
-    //delay(250);
-    mydelay(IndicatorOffTime / 2);  
+    //delay(IndicatorOnTime);
+    mydelay(IndicatorOnTime);  
         
     y = NUM_LEDS * IndicatorSize;     //Reset y
     
@@ -345,7 +623,7 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
     }
     
     FastLED.show();
-    //delay(500);
+    //delay(IndicatorOffTime);
     mydelay(IndicatorOffTime);
 
   } 
@@ -430,11 +708,10 @@ void ReverseLight() {
 
 void mydelay(int timeinms) {    //Time to wait in milliseconds
 
-  currentMillis = previousmillis = millis();
-  while(previousmillis + timeinms >= currentMillis) {
+  currentMillisLED = previousMillisLED = millis();
+  while(previousMillisLED + timeinms >= currentMillisLED) {
     BrakeLight();
-    currentMillis = millis();
+    currentMillisLED = millis();
   }    
   
 }
-
