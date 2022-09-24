@@ -443,7 +443,7 @@ void Effect() {
   
 }
 
-void ReadButtons() {
+void ReadButtons() {    //This is an extra function, as it will likely not be used in the final version of the project
   
   UpdateButtonState();    //Updates ButtonStates
 
@@ -652,7 +652,7 @@ void BrakeLight() {
   }  
   
   //Checks if Left Indicator is running, if not lights up left side of Strip
-  if(IndicatorLeftState == LOW && ReverseLightState == LOW && IndicatorRightState == LOW && HazardState == LOW && BrakeLightState == HIGH) {
+  if(IndicatorLeftState == LOW && ReverseLightState == LOW && HazardState == LOW && BrakeLightState == HIGH) {
     for(int i = 0; i <= NUM_LEDS * IndicatorSize;i++) {
       leds[i] = brakecol;
     }
@@ -669,7 +669,7 @@ void BrakeLight() {
   }
 
   //Checks if Right Indicator is running, if not lights up right side of the Strip
-  if(IndicatorRightState == LOW && ReverseLightState == LOW && IndicatorLeftState == LOW && HazardState == LOW && BrakeLightState == HIGH) {
+  if(IndicatorRightState == LOW && ReverseLightState == LOW && HazardState == LOW && BrakeLightState == HIGH) {
     for(int i = NUM_LEDS - NUM_LEDS * IndicatorSize; i <= NUM_LEDS;i++) {
       leds[i] = brakecol;
     }
