@@ -215,7 +215,6 @@ void ReadTemp() {
   
     if(IsError == 1) {
       digitalWrite(ErrorLedPin, HIGH);
-      Serial.println("Error!");
     }
     else {
       digitalWrite(ErrorLedPin, LOW);
@@ -324,18 +323,32 @@ void Task2setup( void * pvParameters ){    //Task2 Core 1
 
   fill_solid(leds, NUM_LEDS, CRGB::Black);    //Turn off all LEDs at startup
 
+  startup();    //Run Startup Animation
+
   for(;;){
     Task2loop();
   }
 }
 
-void Task2loop() {
+void Task2loop() {  
 
   ReadButtons();
   Effect();
 
   
   //delay(1);
+}
+
+void startup() {
+  for(int i = NUM_LEDS / 2;i <= NUM_LEDS;i++) {
+    leds[i] = brakecol;
+
+    if((NUM_LEDS / 2) - i >= 4) {
+      leds[i -3] = #000000;
+    }    
+
+  } 
+  
 }
 
 void Effect() {
