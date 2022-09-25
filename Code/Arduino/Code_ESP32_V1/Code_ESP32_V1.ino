@@ -1,117 +1,130 @@
-//Create TaskHandles
+//////// S E T U P //////////
 
-TaskHandle_t Task1;
-TaskHandle_t Task2;
+  //Create TaskHandles
 
-////////// C O R E 1 //////////
+  TaskHandle_t Task1;
+  TaskHandle_t Task2;
 
-//Declare PWM Fan Controller
+  //Libraries used across everything
 
-const int Fan_Pin[4] = {17, 5, 18, 19};
+  #include <math.h>
 
-const int PWMChannel[4] = {0, 2, 4, 6};
+  ////////// C O R E 1 //////////
 
-const int Resolution[4] = {10, 10, 10, 10};
+  //Declare PWM Fan Controller
 
-const int Frequency[4] = {25000, 25000, 25000, 25000};
+  const int Fan_Pin[4] = {17, 5, 18, 19};
 
-int FanSpeed[4] = {25, 50, 75, 90};
+  const int PWMChannel[4] = {0, 2, 4, 6};
 
-int DutyCycle[4] = {0, 0, 0, 0};
+  const int Resolution[4] = {10, 10, 10, 10};
 
+  const int Frequency[4] = {25000, 25000, 25000, 25000};
 
-//Declare Accelerometer and Gyroscope
+  int FanSpeed[4] = {25, 50, 75, 90};
 
-#include<Wire.h>
-const int MPU_addr=0x68;  // I2C address of the MPU-6050
-int16_t AcX,AcY,AcZ,Tmp,GyX,GyY,GyZ;
-
-const unsigned int ReadIntervallIMU = 200; //Time between Sensor Readings in milliseconds
-unsigned long previousMillisIMU = 0;
-unsigned long currentMillisIMU;
+  int DutyCycle[4] = {0, 0, 0, 0};
 
 
-//Declare Ultrasonic Sensors
+  //Declare Accelerometer and Gyroscope
 
-#include "OctoSonar.h"
+  #include<Wire.h>
+  const int MPU_addr=0x68;  // I2C address of the MPU-6050
+  int16_t AcX,AcY,AcZ,Tmp,GyX,GyY,GyZ;
 
-#define SONAR_ADDR 0x20
-#define SONAR_INT 2
-#define ACTIVE_SONARS 0xFFFF
+  const unsigned int ReadIntervallIMU = 200; //Time between Sensor Readings in milliseconds
+  unsigned long previousMillisIMU = 0;
+  unsigned long currentMillisIMU;
 
-const int ReadIntervallSonar = 200; //Time between Sensor Readingsd in millisceonds
-uint32_t last_print = 0;
-uint8_t SonarValues[16];
 
-OctoSonarX2 myOcto(SONAR_ADDR, SONAR_INT);
+  //Declare Ultrasonic Sensors
 
-//Declare Temperature Sensors
+  #include "OctoSonar.h"
 
-const float temprangemin = 218.15;    //Temperature Range of thermistor in Kelvin
-const float temprangemax = 398.15;
+  #define SONAR_ADDR 0x20
+  #define SONAR_INT 2
+  #define ACTIVE_SONARS 0xFFFF
 
-const int NrOfSensors = 6;              //Define Number of Sensors connected to the Analog Pins of the Arduino
-const int SensorPins[NrOfSensors] = {34,35,32,33,25,26}; //Define Pins of Sensors
+  const int ReadIntervallSonar = 200; //Time between Sensor Readingsd in millisceonds
+  uint32_t last_print = 0;
+  uint8_t SonarValues[16];
 
-const int TempUnit = 2;   //Choose which Unit the Temperature will be printed in, 1 for Kelvin, 2 for Celcius, 3 for Fahrenheit
+  OctoSonarX2 myOcto(SONAR_ADDR, SONAR_INT);
 
-const int ADCRes = 12;  //Resolution of ADC in Bits (Arduino Nano: 10, ESP32: 12)
+  //Declare Temperature Sensors
 
-const int ErrorLedPin = 4; //Pin for Error LED
+  const float temprangemin = 218.15;    //Temperature Range of thermistor in Kelvin
+  const float temprangemax = 398.15;
 
-const unsigned int ReadIntervallTemp = 200; //Time between Sensor Readings in milliseconds
-unsigned long previousMillisTemp = 0;
-unsigned long currentMillisTemp;
+  const int NrOfSensors = 6;              //Define Number of Sensors connected to the Analog Pins of the Arduino
+  const int SensorPins[NrOfSensors] = {34,35,32,33,25,26}; //Define Pins of Sensors
 
-float temp[NrOfSensors + 1][3];
+  const int TempUnit = 2;   //Choose which Unit the Temperature will be printed in, 1 for Kelvin, 2 for Celcius, 3 for Fahrenheit
 
-bool Error[NrOfSensors];
-bool IsError = 0;
+  const int ADCRes = 12;  //Resolution of ADC in Bits (Arduino Nano: 10, ESP32: 12)
 
-////////// C O R E 2 //////////
+  const int ErrorLedPin = 4; //Pin for Error LED
 
-//Lighting WS2812B using FastLED
+  const unsigned int ReadIntervallTemp = 200; //Time between Sensor Readings in milliseconds
+  unsigned long previousMillisTemp = 0;
+  unsigned long currentMillisTemp;
 
-// Declare FastLED
-#include <FastLED.h>
+  float temp[NrOfSensors + 1][3];
 
-#define NUM_LEDS 45
-#define DATA_PIN 23
+  bool Error[NrOfSensors];
+  int IsError = 0;
 
-CRGB leds[NUM_LEDS];
+  ////////// C O R E 2 //////////
 
-unsigned int Effekt = 0;
+  //Lighting WS2812B using FastLED
 
-//Define Buttons
+  // Declare FastLED
+  #include <FastLED.h>
 
-const int ButtonPins[6] = {13, 12, 14, 27, 15, 16};   //Pin of Buttons for Control
+  #define NUM_LEDS 45
+  #define DATA_PIN 23
 
-bool IndicatorRightState = 0;   //Variables for button presses
-bool IndicatorLeftState = 0;
-bool BrakeLightState = 1;
-bool ReverseLightState = 0;
-bool HazardState = 0;
+  CRGB leds[NUM_LEDS];
 
-//Define indicator
-float IndicatorSize = 0.20;   //Size of each LED-Strip Segment
+  unsigned int Effekt = 0;
 
-//Define Reverse Light
-int endspace = 0;   //Distance from reverslights to end of strip
-int revlightsize = NUM_LEDS * IndicatorSize;    //Size of Reverslight on each side
+  //Define Buttons
 
-//Define Colors
-#define idlecol 0x400000    //Hex Codes ofeach color
-#define brakecol 0xff0000
-#define indicatorcol 0xff4000
-#define reversecol 0xffffff
+  const int ButtonPins[6] = {13, 12, 14, 27, 15, 16};   //Pin of Buttons for Control
 
-//Non-Blocking Delay Variables
-int currentMillisLED = 0;
-int previousMillisLED = 0;
+  bool IndicatorRightState = 0;   //Variables for button presses
+  bool IndicatorLeftState = 0;
+  bool BrakeLightState = 1;
+  bool ReverseLightState = 0;
+  bool HazardState = 0;
 
-int IndicatorAnimTime = 10; //Time between each Indicator LED turning on
-int IndicatorOnTime = 250;
-int IndicatorOffTime = 500; //Time between eacht indicator animation
+  //Define indicator
+  float IndicatorSize = 0.20;   //Size of each LED-Strip Segment
+
+  //Define Reverse Light
+  int endspace = 0;   //Distance from reverslights to end of strip
+  int revlightsize = NUM_LEDS * IndicatorSize;    //Size of Reverslight on each side
+
+  //Define Colors
+  const unsigned long idlecol = 0x400000;    //Hex Codes of each color
+  const unsigned long brakecol = 0xff0000;
+  const unsigned long indicatorcol = 0xff4000;
+  const unsigned long reversecol = 0xffffff;
+
+  //Non-Blocking Delay Variables
+  int currentMillisLED = 0;
+  int previousMillisLED = 0;
+
+  int IndicatorAnimTime = 10; //Time between each Indicator LED turning on
+  int IndicatorOnTime = 250;
+  int IndicatorOffTime = 500; //Time between eacht indicator animation
+
+  //Delay Variables
+
+  int StartupAnimTime = 25; //Time between each LED activatiung at startup
+  int StartupFadeTime = 1000; //Timefor Fade at the end of startup
+  
+
 
 void setup(){
   
@@ -141,8 +154,7 @@ void setup(){
 
 }
 
-void loop(){
-  
+void loop(){ 
 }
 
 ////////// C O R E 1 //////////
@@ -309,7 +321,7 @@ void Task2setup( void * pvParameters ){    //Task2 Core 1
   Serial.print("Task2 running on core ");
   Serial.println(xPortGetCoreID());
 
-  delay(3000);
+  delay(1000);
 
   FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS);  //Initlialize Back LEDStrip
     
@@ -322,6 +334,7 @@ void Task2setup( void * pvParameters ){    //Task2 Core 1
   pinMode(ButtonPins[5], INPUT);  
 
   fill_solid(leds, NUM_LEDS, CRGB::Black);    //Turn off all LEDs at startup
+  FastLED.show();
 
   startup();    //Run Startup Animation
 
@@ -334,20 +347,53 @@ void Task2loop() {
 
   ReadButtons();
   Effect();
-
   
   //delay(1);
 }
 
 void startup() {
+
+  int y = NUM_LEDS / 2;
+  
   for(int i = NUM_LEDS / 2;i <= NUM_LEDS;i++) {
-    leds[i] = brakecol;
+    leds[i] = idlecol;
+    leds[y] = idlecol;
 
-    if((NUM_LEDS / 2) - i >= 4) {
-      leds[i -3] = #000000;
+    if(i - (NUM_LEDS / 2) >= 4) {
+      leds[i -4] = 0x000000;
+      leds[y + 4] = 0x000000;
     }    
+    FastLED.show();
 
+    y--;    
+    delay(StartupAnimTime);
+  }
+  
+  y = NUM_LEDS;
+
+  for(int i = 0; i <= NUM_LEDS / 2;i++) {
+    leds[i] = idlecol;
+    leds[y] = idlecol;
+
+    FastLED.show();
+    
+    y--;
+    delay(StartupAnimTime);    
   } 
+
+  y = NUM_LEDS / 2;
+
+  for(int i = NUM_LEDS / 2;i <= NUM_LEDS;i++) {
+    leds[i] = brakecol; 
+    leds[y] = brakecol;
+
+    FastLED.show();
+    
+    y--;
+    delay(StartupAnimTime);       
+  }
+
+  FadeToColor(brakecol, idlecol, StartupFadeTime); 
   
 }
 
@@ -727,4 +773,104 @@ void mydelay(int timeinms) {    //Time to wait in milliseconds
     currentMillisLED = millis();
   }    
   
+}
+
+void FadeToColor(unsigned long Color1, unsigned long Color2, unsigned int timeinms) {     //This function fades all the LEDs from Color1 to Color 2 in given time "timeinms" Color1 and Color2 should be HEX Values format: "0x000000"
+
+  //Convert Color1 froim HEX to RGB this is done by splitting the HEX Value in 3 Parts and converting it do decimal
+  int r1 = Color1 >> 16;
+
+  int g1 = (Color1 & 0x00ff00) >> 8;
+
+  int b1 = (Color1 & 0x0000ff);
+
+  //Convert Color2 from HEX to RGB
+  int r2 = Color2 >> 16;
+
+  int g2 = (Color2 & 0x00ff00) >> 8;
+
+  int b2 = (Color2 & 0x0000ff);
+  
+  //Calsculate Differences between Color1 and Color2 RGB Values
+  
+  unsigned int d1 = abs(r1 -r2);
+  
+  unsigned int d2 = 255; //(g1 - g2);
+  
+  unsigned int d3 = abs(b1 -b2);
+ 
+  //Determine how many steps it takes to Fade from Color1 to Color2, the biggest differnce of the RBB Values is taken
+  int steps = 0;
+  
+  if(d1 >= d2 || d1 >= d3) {
+    steps = d1;
+  }
+  
+  else if(d2 >= d1 || d2 >= d3) {
+    steps = d2;
+  }
+  
+  else if(d3 >= d1 || d3 >= d2) {
+    steps = d3;
+  }
+  
+  //For Loop to fade the colors
+  if(steps != 0) {
+    for(int i = 0; i <= steps; i++) {    
+    
+      //Checks if current of r1 value is under, over or equals the final value r2 and adjusts it one step towards r2
+      if(r1 > r2) {
+        r1--;
+      }
+      
+      else if(r1 == r2) {}
+      
+      else if(r1 < r2) {
+        r1++;
+      }
+      
+      //Checks if current of g1 value is under, over or equals the final value g2 and adjusts it one step towards g2
+      if(g1 > g2) {
+        g1--;
+      }
+      
+      else if(g1 == g2) {}
+      
+      else if(g1 < g2) {
+        g1++;
+      }
+      
+      //Checks if current of b1 value is under, over or equals the final value b2 and adjusts it one step towards b2
+      if(b1 > b2) {
+        b1--;
+      }
+      
+      else if(b1 == b2) {}
+      
+      else if(b1 < b2) {
+        b1++;
+      }
+      
+      //Debug
+      Serial.print(r1);
+      Serial.print(" ");
+      Serial.print(g1);
+      Serial.print(" ");
+      Serial.print(b1);
+      Serial.println(" ");
+      
+      
+      for(int i = 0; i <= NUM_LEDS;i++) {   //All the LEDS are set to the current RGB Values
+        leds[i].setRGB(r1, g1, b1);  
+      }
+      
+      FastLED.show();
+      
+      delay(timeinms / steps);
+      
+    }
+  }
+  
+  
+
 }
