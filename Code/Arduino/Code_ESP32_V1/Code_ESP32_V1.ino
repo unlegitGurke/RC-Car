@@ -393,7 +393,7 @@ void startup() {
     delay(StartupAnimTime);       
   }
 
-  FadeToColor(brakecol, idlecol, StartupFadeTime); 
+  FadeToColor(brakecol, idlecol, StartupFadeTime, 0, NUM_LEDS); 
   
 }
 
@@ -775,7 +775,7 @@ void mydelay(int timeinms) {    //Time to wait in milliseconds
   
 }
 
-void FadeToColor(unsigned long Color1, unsigned long Color2, unsigned int timeinms) {     //This function fades all the LEDs from Color1 to Color 2 in given time "timeinms" Color1 and Color2 should be HEX Values format: "0x000000"
+void FadeToColor(unsigned long Color1, unsigned long Color2, unsigned int timeinms, int ledbegin, int ledend) {     //This function fades all the LEDs from Color1 to Color 2 in given time "timeinms" Color1 and Color2 should be HEX Values format: "0x000000"
 
   //Convert Color1 froim HEX to RGB this is done by splitting the HEX Value in 3 Parts and converting it do decimal
   int r1 = Color1 >> 16;
@@ -860,7 +860,7 @@ void FadeToColor(unsigned long Color1, unsigned long Color2, unsigned int timein
       Serial.println(" ");
       
       
-      for(int i = 0; i <= NUM_LEDS;i++) {   //All the LEDS are set to the current RGB Values
+      for(int i = ledbegin; i <= ledend;i++) {   //All the LEDS are set to the current RGB Values
         leds[i].setRGB(r1, g1, b1);  
       }
       
