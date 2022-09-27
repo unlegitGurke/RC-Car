@@ -81,10 +81,14 @@
   // Declare FastLED
   #include <FastLED.h>
 
-  #define NUM_LEDS 45
-  #define DATA_PIN 23
+  #define NUM_LEDS_BACK 45
+  #define LED_PIN_BACK 23
 
-  CRGB leds[NUM_LEDS];
+  #define NUM_LEDS_FRONT 34
+  #define LED_PIN_FRONT 0
+
+  CRGB ledsback[NUM_LEDS_BACK];
+  CRGB ledsfront[NUM_LEDS_FRONT];
 
   unsigned int Effekt = 0;
 
@@ -103,13 +107,14 @@
 
   //Define Reverse Light
   int endspace = 0;   //Distance from reverslights to end of strip
-  int revlightsize = NUM_LEDS * IndicatorSize;    //Size of Reverslight on each side
+  int revlightsize = NUM_LEDS_BACK * IndicatorSize;    //Size of Reverslight on each side
 
   //Define Colors
   const unsigned long idlecol = 0x400000;    //Hex Codes of each color
   const unsigned long brakecol = 0xff0000;
   const unsigned long indicatorcol = 0xff4000;
   const unsigned long reversecol = 0xffffff;
+  const unsigned long frontcol = 0xffffff;
 
   //Non-Blocking Delay Variables
   int currentMillisLED = 0;
@@ -122,7 +127,7 @@
   //Delay Variables
 
   int StartupAnimTime = 25; //Time between each LED activatiung at startup
-  int StartupFadeTime = 1000; //Timefor Fade at the end of startup
+  int StartupFadeTime = 1000; //Time for Fade at the end of startup
   
 
 
@@ -323,9 +328,11 @@ void Task2setup( void * pvParameters ){    //Task2 Core 1
 
   delay(1000);
 
-  FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS);  //Initlialize Back LEDStrip
+  FastLED.addLeds<WS2812B, LED_PIN_BACK, GRB>(ledsback, NUM_LEDS_BACK);  //Initlialize Back LEDStrip
+  FastLED.addLeds<WS2812B, LED_PIN_FRONT, GRB>(ledsfront, NUM_LEDS_FRONT);  //Initialize Front LEDStrip  
     
-  pinMode(DATA_PIN, OUTPUT);              //Declare Pins Input/Output
+  pinMode(LED_PIN_BACK, OUTPUT);              //Declare Pins Input/Output
+  pinMode(LED_PIN_FRONT, OUTPUT);
   pinMode(ButtonPins[0], INPUT);
   pinMode(ButtonPins[1], INPUT);
   pinMode(ButtonPins[2], INPUT);
@@ -333,7 +340,8 @@ void Task2setup( void * pvParameters ){    //Task2 Core 1
   pinMode(ButtonPins[4], INPUT);
   pinMode(ButtonPins[5], INPUT);  
 
-  fill_solid(leds, NUM_LEDS, CRGB::Black);    //Turn off all LEDs at startup
+  fill_solid(ledsback, NUM_LEDS_BACK, CRGB::Black);    //Turn off all LEDs at startup
+  fill_Solid(ledsfront, NUM_LEDS_FRONT, CRBG::Black);
   FastLED.show();
 
   startup();    //Run Startup Animation
@@ -353,15 +361,15 @@ void Task2loop() {
 
 void startup() {
 
-  int y = NUM_LEDS / 2;
+  int y = NUM_LEDS_BACK / 2;
   
-  for(int i = NUM_LEDS / 2;i <= NUM_LEDS;i++) {
-    leds[i] = idlecol;
-    leds[y] = idlecol;
+  for(int i = NUM_LEDS_BACK / 2;i <= NUM_LEDS_BACK;i++) {
+    ledsback[i] = idlecol;
+    ledsback[y] = idlecol;
 
-    if(i - (NUM_LEDS / 2) >= 4) {
-      leds[i -4] = 0x000000;
-      leds[y + 4] = 0x000000;
+    if(i - (NUM_LEDS_BACK / 2) >= 4) {
+      ledsback[i -4] = 0x000000;
+      ledsback[y + 4] = 0x000000;
     }    
     FastLED.show();
 
@@ -369,11 +377,11 @@ void startup() {
     delay(StartupAnimTime);
   }
   
-  y = NUM_LEDS;
+  y = NUM_LEDS_BACK;
 
-  for(int i = 0; i <= NUM_LEDS / 2;i++) {
-    leds[i] = idlecol;
-    leds[y] = idlecol;
+  for(int i = 0; i <= NUM_LEDS_BACK / 2;i++) {
+    ledsback[i] = idlecol;
+    ledsback[y] = idlecol;
 
     FastLED.show();
     
@@ -381,11 +389,11 @@ void startup() {
     delay(StartupAnimTime);    
   } 
 
-  y = NUM_LEDS / 2;
+  y = NUM_LEDS_BACK / 2;
 
-  for(int i = NUM_LEDS / 2;i <= NUM_LEDS;i++) {
-    leds[i] = brakecol; 
-    leds[y] = brakecol;
+  for(int i = NUM_LEDS_BACK / 2;i <= NUM_LEDS_BACK;i++) {
+    ledsback[i] = brakecol; 
+    ledsback[y] = brakecol;
 
     FastLED.show();
     
@@ -393,7 +401,7 @@ void startup() {
     delay(StartupAnimTime);       
   }
 
-  FadeToColor(brakecol, idlecol, StartupFadeTime, 0, NUM_LEDS); 
+  FadeToColor(brakecol, idlecol, StartupFadeTime, 0, NUM_LEDS_BACK); 
   
 }
 
@@ -603,8 +611,8 @@ void UpdateButtonState() {
 
 void idle() {
 
-  for(int i = 0;i <= NUM_LEDS;i++) {    //State of LEDs when nothing is happening
-    leds[i] = idlecol;
+  for(int i = 0;i <= NUM_LEDS_BACK;i++) {    //State of LEDs when nothing is happening
+    ledsback[i] = idlecol;
    }
    
    FastLED.show();
@@ -614,8 +622,8 @@ void idle() {
 void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for both
 
   if(dir == 1) {    //Left Indicator
-     for(int i = NUM_LEDS * IndicatorSize;i >= 0;i--) {   //Animation 
-        leds[i] = indicatorcol; 
+     for(int i = NUM_LEDS_BACK * IndicatorSize;i >= 0;i--) {   //Animation 
+        ledsback[i] = indicatorcol; 
         FastLED.show();
         //delay(IndicatorAnimTime);
         mydelay(IndicatorAnimTime);             
@@ -624,8 +632,8 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
      //delay(IndicatorOnTime);
      mydelay(IndicatorOnTime);
      
-     for(int i = NUM_LEDS * IndicatorSize;i >= 0;i--) {
-       leds[i] = idlecol;               
+     for(int i = NUM_LEDS_BACK * IndicatorSize;i >= 0;i--) {
+       ledsback[i] = idlecol;               
      }
      FastLED.show();
      //delay(IndicatorOffTime);
@@ -634,8 +642,8 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
   }
 
   if(dir == 0) {    //Right Indicator 
-    for(int i = NUM_LEDS - NUM_LEDS * IndicatorSize;i <= NUM_LEDS;i++) {    //Animation
-      leds[i] = indicatorcol;
+    for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i <= NUM_LEDS_BACK;i++) {    //Animation
+      ledsback[i] = indicatorcol;
       FastLED.show();
       //delay(IndicatorAnimTime);
       mydelay(IndicatorAnimTime);                
@@ -645,8 +653,8 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
     //delay(IndicatorOnTime);
     mydelay(IndicatorOnTime);
         
-    for(int i = NUM_LEDS - NUM_LEDS * IndicatorSize;i <= NUM_LEDS;i++) {
-      leds[i] = idlecol;
+    for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i <= NUM_LEDS_BACK;i++) {
+      ledsback[i] = idlecol;
     }
     
     FastLED.show();
@@ -658,11 +666,11 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
 
   if(dir == 2) {    //Hazard Lights
 
-    int y = NUM_LEDS * IndicatorSize;   //Variable for Right Indicator
+    int y = NUM_LEDS_BACK * IndicatorSize;   //Variable for Right Indicator
     
-    for(int i = NUM_LEDS - NUM_LEDS * IndicatorSize;i <= NUM_LEDS;i++) {  //i used for left, y used for right side
-      leds[i] = indicatorcol;
-      leds[y] = indicatorcol;
+    for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i <= NUM_LEDS_BACK;i++) {  //i used for left, y used for right side
+      ledsback[i] = indicatorcol;
+      ledsback[y] = indicatorcol;
       FastLED.show();
       y--;
       //delay(IndicatorAnimTime);
@@ -673,11 +681,11 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
     //delay(IndicatorOnTime);
     mydelay(IndicatorOnTime);  
         
-    y = NUM_LEDS * IndicatorSize;     //Reset y
+    y = NUM_LEDS_BACK * IndicatorSize;     //Reset y
     
-    for(int i = NUM_LEDS - NUM_LEDS * IndicatorSize;i <= NUM_LEDS;i++) {    //Turn everything Black
-      leds[i] = idlecol;
-      leds[y] = idlecol;
+    for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i <= NUM_LEDS_BACK;i++) {    //Turn everything Black
+      ledsback[i] = idlecol;
+      ledsback[y] = idlecol;
       y--;
     }
     
@@ -697,23 +705,23 @@ void BrakeLight() {
 
   //If BrakeLight isnt supposed to be turned on, turn it off
   if(BrakeLightState == LOW) {
-    for(int i = NUM_LEDS * IndicatorSize;i <= NUM_LEDS - NUM_LEDS * IndicatorSize;i++) {
-      leds[i] = idlecol;              
+    for(int i = NUM_LEDS_BACK * IndicatorSize;i <= NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i++) {
+      ledsback[i] = idlecol;              
     }      
   }
   
   else {
 
     //Lights up Center of Strip
-    for(int i = NUM_LEDS * IndicatorSize;i <= NUM_LEDS - NUM_LEDS * IndicatorSize;i++) {
-      leds[i] = brakecol;
+    for(int i = NUM_LEDS_BACK * IndicatorSize;i <= NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i++) {
+      ledsback[i] = brakecol;
     }
   }  
   
   //Checks if Left Indicator is running, if not lights up left side of Strip
   if(IndicatorLeftState == LOW && ReverseLightState == LOW && HazardState == LOW && BrakeLightState == HIGH) {
-    for(int i = 0; i <= NUM_LEDS * IndicatorSize;i++) {
-      leds[i] = brakecol;
+    for(int i = 0; i <= NUM_LEDS_BACK * IndicatorSize;i++) {
+      ledsback[i] = brakecol;
     }
   } 
 
@@ -722,15 +730,15 @@ void BrakeLight() {
   }
 
   else {
-    for(int i = 0; i <= NUM_LEDS * IndicatorSize;i++) {
-      leds[i] = idlecol;
+    for(int i = 0; i <= NUM_LEDS_BACK * IndicatorSize;i++) {
+      ledsback[i] = idlecol;
     }    
   }
 
   //Checks if Right Indicator is running, if not lights up right side of the Strip
   if(IndicatorRightState == LOW && ReverseLightState == LOW && HazardState == LOW && BrakeLightState == HIGH) {
-    for(int i = NUM_LEDS - NUM_LEDS * IndicatorSize; i <= NUM_LEDS;i++) {
-      leds[i] = brakecol;
+    for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize; i <= NUM_LEDS_BACK;i++) {
+      ledsback[i] = brakecol;
     }
   }   
 
@@ -739,8 +747,8 @@ void BrakeLight() {
   }
   
   else {
-    for(int i = NUM_LEDS - NUM_LEDS * IndicatorSize; i <= NUM_LEDS;i++) {
-      leds[i] = idlecol;
+    for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize; i <= NUM_LEDS_BACK;i++) {
+      ledsback[i] = idlecol;
     }    
   }
 
@@ -750,14 +758,14 @@ void BrakeLight() {
 void ReverseLight() {  
 
   if(IndicatorRightState == LOW && HazardState == LOW && ReverseLightState == HIGH) {  
-    for(int i = NUM_LEDS - NUM_LEDS * IndicatorSize;i <=NUM_LEDS;i++) {
-      leds[i] = reversecol;
+    for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i <=NUM_LEDS_BACK;i++) {
+      ledsback[i] = reversecol;
     }
   }
 
   if(IndicatorLeftState == LOW && HazardState == LOW && ReverseLightState == HIGH) {
-    for(int i = NUM_LEDS * IndicatorSize;i >= 0 ;i--) {
-      leds[i] = reversecol;
+    for(int i = NUM_LEDS_BACK * IndicatorSize;i >= 0 ;i--) {
+      ledsback[i] = reversecol;
     }
   }
 
@@ -861,7 +869,7 @@ void FadeToColor(unsigned long Color1, unsigned long Color2, unsigned int timein
       
       
       for(int i = ledbegin; i <= ledend;i++) {   //All the LEDS are set to the current RGB Values
-        leds[i].setRGB(r1, g1, b1);  
+        ledsback[i].setRGB(r1, g1, b1);  
       }
       
       FastLED.show();
