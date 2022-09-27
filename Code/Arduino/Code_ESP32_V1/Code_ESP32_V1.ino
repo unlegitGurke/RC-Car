@@ -92,6 +92,22 @@
 
   unsigned int Effekt = 0;
 
+  //Define LED Groups
+  
+  const int fr1length = 7;    //Define Length of each front LED Section
+  const int fr2length = 6;
+  const int fr3length = 4;
+  const int fl1length = 7;
+  const int fl2length = 6;
+  const int fl3length = 4;
+  
+  int ledsfr1[fr1length] = {0,1,2,3,4,5,6};             //Groups Front LEDs to match shape they're arragned in:  - - - - - - -  fr1       fl1 - - - - - - -
+  int ledsfr2[fr2length] = {12,11,10,9,8,7};            //                                                         - - - - - -  fr2       fl2 - - - - - -
+  int ledsfr3[fr3length] = {13,14,15,16};               //                                                             - - - -  fr3       fl3 - - - -
+  int ledsfl1[fl1length] = {17,18,19,20,21,22,23};
+  int ledsfl2[fl2length] = {29,28,27,26,25,24};
+  int ledsfl3[fl3length] = {30,31,32,33};
+
   //Define Buttons
 
   const int ButtonPins[6] = {13, 12, 14, 27, 15, 16};   //Pin of Buttons for Control
@@ -110,11 +126,14 @@
   int revlightsize = NUM_LEDS_BACK * IndicatorSize;    //Size of Reverslight on each side
 
   //Define Colors
-  const unsigned long idlecol = 0x400000;    //Hex Codes of each color
+  const unsigned long idlecolback = 0x400000;    //Hex Codes of each color
   const unsigned long brakecol = 0xff0000;
   const unsigned long indicatorcol = 0xff4000;
   const unsigned long reversecol = 0xffffff;
   const unsigned long frontcol = 0xffffff;
+  const unsigned long frontcoldim = 0x202020;
+  const unsigned long blackcol = 0x000000;
+  const unsigned long idlecolfront = 0x202020;
 
   //Non-Blocking Delay Variables
   int currentMillisLED = 0;
@@ -341,7 +360,7 @@ void Task2setup( void * pvParameters ){    //Task2 Core 1
   pinMode(ButtonPins[5], INPUT);  
 
   fill_solid(ledsback, NUM_LEDS_BACK, CRGB::Black);    //Turn off all LEDs at startup
-  fill_Solid(ledsfront, NUM_LEDS_FRONT, CRBG::Black);
+  fill_solid(ledsfront, NUM_LEDS_FRONT, CRGB::Black);
   FastLED.show();
 
   startup();    //Run Startup Animation
@@ -362,46 +381,67 @@ void Task2loop() {
 void startup() {
 
   int y = NUM_LEDS_BACK / 2;
+  int z= 0;
   
   for(int i = NUM_LEDS_BACK / 2;i <= NUM_LEDS_BACK;i++) {
-    ledsback[i] = idlecol;
-    ledsback[y] = idlecol;
+    ledsback[i] = idlecolback;
+    ledsback[y] = idlecolback;
+    SwitchFrontLedColor(z,frontcoldim,2);
 
     if(i - (NUM_LEDS_BACK / 2) >= 4) {
-      ledsback[i -4] = 0x000000;
-      ledsback[y + 4] = 0x000000;
-    }    
+      ledsback[i -4] = blackcol;
+      ledsback[y + 4] = blackcol;
+    } 
+    
+    if(z >= 1) {
+      
+      ledsfront[ledsfr1[constrain(z,0,fr1length - 1) - 1]] = blackcol;
+      ledsfront[ledsfr2[constrain(z,0,fr2length - 1) - 1]] = blackcol;
+      ledsfront[ledsfr3[constrain(z,0,fr3length - 1) - 1]] = blackcol;
+      ledsfront[ledsfl1[constrain(z,0,fl1length - 1) - 1]] = blackcol;
+      ledsfront[ledsfl2[constrain(z,0,fl2length - 1) - 1]] = blackcol;
+      ledsfront[ledsfl3[constrain(z,0,fl3length - 1) - 1]] = blackcol;
+      
+    } 
+      
     FastLED.show();
 
-    y--;    
+    y--;
+    z++;    
     delay(StartupAnimTime);
   }
   
   y = NUM_LEDS_BACK;
+  z = fr1length;
 
   for(int i = 0; i <= NUM_LEDS_BACK / 2;i++) {
-    ledsback[i] = idlecol;
-    ledsback[y] = idlecol;
+    ledsback[i] = idlecolback;
+    ledsback[y] = idlecolback;
+    SwitchFrontLedColor(z,frontcoldim,2);
 
     FastLED.show();
     
     y--;
+    z--;
     delay(StartupAnimTime);    
   } 
 
   y = NUM_LEDS_BACK / 2;
+  z = 0;
 
   for(int i = NUM_LEDS_BACK / 2;i <= NUM_LEDS_BACK;i++) {
     ledsback[i] = brakecol; 
     ledsback[y] = brakecol;
+    SwitchFrontLedColor(z,frontcol,2);
 
     FastLED.show();
     
     y--;
+    z++;
     delay(StartupAnimTime);       
   }
 
-  FadeToColor(brakecol, idlecol, StartupFadeTime, 0, NUM_LEDS_BACK); 
+  FadeToColor(brakecol, idlecolback, StartupFadeTime, 0, NUM_LEDS_BACK); 
   
 }
 
@@ -612,7 +652,8 @@ void UpdateButtonState() {
 void idle() {
 
   for(int i = 0;i <= NUM_LEDS_BACK;i++) {    //State of LEDs when nothing is happening
-    ledsback[i] = idlecol;
+    ledsback[i] = idlecolback;
+    SwitchFrontLedColor(i,idlecolfront,2);
    }
    
    FastLED.show();
@@ -621,40 +662,60 @@ void idle() {
 
 void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for both
 
-  if(dir == 1) {    //Left Indicator
-     for(int i = NUM_LEDS_BACK * IndicatorSize;i >= 0;i--) {   //Animation 
-        ledsback[i] = indicatorcol; 
-        FastLED.show();
-        //delay(IndicatorAnimTime);
-        mydelay(IndicatorAnimTime);             
-     }
+  
 
-     //delay(IndicatorOnTime);
-     mydelay(IndicatorOnTime);
-     
-     for(int i = NUM_LEDS_BACK * IndicatorSize;i >= 0;i--) {
-       ledsback[i] = idlecol;               
-     }
-     FastLED.show();
-     //delay(IndicatorOffTime);
-     mydelay(IndicatorOffTime);   
+  if(dir == 1) {    //Left Indicator
+  
+    int z = 0;
+    
+    for(int i = NUM_LEDS_BACK * IndicatorSize;i >= 0;i--) {   //Animation 
+      ledsback[i] = indicatorcol; 
+      SwitchFrontLedColor(z,indicatorcol,1);
+      FastLED.show();   
+      z++;
+      //delay(IndicatorAnimTime);
+      mydelay(IndicatorAnimTime);             
+    }
+
+    //delay(IndicatorOnTime);
+    mydelay(IndicatorOnTime);
+    
+    z = 0;
+    
+    for(int i = NUM_LEDS_BACK * IndicatorSize;i >= 0;i--) {
+      ledsback[i] = idlecolback;
+      SwitchFrontLedColor(z,idlecolfront,1);
+      z++;               
+    }
+    FastLED.show();
+    //delay(IndicatorOffTime);
+    mydelay(IndicatorOffTime);   
 
   }
 
   if(dir == 0) {    //Right Indicator 
+  
+    int z = 0;
+  
     for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i <= NUM_LEDS_BACK;i++) {    //Animation
       ledsback[i] = indicatorcol;
+      SwitchFrontLedColor(z,indicatorcol,0);
       FastLED.show();
+      z++;
       //delay(IndicatorAnimTime);
       mydelay(IndicatorAnimTime);                
        
     }    
 
+    z = 0;
+
     //delay(IndicatorOnTime);
     mydelay(IndicatorOnTime);
         
     for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i <= NUM_LEDS_BACK;i++) {
-      ledsback[i] = idlecol;
+      ledsback[i] = idlecolback;
+      SwitchFrontLedColor(z,idlecolfront,0);
+      z++;
     }
     
     FastLED.show();
@@ -667,12 +728,15 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
   if(dir == 2) {    //Hazard Lights
 
     int y = NUM_LEDS_BACK * IndicatorSize;   //Variable for Right Indicator
+    int z= 0;
     
     for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i <= NUM_LEDS_BACK;i++) {  //i used for left, y used for right side
       ledsback[i] = indicatorcol;
       ledsback[y] = indicatorcol;
+      SwitchFrontLedColor(z,indicatorcol,3);
       FastLED.show();
       y--;
+      z++;
       //delay(IndicatorAnimTime);
       mydelay(IndicatorAnimTime);
       
@@ -682,11 +746,14 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
     mydelay(IndicatorOnTime);  
         
     y = NUM_LEDS_BACK * IndicatorSize;     //Reset y
+    z = 0;
     
     for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i <= NUM_LEDS_BACK;i++) {    //Turn everything Black
-      ledsback[i] = idlecol;
-      ledsback[y] = idlecol;
+      ledsback[i] = idlecolback;
+      ledsback[y] = idlecolback;
+      SwitchFrontLedColor(z,idlecolfront,3);
       y--;
+      z++;
     }
     
     FastLED.show();
@@ -706,7 +773,7 @@ void BrakeLight() {
   //If BrakeLight isnt supposed to be turned on, turn it off
   if(BrakeLightState == LOW) {
     for(int i = NUM_LEDS_BACK * IndicatorSize;i <= NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i++) {
-      ledsback[i] = idlecol;              
+      ledsback[i] = idlecolback;              
     }      
   }
   
@@ -731,7 +798,7 @@ void BrakeLight() {
 
   else {
     for(int i = 0; i <= NUM_LEDS_BACK * IndicatorSize;i++) {
-      ledsback[i] = idlecol;
+      ledsback[i] = idlecolback;
     }    
   }
 
@@ -748,7 +815,7 @@ void BrakeLight() {
   
   else {
     for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize; i <= NUM_LEDS_BACK;i++) {
-      ledsback[i] = idlecol;
+      ledsback[i] = idlecolback;
     }    
   }
 
@@ -859,14 +926,14 @@ void FadeToColor(unsigned long Color1, unsigned long Color2, unsigned int timein
         b1++;
       }
       
-      //Debug
+      /* //Debug
       Serial.print(r1);
       Serial.print(" ");
       Serial.print(g1);
       Serial.print(" ");
       Serial.print(b1);
       Serial.println(" ");
-      
+      */
       
       for(int i = ledbegin; i <= ledend;i++) {   //All the LEDS are set to the current RGB Values
         ledsback[i].setRGB(r1, g1, b1);  
@@ -882,3 +949,43 @@ void FadeToColor(unsigned long Color1, unsigned long Color2, unsigned int timein
   
 
 }
+
+void SwitchFrontLedColor(int nrofled, long color, int dir) {        //dir = 1 for left, dir  0 for right, dir = 2 for both, dir = 3 for both without the 3rd row of leds
+
+  if(dir == 2) {  //Both Sides will be affected
+    
+    ledsfront[ledsfr1[constrain(nrofled,0,fr1length - 1)]] = color;
+    ledsfront[ledsfr2[constrain(nrofled,0,fr2length - 1)]] = color;
+    ledsfront[ledsfr3[constrain(nrofled,0,fr3length - 1)]] = color;
+    ledsfront[ledsfl1[constrain(nrofled,0,fl1length - 1)]] = color;
+    ledsfront[ledsfl2[constrain(nrofled,0,fl2length - 1)]] = color;
+    ledsfront[ledsfl3[constrain(nrofled,0,fl3length - 1)]] = color;
+  }  
+
+  if(dir == 0) {  //Only the right side will be affected
+    
+    ledsfront[ledsfr1[constrain(nrofled,0,fr1length - 1)]] = color;
+    ledsfront[ledsfr2[constrain(nrofled,0,fr2length - 1)]] = color;
+    //ledsfront[ledsfr3[constrain(nrofled,0,fr3length - 1)]] = color;
+    
+  }
+
+  if(dir == 1) {  //Only the left side will be affected
+    
+    ledsfront[ledsfl1[constrain(nrofled,0,fl1length - 1)]] = color;
+    ledsfront[ledsfl2[constrain(nrofled,0,fl2length - 1)]] = color;
+    //ledsfront[ledsfl3[constrain(nrofled,0,fl3length - 1)]] = color;
+  }
+  
+  if(dir == 3) {  //Both sides will be effected expect the bottom row of leds
+    
+    ledsfront[ledsfr1[constrain(nrofled,0,fr1length - 1)]] = color;
+    ledsfront[ledsfr2[constrain(nrofled,0,fr2length - 1)]] = color;
+    ledsfront[ledsfl1[constrain(nrofled,0,fl1length - 1)]] = color;
+    ledsfront[ledsfl2[constrain(nrofled,0,fl2length - 1)]] = color;
+    
+  }
+  
+}
+
+
