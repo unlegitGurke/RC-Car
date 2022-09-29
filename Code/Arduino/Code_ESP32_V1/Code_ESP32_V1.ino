@@ -870,7 +870,7 @@ void FadeToColor(unsigned long Color1, unsigned long Color2, unsigned int timein
   
   unsigned int d1 = abs(r1 -r2);
   
-  unsigned int d2 = 255; //(g1 - g2);
+  unsigned int d2 = abs(g1 - g2);
   
   unsigned int d3 = abs(b1 -b2);
  
@@ -926,15 +926,6 @@ void FadeToColor(unsigned long Color1, unsigned long Color2, unsigned int timein
         b1++;
       }
       
-      /* //Debug
-      Serial.print(r1);
-      Serial.print(" ");
-      Serial.print(g1);
-      Serial.print(" ");
-      Serial.print(b1);
-      Serial.println(" ");
-      */
-      
       for(int i = ledbegin; i <= ledend;i++) {   //All the LEDS are set to the current RGB Values
         ledsback[i].setRGB(r1, g1, b1);  
       }
@@ -964,7 +955,7 @@ void SwitchFrontLedColor(int nrofled, long color, int dir) {        //dir = 1 fo
 
   if(dir == 0) {  //Only the right side will be affected
     
-    ledsfront[ledsfr1[constrain(nrofled,0,fr1length - 1)]] = color;
+    //ledsfront[ledsfr1[constrain(nrofled,0,fr1length - 1)]] = color;
     ledsfront[ledsfr2[constrain(nrofled,0,fr2length - 1)]] = color;
     //ledsfront[ledsfr3[constrain(nrofled,0,fr3length - 1)]] = color;
     
@@ -972,7 +963,7 @@ void SwitchFrontLedColor(int nrofled, long color, int dir) {        //dir = 1 fo
 
   if(dir == 1) {  //Only the left side will be affected
     
-    ledsfront[ledsfl1[constrain(nrofled,0,fl1length - 1)]] = color;
+    //ledsfront[ledsfl1[constrain(nrofled,0,fl1length - 1)]] = color;
     ledsfront[ledsfl2[constrain(nrofled,0,fl2length - 1)]] = color;
     //ledsfront[ledsfl3[constrain(nrofled,0,fl3length - 1)]] = color;
   }
