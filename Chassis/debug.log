@@ -1,0 +1,2 @@
+[1017/084301.896:INFO:cefsubprocess.cpp(20)] Solid Edge subprocess monitoring thread created
+[1017/084302.071:ERROR:viz_main_impl.cc(152)] Exiting GPU process due to errors during initialization
