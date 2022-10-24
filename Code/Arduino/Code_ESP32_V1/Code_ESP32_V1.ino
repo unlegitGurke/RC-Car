@@ -101,7 +101,7 @@
   const int fl2length = 6;
   const int fl3length = 4;
   
-  int ledsfr1[fr1length] = {0,1,2,3,4,5,6};             //Groups Front LEDs to match shape they're arragned in:  - - - - - - -  fr1       fl1 - - - - - - -
+  int ledsfr1[fr1length] = {0,1,2,3,4,5,6};             //Group Front LEDs to match shape they're arragned in:   - - - - - - -  fr1       fl1 - - - - - - -
   int ledsfr2[fr2length] = {12,11,10,9,8,7};            //                                                         - - - - - -  fr2       fl2 - - - - - -
   int ledsfr3[fr3length] = {13,14,15,16};               //                                                             - - - -  fr3       fl3 - - - -
   int ledsfl1[fl1length] = {17,18,19,20,21,22,23};
