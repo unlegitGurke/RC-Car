@@ -11,19 +11,24 @@
 
   ////////// C O R E 1 //////////
 
+  //General Values
+
+  const int ADCRes = 12;  //Resolution of ADC in Bits (Arduino Nano: 10, ESP32: 12)
+  bool Error[] = {0,0,0,0,0,0,0};   //Error Codes are saved in here:  0 - 6 : Temp Sensor Error, 7 : Max Voltage too HIGH for Sensor Microcontroller can be harmed!
+
   //Declare PWM Fan Controller
 
-  const int Fan_Pin[4] = {17, 5, 18, 19};
+  const int Fan_Pin[4] = {17, 5, 18, 19};   //Pins, the PWM Pins of the fans are connected to
 
-  const int PWMChannel[4] = {0, 2, 4, 6};
+  const int PWMChannel[4] = {0, 2, 4, 6};   //Which PWM Channel of Microncontroller will be used
 
-  const int Resolution[4] = {10, 10, 10, 10};
+  const int Resolution[4] = {10, 10, 10, 10};   //ADC Resolution
 
-  const int Frequency[4] = {25000, 25000, 25000, 25000};
+  const int Frequency[4] = {25000, 25000, 25000, 25000};    //PWM Frequency of the Fans
 
-  int FanSpeed[4] = {25, 50, 75, 90};
+  int FanSpeed[4] = {25, 50, 75, 90};   //Speed of the fans at the beginning of the program
 
-  int DutyCycle[4] = {0, 0, 0, 0};
+  int DutyCycle[4] = {0, 0, 0, 0};    //Fanspeed converted to a value for the ADC
 
 
   //Declare Accelerometer and Gyroscope
@@ -61,8 +66,6 @@
 
   const int TempUnit = 2;   //Choose which Unit the Temperature will be printed in, 1 for Kelvin, 2 for Celcius, 3 for Fahrenheit
 
-  const int ADCRes = 12;  //Resolution of ADC in Bits (Arduino Nano: 10, ESP32: 12)
-
   const int ErrorLedPin = 4; //Pin for Error LED
 
   const unsigned int ReadIntervallTemp = 200; //Time between Sensor Readings in milliseconds
@@ -71,8 +74,23 @@
 
   float temp[NrOfSensors + 1][3];
 
-  bool Error[NrOfSensors];
-  int IsError = 0;
+  //Declare Voltage Sensors
+
+  const float R1[] = {64900, 64900, 64900, 64900, 64900};   //Voltage Divider Resistor Values
+  const float R2[] = {4300, 4300, 4300, 4300, 4300};
+
+  const int NOSVoltage = 5;   //Number of Sensors plugged in
+  const int VoltagePin[] = {, , , , };  //Sensor Pins
+  const float LogicLevel = 3.3;   //Logic Level of the microcontroller
+  const float MaxVoltage = 80;  //Max Voltage that will be measured
+
+  float Voltage[NOSVoltage];  //Voltage Data will be saved in here
+  float InputVoltage = 0;
+
+  const unsigned int ReadIntervallVoltage = 10;   //Time between Sensor Readings in milliseconds
+  unsigned long previousMillisVoltage = 0;
+  unsigned long currentMillisVoltage;
+
 
   ////////// C O R E 2 //////////
 
@@ -81,10 +99,10 @@
   // Declare FastLED
   #include <FastLED.h>
 
-  #define NUM_LEDS_BACK 45
+  #define NUM_LEDS_BACK 45    //Declare Back LEDStrip
   #define LED_PIN_BACK 23
 
-  #define NUM_LEDS_FRONT 34
+  #define NUM_LEDS_FRONT 34   //Declare Front LED-Strip
   #define LED_PIN_FRONT 0
 
   CRGB ledsback[NUM_LEDS_BACK];
@@ -211,6 +229,24 @@ void Task1setup( void * pvParameters ){    //Task1 Core 0
   ledcSetup(PWMChannel[2], Frequency[2], Resolution[2]);
   ledcSetup(PWMChannel[3], Frequency[3], Resolution[3]);
 
+  //Voltage Sensors
+
+  pinMode(VoltagePin[0], INPUT);
+  pinMode(VoltagePin[1], INPUT);
+  pinMode(VoltagePin[2], INPUT);
+  pinMode(VoltagePin[3], INPUT);
+  pinMode(VoltagePin[4], INPUT);
+  
+  InputVoltage = MaxVoltage / ((R1 + R2)/R2);     //Calculate Voltage which is applied to GPIO at MaxVoltage
+  
+  if(InputVoltage > LogicLevel) {   //If the Voltage applied to the GPIOS can be too high, set Error HIGH
+    Error[7] = 1;
+  }
+  else {
+    Error[7] = 0;
+  }
+   
+
   for(;;){
     Task1loop();   
   } 
@@ -222,6 +258,7 @@ void Task1loop() {
   ReadSonar();
   ReadIMU();
   Fan_Control();
+  VoltageSensor();
 
   delay(1);
 }
@@ -232,7 +269,7 @@ void ReadTemp() {
   if(currentMillisTemp - previousMillisTemp >= ReadIntervallTemp) {
     previousMillisTemp = currentMillisTemp;
   
-    IsError = 0;
+    Error[6] = 0;
     
     for(int i = 0;i <= NrOfSensors - 1;i++){    //Read Temps from all sensors and prints them
       SaveTemp(SensorPins[i], i);
@@ -244,12 +281,12 @@ void ReadTemp() {
       Serial.println(Error[i]);
   
       if(Error[i] == 1) {
-        IsError = 1;              
+        Error[6] = 1;              
       }
       
     }
   
-    if(IsError == 1) {
+    if(Error[6] == 1) {
       digitalWrite(ErrorLedPin, HIGH);
     }
     else {
@@ -337,6 +374,24 @@ void Fan_Control() {
 
   }
 
+}
+
+void VoltageSensor() {
+  
+  currentMillisVoltage = millis();
+  if(currentMillisVoltage - previousMillisVoltage >= ReadIntervallVoltage) {
+    previousMillisVoltage = currentMillisVoltage;
+
+    for(int i = 0;i < NOSVoltage;i++) {                         
+      float value = analogRead(VoltagePin[i]);                              //Reads all the AnalogPins Values
+      Voltage[i] = value * (LogicLevel/pow(2, ADCRes)) * ((R1[i] + R2[i])/R2[i]);    //Calculates the voltages from the sensorpins values
+    }
+    
+    for(int i = 0;i < NOSVoltage;i++) {   //Prints all Voltages to Serial monitor
+      Serial.print(Voltage[0]);
+      Serial.print(" ");
+    }
+  }
 }
 
 ////////// C O R E 2 //////////
@@ -654,7 +709,7 @@ void idle() {
   for(int i = 0;i <= NUM_LEDS_BACK;i++) {    //State of LEDs when nothing is happening
     ledsback[i] = idlecolback;
     SwitchFrontLedColor(i,idlecolfront,2);
-   }
+  }
    
    FastLED.show();
    
@@ -978,5 +1033,4 @@ void SwitchFrontLedColor(int nrofled, long color, int dir) {        //dir = 1 fo
   }
   
 }
-
 
