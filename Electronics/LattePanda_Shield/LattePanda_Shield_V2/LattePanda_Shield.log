@@ -1,0 +1,199 @@
+STEP in Solid Edge konvertieren
+Datum: Mittwoch,Dezember 14,2022 11:12nachm.
+Quelldatei: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\LattePanda_Shield.step
+Autor: Unbekannt
+Organisation: Unbekannt
+Ausgangssystem: Autodesk Translation Framework v11.17.0.187
+
+Hardware:
+Prozessor: AMD Ryzen 7 3700X 8-Core Processor             
+Betriebssystem: Windows 10 Professional
+Installierter Speicher: 31.91 GB
+
+Software-Informationen
+Parasolid-Version: 32.1.222
+PSBodyShop-Version: 32.1.94
+Step-Adapterversion: 5.0.107
+Solid Edge-Version: 221.00.03.003 x64
+
+Step-Importoptionen
+Facettierte Körper importieren: Ein
+Prüfkörper importieren: Aus
+Kurven importieren: Ein
+DoNotSave importieren: Ein
+Mehrere Körper als Einzelteildatei importieren: Ein
+Flächenvernähung importieren: Ein
+Boolesche Körper importieren: Ein
+Basisformelement erstellen: Ein
+Geometrie vereinfachen: Ein
+Druckkurven importieren: Ein
+Führung importieren: C:
+Flächenvernähung importieren: Ein
+Flächen importieren: Ein
+Ausgabepfad importieren: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2
+Aktivieren des standardmäßigen Ausgabepfads importieren: Ein
+PMI importieren: Aus
+Als interne Komponenten importieren: Aus
+Pfad importieren: 
+
+Übersetzen in Parasolid-Datentypen...
++Baugruppe 1 beginnen
++SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\LattePanda_Shield.asm wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\Board.par wurde erstellt
+|--+Baugruppe 2 beginnen
+|--+SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\Packages.asm wurde erstellt
+|  |--+Baugruppe 3 beginnen
+|  |--+SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\LEDC3216X75N_FLAT-R.asm wurde erstellt
+|  |  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\Model.par wurde erstellt
+|  |--+Gesamtzahl der Teile: 10
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 10
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\RESC3216X70.par wurde erstellt
+Körper: 0
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B6B-XH.par wurde erstellt
+Körper: 0
+Körper: 0
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\LATTEPANDA3DELTASHIELD.par wurde erstellt
+Körper: 0
+Körper: 0
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\MPX_FEMALE.par wurde erstellt
+Körper: 0
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B6B-XH.par wird wiederholt verwendet
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B6B-XH.par wird wiederholt verwendet
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B6B-XH.par wird wiederholt verwendet
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\DIL14.par wurde erstellt
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\XTALRR488W43L1150T466H350B.par wurde erstellt
+Körper: 0
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\QFP80P900X900X160-32N.par wurde erstellt
+Körper: 0
+Körper: 0
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\SOIC127P600X175-16N.par wurde erstellt
+Körper: 0
+Körper: 0
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\JST-XH-04-PACKAGE-ROUND-PAD.par wurde erstellt
+Körper: 0
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\CAPC1608X85.par wurde erstellt
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\CAPC1608X85.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\CAPC1608X85.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\CAPC1608X85.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\CAPC1608X85.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\CAPC1608X85.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\CAPC1608X85.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\CAPC1608X85.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\CAPC1608X85.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\CAPC1608X85.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\CAPC1608X85.par wird wiederholt verwendet
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\1X03.par wurde erstellt
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\1X03.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\1X03.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\1X03.par wird wiederholt verwendet
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\DIOM5226X290N.par wurde erstellt
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\DIOM5226X290N.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\DIOM5226X290N.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\DIOM5226X290N.par wird wiederholt verwendet
+Körper: 0
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\MODULE_ESP32-DEVKITC-32D.par wurde erstellt
+Körper: 0
+|  |--+Baugruppe 3 beginnen
+|  |--+SE Assembly-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\DIP762W60P254L712H480Q6B.asm wurde erstellt
+|  |  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\Model (1).par wurde erstellt
+|  |--+Gesamtzahl der Teile: 58
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 58
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\DIP762W60P254L712H480Q6B.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\DIP762W60P254L712H480Q6B.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+Baugruppe 3 beginnen
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\DIP762W60P254L712H480Q6B.asm wird wiederholt verwendet
+|  |--+Gesamtzahl der Teile: 0
+|  |--+Baugruppen: 0
+|  |--+Volumenkörper: 0
+|  |--+Flächenkörper: 0
+|  |--+Baugruppe 3 beenden
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\RESC1608X60.par wurde erstellt
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\RESC1608X60.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\RESC1608X60.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\RESC1608X60.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\RESC1608X60.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\RESC1608X60.par wird wiederholt verwendet
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\RESC2012X65.par wurde erstellt
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\RESC2012X65.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\RESC2012X65.par wird wiederholt verwendet
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\RESC2012X65.par wird wiederholt verwendet
+Körper: 0
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\CAPPM7343X430N.par wurde erstellt
+Körper: 0
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\CAPPM7343X430N.par wird wiederholt verwendet
+Körper: 0
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\DIP794W53P254L959H508Q8N.par wurde erstellt
+Körper: 0
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\DIP794W53P254L959H508Q8N.par wird wiederholt verwendet
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\DIP794W53P254L959H508Q8N.par wird wiederholt verwendet
+Körper: 0
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B3B-XH.par wurde erstellt
+Körper: 0
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B3B-XH.par wird wiederholt verwendet
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B3B-XH.par wird wiederholt verwendet
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B3B-XH.par wird wiederholt verwendet
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B3B-XH.par wird wiederholt verwendet
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B3B-XH.par wird wiederholt verwendet
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B3B-XH.par wird wiederholt verwendet
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B3B-XH.par wird wiederholt verwendet
+Körper: 0
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B4B-XH.par wurde erstellt
+Körper: 0
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B4B-XH.par wird wiederholt verwendet
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B4B-XH.par wird wiederholt verwendet
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\B4B-XH.par wird wiederholt verwendet
+Körper: 0
+|  |--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\JP2.par wurde erstellt
+Körper: 0
+Körper: 0
+|  |--+Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\JP2.par wird wiederholt verwendet
+|--+Gesamtzahl der Teile: 42
+|--+Baugruppen: 2
+|--+Volumenkörper: 40
+|--+Flächenkörper: 0
+|--+Baugruppe 2 beenden
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\1-copper.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\16-copper.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\1-soldermask.par wurde erstellt
+|--+SE Part-Datei F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Electronics\LattePanda_Shield\LattePanda_Shield_V2\16-soldermask.par wurde erstellt
++Gesamtzahl der Teile: 2 857
++Baugruppen: 1
++Volumenkörper: 2 856
++Flächenkörper: 0
++Baugruppe 1 beenden
+Konvertierungsvorgang ist abgeschlossen
+Zur Übersetzung und Nachbearbeitung erforderte Gesamtzeit:00 : 03 : 08
