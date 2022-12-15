@@ -76,8 +76,8 @@
 
   //Declare Voltage Sensors
 
-  const float R1[] = {64900, 64900, 64900, 64900, 64900};   //Voltage Divider Resistor Values
-  const float R2[] = {4300, 4300, 4300, 4300, 4300};
+  const float R1[] = {110000, 110000, 110000, 110000, 110000};   //Voltage Divider Resistor Values
+  const float R2[] = {5000, 5000, 5000, 5000, 5000};
 
   const int NOSVoltage = 5;   //Number of Sensors plugged in
   const int VoltagePin[] = {, , , , };  //Sensor Pins
