@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2022-12-17T20:38:50Z",
+        "GenerationSoftware": {
+            "Application": "Fusion 360 Electronics",
+            "Vendor": "Autodesk",
+            "Version": "9.7.0"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.671119,
+        "LayerNumber": 2,
+        "Name": {
+            "ProjectId": "Leiterplatte v43"
+        },
+        "Owner": "Felix Sandri <felix.sandri05@htl-salzburg.ac.at>",
+        "Size": {
+            "X": 125,
+            "Y": 78
+        }
+    }
+}

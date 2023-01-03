@@ -62,7 +62,7 @@
   const float temprangemax = 398.15;
 
   const int NrOfSensors = 6;              //Define Number of Sensors connected to the Analog Pins of the Arduino
-  const int SensorPins[NrOfSensors] = {34,35,32,33,25,26}; //Define Pins of Sensors
+  const int SensorPins[NrOfSensors] = {34,35m,32,33,25,26}; //Define Pins of Sensors
 
   const int TempUnit = 2;   //Choose which Unit the Temperature will be printed in, 1 for Kelvin, 2 for Celcius, 3 for Fahrenheit
 
