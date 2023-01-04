@@ -1,0 +1,58 @@
+Solid Edge in 3MF konvertieren
+Datum: Dienstag,Januar 03,2023 03:20
+Ausgabedatei: C:\Users\phili\OneDrive\Dokumente\GitHub\RC-Car\Exportierte Dateien\Body\Kotfl�gel\Extreme_Kotfl�gel_richtig_ausschnitt.3mf
+Autor: Unknown
+Organisation: Unknown
+Ausgangssystem: SOLID EDGE
+
+Hardware:
+Prozessor: Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz
+Betriebssystem: Windows 10
+Installierter Speicher: 7.87 GB
+
+Software-Informationen:
+Parasolid-Version: 32.1.222
+PSBodyshop-Version: 32.1.94
+3MF-Adapterversion:5.0.48
+Solid Edge-Version: 221.00.03.003 x64
+
+3MF-Exportoptionen
+Konstruktionsvolumen exportieren: Aus
+Angezeigte Teile exportieren: Aus
+Protokollierung aktivieren:Ein
+AllowInvalid3mfObjects:Aus
+Reduzierte Baugruppe exportieren:On
+Einheiten exportieren:Millimeters
+Toleranzwert exportieren:0.001000
+Toleranztyp exportieren:Custom
+Fl�chenplanwinkelwert exportieren:0.017453
+Autor exportieren:Unknown
+Beschreibung exportieren:Unknown
+Organisation exportieren:Unknown
+Programmname exportieren:Unknown
+
+Konvertierungsfortschritt:
+Phase 1 von 1 - Parasolid in Fremddatentypen konvertieren...
+Warn: Failed to output any facets for very thin face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
+Konvertierungsvorgang ist abgeschlossen
+Zum Konvertieren ben�tigte Zeit:00 : 00 : 10
