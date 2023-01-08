@@ -41,7 +41,6 @@
   unsigned long previousMillisIMU = 0;
   unsigned long currentMillisIMU;
 
-
   //Declare Ultrasonic Sensors
 
   #include "OctoSonar.h"
@@ -62,7 +61,7 @@
   const float temprangemax = 398.15;
 
   const int NrOfSensors = 6;              //Define Number of Sensors connected to the Analog Pins of the Arduino
-  const int SensorPins[NrOfSensors] = {34,35m,32,33,25,26}; //Define Pins of Sensors
+  const int SensorPins[NrOfSensors] = {34,35,32,33,25,26}; //Define Pins of Sensors
 
   const int TempUnit = 2;   //Choose which Unit the Temperature will be printed in, 1 for Kelvin, 2 for Celcius, 3 for Fahrenheit
 
@@ -75,7 +74,7 @@
   float temp[NrOfSensors + 1][3];
 
   //Declare Voltage Sensors
-
+/*
   const float R1[] = {110000, 110000, 110000, 110000, 110000};   //Voltage Divider Resistor Values
   const float R2[] = {5000, 5000, 5000, 5000, 5000};
 
@@ -90,7 +89,7 @@
   const unsigned int ReadIntervallVoltage = 10;   //Time between Sensor Readings in milliseconds
   unsigned long previousMillisVoltage = 0;
   unsigned long currentMillisVoltage;
-
+*/
 
   ////////// C O R E 2 //////////
 
@@ -230,7 +229,7 @@ void Task1setup( void * pvParameters ){    //Task1 Core 0
   ledcSetup(PWMChannel[3], Frequency[3], Resolution[3]);
 
   //Voltage Sensors
-
+/*
   pinMode(VoltagePin[0], INPUT);
   pinMode(VoltagePin[1], INPUT);
   pinMode(VoltagePin[2], INPUT);
@@ -246,7 +245,7 @@ void Task1setup( void * pvParameters ){    //Task1 Core 0
     Error[7] = 0;
   }
    
-
+*/
   for(;;){
     Task1loop();   
   } 
@@ -258,7 +257,8 @@ void Task1loop() {
   ReadSonar();
   ReadIMU();
   Fan_Control();
-  VoltageSensor();
+  //VoltageSensor();
+  ConvertIntToChar();
 
   delay(1);
 }
@@ -337,6 +337,7 @@ void ReadSonar() {
 }
 
 void ReadIMU() {
+  
   currentMillisIMU = millis();
   if(currentMillisIMU - previousMillisIMU >= ReadIntervallIMU) {
     previousMillisIMU = currentMillisIMU;
@@ -345,6 +346,7 @@ void ReadIMU() {
     Wire.write(0x3B);  // starting with register 0x3B (ACCEL_XOUT_H)
     Wire.endTransmission(false);
     Wire.requestFrom(MPU_addr,14,true);  // request a total of 14 registers
+    
     AcX=Wire.read()<<8|Wire.read();  // 0x3B (ACCEL_XOUT_H) & 0x3C (ACCEL_XOUT_L)    
     AcY=Wire.read()<<8|Wire.read();  // 0x3D (ACCEL_YOUT_H) & 0x3E (ACCEL_YOUT_L)
     AcZ=Wire.read()<<8|Wire.read();  // 0x3F (ACCEL_ZOUT_H) & 0x40 (ACCEL_ZOUT_L)
@@ -352,6 +354,7 @@ void ReadIMU() {
     GyX=Wire.read()<<8|Wire.read();  // 0x43 (GYRO_XOUT_H) & 0x44 (GYRO_XOUT_L)
     GyY=Wire.read()<<8|Wire.read();  // 0x45 (GYRO_YOUT_H) & 0x46 (GYRO_YOUT_L)
     GyZ=Wire.read()<<8|Wire.read();  // 0x47 (GYRO_ZOUT_H) & 0x48 (GYRO_ZOUT_L)
+    
     Serial.print("AcX = "); Serial.print(AcX);
     Serial.print(" | AcY = "); Serial.print(AcY);
     Serial.print(" | AcZ = "); Serial.print(AcZ);
@@ -360,8 +363,9 @@ void ReadIMU() {
     Serial.print(" | GyY = "); Serial.print(GyY);
     Serial.print(" | GyZ = "); Serial.println(GyZ);
     Serial.println("  ");
-
+    
   }    
+  
 }
 
 void Fan_Control() {
@@ -376,7 +380,7 @@ void Fan_Control() {
 
 }
 
-void VoltageSensor() {
+/*void VoltageSensor() {
   
   currentMillisVoltage = millis();
   if(currentMillisVoltage - previousMillisVoltage >= ReadIntervallVoltage) {
@@ -392,6 +396,42 @@ void VoltageSensor() {
       Serial.print(" ");
     }
   }
+}
+*/
+void ConvertIntToChar() {
+  
+//  int NOSVoltage = 5;     //DEBUG ONLY
+//  float Voltage[5] = {12.1, 56.4, 89.2, 23.5, 74.2};    //DEBUG ONBLY
+  
+  char BufferSonar[128];
+  char BufferIMU[64];
+  char StringIMUTemp[7];
+  char StringVoltage[5][5];
+  char BufferVoltage[32];
+  char StringTemp[6][6];
+  char BufferTemp[32];
+  char Buffer[256];
+  
+  
+  for(int i = 0; i < NOSVoltage; i++) {           //Converts Voltage Floats to String
+    dtostrf(Voltage[i], 3, 1, StringVoltage[i]);
+  }
+  
+  for(int i = 0; i < NrOfSensors; i++) {           //Converts Temp Floats to String
+    dtostrf(temp[i][TempUnit], 3, 1, StringTemp[i]);
+  }
+  
+  float floatTemp = Tmp/340.00+36.53;
+  
+  dtostrf(floatTemp, 3, 1, StringIMUTemp);
+  
+  sprintf(BufferSonar, "x%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,", SonarValues[0], SonarValues[1], SonarValues[2], SonarValues[3], SonarValues[4], SonarValues[5], SonarValues[6], SonarValues[7], SonarValues[8], SonarValues[9], SonarValues[10], SonarValues[11], SonarValues[12], SonarValues[13], SonarValues[14], SonarValues[15]);
+  sprintf(BufferIMU, "%i,%i,%i,%s,%i,%i,%i,", AcX, AcY, AcZ, StringIMUTemp, GyX, GyY, GyZ);
+  sprintf(BufferVoltage, "%s,%s,%s,%s,%s,", StringVoltage[0], StringVoltage[1], StringVoltage[2], StringVoltage[3], StringVoltage[4]);
+  sprintf(BufferTemp, "%s,%s,%s,%s,%s,%sq", StringTemp[0], StringTemp[1], StringTemp[2], StringTemp[3], StringTemp[4], StringTemp[5]);
+  sprintf(Buffer, "%s%s%s%s", BufferSonar, BufferIMU, BufferVoltage, BufferTemp);
+  
+  Serial.println(Buffer);
 }
 
 ////////// C O R E 2 //////////
