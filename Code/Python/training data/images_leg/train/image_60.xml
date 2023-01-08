@@ -1,0 +1,38 @@
+<annotation>
+	<folder>images leg</folder>
+	<filename>image_60.png</filename>
+	<path>C:\Users\thelp\Desktop\images leg\image_60.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>640</width>
+		<height>480</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>237</xmin>
+			<ymin>138</ymin>
+			<xmax>256</xmax>
+			<ymax>159</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>person</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>194</xmin>
+			<ymin>162</ymin>
+			<xmax>215</xmax>
+			<ymax>182</ymax>
+		</bndbox>
+	</object>
+</annotation>
