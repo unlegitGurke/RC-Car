@@ -33,7 +33,6 @@
 
   int DutyCycle[4] = {0, 0, 0, 0};    //Fanspeed converted to a value for the ADC
 
-
   //Declare Accelerometer and Gyroscope
 
   #include<Wire.h>
@@ -93,6 +92,21 @@
   unsigned long previousMillisVoltage = 0;
   unsigned long currentMillisVoltage;
 */
+
+  //Serial Communication
+  
+  #define startMarker 0x78   //Marks Beggging of Datastream   ASCII for x
+  #define endMarker 0x71    //Marks End of Datastream   ASCII for q
+  #define maxMessage 256   //Number of Bytes that can be transmitted in one message
+
+  bool inProgress = false;
+  bool allReceived = false;
+  bool DataSent = false;
+  
+  byte bytesRecvd = 0;
+  byte dataRecvCount = 0; 
+
+  byte tempBuffer[maxMessage];
 
   ////////// C O R E 2 //////////
 
@@ -259,12 +273,12 @@ void Task1setup( void * pvParameters ){    //Task1 Core 0
 void Task1loop() {
   
   CheckError();
-  //ReadTemp();
-  //ReadSonar();
-  //ReadIMU();
-  //Fan_Control();
+  ReadTemp();
+  ReadSonar();
+  ReadIMU();
+  Fan_Control();
   //VoltageSensor();
-  //ConvertVarToString();
+  ConvertVarToString();
   ConvertStringtoVar();
 
   delay(1);
@@ -432,23 +446,21 @@ void ConvertVarToString() {   //Converts Data from Variables to a String to be s
   
   dtostrf(floatTemp, 3, 1, StringIMUTemp);
   
-  sprintf(BufferSonar, "x%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,", SonarValues[0], SonarValues[1], SonarValues[2], SonarValues[3], SonarValues[4], SonarValues[5], SonarValues[6], SonarValues[7], SonarValues[8], SonarValues[9], SonarValues[10], SonarValues[11], SonarValues[12], SonarValues[13], SonarValues[14], SonarValues[15]);
+  sprintf(BufferSonar, "x%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,", SonarValues[0], SonarValues[1], SonarValues[2], SonarValues[3], SonarValues[4], SonarValues[5], SonarValues[6], SonarValues[7], SonarValues[8], SonarValues[9], SonarValues[10], SonarValues[11], SonarValues[12], SonarValues[13], SonarValues[14], SonarValues[15]);    //convert all Variables into substrings
   sprintf(BufferIMU, "%i,%i,%i,%s,%i,%i,%i,", AcX, AcY, AcZ, StringIMUTemp, GyX, GyY, GyZ);
   sprintf(BufferVoltage, "%s,%s,%s,%s,%s,", StringVoltage[0], StringVoltage[1], StringVoltage[2], StringVoltage[3], StringVoltage[4]);
   sprintf(BufferTemp, "%s,%s,%s,%s,%s,%s,%huq", StringTemp[0], StringTemp[1], StringTemp[2], StringTemp[3], StringTemp[4], StringTemp[5], IsError);
-  sprintf(Buffer, "%s%s%s%s", BufferSonar, BufferIMU, BufferVoltage, BufferTemp);
+  sprintf(Buffer, "%s%s%s%s", BufferSonar, BufferIMU, BufferVoltage, BufferTemp);   //Combine all substrings into one
   
   Serial.println(Buffer);
 }
 
 void ConvertStringtoVar() {   //converts incoming Serial Data String to Variables
   
-  char tempBuffer[256] = {"x18,22FF86,75EC78,25,50,75,100,2,0q"};
-  
   unsigned int TempUnitBuffer;
   unsigned int IsErrorPandaBuffer;
 
-  sscanf(tempBuffer, "x%u,%x,%x,%u,%u,%u,%u,%u,%uq", &Effekt, &EffektColor1, &EffektColor2, &FanSpeed[0], &FanSpeed[1], &FanSpeed[2], &FanSpeed[3], &TempUnitBuffer, &IsErrorPandaBuffer);
+  sscanf(tempBufferIn, "x%u,%x,%x,%u,%u,%u,%u,%u,%uq", &Effekt, &EffektColor1, &EffektColor2, &FanSpeed[0], &FanSpeed[1], &FanSpeed[2], &FanSpeed[3], &TempUnitBuffer, &IsErrorPandaBuffer);
   
   TempUnit = TempUnitBuffer;
   IsErrorPanda = IsErrorPandaBuffer;
@@ -472,6 +484,41 @@ void CheckError() {   //Checks if there has been an Error
     
   }
 
+}
+
+void getSerialData() {
+  
+  while (Serial.available() > 0) {    //Checks for Serial Data
+    
+    byte x = Serial.read();   //Reads Serial Data
+    
+    if (x == startMarker && inProgress == false) {    //IF the first Byte = startMarker, start to recieve Data
+       
+      bytesRecvd = 0; 
+      inProgress = true;
+      
+    }
+    
+    if (inProgress ) {
+       
+      if (bytesRecvd<maxMessage) {
+        
+        tempBufferIn[bytesRecvd++] = x;
+        
+      }
+      
+      if (x == endMarker) { 
+        
+        inProgress = false;
+        allReceived = true;
+        nb = bytesRecvd;
+        
+      }
+      
+    }
+    
+  }
+  
 }
 
 ////////// C O R E 2 //////////

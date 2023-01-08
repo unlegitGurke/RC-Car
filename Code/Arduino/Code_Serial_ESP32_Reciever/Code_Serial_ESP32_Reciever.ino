@@ -6,9 +6,7 @@ HardwareSerial Debug(2);
 #define endMarker 0x71    //Marks End of Datastream   ASCII for q
 #define maxMessage 256   //Number of Bytes that can be transmitted in one message
 
-bool newData = false;
 bool inProgress = false;
-bool startFound = false;
 bool allReceived = false;
 bool DataSent = false;
 
