@@ -31,7 +31,7 @@ void loop() {
   
   getSerialData();
   
-  if(tempBuffer[0] == startMarker && tempBuffer[nb-1] == endMarker /*&& allReceived == true*/) {
+  if(tempBuffer[0] == startMarker && tempBuffer[nb-1] == endMarker && allReceived == true) {
     
     SendPacket = true;
     
@@ -85,5 +85,18 @@ void getSerialData() {
     }
     
   }
+  
+}
+
+void ConvertStringtoVar() {
+  
+  int Effekt;
+  unsigned long Color1;
+  unsigned long Color2;
+  int FanSpeed[4];
+  int TempUnit;
+  unsigned short Error;
+  
+  sscanf(tempBuffer, "x%u,%x,%x,%u,%u,%u,%u,%hu,%huq", &Effekt, &Color1, &Color2, &FanSpeed[0], &FanSpeed[1], &FanSpeed[2], &FanSpeed[3], &TempUnit, &Error)
   
 }

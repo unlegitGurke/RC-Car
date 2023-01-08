@@ -14,7 +14,10 @@
   //General Values
 
   const int ADCRes = 12;  //Resolution of ADC in Bits (Arduino Nano: 10, ESP32: 12)
-  bool Error[] = {0,0,0,0,0,0,0};   //Error Codes are saved in here:  0 - 6 : Temp Sensor Error, 7 : Max Voltage too HIGH for Sensor Microcontroller can be harmed!
+  const int ErrorCnt = 7;   //Amount of Erro Variables 
+  bool Error[ErrorCnt] = {0,0,0,0,0,0,0};   //Error Codes are saved in here:  0 - 6 : Temp Sensor Error, 7 : Max Voltage too HIGH for Sensor Microcontroller can be harmed!
+  bool IsError = 0;    //True if theres any Error
+  bool IsErrorPanda = 0;    //True, if theres an Error on the LattePanda
 
   //Declare PWM Fan Controller
 
@@ -26,7 +29,7 @@
 
   const int Frequency[4] = {25000, 25000, 25000, 25000};    //PWM Frequency of the Fans
 
-  int FanSpeed[4] = {25, 50, 75, 90};   //Speed of the fans at the beginning of the program
+  int FanSpeed[4] = {0, 0, 0, 0};   //Speed of the fans at the beginning of the program
 
   int DutyCycle[4] = {0, 0, 0, 0};    //Fanspeed converted to a value for the ADC
 
@@ -63,9 +66,9 @@
   const int NrOfSensors = 6;              //Define Number of Sensors connected to the Analog Pins of the Arduino
   const int SensorPins[NrOfSensors] = {34,35,32,33,25,26}; //Define Pins of Sensors
 
-  const int TempUnit = 2;   //Choose which Unit the Temperature will be printed in, 1 for Kelvin, 2 for Celcius, 3 for Fahrenheit
-
   const int ErrorLedPin = 4; //Pin for Error LED
+  
+  int TempUnit = 2;   //Choose which Unit the Temperature will be printed in, 1 for Kelvin, 2 for Celcius, 3 for Fahrenheit
 
   const unsigned int ReadIntervallTemp = 200; //Time between Sensor Readings in milliseconds
   unsigned long previousMillisTemp = 0;
@@ -151,6 +154,8 @@
   const unsigned long frontcoldim = 0x202020;
   const unsigned long blackcol = 0x000000;
   const unsigned long idlecolfront = 0x202020;
+  unsigned long EffektColor1;
+  unsigned long EffektColor2;
 
   //Non-Blocking Delay Variables
   int currentMillisLED = 0;
@@ -253,12 +258,14 @@ void Task1setup( void * pvParameters ){    //Task1 Core 0
 
 void Task1loop() {
   
-  ReadTemp();
-  ReadSonar();
-  ReadIMU();
-  Fan_Control();
+  CheckError();
+  //ReadTemp();
+  //ReadSonar();
+  //ReadIMU();
+  //Fan_Control();
   //VoltageSensor();
-  ConvertIntToChar();
+  //ConvertVarToString();
+  ConvertStringtoVar();
 
   delay(1);
 }
@@ -398,10 +405,10 @@ void Fan_Control() {
   }
 }
 */
-void ConvertIntToChar() {
-  
-//  int NOSVoltage = 5;     //DEBUG ONLY
-//  float Voltage[5] = {12.1, 56.4, 89.2, 23.5, 74.2};    //DEBUG ONBLY
+void ConvertVarToString() {   //Converts Data from Variables to a String to be sent
+
+    int NOSVoltage = 5;     //DEBUG ONLY
+    float Voltage[5] = {12.1, 56.4, 89.2, 23.5, 74.2};    //DEBUG ONBLY
   
   char BufferSonar[128];
   char BufferIMU[64];
@@ -428,10 +435,43 @@ void ConvertIntToChar() {
   sprintf(BufferSonar, "x%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,", SonarValues[0], SonarValues[1], SonarValues[2], SonarValues[3], SonarValues[4], SonarValues[5], SonarValues[6], SonarValues[7], SonarValues[8], SonarValues[9], SonarValues[10], SonarValues[11], SonarValues[12], SonarValues[13], SonarValues[14], SonarValues[15]);
   sprintf(BufferIMU, "%i,%i,%i,%s,%i,%i,%i,", AcX, AcY, AcZ, StringIMUTemp, GyX, GyY, GyZ);
   sprintf(BufferVoltage, "%s,%s,%s,%s,%s,", StringVoltage[0], StringVoltage[1], StringVoltage[2], StringVoltage[3], StringVoltage[4]);
-  sprintf(BufferTemp, "%s,%s,%s,%s,%s,%sq", StringTemp[0], StringTemp[1], StringTemp[2], StringTemp[3], StringTemp[4], StringTemp[5]);
+  sprintf(BufferTemp, "%s,%s,%s,%s,%s,%s,%huq", StringTemp[0], StringTemp[1], StringTemp[2], StringTemp[3], StringTemp[4], StringTemp[5], IsError);
   sprintf(Buffer, "%s%s%s%s", BufferSonar, BufferIMU, BufferVoltage, BufferTemp);
   
   Serial.println(Buffer);
+}
+
+void ConvertStringtoVar() {   //converts incoming Serial Data String to Variables
+  
+  char tempBuffer[256] = {"x18,22FF86,75EC78,25,50,75,100,2,0q"};
+  
+  unsigned int TempUnitBuffer;
+  unsigned int IsErrorPandaBuffer;
+
+  sscanf(tempBuffer, "x%u,%x,%x,%u,%u,%u,%u,%u,%uq", &Effekt, &EffektColor1, &EffektColor2, &FanSpeed[0], &FanSpeed[1], &FanSpeed[2], &FanSpeed[3], &TempUnitBuffer, &IsErrorPandaBuffer);
+  
+  TempUnit = TempUnitBuffer;
+  IsErrorPanda = IsErrorPandaBuffer;
+  
+  Serial.print(Effekt); Serial.print(" "); Serial.print(EffektColor1, 16); Serial.print(" "); Serial.print(EffektColor2, 16); Serial.print(" "); Serial.print(FanSpeed[0]); Serial.print(" "); Serial.print(FanSpeed[1]); Serial.print(" "); Serial.print(FanSpeed[2]); Serial.print(" ");    //For Debug Only
+  Serial.print(FanSpeed[3]); Serial.print(" "); Serial.print(TempUnit); Serial.print(" "); Serial.println(IsErrorPanda);
+  
+}
+
+void CheckError() {   //Checks if there has been an Error
+
+  IsError = true;  
+
+  for (int i = 0; i < ErrorCnt; i++) {
+    
+    if (Error[i]) {  
+      
+      IsError = false;  
+       
+    }
+    
+  }
+
 }
 
 ////////// C O R E 2 //////////
