@@ -8,8 +8,6 @@ HardwareSerial Debug(2);
 
 bool inProgress = false;
 bool allReceived = false;
-bool DataSent = false;
-
 bool ButtonState = false;
 bool lastButtonState = false;
 
@@ -19,6 +17,10 @@ byte dataRecvCount = 0;
 byte tempBuffer[maxMessage];
 
 int nb = 0;   //Number of Bytes currently saved into tempBuffer
+
+long currentmillis = 0;
+long previousmillis = 0;
+int delaytime = 15;
 
 void setup() {
   
@@ -30,12 +32,14 @@ void setup() {
 
 void loop() {
   
-  ButtonState = digitalRead(18);
+  //ButtonState = digitalRead(18);
+
+  currentmillis = millis();
   
-  if(ButtonState == HIGH && lastButtonState == LOW && DataSent == false) {
+  if(currentmillis - previousmillis >= delaytime) {
     
+    previousmillis = currentmillis;
     Serial.print("x0,FFFFFF,FFFFFF,25,50,75,100,2,0q"); //First packet to be sent
-    DataSent = true;
     
   }
   
