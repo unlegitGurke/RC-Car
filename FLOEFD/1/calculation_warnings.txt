@@ -1,0 +1,7 @@
+2023-Jan-08 20:03:57
+Computer name:	DESKTOP-ES20QCI
+Number of cores used in calculation:	12
+Configuration name:	Master
+Project name:	Extreme E 2
+
+Warnings on last iteration: 

@@ -1,0 +1,7 @@
+2023-Jan-09 20:22:23
+Computer name:	DESKTOP-ES20QCI
+Number of cores used in calculation:	12
+Configuration name:	Master
+Project name:	Projekt(2)
+
+Warnings on last iteration: 

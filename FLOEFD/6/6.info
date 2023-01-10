@@ -1,0 +1,78 @@
+
+    Systeminformationen
+                Status:   Berechnung ist beendet.
+                Produkt:   Simcenter FLOEFD 2020.2.0 for Solid Edge. Build: 5044
+                Computer-Name:   DESKTOP-ES20QCI
+                Anwendername:   phili
+                Prozessoren:   Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz
+                Arbeitsspeicher:   16307 MB / 7460 MB
+                Betriebssystem:   Windows 10 (or higher) (Version 10.0.22621)
+                CAD-Version:   Solid Edge 221.00.03.03
+                CPU-Geschwindigkeit:   3192 MHz
+
+    Allgemeine Informationen
+                Modell:   Bode Floefd.asm
+                Projektname:   Projekt(2)
+                Projektpfad:   C:\Users\phili\Documents\GitHub\RC-Car\FLOEFD\6
+                Einheitensystem:   SI (m-kg-s)
+                Analyseart:   Extern (ohne Innenbereiche)
+                Hohlräume ohne Strömungsbedingungen ausschließen:   Aus
+                Koordinatensystem:   Globales Koordinatensystem
+                Referenzachse:   X
+
+    Physikalische Features
+                Wärmeleitung in Festkörpern:   Aus
+                Zeitabhängig:   Aus
+                Schwerkrafteffekte:   Aus
+                Strömungstyp:   Laminar und turbulent
+                Strömung mit hoher Machzahl:   Aus
+                Luftfeuchtigkeit:   Aus
+                Freie Oberfläche:   Aus
+                Standardrauheit:   0 Mikrometer
+                Standardwandbedingungen:   Adiabate Wand
+
+    Berechnungsraum
+
+        Größe
+                X-Min:   -1.202 m
+                X-Max:   1.202 m
+                Y-Min:   -0.893 m
+                Y-Max:   2.456 m
+                Z-Min:   -0.820 m
+                Z-Max:   1.318 m
+                X-Größe:   2.403 m
+                Y-Größe:   3.349 m
+                Z-Größe:   2.138 m
+
+    Berechnungsnetz
+
+        Abmessungen des Basisnetzes
+                Anzahl der Zellen in X-Richtung:   36
+                Anzahl der Zellen in Y-Richtung:   52
+                Anzahl der Zellen in Z-Richtung:   35
+
+        Anzahl der Zellen
+                Zellen:   68234
+                Fluidzellen:   68234
+                Unregelmäßige Zellen:   0
+                Getrimmte Zellen:   0
+                Maximale Verfeinerungsstufe:   1
+
+    Ziele
+                
+                Name   	Einheit   	Wert   	Verlauf   	Kriterien   	Delta   	In Konvergenz verwenden 
+
+    Allgemeine Informationen
+                Ausführen auf:   DESKTOP-ES20QCI
+                Anzahl Rechenkerne:   12
+                Iterationen:   137
+                CPU-Zeit:   51 s
+
+        Protokoll
+                Vernetzung gestartet	0:   20:21:30 , Jan 09
+                Vernetzung normal beendet	0:   20:21:31 , Jan 09
+                Daten werden zur Berechnung vorbereitet	0:   20:21:31 , Jan 09
+                Berechnung gestartet	0:   20:21:33 , Jan 09
+                Die Berechnung ist konvergiert, da die folgenden Kriterien erfüllt sind:	137:   20:22:23 , Jan 09
+                    Ziele sind konvergiert	137:   
+                Berechnung beendet	137:   20:22:25 , Jan 09

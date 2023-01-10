@@ -1,0 +1,13 @@
+
+START 20:12:57 
+MSG 20:12:57 CGeometryDB::InitGDB   [1.31827 sec]
+-------------CGeometryDB::InitPositiveBodiesMappingData ---------------------------------
+geometries count 1
+----processing negative geometries----
+geometry 0, Face count 327
+MaxFaceIndex 326
+------processing positive geometries-----
+Geometry index 0	 type 0
+Positive Bodies 1
+MSG 20:12:57 CGeometryDB::EnumGeometries2   [1.94828 sec]
+END 20:13:54 
