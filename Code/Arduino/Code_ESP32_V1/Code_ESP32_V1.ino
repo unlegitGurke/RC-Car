@@ -106,7 +106,10 @@
   byte bytesRecvd = 0;
   byte dataRecvCount = 0; 
 
-  byte tempBuffer[maxMessage];
+  char tempBufferIn[maxMessage];
+  char tempBufferOut[maxMessage];
+  
+  int nb = 0;
 
   ////////// C O R E 2 //////////
 
@@ -220,8 +223,8 @@ void loop(){
 ////////// C O R E 1 //////////
 
 void Task1setup( void * pvParameters ){    //Task1 Core 0
-  Serial.print("Task1 running on core ");
-  Serial.println(xPortGetCoreID());
+  //Serial.print("Task1 running on core ");
+  //Serial.println(xPortGetCoreID());
 
   delay(3000);
 
@@ -279,6 +282,7 @@ void Task1loop() {
   Fan_Control();
   //VoltageSensor();
   ConvertVarToString();
+  getSerialData();
   ConvertStringtoVar();
 
   delay(1);
@@ -294,12 +298,12 @@ void ReadTemp() {
     
     for(int i = 0;i <= NrOfSensors - 1;i++){    //Read Temps from all sensors and prints them
       SaveTemp(SensorPins[i], i);
-      Serial.print("Temp");
-      Serial.print(i + 1);
-      Serial.print(": ");
-      Serial.print(temp[i][TempUnit]);
-      Serial.print(" C Error: ");
-      Serial.println(Error[i]);
+      //Serial.print("Temp");
+      //Serial.print(i + 1);
+      //Serial.print(": ");
+      //Serial.print(temp[i][TempUnit]);
+      //Serial.print(" C Error: ");
+      //Serial.println(Error[i]);
   
       if(Error[i] == 1) {
         Error[6] = 1;              
@@ -314,7 +318,7 @@ void ReadTemp() {
       digitalWrite(ErrorLedPin, LOW);
     }
     
-    Serial.println(" ");
+    //Serial.println(" ");
     
   }
   
@@ -350,10 +354,10 @@ void ReadSonar() {
     last_print = millis();
     for (uint8_t i = 0; i < 16; i++) {
       SonarValues[i] = myOcto.read(i);
-      Serial.print(SonarValues[i]); Serial.print("   ");
+      //Serial.print(SonarValues[i]); Serial.print("   ");
       
     }
-    Serial.println();
+    //Serial.println();
   }  
 }
 
@@ -376,14 +380,14 @@ void ReadIMU() {
     GyY=Wire.read()<<8|Wire.read();  // 0x45 (GYRO_YOUT_H) & 0x46 (GYRO_YOUT_L)
     GyZ=Wire.read()<<8|Wire.read();  // 0x47 (GYRO_ZOUT_H) & 0x48 (GYRO_ZOUT_L)
     
-    Serial.print("AcX = "); Serial.print(AcX);
-    Serial.print(" | AcY = "); Serial.print(AcY);
-    Serial.print(" | AcZ = "); Serial.print(AcZ);
-    Serial.print(" | Tmp = "); Serial.print(Tmp/340.00+36.53);  //equation for temperature in degrees C from datasheet
-    Serial.print(" | GyX = "); Serial.print(GyX);
-    Serial.print(" | GyY = "); Serial.print(GyY);
-    Serial.print(" | GyZ = "); Serial.println(GyZ);
-    Serial.println("  ");
+    //Serial.print("AcX = "); Serial.print(AcX);
+    //Serial.print(" | AcY = "); Serial.print(AcY);
+    //Serial.print(" | AcZ = "); Serial.print(AcZ);
+    //Serial.print(" | Tmp = "); Serial.print(Tmp/340.00+36.53);  //equation for temperature in degrees C from datasheet
+    //Serial.print(" | GyX = "); Serial.print(GyX);
+    //Serial.print(" | GyY = "); Serial.print(GyY);
+    //Serial.print(" | GyZ = "); Serial.println(GyZ);
+    //Serial.println("  ");
     
   }    
   
@@ -431,7 +435,6 @@ void ConvertVarToString() {   //Converts Data from Variables to a String to be s
   char BufferVoltage[32];
   char StringTemp[6][6];
   char BufferTemp[32];
-  char Buffer[256];
   
   
   for(int i = 0; i < NOSVoltage; i++) {           //Converts Voltage Floats to String
@@ -450,9 +453,9 @@ void ConvertVarToString() {   //Converts Data from Variables to a String to be s
   sprintf(BufferIMU, "%i,%i,%i,%s,%i,%i,%i,", AcX, AcY, AcZ, StringIMUTemp, GyX, GyY, GyZ);
   sprintf(BufferVoltage, "%s,%s,%s,%s,%s,", StringVoltage[0], StringVoltage[1], StringVoltage[2], StringVoltage[3], StringVoltage[4]);
   sprintf(BufferTemp, "%s,%s,%s,%s,%s,%s,%huq", StringTemp[0], StringTemp[1], StringTemp[2], StringTemp[3], StringTemp[4], StringTemp[5], IsError);
-  sprintf(Buffer, "%s%s%s%s", BufferSonar, BufferIMU, BufferVoltage, BufferTemp);   //Combine all substrings into one
+  sprintf(tempBufferOut, "%s%s%s%s", BufferSonar, BufferIMU, BufferVoltage, BufferTemp);   //Combine all substrings into one
   
-  Serial.println(Buffer);
+  //Serial.println(tempBufferOut);
 }
 
 void ConvertStringtoVar() {   //converts incoming Serial Data String to Variables
@@ -465,8 +468,8 @@ void ConvertStringtoVar() {   //converts incoming Serial Data String to Variable
   TempUnit = TempUnitBuffer;
   IsErrorPanda = IsErrorPandaBuffer;
   
-  Serial.print(Effekt); Serial.print(" "); Serial.print(EffektColor1, 16); Serial.print(" "); Serial.print(EffektColor2, 16); Serial.print(" "); Serial.print(FanSpeed[0]); Serial.print(" "); Serial.print(FanSpeed[1]); Serial.print(" "); Serial.print(FanSpeed[2]); Serial.print(" ");    //For Debug Only
-  Serial.print(FanSpeed[3]); Serial.print(" "); Serial.print(TempUnit); Serial.print(" "); Serial.println(IsErrorPanda);
+  //Serial.print(Effekt); Serial.print(" "); Serial.print(EffektColor1, 16); Serial.print(" "); Serial.print(EffektColor2, 16); Serial.print(" "); Serial.print(FanSpeed[0]); Serial.print(" "); Serial.print(FanSpeed[1]); Serial.print(" "); Serial.print(FanSpeed[2]); Serial.print(" ");    //For Debug Only
+  //Serial.print(FanSpeed[3]); Serial.print(" "); Serial.print(TempUnit); Serial.print(" "); Serial.println(IsErrorPanda);
   
 }
 
@@ -512,6 +515,7 @@ void getSerialData() {
         inProgress = false;
         allReceived = true;
         nb = bytesRecvd;
+        Serial.print(tempBufferOut);    //Send Data Back to LattePanda
         
       }
       
@@ -524,8 +528,8 @@ void getSerialData() {
 ////////// C O R E 2 //////////
 
 void Task2setup( void * pvParameters ){    //Task2 Core 1
-  Serial.print("Task2 running on core ");
-  Serial.println(xPortGetCoreID());
+  //Serial.print("Task2 running on core ");
+  //Serial.println(xPortGetCoreID());
 
   delay(1000);
 
@@ -554,7 +558,7 @@ void Task2setup( void * pvParameters ){    //Task2 Core 1
 
 void Task2loop() {  
 
-  ReadButtons();
+  //ReadButtons();
   Effect();
   
   //delay(1);

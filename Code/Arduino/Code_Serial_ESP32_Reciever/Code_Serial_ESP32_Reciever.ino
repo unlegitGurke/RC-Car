@@ -24,7 +24,6 @@ void setup() {
   
   Debug.begin(115200, SERIAL_8N1, 17, 16);
   Serial.begin(115200);
-  pinMode(19, OUTPUT);
   pinMode(18, INPUT);
   
 }
@@ -35,7 +34,7 @@ void loop() {
   
   if(ButtonState == HIGH && lastButtonState == LOW && DataSent == false) {
     
-    Serial.print("x001,000001,000002,001,002,003,004,0q"); //First packet to be sent
+    Serial.print("x0,FFFFFF,FFFFFF,25,50,75,100,2,0q"); //First packet to be sent
     DataSent = true;
     
   }
@@ -47,6 +46,7 @@ void loop() {
   if(allReceived == true) {
     
     Debug.write(tempBuffer, nb);
+    allReceived = false;
     
   }
     

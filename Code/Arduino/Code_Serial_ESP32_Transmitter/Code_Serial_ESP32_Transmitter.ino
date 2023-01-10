@@ -1,6 +1,6 @@
 //Transmitter
 
-HardwareSerial Debug(1);
+HardwareSerial Debug(2);
 
 #define startMarker 0x78   //Marks Beggging of Datastream,   ASCII for x
 #define endMarker 0x71    //Marks End of Datastream,   ASCII for q
@@ -10,7 +10,6 @@ bool newData = false;
 bool inProgress = false;
 bool startFound = false;
 bool allReceived = false;
-bool SendPacket = false;
 
 byte bytesRecvd = 0;
 byte dataRecvCount = 0; 
@@ -31,26 +30,6 @@ void loop() {
   
   getSerialData();
   
-  if(tempBuffer[0] == startMarker && tempBuffer[nb-1] == endMarker && allReceived == true) {
-    
-    SendPacket = true;
-    
-  }
-  
-  else {
-    
-    Debug.print(tempBuffer[0]);
-    Debug.print(tempBuffer[35]);
-    
-  }
-
-  if(Serial.available() && SendPacket == true){
-    
-    Serial.print("x001,002,003,004,005,006,007,008,009,010,011,012,013,014,015,016,0001,0002,0003,0004,0005,0006,0007,001,002,003,004,005,0001,0002,0003,0004,0005,0006q"); //Packet which  needs to be sent back
-    SendPacket = false;
-    
-  }
-
 }
 
 void getSerialData() {
@@ -63,6 +42,7 @@ void getSerialData() {
        
       bytesRecvd = 0; 
       inProgress = true;
+      Debug.print("x");
       
     }
     
@@ -79,24 +59,14 @@ void getSerialData() {
         inProgress = false;
         allReceived = true;
         nb = bytesRecvd;
+        Debug.print("q");
+        Serial.print("x001,002,003,004,005,006,007,008,009,010,011,012,013,014,015,016,0001,0002,0003,0004,0005,0006,0007,001,002,003,004,005,0001,0002,0003,0004,0005,0006q"); //Packet which  needs to be sent back
+        Debug.print("Sent");
         
       }
       
     }
     
   }
-  
-}
-
-void ConvertStringtoVar() {
-  
-  int Effekt;
-  unsigned long Color1;
-  unsigned long Color2;
-  int FanSpeed[4];
-  int TempUnit;
-  unsigned short Error;
-  
-  sscanf(tempBuffer, "x%u,%x,%x,%u,%u,%u,%u,%hu,%huq", &Effekt, &Color1, &Color2, &FanSpeed[0], &FanSpeed[1], &FanSpeed[2], &FanSpeed[3], &TempUnit, &Error)
   
 }
