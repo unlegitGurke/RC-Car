@@ -14,8 +14,8 @@
   //General Values
 
   const int ADCRes = 12;  //Resolution of ADC in Bits (Arduino Nano: 10, ESP32: 12)
-  const int ErrorCnt = 7;   //Amount of Erro Variables 
-  bool Error[ErrorCnt] = {0,0,0,0,0,0,0};   //Error Codes are saved in here:  0 - 6 : Temp Sensor Error, 7 : Max Voltage too HIGH for Sensor Microcontroller can be harmed!
+  const int ErrorCnt = 11;   //Amount of Erro Variables 
+  bool Error[ErrorCnt] = {0,0,0,0,0,0,0,0,0,0,0};   //Error Codes are saved in here:  0 - 6 : Temp Sensor Error, 7 - 11 : Max Voltage too HIGH for Sensor Microcontroller can be harmed!
   bool IsError = 0;    //True if theres any Error
   bool IsErrorPanda = 0;    //True, if theres an Error on the LattePanda
 
@@ -76,22 +76,22 @@
   float temp[NrOfSensors + 1][3];
 
   //Declare Voltage Sensors
-/*
-  const float R1[] = {110000, 110000, 110000, 110000, 110000};   //Voltage Divider Resistor Values
-  const float R2[] = {5000, 5000, 5000, 5000, 5000};
+
+  const float R1[] = {100000, 100000, 100000, 100000, 100000};   //Voltage Divider Resistor Values
+  const float R2[] = {4700, 4700, 4700, 4700, 4700};
 
   const int NOSVoltage = 5;   //Number of Sensors plugged in
-  const int VoltagePin[] = {, , , , };  //Sensor Pins
+  const int VoltagePin[] = {12, 13, 14, 15, 27};  //Sensor Pins
   const float LogicLevel = 3.3;   //Logic Level of the microcontroller
   const float MaxVoltage = 80;  //Max Voltage that will be measured
 
   float Voltage[NOSVoltage];  //Voltage Data will be saved in here
-  float InputVoltage = 0;
+  float InputVoltage[5] = {0,0,0,0,0};
 
   const unsigned int ReadIntervallVoltage = 10;   //Time between Sensor Readings in milliseconds
   unsigned long previousMillisVoltage = 0;
   unsigned long currentMillisVoltage;
-*/
+
 
   //Serial Communication
   
@@ -251,23 +251,28 @@ void Task1setup( void * pvParameters ){    //Task1 Core 0
   ledcSetup(PWMChannel[3], Frequency[3], Resolution[3]);
 
   //Voltage Sensors
-/*
+
   pinMode(VoltagePin[0], INPUT);
   pinMode(VoltagePin[1], INPUT);
   pinMode(VoltagePin[2], INPUT);
   pinMode(VoltagePin[3], INPUT);
   pinMode(VoltagePin[4], INPUT);
-  
-  InputVoltage = MaxVoltage / ((R1 + R2)/R2);     //Calculate Voltage which is applied to GPIO at MaxVoltage
-  
-  if(InputVoltage > LogicLevel) {   //If the Voltage applied to the GPIOS can be too high, set Error HIGH
-    Error[7] = 1;
+
+  for(int i = 0; i < 5; i++) {
+    InputVoltage[i] = MaxVoltage / ((R1[i] + R2[i])/R2[i]);     //Calculate Voltage which is applied to GPIO at MaxVoltage    
+    if(InputVoltage[i] > LogicLevel) {   //If the Voltage applied to the GPIOS can be too high, set Error HIGH
+      Error[7+i] = 1;
+    }
+    else {
+      Error[7+i] = 0;
+    }
   }
-  else {
-    Error[7] = 0;
-  }
+
+  
+  
+  
    
-*/
+
   for(;;){
     Task1loop();   
   } 
@@ -405,7 +410,7 @@ void Fan_Control() {
 
 }
 
-/*void VoltageSensor() {
+void VoltageSensor() {
   
   currentMillisVoltage = millis();
   if(currentMillisVoltage - previousMillisVoltage >= ReadIntervallVoltage) {
@@ -422,11 +427,11 @@ void Fan_Control() {
     }
   }
 }
-*/
+
 void ConvertVarToString() {   //Converts Data from Variables to a String to be sent
 
-    int NOSVoltage = 5;     //DEBUG ONLY
-    float Voltage[5] = {12.1, 56.4, 89.2, 23.5, 74.2};    //DEBUG ONBLY
+    //int NOSVoltage = 5;     //DEBUG ONLY
+    //float Voltage[5] = {12.1, 56.4, 89.2, 23.5, 74.2};    //DEBUG ONBLY
   
   char BufferSonar[128];
   char BufferIMU[64];
