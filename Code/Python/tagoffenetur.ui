@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1384</width>
+    <height>1143</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="l_binker">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>710</y>
+      <width>121</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Blinker links</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ruckwarts">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>970</y>
+      <width>201</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Rückwährts fahren</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bremsen">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>970</y>
+      <width>201</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Bremsen</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="warnblink">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>710</y>
+      <width>121</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Warnlichter</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="r_blinker">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>710</y>
+      <width>121</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Blinker rechts</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="fernlicht">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>710</y>
+      <width>75</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Fernlicht</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="AIMode">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>900</y>
+      <width>75</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>AI Mode</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="l_v">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>710</y>
+      <width>171</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="l_h">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>900</y>
+      <width>171</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="r_v">
+    <property name="geometry">
+     <rect>
+      <x>1160</x>
+      <y>710</y>
+      <width>171</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="r_h">
+    <property name="geometry">
+     <rect>
+      <x>1160</x>
+      <y>900</y>
+      <width>171</width>
+      <height>161</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QWidget" name="Lidar" native="true">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>140</y>
+      <width>601</width>
+      <height>531</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="ultraschall" native="true">
+    <property name="geometry">
+     <rect>
+      <x>730</x>
+      <y>140</y>
+      <width>601</width>
+      <height>531</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="colorwheel" native="true">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>710</y>
+      <width>311</width>
+      <height>351</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1384</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
