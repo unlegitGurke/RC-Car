@@ -268,11 +268,6 @@ void Task1setup( void * pvParameters ){    //Task1 Core 0
     }
   }
 
-  
-  
-  
-   
-
   for(;;){
     Task1loop();   
   } 
@@ -285,7 +280,7 @@ void Task1loop() {
   ReadSonar();
   ReadIMU();
   Fan_Control();
-  //VoltageSensor();
+  VoltageSensor();
   ConvertVarToString();
   getSerialData();
   ConvertStringtoVar();

@@ -1,12 +1,12 @@
 Solid Edge in STL konvertieren
-Datum: Dienstag,Jänner 10,2023 09:03AM
-Quelldatei:C:\Users\Felix\Documents\GitHub\RC-Car\Body\Bodymount_hinten.par
+Datum: Mittwoch,Jänner 11,2023 08:26nachm.
+Quelldatei:F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Body\Bodymount_hinten.par
 Ausgangssystem: SOLID EDGE
 
 Hardware:
-Prozessor: AMD Ryzen 7 5800H with Radeon Graphics         
+Prozessor: AMD Ryzen 7 3700X 8-Core Processor             
 Betriebssystem: Windows 10 Professional
-Installierter Speicher: 15,85 GB
+Installierter Speicher: 31,91 GB
 
 Software-Informationen:
 Parasolid-Version: 32.1.222
@@ -26,4 +26,4 @@ Konvertierungsfortschritt:
 Phase 1 von 2 - Abrufen der Parasolid-Informationen...
 Anzahl erstellter STL-Dateien : 1
 Konvertierungsvorgang ist abgeschlossen
-Zum Konvertieren benötigte Zeit:00 : 00 : 01
+Zum Konvertieren benötigte Zeit:00 : 00 : 02
