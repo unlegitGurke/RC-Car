@@ -282,7 +282,7 @@ void Task1loop() {
   Fan_Control();
   VoltageSensor();
   ConvertVarToString();
-  getSerialData();
+  getSerialData(1);
   ConvertStringtoVar();
 
   delay(1);
@@ -416,11 +416,11 @@ void VoltageSensor() {
       Voltage[i] = value * (LogicLevel/pow(2, ADCRes)) * ((R1[i] + R2[i])/R2[i]);    //Calculates the voltages from the sensorpins values
     }
     
-    for(int i = 0;i < NOSVoltage;i++) {   //Prints all Voltages to Serial monitor
+/*    for(int i = 0;i < NOSVoltage;i++) {   //Prints all Voltages to Serial monitor
       Serial.print(Voltage[0]);
       Serial.print(" ");
     }
-  }
+*/  }
 }
 
 void ConvertVarToString() {   //Converts Data from Variables to a String to be sent
@@ -475,13 +475,13 @@ void ConvertStringtoVar() {   //converts incoming Serial Data String to Variable
 
 void CheckError() {   //Checks if there has been an Error
 
-  IsError = true;  
+  IsError = false;  
 
   for (int i = 0; i < ErrorCnt; i++) {
     
     if (Error[i]) {  
       
-      IsError = false;  
+      IsError = true;  
        
     }
     
@@ -489,7 +489,7 @@ void CheckError() {   //Checks if there has been an Error
 
 }
 
-void getSerialData() {
+void getSerialData(bool printout) { 	  //If printout = 1 sends back data, 0 doesnt send back data
   
   while (Serial.available() > 0) {    //Checks for Serial Data
     
@@ -515,8 +515,10 @@ void getSerialData() {
         inProgress = false;
         allReceived = true;
         nb = bytesRecvd;
-        Serial.print(tempBufferOut);    //Send Data Back to LattePanda
         
+        if(printout == 1) {
+          Serial.print(tempBufferOut);    //Send Data Back to LattePanda
+        }
       }
       
     }
@@ -644,52 +646,90 @@ void Effect() {
 
       BrakeLight();
       Indicator(0);
+      IndicatorRightState = true;
+      IndicatorLeftState = false;
+      BrakeLightState = false;
+      ReverseLightState = false; 
       break;
 
     case 2:   //Left indicator
 
       BrakeLight();
       Indicator(1);
+      IndicatorRightState = false;
+      IndicatorLeftState = true;
+      BrakeLightState = false;
+      ReverseLightState = false; 
       break;
 
     case 3:   //Brakelight
 
-      BrakeLight();      
+      BrakeLight();   
+      IndicatorRightState = false;
+      IndicatorLeftState = false;
+      BrakeLightState = true;
+      ReverseLightState = false;    
       break;
 
     case 4:   //Reverse Light
 
       BrakeLight();
       ReverseLight();
+      IndicatorRightState = false;
+      IndicatorLeftState = false;
+      BrakeLightState = false;
+      ReverseLightState = true; 
       break;
     
     case 5:   //Hazard Light
 
-      Indicator(2);                
+      Indicator(2);   
+      IndicatorRightState = false;
+      IndicatorLeftState = false;
+      BrakeLightState = false;
+      ReverseLightState = false; 
+      HazardState = true;             
       break;
 
     case 6:  //Right Indicator + Brake Light    
 
       BrakeLight();
       Indicator(0);
+      IndicatorRightState = true;
+      IndicatorLeftState = false;
+      BrakeLightState = true;
+      ReverseLightState = false; 
       break;
 
     case 7:  //Left Indicator + Brake Light
 
       BrakeLight();
       Indicator(1);
+      IndicatorRightState = false;
+      IndicatorLeftState = true;
+      BrakeLightState = true;
+      ReverseLightState = false; 
       break;      
 
     case 8:  //Hazard Light + Brake Light
 
       BrakeLight();
       Indicator(2);
+      IndicatorRightState = false;
+      IndicatorLeftState = false;
+      BrakeLightState = true;
+      ReverseLightState = false; 
+      HazardState = true;
       break;
 
     case 9:   //Reverse Light + Brake Light
     
       BrakeLight();
       ReverseLight();
+      IndicatorRightState = false;
+      IndicatorLeftState = false;
+      BrakeLightState = true;
+      ReverseLightState = true; 
       break;
     
     case 10:  //Right Indicator + Reverse Light
@@ -697,6 +737,10 @@ void Effect() {
       BrakeLight();
       ReverseLight();
       Indicator(0);
+      IndicatorRightState = true;
+      IndicatorLeftState = false;
+      BrakeLightState = false;
+      ReverseLightState = true; 
       break;    
 
     case 11:  //Left Indicator + Reverse Light
@@ -704,12 +748,21 @@ void Effect() {
       BrakeLight();
       ReverseLight();
       Indicator(1);
+      IndicatorRightState = false;
+      IndicatorLeftState = true;
+      BrakeLightState = false;
+      ReverseLightState = true; 
       break;
 
     case 12:  //Hazard Lights + Reverse Light
 
       BrakeLight();
-      Indicator(2);      
+      Indicator(2);  
+      IndicatorRightState = false;
+      IndicatorLeftState = false;
+      BrakeLightState = false;
+      ReverseLightState = true;   
+      HazardState = true;  
       break;
 
     case 13:  //Right Indicator + Brake Light + Reverse Light
@@ -717,6 +770,10 @@ void Effect() {
       BrakeLight();
       ReverseLight();
       Indicator(0);
+      IndicatorRightState = true;
+      IndicatorLeftState = false;
+      BrakeLightState = true;
+      ReverseLightState = true; 
       break;
 
     case 14:  //Left Indicator + Brake Light + Reverse Light
@@ -724,12 +781,21 @@ void Effect() {
       BrakeLight();
       ReverseLight();
       Indicator(1);
+      IndicatorRightState = false;
+      IndicatorLeftState = true;
+      BrakeLightState = true;
+      ReverseLightState = true; 
       break;
 
     case 15:  //Hazard Lights + Brake Light + Reverse Light
     
       BrakeLight();
       Indicator(2);
+      IndicatorRightState = false;
+      IndicatorLeftState = false;
+      BrakeLightState = true;
+      ReverseLightState = true;
+      HazardState = true; 
       break;     
        
   }
@@ -828,12 +894,149 @@ void ReadButtons() {    //This is an extra function, as it will likely not be us
 
 void UpdateButtonState() {
   //Read alle the Buttonstates
-  IndicatorRightState = digitalRead(ButtonPins[0]);
-  IndicatorLeftState = digitalRead(ButtonPins[1]);
-  BrakeLightState = digitalRead(ButtonPins[2]);
-  ReverseLightState = digitalRead(ButtonPins[3]);
-  HazardState = digitalRead(ButtonPins[4]);
+  //IndicatorRightState = digitalRead(ButtonPins[0]);
+  //IndicatorLeftState = digitalRead(ButtonPins[1]);
+  //BrakeLightState = digitalRead(ButtonPins[2]);
+  //ReverseLightState = digitalRead(ButtonPins[3]);
+  //HazardState = digitalRead(ButtonPins[4]);
+
+   //Turns on effects based on Effect Variable, Brake Light is also called when not in use to turn it off
+  switch(Effekt) {
+    case 0:   //Normal Light
+
+      break;
+
+    case 1:   //Right indicator
+
+      IndicatorRightState = true;
+      IndicatorLeftState = false;
+      BrakeLightState = false;
+      ReverseLightState = false; 
+      break;
+
+    case 2:   //Left indicator
+
+      IndicatorRightState = false;
+      IndicatorLeftState = true;
+      BrakeLightState = false;
+      ReverseLightState = false; 
+      break;
+
+    case 3:   //Brakelight
+
+      IndicatorRightState = false;
+      IndicatorLeftState = false;
+      BrakeLightState = true;
+      ReverseLightState = false;    
+      break;
+
+    case 4:   //Reverse Light
+
+      IndicatorRightState = false;
+      IndicatorLeftState = false;
+      BrakeLightState = false;
+      ReverseLightState = true; 
+      break;
+    
+    case 5:   //Hazard Light
+
+      IndicatorRightState = false;
+      IndicatorLeftState = false;
+      BrakeLightState = false;
+      ReverseLightState = false; 
+      HazardState = true;             
+      break;
+
+    case 6:  //Right Indicator + Brake Light    
+
+      IndicatorRightState = true;
+      IndicatorLeftState = false;
+      BrakeLightState = true;
+      ReverseLightState = false; 
+      break;
+
+    case 7:  //Left Indicator + Brake Light
+
+      IndicatorRightState = false;
+      IndicatorLeftState = true;
+      BrakeLightState = true;
+      ReverseLightState = false; 
+      break;      
+
+    case 8:  //Hazard Light + Brake Light
+
+
+      IndicatorRightState = false;
+      IndicatorLeftState = false;
+      BrakeLightState = true;
+      ReverseLightState = false; 
+      HazardState = true;
+      break;
+
+    case 9:   //Reverse Light + Brake Light
+    
+
+      IndicatorRightState = false;
+      IndicatorLeftState = false;
+      BrakeLightState = true;
+      ReverseLightState = true; 
+      break;
+    
+    case 10:  //Right Indicator + Reverse Light
+
+
+      IndicatorRightState = true;
+      IndicatorLeftState = false;
+      BrakeLightState = false;
+      ReverseLightState = true; 
+      break;    
+
+    case 11:  //Left Indicator + Reverse Light
+
+      IndicatorRightState = false;
+      IndicatorLeftState = true;
+      BrakeLightState = false;
+      ReverseLightState = true; 
+      break;
+
+    case 12:  //Hazard Lights + Reverse Light
+ 
+      IndicatorRightState = false;
+      IndicatorLeftState = false;
+      BrakeLightState = false;
+      ReverseLightState = true;   
+      HazardState = true;  
+      break;
+
+    case 13:  //Right Indicator + Brake Light + Reverse Light
+
+      IndicatorRightState = true;
+      IndicatorLeftState = false;
+      BrakeLightState = true;
+      ReverseLightState = true; 
+      break;
+
+    case 14:  //Left Indicator + Brake Light + Reverse Light
+
+      IndicatorRightState = false;
+      IndicatorLeftState = true;
+      BrakeLightState = true;
+      ReverseLightState = true; 
+      break;
+
+    case 15:  //Hazard Lights + Brake Light + Reverse Light
+    
+      IndicatorRightState = false;
+      IndicatorLeftState = false;
+      BrakeLightState = true;
+      ReverseLightState = true;
+      HazardState = true; 
+      break;     
+       
+  }
+  
 }
+
 
 void idle() {
 
@@ -953,7 +1156,11 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
 
 void BrakeLight() {
 
+
+  //getSerialData(0);
+  //ConvertStringtoVar();  
   UpdateButtonState();
+
   ReverseLight();
 
   //If BrakeLight isnt supposed to be turned on, turn it off
