@@ -416,11 +416,11 @@ void VoltageSensor() {
       Voltage[i] = value * (LogicLevel/pow(2, ADCRes)) * ((R1[i] + R2[i])/R2[i]);    //Calculates the voltages from the sensorpins values
     }
     
-/*    for(int i = 0;i < NOSVoltage;i++) {   //Prints all Voltages to Serial monitor
+  /*for(int i = 0;i < NOSVoltage;i++) {   //Prints all Voltages to Serial monitor
       Serial.print(Voltage[0]);
       Serial.print(" ");
     }
-*/  }
+  */}
 }
 
 void ConvertVarToString() {   //Converts Data from Variables to a String to be sent
@@ -460,13 +460,18 @@ void ConvertVarToString() {   //Converts Data from Variables to a String to be s
 
 void ConvertStringtoVar() {   //converts incoming Serial Data String to Variables
   
-  unsigned int TempUnitBuffer;
+  //unsigned int TempUnitBuffer;
   unsigned int IsErrorPandaBuffer;
 
-  sscanf(tempBufferIn, "x%u,%x,%x,%u,%u,%u,%u,%u,%uq", &Effekt, &EffektColor1, &EffektColor2, &FanSpeed[0], &FanSpeed[1], &FanSpeed[2], &FanSpeed[3], &TempUnitBuffer, &IsErrorPandaBuffer);
+  sscanf(tempBufferIn, "x%u,%x,%x,%u,%u,%u,%u,%u,%uq", &Effekt, &EffektColor1, &EffektColor2, &FanSpeed[0], &FanSpeed[1], &FanSpeed[2], &FanSpeed[3], &TempUnit, &IsErrorPandaBuffer);
   
-  TempUnit = TempUnitBuffer;
-  IsErrorPanda = IsErrorPandaBuffer;
+  //if(TempUnitBuffer > 1) {
+  //  TempUnit = TempUnitBuffer;
+  //}
+  
+  if(IsErrorPandaBuffer > 1) {
+    IsErrorPanda = IsErrorPandaBuffer;
+  }
   
   //Serial.print(Effekt); Serial.print(" "); Serial.print(EffektColor1, 16); Serial.print(" "); Serial.print(EffektColor2, 16); Serial.print(" "); Serial.print(FanSpeed[0]); Serial.print(" "); Serial.print(FanSpeed[1]); Serial.print(" "); Serial.print(FanSpeed[2]); Serial.print(" ");    //For Debug Only
   //Serial.print(FanSpeed[3]); Serial.print(" "); Serial.print(TempUnit); Serial.print(" "); Serial.println(IsErrorPanda);
@@ -561,9 +566,9 @@ void Task2setup( void * pvParameters ){    //Task2 Core 1
 void Task2loop() {  
 
   //ReadButtons();
-  Effect();
+  //Effect();
   
-  //delay(1);
+  delay(1);
 }
 
 void startup() {
@@ -1330,8 +1335,6 @@ void FadeToColor(unsigned long Color1, unsigned long Color2, unsigned int timein
     }
   }
   
-  
-
 }
 
 void SwitchFrontLedColor(int nrofled, long color, int dir) {        //dir = 1 for left, dir  0 for right, dir = 2 for both, dir = 3 for both without the 3rd row of leds
