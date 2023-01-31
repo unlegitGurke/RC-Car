@@ -97,7 +97,7 @@
   
   #define startMarker 0x78   //Marks Beggging of Datastream   ASCII for x
   #define endMarker 0x71    //Marks End of Datastream   ASCII for q
-  #define maxMessage 256   //Number of Bytes that can be transmitted in one message
+  #define maxMessage 512   //Number of Bytes that can be transmitted in one message
 
   bool inProgress = false;
   bool allReceived = false;
@@ -453,9 +453,14 @@ void ConvertVarToString() {   //Converts Data from Variables to a String to be s
   sprintf(BufferIMU, "%i,%i,%i,%s,%i,%i,%i,", AcX, AcY, AcZ, StringIMUTemp, GyX, GyY, GyZ);
   sprintf(BufferVoltage, "%s,%s,%s,%s,%s,", StringVoltage[0], StringVoltage[1], StringVoltage[2], StringVoltage[3], StringVoltage[4]);
   sprintf(BufferTemp, "%s,%s,%s,%s,%s,%s,%huq", StringTemp[0], StringTemp[1], StringTemp[2], StringTemp[3], StringTemp[4], StringTemp[5], IsError);
-  sprintf(tempBufferOut, "%s%s%s%s", BufferSonar, BufferIMU, BufferVoltage, BufferTemp);   //Combine all substrings into one
-  
-  //Serial.println(tempBufferOut);
+  //sprintf(tempBufferOut, "%s%s%s%s", BufferSonar, BufferIMU, BufferVoltage, BufferTemp); //Combine all substrings into one
+  strcat(tempBufferOut, BufferSonar);
+  strcat(tempBufferOut, BufferIMU);
+  strcat(tempBufferOut, BufferVoltage);
+  strcat(tempBufferOut, BufferTemp);
+
+  Serial.println(tempBufferOut);
+
 }
 
 void ConvertStringtoVar() {   //converts incoming Serial Data String to Variables
@@ -523,6 +528,7 @@ void getSerialData(bool printout) { 	  //If printout = 1 sends back data, 0 does
         
         if(printout == 1) {
           Serial.print(tempBufferOut);    //Send Data Back to LattePanda
+          
         }
       }
       
@@ -566,7 +572,7 @@ void Task2setup( void * pvParameters ){    //Task2 Core 1
 void Task2loop() {  
 
   //ReadButtons();
-  //Effect();
+  Effect();
   
   delay(1);
 }
@@ -1047,7 +1053,7 @@ void idle() {
 
   for(int i = 0;i <= NUM_LEDS_BACK;i++) {    //State of LEDs when nothing is happening
     ledsback[i] = idlecolback;
-    SwitchFrontLedColor(i,idlecolfront,2);
+    SwitchFrontLedColor(i,frontcoldim,2);
   }
    
    FastLED.show();
