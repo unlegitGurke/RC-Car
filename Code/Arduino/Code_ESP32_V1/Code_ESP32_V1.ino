@@ -9,15 +9,16 @@
 
   #include <math.h>
 
-  ////////// C O R E 1 //////////
-
   //General Values
 
   const int ADCRes = 12;  //Resolution of ADC in Bits (Arduino Nano: 10, ESP32: 12)
-  const int ErrorCnt = 11;   //Amount of Erro Variables 
-  bool Error[ErrorCnt] = {0,0,0,0,0,0,0,0,0,0,0};   //Error Codes are saved in here:  0 - 6 : Temp Sensor Error, 7 - 11 : Max Voltage too HIGH for Sensor Microcontroller can be harmed!
+  const int ErrorCnt = 11;   //Amount of Error Variables 
+  bool Error[ErrorCnt] = {0,0,0,0,0,0,0,0,0,0,0};   //Error Codes are saved in here:  0 - 6 : Temp Sensor Error, 
+                                                    //7 - 11 : Max Voltage too HIGH for Microcontroller
   bool IsError = 0;    //True if theres any Error
   bool IsErrorPanda = 0;    //True, if theres an Error on the LattePanda
+  
+  ////////// C O R E 1 //////////  
 
   //Declare PWM Fan Controller
 
@@ -227,6 +228,8 @@ void Task1setup( void * pvParameters ){    //Task1 Core 0
   //Serial.println(xPortGetCoreID());
 
   delay(3000);
+  
+  //MPU and Octosonar
 
   Wire.begin();
   Wire.beginTransmission(MPU_addr);
@@ -234,7 +237,7 @@ void Task1setup( void * pvParameters ){    //Task1 Core 0
   Wire.write(0);     // set to zero (wakes up the MPU-6050)
   Wire.endTransmission(true);
 
-  myOcto.begin(ACTIVE_SONARS);   // initialize bus, pins etc
+  myOcto.begin(ACTIVE_SONARS);   // initialize OctoSonar
 
   pinMode(ErrorLedPin, OUTPUT);
 
