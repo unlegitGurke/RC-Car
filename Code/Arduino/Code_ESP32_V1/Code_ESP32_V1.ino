@@ -26,7 +26,7 @@
 
   const int PWMChannel[4] = {0, 2, 4, 6};   //Which PWM Channel of Microncontroller will be used
 
-  const int Resolution[4] = {10, 10, 10, 10};   //ADC Resolution
+  const int Resolution[4] = {ADCRes, ADCRes, ADCRes, ADCRes};   //ADC Resolution
 
   const int Frequency[4] = {25000, 25000, 25000, 25000};    //PWM Frequency of the Fans
 
@@ -183,8 +183,6 @@
   int IndicatorOnTime = 250;
   int IndicatorOffTime = 500; //Time between eacht indicator animation
 
-  //Delay Variables
-
   int StartupAnimTime = 25; //Time between each LED activatiung at startup
   int StartupFadeTime = 1000; //Time for Fade at the end of startup
   
@@ -301,7 +299,7 @@ void ReadTemp() {
     
     for(int i = 0;i <= NrOfSensors - 1;i++){    //Read Temps from all sensors and prints them
       SaveTemp(SensorPins[i], i);
-      //Serial.print("Temp");
+      //Serial.print("Temp");                   //DEBUG Only
       //Serial.print(i + 1);
       //Serial.print(": ");
       //Serial.print(temp[i][TempUnit]);
@@ -383,10 +381,10 @@ void ReadIMU() {
     GyY=Wire.read()<<8|Wire.read();  // 0x45 (GYRO_YOUT_H) & 0x46 (GYRO_YOUT_L)
     GyZ=Wire.read()<<8|Wire.read();  // 0x47 (GYRO_ZOUT_H) & 0x48 (GYRO_ZOUT_L)
     
-    //Serial.print("AcX = "); Serial.print(AcX);
+    //Serial.print("AcX = "); Serial.print(AcX);                  //DEBUG Only
     //Serial.print(" | AcY = "); Serial.print(AcY);
     //Serial.print(" | AcZ = "); Serial.print(AcZ);
-    //Serial.print(" | Tmp = "); Serial.print(Tmp/340.00+36.53);  //equation for temperature in degrees C from datasheet
+    //Serial.print(" | Tmp = "); Serial.print(Tmp/340.00+36.53);  
     //Serial.print(" | GyX = "); Serial.print(GyX);
     //Serial.print(" | GyY = "); Serial.print(GyY);
     //Serial.print(" | GyZ = "); Serial.println(GyZ);
@@ -419,7 +417,7 @@ void VoltageSensor() {
       Voltage[i] = value * (LogicLevel/pow(2, ADCRes)) * ((R1[i] + R2[i])/R2[i]);    //Calculates the voltages from the sensorpins values
     }
     
-  /*for(int i = 0;i < NOSVoltage;i++) {   //Prints all Voltages to Serial monitor
+  /*for(int i = 0;i < NOSVoltage;i++) {   //Prints all Voltages to Serial monitor DEBUG Only
       Serial.print(Voltage[0]);
       Serial.print(" ");
     }
@@ -429,7 +427,7 @@ void VoltageSensor() {
 void ConvertVarToString() {   //Converts Data from Variables to a String to be sent
 
     //int NOSVoltage = 5;     //DEBUG ONLY
-    //float Voltage[5] = {12.1, 56.4, 89.2, 23.5, 74.2};    //DEBUG ONBLY
+    //float Voltage[5] = {12.1, 56.4, 89.2, 23.5, 74.2};    //DEBUG ONLY
   
   char BufferSonar[128];
   char BufferIMU[64];
@@ -456,11 +454,11 @@ void ConvertVarToString() {   //Converts Data from Variables to a String to be s
   sprintf(BufferIMU, "%i,%i,%i,%s,%i,%i,%i,", AcX, AcY, AcZ, StringIMUTemp, GyX, GyY, GyZ);
   sprintf(BufferVoltage, "%s,%s,%s,%s,%s,", StringVoltage[0], StringVoltage[1], StringVoltage[2], StringVoltage[3], StringVoltage[4]);
   sprintf(BufferTemp, "%s,%s,%s,%s,%s,%s,%huq", StringTemp[0], StringTemp[1], StringTemp[2], StringTemp[3], StringTemp[4], StringTemp[5], IsError);
-  //sprintf(tempBufferOut, "%s%s%s%s", BufferSonar, BufferIMU, BufferVoltage, BufferTemp); //Combine all substrings into one
-  strcat(tempBufferOut, BufferSonar);
-  strcat(tempBufferOut, BufferIMU);
-  strcat(tempBufferOut, BufferVoltage);
-  strcat(tempBufferOut, BufferTemp);
+  sprintf(tempBufferOut, "%s%s%s%s", BufferSonar, BufferIMU, BufferVoltage, BufferTemp); //Combine all substrings into one
+  //strcat(tempBufferOut, BufferSonar);
+  //strcat(tempBufferOut, BufferIMU);
+  //strcat(tempBufferOut, BufferVoltage);
+  //strcat(tempBufferOut, BufferTemp);
 
   Serial.println(tempBufferOut);
 
@@ -552,14 +550,14 @@ void Task2setup( void * pvParameters ){    //Task2 Core 1
   FastLED.addLeds<WS2812B, LED_PIN_BACK, GRB>(ledsback, NUM_LEDS_BACK);  //Initlialize Back LEDStrip
   FastLED.addLeds<WS2812B, LED_PIN_FRONT, GRB>(ledsfront, NUM_LEDS_FRONT);  //Initialize Front LEDStrip  
     
-  pinMode(LED_PIN_BACK, OUTPUT);              //Declare Pins Input/Output
-  pinMode(LED_PIN_FRONT, OUTPUT);
-  pinMode(ButtonPins[0], INPUT);
-  pinMode(ButtonPins[1], INPUT);
-  pinMode(ButtonPins[2], INPUT);
-  pinMode(ButtonPins[3], INPUT);
-  pinMode(ButtonPins[4], INPUT);
-  pinMode(ButtonPins[5], INPUT);  
+  //pinMode(LED_PIN_BACK, OUTPUT);              //Declare Pins Input/Output DEBUG Only
+  //pinMode(LED_PIN_FRONT, OUTPUT);
+  //pinMode(ButtonPins[0], INPUT);
+  //pinMode(ButtonPins[1], INPUT);
+  //pinMode(ButtonPins[2], INPUT);
+  //pinMode(ButtonPins[3], INPUT);
+  //pinMode(ButtonPins[4], INPUT);
+  //pinMode(ButtonPins[5], INPUT);  
 
   fill_solid(ledsback, NUM_LEDS_BACK, CRGB::Black);    //Turn off all LEDs at startup
   fill_solid(ledsfront, NUM_LEDS_FRONT, CRGB::Black);
@@ -588,7 +586,7 @@ void startup() {
   for(int i = NUM_LEDS_BACK / 2;i <= NUM_LEDS_BACK;i++) {
     ledsback[i] = idlecolback;
     ledsback[y] = idlecolback;
-    SwitchFrontLedColor(z,frontcoldim,2);
+    SwitchFrontLedColor(z,frontcoldim,2);   
 
     if(i - (NUM_LEDS_BACK / 2) >= 4) {
       ledsback[i -4] = blackcol;
@@ -1373,7 +1371,7 @@ void SwitchFrontLedColor(int nrofled, long color, int dir) {        //dir = 1 fo
     //ledsfront[ledsfl3[constrain(nrofled,0,fl3length - 1)]] = color;
   }
   
-  if(dir == 3) {  //Both sides will be effected expect the bottom row of leds
+  if(dir == 3) {  //Both sides will be affected except the bottom row of leds
     
     ledsfront[ledsfr1[constrain(nrofled,0,fr1length - 1)]] = color;
     ledsfront[ledsfr2[constrain(nrofled,0,fr2length - 1)]] = color;
