@@ -157,7 +157,7 @@
   bool HazardState = 0;
 
   //Define indicator
-  float IndicatorSize = 0.20;   //Size of each LED-Strip Segment
+  float IndicatorSize = 0.20;   //Size of each LED-Strip Segment which has an Indicator
 
   //Define Reverse Light
   int endspace = 0;   //Distance from reverslights to end of strip
@@ -1061,9 +1061,7 @@ void idle() {
    
 }
 
-void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for both
-
-  
+void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for both 
 
   if(dir == 1) {    //Left Indicator
   
@@ -1168,9 +1166,6 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right, dir = 2 for 
 
 void BrakeLight() {
 
-
-  //getSerialData(0);
-  //ConvertStringtoVar();  
   UpdateButtonState();
 
   ReverseLight();
