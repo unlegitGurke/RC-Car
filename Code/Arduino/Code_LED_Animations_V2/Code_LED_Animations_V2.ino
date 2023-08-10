@@ -1,4 +1,4 @@
-   //Create TaskHandles
+  //Create TaskHandles
 
   TaskHandle_t Task1;
   TaskHandle_t Task2;
@@ -43,7 +43,7 @@
 
   bool IndicatorRightState = 0;   //Variables for button presses
   bool IndicatorLeftState = 0;
-  bool BrakeLightState = 1;
+  bool BrakeLightState = 0;
   bool ReverseLightState = 0;
   bool HazardState = 0;
 
@@ -58,6 +58,7 @@
   int FadeToColorsteps = 0;
   int r1, r2, b1, b2, g1, g2;
   unsigned int d1, d2, d3;
+  
 
   //Define Colors
   const unsigned long idlecolback = 0x400000;    //Hex Codes of each color
@@ -72,13 +73,17 @@
   unsigned long EffektColor2;
 
   //Non-Blocking Delay Variables
-  int currentMillisLED = 0;
-  int previousMillisLED = 0;
+  unsigned long currentMillisLED = 0;
+  unsigned long previousMillisLED = 0;
   
-  int previousMillisFadeToColor = 0;
+  unsigned long previousMillisFadeToColor = 0;
+  
+  unsigned long previousMillisStartup[3] = {0, 0, 0};
+  
+  unsigned long previousMillisIndicator[6] = {0, 0, 0, 0, 0, 0,};
 
   int IndicatorAnimTime = 10; //Time between each Indicator LED turning on
-  int IndicatorOnTime = 250;
+  int IndicatorOnTime = 350;  //Time the whole indicator stays on
   int IndicatorOffTime = 500; //Time between eacht indicator animation
 
   int StartupAnimTime = 25; //Time between each LED activatiung at startup
@@ -86,8 +91,10 @@
   
   //State Checks
   bool IsStartup = 0;
-  int StartupState = 10;
+  int StartupState[6] = {10, 0, 0, 0, 0, 0};
   int FadeToColorState = 0;
+  int IndicatorState[6] = {10, 0, 0, 10, 0, 0};
+  bool IndicatorInProgress[2] = {0, 0};
 
 
 void setup() {
@@ -168,124 +175,199 @@ void Task2loop() {
     startup();
   }
 
+  else {
+    
+    ReadButtons();
+    idle();
+    
+    if(IndicatorRightState == true) {
+      Indicator(0);
+      IndicatorInProgress[0] = 1;
+    }
+    
+    if(IndicatorInProgress[0] == true && IndicatorInProgress[1] == false) {
+      Indicator(0);
+    }
+    
+    if(IndicatorLeftState == true) {
+      Indicator(1);
+      IndicatorInProgress[1] = 1;
+    }
+    
+    if(IndicatorInProgress[0] == false && IndicatorInProgress[1] == true) {
+      Indicator(1);
+    }
+    
+    if(HazardState == true) {
+      Indicator(2);
+      IndicatorInProgress[0] = 1;
+      IndicatorInProgress[1] = 1;
+    }
+    
+    if(IndicatorInProgress[0] == true && IndicatorInProgress[1] == true) {
+      Indicator(2);
+    }
+    
+    if(BrakeLightState == true) {
+      BrakeLight();
+    }
+    
+    if(ReverseLightState == true) {
+      ReverseLight();
+    }
+    
+  }
+
   delay(1);
 
 }
 
+void ReadButtons() { //Buttons for testing only
+  
+  IndicatorRightState = digitalRead(ButtonPins[0]);
+  IndicatorLeftState = digitalRead(ButtonPins[1]);
+  BrakeLightState = digitalRead(ButtonPins[2]);
+  ReverseLightState = digitalRead(ButtonPins[3]);
+  HazardState = digitalRead(ButtonPins[4]);
+  
+  //Serial.print(IndicatorRightState);
+  //Serial.print(IndicatorLeftState);
+  //Serial.print(BrakeLightState);
+  //Serial.print(ReverseLightState);
+  //Serial.println(HazardState);
+  
+}
+
 void startup() {
 
-  Serial.println("Test");
-
-  int y;
-  int z;
-
-  switch(StartupState) { //Controls State of Animation sequnce
-    
+  switch(StartupState[0]) { //Controls State of Animation sequnce
+   
     case 10:
     
-      y = NUM_LEDS_BACK / 2;
-      z = 0;
+      StartupState[1] = NUM_LEDS_BACK / 2;
+      StartupState[2] = NUM_LEDS_BACK / 2;
+      StartupState[3] = 0;
+      StartupState[4] = 0;
+      StartupState[5] = NUM_LEDS_BACK / 2;
+          
+      StartupState[0]++;
       
-      for(int i = NUM_LEDS_BACK / 2;i <= NUM_LEDS_BACK;i++) {
-        ledsback[i] = idlecolback;
-        ledsback[y] = idlecolback;
-        SwitchFrontLedColor(z,frontcoldim,2);   
+    break;
+    
+    case 11:
+      
+      if(StartupState[1] <= NUM_LEDS_BACK && currentMillisLED - previousMillisStartup[0] >= StartupAnimTime) {
+         
+        ledsback[StartupState[1]] = idlecolback;
+        ledsback[StartupState[2]] = idlecolback;
+        SwitchFrontLedColor(StartupState[3],frontcoldim,2);   
 
-        if(i - (NUM_LEDS_BACK / 2) >= 4) {
-          ledsback[i -4] = blackcol;
-          ledsback[y + 4] = blackcol;
+        if(StartupState[1] - (NUM_LEDS_BACK / 2) >= 4) {
+          
+          ledsback[StartupState[1] - 4] = blackcol;
+          ledsback[StartupState[2] + 4] = blackcol;
+          
         } 
         
-        if(z >= 1) {
+        if(StartupState[3] >= 1) {
           
-          ledsfront[ledsfr1[constrain(z,0,fr1length - 1) - 1]] = blackcol;
-          ledsfront[ledsfr2[constrain(z,0,fr2length - 1) - 1]] = blackcol;
-          ledsfront[ledsfr3[constrain(z,0,fr3length - 1) - 1]] = blackcol;
-          ledsfront[ledsfl1[constrain(z,0,fl1length - 1) - 1]] = blackcol;
-          ledsfront[ledsfl2[constrain(z,0,fl2length - 1) - 1]] = blackcol;
-          ledsfront[ledsfl3[constrain(z,0,fl3length - 1) - 1]] = blackcol;
+          ledsfront[ledsfr1[constrain(StartupState[3],0,fr1length - 1) - 1]] = blackcol;
+          ledsfront[ledsfr2[constrain(StartupState[3],0,fr2length - 1) - 1]] = blackcol;
+          ledsfront[ledsfr3[constrain(StartupState[3],0,fr3length - 1) - 1]] = blackcol;
+          ledsfront[ledsfl1[constrain(StartupState[3],0,fl1length - 1) - 1]] = blackcol;
+          ledsfront[ledsfl2[constrain(StartupState[3],0,fl2length - 1) - 1]] = blackcol;
+          ledsfront[ledsfl3[constrain(StartupState[3],0,fl3length - 1) - 1]] = blackcol;
           
         } 
           
         FastLED.show();
 
-        y--;
-        z++;    
-        delay(StartupAnimTime);
+        StartupState[2]--;
+        StartupState[3]++;    
+        StartupState[1]++;
+        previousMillisStartup[0] = currentMillisLED;
+        
       }
       
-      StartupState++;  
-
-    break;
-    
-    case 11:
-    
-      StartupState++;
-      delay(1);
+      if(StartupState[1] >= NUM_LEDS_BACK) {
+        
+        StartupState[0]++; 
+        
+      }
+       
 
     break;
     
     case 12:
     
-       y = NUM_LEDS_BACK;
-       z = fr1length;
-
-      for(int i = 0; i <= NUM_LEDS_BACK / 2;i++) {
-        ledsback[i] = idlecolback;
-        ledsback[y] = idlecolback;
-        SwitchFrontLedColor(z,frontcoldim,2);
-
-        FastLED.show();
-        
-        y--;
-        z--;
-        delay(StartupAnimTime);    
-      } 
+      StartupState[2] = NUM_LEDS_BACK;
+      StartupState[3] = fr1length; 
+      StartupState[0]++;
     
-      StartupState++;
-
     break;
     
     case 13:
+
+      if(StartupState[4] <= NUM_LEDS_BACK / 2 && currentMillisLED - previousMillisStartup[1] >= StartupAnimTime) {
+        ledsback[StartupState[4]] = idlecolback;
+        ledsback[StartupState[2]] = idlecolback;
+        SwitchFrontLedColor(StartupState[3],frontcoldim,2);
+
+        FastLED.show();
+        
+        StartupState[2]--;
+        StartupState[3]--;
+        StartupState[4]++;
+        previousMillisStartup[1] = currentMillisLED;   
+      } 
     
-      StartupState++;
-      delay(1);
+      if(StartupState[4] >= NUM_LEDS_BACK / 2) {
+        
+         StartupState[0]++;
+        
+      }    
+     
 
     break;
     
     case 14:
     
-       y = NUM_LEDS_BACK / 2;
-       z = 0;
-
-      for(int i = NUM_LEDS_BACK / 2;i <= NUM_LEDS_BACK;i++) {
-        ledsback[i] = brakecol; 
-        ledsback[y] = brakecol;
-        SwitchFrontLedColor(z,frontcol,2);
-
-        FastLED.show();
-        
-        y--;
-        z++;
-        delay(StartupAnimTime);       
-      }
+      StartupState[2] = NUM_LEDS_BACK / 2;
+      StartupState[3] = 0;
+    
+      StartupState[0]++;
       
-      StartupState++;
-
     break;
     
     case 15:
-    
-      StartupState++;
-      delay(1);
-    
+      
+      if(StartupState[5] <= NUM_LEDS_BACK && currentMillisLED - previousMillisStartup[2] >= StartupAnimTime) {
+        ledsback[StartupState[5]] = brakecol; 
+        ledsback[StartupState[2]] = brakecol;
+        SwitchFrontLedColor(StartupState[3],frontcol,2);
+
+        FastLED.show();
+        
+        StartupState[2]--;
+        StartupState[3]++;
+        StartupState[5]++;
+        previousMillisStartup[2] = currentMillisLED;
+      
+      }
+      
+      if(StartupState[5] >= NUM_LEDS_BACK) {
+        
+        StartupState[0]++;
+        
+      }     
+
     break;
     
     case 16:
       
       if(FadeToColor(brakecol, idlecolback, StartupFadeTime, 0, NUM_LEDS_BACK) == true) {
         
-        StartupState++;
+        StartupState[0]++;
         
       }
     
@@ -295,12 +377,258 @@ void startup() {
     
       IsStartup = 0;
       
-      StartupState = 10;
+      StartupState[0] = 10;
     
     break;
     
   }
  
+}
+
+void idle() {
+  
+   //If BrakeLight isnt supposed to be turned on, turn it off
+   if(BrakeLightState == false) {
+    for(int i = NUM_LEDS_BACK * IndicatorSize;i <= NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i++) {
+      ledsback[i] = idlecolback;              
+    }      
+   }
+    
+    //Checks if Left Indicator is running, if not lights up left side of Strip
+    if(IndicatorLeftState == false && ReverseLightState == false && HazardState == false) {
+      for(int i = 0; i <= NUM_LEDS_BACK * IndicatorSize;i++) {
+        ledsback[i] = idlecolback;
+      }   
+    }
+    
+    //Checks if Right Indicator is running, if not lights up right side of the Strip
+    if(IndicatorRightState == false && ReverseLightState == false && HazardState == false) {
+      for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize; i <= NUM_LEDS_BACK;i++) {
+        ledsback[i] = idlecolback;
+      }
+    }
+    
+    //If indicators arent turned on front lights idle
+    if(IndicatorRightState == false && IndicatorLeftState == false && HazardState == false) {
+      for(int i = 0;i <= NUM_LEDS_FRONT;i++) {    
+        SwitchFrontLedColor(i,frontcoldim,2);
+      }
+    }
+    
+    FastLED.show();
+  
+}
+
+void BrakeLight() {
+  
+  if(BrakeLightState == true) {
+    
+    //Lights up Center of Strip
+    for(int i = NUM_LEDS_BACK * IndicatorSize;i <= NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i++) {
+      ledsback[i] = brakecol;
+    }
+    
+    //Checks if Left Indicator is running, if not lights up left side of Strip
+    if(IndicatorLeftState == false && ReverseLightState == false && HazardState == false && BrakeLightState == true) {
+      for(int i = 0; i <= NUM_LEDS_BACK * IndicatorSize;i++) {
+        ledsback[i] = brakecol;
+      }
+      
+    }
+    
+    //Checks if Right Indicator is running, if not lights up right side of the Strip
+    if(IndicatorRightState == false && ReverseLightState == false && HazardState == false && BrakeLightState == true) {
+      for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize; i <= NUM_LEDS_BACK;i++) {
+        ledsback[i] = brakecol;
+      }
+    
+    }
+    
+    FastLED.show();
+    
+  }
+  
+}
+
+void ReverseLight() {  
+
+  if(IndicatorRightState == false && HazardState == false && ReverseLightState == true) {  
+    for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i <=NUM_LEDS_BACK;i++) {
+      ledsback[i] = reversecol;
+    }
+  }
+
+  if(IndicatorLeftState == false && HazardState == false && ReverseLightState == true) {
+    for(int i = NUM_LEDS_BACK * IndicatorSize;i >= 0 ;i--) {
+      ledsback[i] = reversecol;
+    }
+  }
+
+  FastLED.show();
+
+}
+
+void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right
+
+  if(dir == 1 || dir == 2) {    //Left Indicator
+    
+    switch(IndicatorState[0]) {
+      
+      case 10:
+        
+        IndicatorState[1] = 0;
+        IndicatorState[2] = NUM_LEDS_BACK * IndicatorSize;
+        
+        IndicatorState[0]++;
+        
+      break;
+      
+      case 11:
+      
+        if(IndicatorState[2] >= 0 && currentMillisLED - previousMillisIndicator[0] >= IndicatorAnimTime) {   //Animation 
+        
+          ledsback[IndicatorState[2]] = indicatorcol; 
+          SwitchFrontLedColor(IndicatorState[1],indicatorcol,1);
+          FastLED.show();   
+          
+          IndicatorState[2]--;
+          IndicatorState[1]++;
+          previousMillisIndicator[0] = currentMillisLED; 
+          
+        }
+        
+        if(IndicatorState[2] < 0) {
+          
+          IndicatorState[0]++;
+          previousMillisIndicator[1] = currentMillisLED;
+          
+        }
+      
+      break;
+      
+      case 12:
+
+        if(currentMillisLED - previousMillisIndicator[1] >= IndicatorOnTime) {
+          
+          IndicatorState[0]++;
+          IndicatorState[1] = 0;
+          
+        }
+      
+      break;
+      
+      case 13:
+      
+        for(int i = NUM_LEDS_BACK * IndicatorSize;i >= 0;i--) {
+          
+          ledsback[i] = idlecolback;
+          SwitchFrontLedColor(IndicatorState[1],idlecolfront,1);
+          
+          IndicatorState[1]++; 
+                        
+        }
+        
+        FastLED.show();
+        
+        IndicatorState[0]++;
+        previousMillisIndicator[2] = currentMillisLED;
+      
+      break;
+      
+      case 14:
+      
+        if(currentMillisLED - previousMillisIndicator[2] >= IndicatorOffTime) {
+          
+          IndicatorState[0] = 10;
+          
+          IndicatorInProgress[1] = 0;
+          
+        }
+      
+      break;
+      
+    }
+    
+  }
+
+  if(dir == 0 || dir == 2) {    //Right Indicator 
+  
+    switch(IndicatorState[3]) {
+      
+      case 10:
+      
+        IndicatorState[3]++;
+        IndicatorState[4] = 0;
+        IndicatorState[5] = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;
+      
+      break;
+      
+      case 11:
+      
+        if(IndicatorState[5] <= NUM_LEDS_BACK && currentMillisLED - previousMillisIndicator[3] >= IndicatorAnimTime) {    //Animation
+        
+          ledsback[IndicatorState[5]] = indicatorcol;
+          SwitchFrontLedColor(IndicatorState[4],indicatorcol,0);
+          
+          FastLED.show();
+          
+          IndicatorState[4]++;
+          IndicatorState[5]++;
+
+          previousMillisIndicator[3] = currentMillisLED;       
+          
+        } 
+        
+        if(IndicatorState[5] > NUM_LEDS_BACK) {
+          
+          IndicatorState[3]++;
+          previousMillisIndicator[4] = currentMillisLED;
+          
+        }
+      
+      break;
+      
+      case 12:
+      
+        if(currentMillisLED - previousMillisIndicator[4] >= IndicatorOnTime) {
+          
+          IndicatorState[3]++;
+          IndicatorState[4] = 0;
+          
+        }
+      
+      break;
+      
+      case 13:
+      
+        for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i <= NUM_LEDS_BACK;i++) {
+          ledsback[i] = idlecolback;
+          SwitchFrontLedColor(IndicatorState[4],idlecolfront,0);
+          IndicatorState[4]++;
+        }
+        
+        FastLED.show();
+        
+        IndicatorState[3]++;
+        previousMillisIndicator[5] = currentMillisLED;
+      
+      break;
+      
+      case 14:
+        
+        if(currentMillisLED - previousMillisIndicator[5] >= IndicatorOffTime) {
+          
+          IndicatorState[3] = 10;
+          
+          IndicatorInProgress[0] = 0;
+          
+        }
+      
+      break;
+    }
+    
+  }
+  
 }
 
 bool FadeToColor(unsigned long Color1, unsigned long Color2, unsigned int timeinms, int ledbegin, int ledend) {     //This function fades all the LEDs from Color1 to Color 2 in given time "timeinms" Color1 and Color2 should be HEX Values format: "0x000000"
