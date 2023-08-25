@@ -48,7 +48,7 @@
   bool HazardState = 0;
 
   //Define indicator
-  float IndicatorSize = 0.20;   //Size of each LED-Strip Segment which has an Indicator
+  float IndicatorSize = 0.25;   //Size of each LED-Strip Segment which has an Indicator
 
   //Define Reverse Light
   int endspace = 0;   //Distance from reverslights to end of strip
