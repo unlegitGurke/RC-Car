@@ -1,0 +1,37 @@
+Solid Edge Translation To 3MF
+Date: Dienstag,September 26,2023 10:19
+Output File: C:\Users\phili\OneDrive\Dokumente\GitHub\RC-Car\Exportierte Dateien\Body\Body 3d print\Druck fertig\getrennt\Body_grill_complete_links1.3mf
+Author: Unknown
+Organization: Unknown
+Source System: SOLID EDGE
+
+Hardware:
+Processor: Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz
+Operating System: Windows 10
+Installed Memory: 7.87 GB
+
+Software Information:
+Parasolid Version: 35.0.149
+PSBodyshop Version: 35.0.82
+3MF Adapter Version:11.0.82
+Solid Edge Version: 223.00.00.101 x64
+
+3MF Export Options
+Export Construction Solids:Off
+Export Displayed Parts:Off
+Enable Logging:On
+AllowInvalid3mfObjects:Off
+Export Flatten Assembly:On
+Export Units:Millimeters
+Export Tolerance Value:0.001000
+Export Tolerance Type:Custom
+Export Surface Plane Angle Value:0.017453
+Export Author:Unknown
+Export Description:Unknown
+Export Organization:Unknown
+Export Program Name:Unknown
+
+Translation progress:
+Phase 1 of 1 Translating Parasolid to foreign data types...
+Translation process completed
+Time required to translate:00 : 00 : 10
