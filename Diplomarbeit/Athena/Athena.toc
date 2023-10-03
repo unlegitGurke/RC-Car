@@ -1,0 +1,8 @@
+\babel@toc {ngerman}{}\relax 
+\contentsline {chapter}{\numberline {1}Einige kleine Anmerkungen}{III}{}%
+\contentsline {section}{\numberline {1.1}Deutsche Umlaute}{III}{}%
+\contentsline {section}{\numberline {1.2}Referenzen}{III}{}%
+\contentsline {section}{\numberline {1.3}Aufteilung gro\IeC {\ss }er Dokumente}{III}{}%
+\vspace *{\baselineskip }
+\contentsline {chapter}{Abbildungsverzeichnis}{IV}{}%
+\contentsline {chapter}{Tabellenverzeichnis}{V}{}%

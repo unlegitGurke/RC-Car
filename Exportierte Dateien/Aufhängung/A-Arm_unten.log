@@ -1,20 +1,20 @@
 Solid Edge in 3MF konvertieren
-Datum: Montag,Juli 18,2022 10:39nachm.
-Ausgabedatei: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Exportierte Dateien\Aufhängung\A-Arm_unten.3mf
+Datum: Montag,Oktober 02,2023 01:59PM
+Ausgabedatei: C:\Users\Felix\Documents\GitHub\RC-Car\Exportierte Dateien\Aufhängung\A-Arm_unten.3mf
 Autor: Unknown
 Organisation: Unknown
 Ausgangssystem: SOLID EDGE
 
 Hardware:
-Prozessor: AMD Ryzen 7 3700X 8-Core Processor             
+Prozessor: AMD Ryzen 7 5800H with Radeon Graphics         
 Betriebssystem: Windows 10 Professional
-Installierter Speicher: 31.91 GB
+Installierter Speicher: 15.85 GB
 
 Software-Informationen:
-Parasolid-Version: 32.1.222
-PSBodyshop-Version: 32.1.94
-3MF-Adapterversion:5.0.48
-Solid Edge-Version: 221.00.03.003 x64
+Parasolid-Version: 35.0.224
+PSBodyshop-Version: 35.0.82
+3MF-Adapterversion:11.0.82
+Solid Edge-Version: 223.00.02.004 x64
 
 3MF-Exportoptionen
 Konstruktionsvolumen exportieren: Aus
