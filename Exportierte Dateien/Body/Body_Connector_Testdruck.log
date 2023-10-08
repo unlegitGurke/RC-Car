@@ -1,5 +1,5 @@
 Solid Edge in 3MF konvertieren
-Datum: Montag,Dezember 26,2022 02:48vorm.
+Datum: Sonntag,Oktober 08,2023 03:22nachm.
 Ausgabedatei: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Exportierte Dateien\Body\Body_Connector_Testdruck.3mf
 Autor: Unknown
 Organisation: Unknown
@@ -11,10 +11,10 @@ Betriebssystem: Windows 10 Professional
 Installierter Speicher: 31.91 GB
 
 Software-Informationen:
-Parasolid-Version: 32.1.222
-PSBodyshop-Version: 32.1.94
-3MF-Adapterversion:5.0.48
-Solid Edge-Version: 221.00.03.003 x64
+Parasolid-Version: 35.0.239
+PSBodyshop-Version: 35.0.102
+3MF-Adapterversion:11.0.82
+Solid Edge-Version: 223.00.03.004 x64
 
 3MF-Exportoptionen
 Konstruktionsvolumen exportieren: Aus
@@ -34,4 +34,4 @@ Programmname exportieren:Unknown
 Konvertierungsfortschritt:
 Phase 1 von 1 - Parasolid in Fremddatentypen konvertieren...
 Konvertierungsvorgang ist abgeschlossen
-Zum Konvertieren benötigte Zeit:00 : 00 : 06
+Zum Konvertieren benötigte Zeit:00 : 00 : 07
