@@ -6,210 +6,323 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1384</width>
-    <height>1143</height>
+    <width>1350</width>
+    <height>490</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonIconOnly</enum>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Triangular</enum>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="l_binker">
+   <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>710</y>
-      <width>121</width>
-      <height>231</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Blinker links</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ruckwarts">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>970</y>
-      <width>201</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Rückwährts fahren</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="bremsen">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>970</y>
-      <width>201</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Bremsen</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="warnblink">
-    <property name="geometry">
-     <rect>
-      <x>410</x>
-      <y>710</y>
-      <width>121</width>
-      <height>231</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Warnlichter</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="r_blinker">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>710</y>
-      <width>121</width>
-      <height>231</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Blinker rechts</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="fernlicht">
-    <property name="geometry">
-     <rect>
-      <x>710</x>
-      <y>710</y>
-      <width>75</width>
-      <height>161</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Fernlicht</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="AIMode">
-    <property name="geometry">
-     <rect>
-      <x>710</x>
-      <y>900</y>
-      <width>75</width>
-      <height>161</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>AI Mode</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="l_v">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>710</y>
-      <width>171</width>
-      <height>161</height>
+      <x>10</x>
+      <y>10</y>
+      <width>1331</width>
+      <height>421</height>
      </rect>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
     </property>
-    <property name="lineWidth">
-     <number>1</number>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="l_h">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>900</y>
-      <width>171</width>
-      <height>161</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
     </property>
     <property name="lineWidth">
-     <number>1</number>
+     <number>2</number>
     </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="r_v">
-    <property name="geometry">
-     <rect>
-      <x>1160</x>
-      <y>710</y>
-      <width>171</width>
-      <height>161</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="lineWidth">
-     <number>1</number>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="r_h">
-    <property name="geometry">
-     <rect>
-      <x>1160</x>
-      <y>900</y>
-      <width>171</width>
-      <height>161</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="lineWidth">
-     <number>1</number>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QWidget" name="Lidar" native="true">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>140</y>
-      <width>601</width>
-      <height>531</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QWidget" name="ultraschall" native="true">
-    <property name="geometry">
-     <rect>
-      <x>730</x>
-      <y>140</y>
-      <width>601</width>
-      <height>531</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QWidget" name="colorwheel" native="true">
-    <property name="geometry">
-     <rect>
-      <x>820</x>
-      <y>710</y>
-      <width>311</width>
-      <height>351</height>
-     </rect>
-    </property>
+    <widget class="QFrame" name="bottom_IO">
+     <property name="geometry">
+      <rect>
+       <x>1</x>
+       <y>1</y>
+       <width>1331</width>
+       <height>421</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Sunken</enum>
+     </property>
+     <widget class="QFrame" name="l_lichter">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>181</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>180</width>
+        <height>360</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="sizeConstraint">
+        <enum>QLayout::SetNoConstraint</enum>
+       </property>
+       <property name="bottomMargin">
+        <number>9</number>
+       </property>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <property name="spacing">
+          <number>9</number>
+         </property>
+         <property name="sizeConstraint">
+          <enum>QLayout::SetNoConstraint</enum>
+         </property>
+         <item>
+          <widget class="QLabel" name="l_v">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="l_h">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QFrame" name="IO_button">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>20</y>
+        <width>881</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>451</width>
+        <height>380</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>11</x>
+         <y>11</y>
+         <width>861</width>
+         <height>361</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="blinker_heck" stretch="10,4">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetNoConstraint</enum>
+        </property>
+        <item>
+         <layout class="QHBoxLayout" name="blinker">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMinimumSize</enum>
+          </property>
+          <item>
+           <widget class="QPushButton" name="l_binker">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Blinker links</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="warnblink">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Warnlichter</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="r_blinker">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Blinker rechts</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="heck">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetNoConstraint</enum>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="bremsen">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Bremsen</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="ruckwarts">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Rückwährts fahren</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="r_lichter">
+      <property name="geometry">
+       <rect>
+        <x>1120</x>
+        <y>20</y>
+        <width>181</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>180</width>
+        <height>360</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <property name="spacing">
+          <number>9</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="r_v">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="r_h">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -217,7 +330,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1384</width>
+     <width>1350</width>
      <height>21</height>
     </rect>
    </property>
