@@ -1,0 +1,41 @@
+STEP in Solid Edge konvertieren
+Datum: Donnerstag,November 16,2023 11:50vorm.
+Quelldatei: C:\Users\thelp\Desktop\Schule\CPE Projekt\RC-Car\Electronics\LiDAR\YDLidar G2.step
+Autor: Unknown
+Organisation: Unknown
+Ausgangssystem: Autodesk Translation Framework v9.3.0.1241
+
+Hardware:
+Prozessor: Intel(R) Core(TM) i7-10875H CPU @ 2.30GHz
+Betriebssystem: Windows 11 Professional Version:23H2 Build:25987 System Type:64-bit
+Installierter Speicher: 31.90 GB
+
+Software-Informationen
+Parasolid-Version: 35.0.149
+PSBodyShop-Version: 35.0.82
+Step-Adapterversion: 11.0.82
+Solid Edge-Version: 223.00.00.101 x64
+
+Step-Importoptionen
+Facettierte Körper importieren: Ein
+Prüfkörper importieren: Aus
+Kurven importieren: Ein
+DoNotSave importieren: Ein
+Mehrere Körper als Einzelteildatei importieren: Ein
+Flächenvernähung importieren: Ein
+Boolesche Körper importieren: Ein
+Basisformelement erstellen: Ein
+Geometrie vereinfachen: Ein
+Druckkurven importieren: Ein
+Führung importieren: C:
+Flächenvernähung importieren: Ein
+Flächen importieren: Ein
+Ausgabepfad importieren: C:\Users\thelp\Desktop\Schule\CPE Projekt\RC-Car\Electronics\LiDAR
+Aktivieren des standardmäßigen Ausgabepfads importieren: Ein
+PMI importieren: Aus
+Als interne Komponenten importieren: Aus
+Pfad importieren: 
+
+Übersetzen in Parasolid-Datentypen...
+Konvertierungsvorgang ist abgeschlossen
+Zur Übersetzung und Nachbearbeitung erforderte Gesamtzeit:00 : 00 : 02
