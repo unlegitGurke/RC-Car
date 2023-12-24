@@ -1,6 +1,6 @@
 Solid Edge in 3MF konvertieren
-Datum: Dienstag,Dezember 12,2023 09:13nachm.
-Ausgabedatei: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Exportierte Dateien\Aufhängung\A-Arm_unten.3mf
+Datum: Sonntag,Dezember 24,2023 03:02vorm.
+Ausgabedatei: F:\Schule\CPE\2. Klasse\Projekt\RC-Car\Exportierte Dateien\Aufhängung\A-Arm_oben_vorne.3mf
 Autor: Unknown
 Organisation: Unknown
 Ausgangssystem: SOLID EDGE
@@ -13,8 +13,8 @@ Installierter Speicher: 31.91 GB
 Software-Informationen:
 Parasolid-Version: 35.0.239
 PSBodyshop-Version: 35.0.102
-3MF-Adapterversion:11.0.82
-Solid Edge-Version: 223.00.03.004 x64
+3MF-Adapterversion:11.0.162
+Solid Edge-Version: 223.00.09.004 x64
 
 3MF-Exportoptionen
 Konstruktionsvolumen exportieren: Aus
@@ -34,4 +34,4 @@ Programmname exportieren:Unknown
 Konvertierungsfortschritt:
 Phase 1 von 1 - Parasolid in Fremddatentypen konvertieren...
 Konvertierungsvorgang ist abgeschlossen
-Zum Konvertieren benötigte Zeit:00 : 00 : 02
+Zum Konvertieren benötigte Zeit:00 : 00 : 01
