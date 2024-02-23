@@ -293,15 +293,17 @@ void Task1setup( void * pvParameters ) {
 
 void Task1loop() {
   
-  //CheckError();
-  //ReadTemp();
-  ReadSonar();
-  //ReadIMU();
-  //Fan_Control();
-  //VoltageSensor();
+  CheckError();
+  ReadTemp();
+  //ReadSonar();
+  ReadIMU();
+  Fan_Control();
+  VoltageSensor();
   //ConvertVarToString();
   //getSerialData(1);
   //ConvertStringtoVar();
+
+  Serial.println("Test");
 
   delay(1);
 
