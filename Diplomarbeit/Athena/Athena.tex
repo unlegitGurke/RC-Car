@@ -18,11 +18,22 @@
 \usepackage[ansinew]{inputenc}
 
 \usepackage{lmodern} %Type1-Schriftart für nicht-englische Texte
+\usepackage{color}
+\usepackage{xcolor}
 
 \usepackage{array} %Für die Eidesstattliche Erklärung
+\usepackage{float} %Fliegende Abbildungen / Objekte
+\usepackage[margin=10pt,labelfont=bf,singlelinecheck=false]{caption}
+
+\usepackage{hyperref}	%Querverweise
+\usepackage{inputenc} 
+
+\usepackage{fancyhdr} %Kopf- und Fußzeile
+\usepackage{lastpage} %letzte Seite referenzierbar
+\usepackage{scrlayer}	%Page-Styles
 
 %% Packages für Grafiken & Abbildungen %%%%%%%%%%%%%%%%%%%%%%
-\usepackage{graphicx} %%Zum Laden von Grafiken
+\usepackage{graphicx} %Zum Laden von Grafiken
 
 %% Packages für Formeln %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{amsmath}
@@ -47,19 +58,73 @@
 \pagenumbering{Roman}
 \input{Eidesstattliche}	
 
+%% Vorwort %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\input{./0_Vorwort/Vorwort}
+
+%% Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\input{./0_Abstract/Abstract}
+
 %% Inhaltsverzeichnis %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tableofcontents %Inhaltsverzeichnis
 \cleardoublepage %Das erste Kapitel soll auf einer ungeraden Seite beginnen.
 
 \pagestyle{plain} %%Ab hier die Kopf-/Fusszeilen: headings / fancy / .
+\pagenumbering{arabic}
+
+%% Einführung %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\input{./1_Einfuehrung/Einfuehrung}
+
+%% Einleitung %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\input{./2_Einleitung/Einleitung}
+
+%% Stand der Technik %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\input{./3_Stand_der_Technik/Stand_der_Technik}
+
+%% Mechanik %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\input{./4_Mechanik/Mechanik}
+
+%% Elektronik %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\input{./5_Elektronik/Elektronik}
+
+%% Software %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\input{./6_Software/Software}
+
+%% Künstliche Intelligenz %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\input{./7_KI/KI}
+
+%% Ergebnisse %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\input{./8_Ergebnisse/Ergebnisse}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% LITERATUR UND ANDERE VERZEICHNISSE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\pagenumbering{Roman}
 %% Ein kleiner Abstand zu den Kapiteln im Inhaltsverzeichnis (toc)
 \addtocontents{toc}{\protect\vspace*{\baselineskip}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% LITERATUR UND ANDERE VERZEICHNISSE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Ein kleiner Abstand zu den Kapiteln im Inhaltsverzeichnis (toc)
+\addtocontents{toc}{\protect\vspace*{\baselineskip}}
+
+%% Literaturverzeichnis
+\bibliographystyle{plain}
+\bibliography{literatur}
+
 
 %% Abbildungsverzeichnis
 \clearpage
