@@ -40,6 +40,16 @@
 \usepackage{amsthm}
 \usepackage{amsfonts}
 
+\usepackage{tocloft}	%Package to change TOC Style
+
+\renewcommand{\thechapter}{%	%%Change Chapter Numbering to roman
+    \Roman{chapter}%
+}
+
+\counterwithout{section}{chapter}	%%Dont count chapters in in sections
+
+\setlength{\cftchapnumwidth}{3em}	%%Add Space after Chapter TOC Numbering
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -111,7 +121,6 @@
 %% LITERATUR UND ANDERE VERZEICHNISSE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\pagenumbering{Roman}
 %% Ein kleiner Abstand zu den Kapiteln im Inhaltsverzeichnis (toc)
 \addtocontents{toc}{\protect\vspace*{\baselineskip}}
 
