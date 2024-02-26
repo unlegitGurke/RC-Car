@@ -42,6 +42,8 @@
 
 \usepackage{tocloft}	%Package to change TOC Style
 
+\renewcommand{\footrulewidth}{0.4pt} %%Linie über Kopf / Fußzeile
+
 \renewcommand{\thechapter}{%	%%Change Chapter Numbering to roman
     \Roman{chapter}%
 }
@@ -57,6 +59,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
+\fancyhead[RO,LE]{2023/24}
+\fancyhead[C]{Abteilung für Elektrotechnik} 
+\fancyhead[RE,LO]{\parbox[c]{30mm}{%
+    \includegraphics[width=\linewidth]{./Abbildungen/HTBLuVA_Salzburg_Logo_RGB.jpg}
+}}
+
+\fancyfoot[RO,LE]{\thepage}
+\fancyfoot[C]{Sandri, Kaltenleitner, Gürel, Petrovic}
+\fancyfoot[RE,LO]{5BHET}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% WICHTIG!
+\fancypagestyle{plain}{}    %% Kapitel-Anfangsseiten habe einen Plain-Stil darum wird keine
+														%% Kopf/Fußzeile angezeigt. Dieser Befehl verhindert dies
+%%%%%%%%%%%%%%%%%%%%%%%%% WICHTIG!
+
 \pagestyle{empty} %%Keine Kopf-/Fusszeilen auf den ersten Seiten.
 
 %% Deckblatt %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -64,12 +81,12 @@
 
 %% Eidesstattliche Erklärung %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\pagestyle{plain}
 \pagenumbering{Roman}
 \input{Eidesstattliche}	
 
 %% Vorwort %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
+\pagestyle{fancy}
 \input{./0_Vorwort/Vorwort}
 
 %% Abstract %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
