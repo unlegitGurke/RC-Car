@@ -1,0 +1,31 @@
+Solid Edge Translation to STEP
+Date: Dienstag,März 05,2024 09:21
+Output File: C:\Users\phili\OneDrive\Dokumente\GitHub\RC-Car\Exportierte Dateien\Lenkung\Lenkung_Print_5_05_03_24\Lenkwinkel2.20.2_verbessert.stp
+Author: Unknown
+Organization: Unknown
+Source System: Solid Edge
+
+Hardware:
+Processor: Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz
+Operating System: Windows 11 Version:23H2 Build:22631 System Type:64-bit
+Installed Memory: 7.87 GB
+
+Software Information
+Parasolid Version: 35.0.149
+PSBodyShop Version: 35.0.82
+Step Adapter Version: 11.0.82
+Solid Edge Version: 223.00.00.101 x64
+
+STEP Export Options
+Export Format: AP214
+Export Construction Sheets: Off
+Export Construction Solids: Off
+Export Construction Wires: Off
+Export Displayed Parts Only: Off
+Export Units: Millimeters
+Export Part Component Names As Unicode: Off
+Export PMI: Off
+
+Phase 1 of 1 Translating Parasolid to foreign data types...
+Translation process completed
+Time required to translate:00 : 00 : 04
