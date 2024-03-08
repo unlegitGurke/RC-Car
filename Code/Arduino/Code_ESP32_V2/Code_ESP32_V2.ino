@@ -24,11 +24,11 @@
 
   const int PWMChannel[4] = {0, 2, 4, 6};   //Which PWM Channel of Microncontroller will be used
 
-  const int Resolution[4] = {ADCRes, ADCRes, ADCRes, ADCRes};   //ADC Resolution
+  const int Resolution[4] = {10, 10, 10, 10};   //ADC Resolution
 
   const int Frequency[4] = {25000, 25000, 25000, 25000};    //PWM Frequency of the Fans
 
-  int FanSpeed[4] = {0, 0, 0, 0};   //Speed of the fans at the beginning of the program
+  int FanSpeed[4] = {100, 100, 100, 100};   //Speed of the fans at the beginning of the program
 
   int DutyCycle[4] = {0, 0, 0, 0};    //Fanspeed converted to a value for the ADC
 
@@ -257,15 +257,15 @@ void Task1setup( void * pvParameters ) {
 
   //Fan Control
 
-  ledcAttachPin(Fan_Pin[0], PWMChannel[0]);
-  ledcAttachPin(Fan_Pin[1], PWMChannel[1]);
-  ledcAttachPin(Fan_Pin[2], PWMChannel[2]);
-  ledcAttachPin(Fan_Pin[3], PWMChannel[3]);
-
   ledcSetup(PWMChannel[0], Frequency[0], Resolution[0]);
   ledcSetup(PWMChannel[1], Frequency[1], Resolution[1]);
   ledcSetup(PWMChannel[2], Frequency[2], Resolution[2]);
   ledcSetup(PWMChannel[3], Frequency[3], Resolution[3]);
+
+  ledcAttachPin(Fan_Pin[0], PWMChannel[0]);
+  ledcAttachPin(Fan_Pin[1], PWMChannel[1]);
+  ledcAttachPin(Fan_Pin[2], PWMChannel[2]);
+  ledcAttachPin(Fan_Pin[3], PWMChannel[3]);
 
   //Voltage Sensors
 
@@ -293,17 +293,17 @@ void Task1setup( void * pvParameters ) {
 
 void Task1loop() {
   
-  CheckError();
-  ReadTemp();
+  //CheckError();
+  //ReadTemp();
   //ReadSonar();
-  ReadIMU();
+  //ReadIMU();
   Fan_Control();
-  VoltageSensor();
+  //VoltageSensor();
   //ConvertVarToString();
   //getSerialData(1);
   //ConvertStringtoVar();
 
-  Serial.println("Test");
+  //Serial.println("Test");
 
   delay(1);
 

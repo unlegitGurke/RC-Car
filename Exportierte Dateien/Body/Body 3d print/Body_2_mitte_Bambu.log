@@ -1,0 +1,31 @@
+Solid Edge in STEP konvertieren
+Datum: Montag,März 04,2024 10:46AM
+Ausgabedatei: C:\Users\Felix\Documents\GitHub\RC-Car\Exportierte Dateien\Body\Body 3d print\Body_2_mitte_Bambu.stp
+Autor: Unknown
+Organisation: Unknown
+Ausgangssystem: Solid Edge
+
+Hardware:
+Prozessor: AMD Ryzen 7 5800H with Radeon Graphics         
+Betriebssystem: Windows 11 Professional Version:22H2 Build:25309 System Type:64-bit
+Installierter Speicher: 15.85 GB
+
+Software-Informationen
+Parasolid-Version: 35.0.224
+PSBodyShop-Version: 35.0.82
+Step-Adapterversion: 11.0.157
+Solid Edge-Version: 223.00.02.004 x64
+
+STEP-Exportoptionen
+Exportformat: AP214
+Konstruktionsbleche exportieren: Aus
+Konstruktionsvolumen exportieren: Aus
+Konstruktionsdrähte exportieren: Aus
+Nur angezeigte Teile exportieren: Aus
+Einheiten: Millimeters
+Namen von Teilkomponenten exportieren als Unicode: Aus
+PMI exportieren: Aus
+
+Phase 1 von 1 - Parasolid in Fremddatentypen konvertieren...
+Konvertierungsvorgang ist abgeschlossen
+Zum Übersetzen benötigte Zeit:00 : 00 : 01
