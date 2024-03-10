@@ -35,7 +35,7 @@
   //Declare Accelerometer and Gyroscope
 
   #include<Wire.h>
-  const int MPU_addr=0x68;  // I2C address of the MPU-6050
+  const int MPU_addr = 0x68;  // I2C address of the MPU-6050
   int16_t AcX,AcY,AcZ,Tmp,GyX,GyY,GyZ;
 
   const unsigned int ReadIntervallIMU = 200; //Time between Sensor Readings in milliseconds
@@ -93,6 +93,10 @@
 
 
   //Serial Communication
+  
+  #include "LattePandacomms.h"
+  
+  LattePandacomms LattePanda;
   
   #define startMarker 0x78   //Marks Beggging of Datastream   ASCII for x
   #define endMarker 0x71    //Marks End of Datastream   ASCII for q
@@ -297,10 +301,11 @@ void Task1loop() {
   //ReadTemp();
   //ReadSonar();
   //ReadIMU();
-  Fan_Control();
+  //Fan_Control();
   //VoltageSensor();
   //ConvertVarToString();
-  //getSerialData(1);
+  getSerialData();
+  //Serial.println(LattePanda.BufferIn);
   //ConvertStringtoVar();
 
   //Serial.println("Test");
@@ -446,8 +451,8 @@ void VoltageSensor() {
 
 void ConvertVarToString() {   //Converts Data from Variables to a String to be sent
 
-    //int NOSVoltage = 5;     //DEBUG ONLY
-    //float Voltage[5] = {12.1, 56.4, 89.2, 23.5, 74.2};    //DEBUG ONLY
+  //int NOSVoltage = 5;     //DEBUG ONLY
+  //float Voltage[5] = {12.1, 56.4, 89.2, 23.5, 74.2};    //DEBUG ONLY
   
   char BufferSonar[128];
   char BufferIMU[64];
@@ -520,42 +525,10 @@ void CheckError() {   //Checks if there has been an Error
 
 }
 
-void getSerialData(bool printout) { 	  //If printout = 1 sends back data, 0 doesnt send back data
+void getSerialData() { 	  //If printout = 1 sends back data, 0 doesnt send back data
   
-  while (Serial.available() > 0) {    //Checks for Serial Data
-    
-    byte x = Serial.read();   //Reads Serial Data
-    
-    if (x == startMarker && inProgress == false) {    //IF the first Byte = startMarker, start to recieve Data
-       
-      bytesRecvd = 0; 
-      inProgress = true;
-      
-    }
-    
-    if (inProgress ) {
-       
-      if (bytesRecvd<maxMessage) {
-        
-        tempBufferIn[bytesRecvd++] = x;
-        
-      }
-      
-      if (x == endMarker) { 
-        
-        inProgress = false;
-        allReceived = true;
-        nb = bytesRecvd;
-        
-        if(printout == 1) {
-          //Serial.print(tempBufferOut);    //Send Data Back to LattePanda
-          
-        }
-      }
-      
-    }
-    
-  }
+  LattePanda.refresh(startMarker, endMarker);
+  LattePanda.decode();
   
 }
 
