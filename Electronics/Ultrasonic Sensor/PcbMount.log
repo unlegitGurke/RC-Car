@@ -1,0 +1,31 @@
+Solid Edge in STEP konvertieren
+Datum: Sonntag,März 10,2024 05:27nachm.
+Ausgabedatei: C:\Users\thelp\Desktop\Schule\CPE Projekt\RC-Car\Electronics\Ultrasonic Sensor\PcbMount.stp
+Autor: Unknown
+Organisation: Unknown
+Ausgangssystem: Solid Edge
+
+Hardware:
+Prozessor: Intel(R) Core(TM) i7-10875H CPU @ 2.30GHz
+Betriebssystem: Windows 11 Professional Version:24H2 Build:26063 System Type:64-bit
+Installierter Speicher: 31.90 GB
+
+Software-Informationen
+Parasolid-Version: 35.0.149
+PSBodyShop-Version: 35.0.82
+Step-Adapterversion: 11.0.82
+Solid Edge-Version: 223.00.00.101 x64
+
+STEP-Exportoptionen
+Exportformat: AP214
+Konstruktionsbleche exportieren: Aus
+Konstruktionsvolumen exportieren: Aus
+Konstruktionsdrähte exportieren: Aus
+Nur angezeigte Teile exportieren: Ein
+Einheiten: Millimeters
+Namen von Teilkomponenten exportieren als Unicode: Aus
+PMI exportieren: Aus
+
+Phase 1 von 1 - Parasolid in Fremddatentypen konvertieren...
+Konvertierungsvorgang ist abgeschlossen
+Zum Übersetzen benötigte Zeit:00 : 00 : 01
