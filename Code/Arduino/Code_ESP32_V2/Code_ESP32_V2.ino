@@ -11,7 +11,7 @@
 
   const int ADCRes = 12;  //Resolution of ADC in Bits (Arduino Nano: 10, ESP32: 12)
   const int ErrorCnt = 11;   //Amount of Error Variables 
-  bool Error[ErrorCnt] = {0,0,0,0,0,0,0,0,0,0,0};   //Error Codes are saved in here:  0 - 6 : Temp Sensor Error, 
+  bool ErrorESP[ErrorCnt] = {0,0,0,0,0,0,0,0,0,0,0};   //Error Codes are saved in here:  0 - 6 : Temp Sensor Error, 
                                                     //7 - 11 : Max Voltage too HIGH for Microcontroller
   bool IsError = 0;    //True if theres any Error
   bool IsErrorPanda = 0;    //True, if theres an Error on the LattePanda
@@ -282,10 +282,10 @@ void Task1setup( void * pvParameters ) {
   for(int i = 0; i < 5; i++) {
     InputVoltage[i] = MaxVoltage / ((R1[i] + R2[i])/R2[i]);     //Calculate Voltage which is applied to GPIO at MaxVoltage    
     if(InputVoltage[i] > LogicLevel) {   //If the Voltage applied to the GPIOS can be too high, set Error HIGH
-      Error[7+i] = 1;
+      ErrorESP[7+i] = 1;
     }
     else {
-      Error[7+i] = 0;
+      ErrorESP[7+i] = 0;
     }
   }
 
@@ -305,8 +305,6 @@ void Task1loop() {
   //VoltageSensor();
   //ConvertVarToString();
   getSerialData();
-  //Serial.println(LattePanda.BufferIn);
-  //ConvertStringtoVar();
 
   //Serial.println("Test");
 
@@ -320,7 +318,7 @@ void ReadTemp() {
   if(currentMillisTemp - previousMillisTemp >= ReadIntervallTemp) {
     previousMillisTemp = currentMillisTemp;
   
-    Error[6] = 0;
+    ErrorESP[6] = 0;
     
     for(int i = 0;i <= NrOfSensors - 1;i++){    //Read Temps from all sensors and prints them
       SaveTemp(SensorPins[i], i);
@@ -329,15 +327,15 @@ void ReadTemp() {
       //Serial.print(": ");
       //Serial.print(temp[i][TempUnit]);
       //Serial.print(" C Error: ");
-      //Serial.println(Error[i]);
+      //Serial.println(ErrorESP[i]);
   
-      if(Error[i] == 1) {
-        Error[6] = 1;              
+      if(ErrorESP[i] == 1) {
+        ErrorESP[6] = 1;              
       }
       
     }
   
-    if(Error[6] == 1) {
+    if(ErrorESP[6] == 1) {
       digitalWrite(ErrorLedPin, HIGH);
     }
     else {
@@ -362,13 +360,13 @@ void SaveTemp(int Pin, int Pos) {   //Pin of Sensor and Position of Value in tem
     temp[Pos][1] = tempK;
     temp[Pos][2] = tempC;
     temp[Pos][3] = tempF;    
-    Error[Pos] = 0;
+    ErrorESP[Pos] = 0;
   }
   else {
     temp[Pos][1] = 0;
     temp[Pos][2] = 0;
     temp[Pos][3] = 0;    
-    Error[Pos] = 1;
+    ErrorESP[Pos] = 1;
   }
   
 }
@@ -489,33 +487,13 @@ void ConvertVarToString() {   //Converts Data from Variables to a String to be s
 
 }
 
-void ConvertStringtoVar() {   //converts incoming Serial Data String to Variables
-  
-  //unsigned int TempUnitBuffer;
-  unsigned int IsErrorPandaBuffer;
-
-  sscanf(tempBufferIn, "x%u,%x,%x,%u,%u,%u,%u,%u,%uq", &Effekt, &EffektColor1, &EffektColor2, &FanSpeed[0], &FanSpeed[1], &FanSpeed[2], &FanSpeed[3], &TempUnit, &IsErrorPandaBuffer);
-  
-  //if(TempUnitBuffer > 1) {
-  //  TempUnit = TempUnitBuffer;
-  //}
-  
-  if(IsErrorPandaBuffer > 1) {
-    IsErrorPanda = IsErrorPandaBuffer;
-  }
-  
-  //Serial.print(Effekt); Serial.print(" "); Serial.print(EffektColor1, 16); Serial.print(" "); Serial.print(EffektColor2, 16); Serial.print(" "); Serial.print(FanSpeed[0]); Serial.print(" "); Serial.print(FanSpeed[1]); Serial.print(" "); Serial.print(FanSpeed[2]); Serial.print(" ");    //For Debug Only
-  //Serial.print(FanSpeed[3]); Serial.print(" "); Serial.print(TempUnit); Serial.print(" "); Serial.println(IsErrorPanda);
-  
-}
-
 void CheckError() {   //Checks if there has been an Error
 
   IsError = false;  
 
   for (int i = 0; i < ErrorCnt; i++) {
     
-    if (Error[i]) {  
+    if (ErrorESP[i]) {  
       
       IsError = true;  
        
@@ -529,6 +507,115 @@ void getSerialData() { 	  //If printout = 1 sends back data, 0 doesnt send back 
   
   LattePanda.refresh(startMarker, endMarker);
   LattePanda.decode();
+  
+  /*
+  Serial.print("Type: ");
+  Serial.println(LattePanda.getIMU1(Type));             //DEBUG IMU1
+  Serial.print("nVal: ");
+  Serial.println(LattePanda.getIMU1(nVal));
+  Serial.println(LattePanda.getIMU1(Access));
+  for (int i = 0; i < LattePanda.getIMU1(nVal); ++i) {
+    Serial.print("Data"); Serial.print(i); Serial.print(": ");
+    Serial.println(LattePanda.getIMU1(Data, i));
+  }
+  Serial.print("Error: ");
+  Serial.println(LattePanda.getIMU1(Error));
+  Serial.println("");
+  */
+  
+  /*
+  Serial.print("Type: ");
+  Serial.println(LattePanda.getIMU2(Type));             //DEBUG IMU2
+  Serial.print("nVal: ");
+  Serial.println(LattePanda.getIMU2(nVal));
+  Serial.println(LattePanda.getIMU2(Access));
+  for (int i = 0; i < LattePanda.getIMU2(nVal); ++i) {
+    Serial.print("Data"); Serial.print(i); Serial.print(": ");
+    Serial.println(LattePanda.getIMU2(Data, i));
+  }
+  Serial.print("Error: ");
+  Serial.println(LattePanda.getIMU2(Error));
+  Serial.println("");
+  */
+  
+  Serial.print("Type: ");
+  Serial.println(LattePanda.getOctoSonar(Type));             //DEBUG Octosonar
+  Serial.print("nVal: ");
+  Serial.println(LattePanda.getOctoSonar(nVal));
+  Serial.print("Access: ");
+  Serial.println(LattePanda.getOctoSonar(Access));
+  for (int i = 0; i < LattePanda.getOctoSonar(nVal); ++i) {
+    Serial.print("Data"); Serial.print(i); Serial.print(": ");
+    Serial.println(LattePanda.getOctoSonar(Data, i));
+  }
+  Serial.print("Error: ");
+  Serial.println(LattePanda.getOctoSonar(Error));
+  Serial.println("");
+  
+  
+  /*
+  Serial.print("Type: ");
+  Serial.println(LattePanda.getVoltage(Type));             //DEBUG Voltage Sensors
+  Serial.print("nVal: ");
+  Serial.println(LattePanda.getVoltage(nVal));
+  Serial.print("Access: ");
+  Serial.println(LattePanda.getVoltage(Access));
+  for (int i = 0; i < LattePanda.getVoltage(nVal); ++i) {
+    Serial.print("Data"); Serial.print(i); Serial.print(": ");
+    Serial.println(LattePanda.getVoltage(Data, i));
+  }
+  Serial.print("Error: ");
+  Serial.println(LattePanda.getVoltage(Error));
+  Serial.println("");
+  */    
+  
+  /*
+  Serial.print("Type: ");
+  Serial.println(LattePanda.getTemp(Type));             //DEBUG Temperature Sensors
+  Serial.print("nVal: ");
+  Serial.println(LattePanda.getTemp(nVal));
+  Serial.print("Access: ");
+  Serial.println(LattePanda.getTemp(Access));
+  for (int i = 0; i < LattePanda.getTemp(nVal); ++i) {
+    Serial.print("Data"); Serial.print(i); Serial.print(": ");
+    Serial.println(LattePanda.getTemp(Data, i));
+  }
+  Serial.print("Error: ");
+  Serial.println(LattePanda.getTemp(Error));
+  Serial.println("");
+  */   
+  
+  /*
+  Serial.print("Type: ");
+  Serial.println(LattePanda.getFan(Type));             //DEBUG Fan
+  Serial.print("nVal: ");
+  Serial.println(LattePanda.getFan(nVal));
+  Serial.print("Access: ");
+  Serial.println(LattePanda.getFan(Access));
+  for (int i = 0; i < LattePanda.getFan(nVal); ++i) {
+    Serial.print("Data"); Serial.print(i); Serial.print(": ");
+    Serial.println(LattePanda.getFan(Data, i));
+  }
+  Serial.print("Error: ");
+  Serial.println(LattePanda.getFan(Error));
+  Serial.println("");
+  */  
+  
+  /*
+  Serial.print("Type: ");
+  Serial.println(LattePanda.getLED(Type));             //DEBUG LED
+  Serial.print("nVal: ");
+  Serial.println(LattePanda.getLED(nVal));
+  Serial.print("Access: ");
+  Serial.println(LattePanda.getLED(Access));
+  for (int i = 0; i < LattePanda.getLED(nVal); ++i) {
+    Serial.print("Data"); Serial.print(i); Serial.print(": ");
+    Serial.println(LattePanda.getLED(Data, i));
+  }
+  Serial.print("Error: ");
+  Serial.println(LattePanda.getLED(Error));
+  Serial.println("");
+  */   
   
 }
 
