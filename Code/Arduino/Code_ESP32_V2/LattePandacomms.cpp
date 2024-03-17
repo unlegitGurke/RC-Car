@@ -5,7 +5,7 @@
 //#define startMarker 'x'   //Marks Begining of Datastream   ASCII for x 0x78
 //#define endMarker 'q'    //Marks End of Datastream   ASCII for q 0x71
 
-char BufferIn[_maxMessage] = "x1,6,2,91,92,93,94,95,96,1q";    //Buffer for incoming messages
+char BufferIn[_maxMessage];    //Buffer for incoming messages
 char BufferOut[_maxMessage];   //Buffer for outgoing messages
 
 char decodingBuffer[_maxMessage];
@@ -61,22 +61,22 @@ bool LattePandacomms::refresh(char startMarker, char endMarker) {
   
 }
 
-bool removeMarkers(char* inputMessage, char* outputMessage) {   //Removes the "x" and "q" Markers from the message
+bool removeMarkers(char* inputMessage, char* outputMessage, char startMarker, char endMarker) {   //Removes the startMakrer and endMarker Markers from the message
   
   int startIndex = 0;
   int endIndex = 0;
 
   for (int i = 0; i < strlen(inputMessage); i++) {
-      if (inputMessage[i] == 'x') {
+      if (inputMessage[i] == startMarker) {
         startIndex = i + 1;     // Skip startMarker
       } 
-      else if (inputMessage[i] == 'q') {
+      else if (inputMessage[i] == endMarker) {
          endIndex = i;
          break;    // Stop once endMarker is found
       }
   }
   
-  if (endIndex > startIndex) {    // Extract the substring between 'x' and 'q' into the output message
+  if (endIndex > startIndex) {    // Extract the substring between startMarker and endMarker into the output message
     strncpy(outputMessage, inputMessage + startIndex, endIndex - startIndex);
     outputMessage[endIndex - startIndex] = '\0';    // Null-terminate the output message
     return true;
@@ -108,7 +108,7 @@ bool removeFirstValue(char* inputMessage, char* outputMessage) {    //Removes th
   
 }
 
-bool LattePandacomms::decode() {
+bool LattePandacomms::decode(char startMarker, char endMarker) {
   
   uint8_t Type = 0;
   uint8_t nVal = 0;
@@ -116,7 +116,7 @@ bool LattePandacomms::decode() {
   uint8_t Data[maxnDataVar] = {0};
   uint8_t Error = 0;
   
-  removeMarkers(BufferIn, decodingBuffer);   //Removes the "x" and "q" Markers from the message
+  removeMarkers(BufferIn, decodingBuffer, startMarker, endMarker);   //Removes the "x" and "q" Markers from the message
   
   sscanf(decodingBuffer, "%hhu,%hhu,%hhu", &Type, &nVal, &Access);    //Parse the first 3 variables from message: Type, nVal and Access
   
@@ -141,97 +141,97 @@ bool LattePandacomms::decode() {
       
       case 0:
       
-        _error.Type = Type;
-        _error.nVal = nVal;
-        _error.Access = Access;
-        for(int i = 0; i < _error.nVal; i++) {
-          _error.Data[i] = Data[i];
+        IsOk.Type = Type;
+        IsOk.nVal = nVal;
+        IsOk.Access = Access;
+        for(int i = 0; i < IsOk.nVal; i++) {
+          IsOk.Data[i] = Data[i];
         }
-        _error.Error = Error;
+        IsOk.Error = Error;
       
       break;
       
       case 1:
       
-        _IMU1.Type = Type;
-        _IMU1.nVal = nVal;
-        _IMU1.Access = Access;
-        for(int i = 0; i < _IMU1.nVal; i++) {
-          _IMU1.Data[i] = Data[i];
+        IMU1.Type = Type;
+        IMU1.nVal = nVal;
+        IMU1.Access = Access;
+        for(int i = 0; i < IMU1.nVal; i++) {
+          IMU1.Data[i] = Data[i];
         }
-        _IMU1.Error = Error;
+        IMU1.Error = Error;
       
       break;
       
       case 2:
       
-        _IMU2.Type = Type;
-        _IMU2.nVal = nVal;
-        _IMU2.Access = Access;
-        for(int i = 0; i < _IMU2.nVal; i++) {
-          _IMU2.Data[i] = Data[i];
+        IMU2.Type = Type;
+        IMU2.nVal = nVal;
+        IMU2.Access = Access;
+        for(int i = 0; i < IMU2.nVal; i++) {
+          IMU2.Data[i] = Data[i];
         }
-        _IMU2.Error = Error;
+        IMU2.Error = Error;
       
       break;
       
       case 3: 
       
-        _octosonar.Type = Type;
-        _octosonar.nVal = nVal;
-        _octosonar.Access = Access;
-        for(int i = 0; i < _octosonar.nVal; i++) {
-          _octosonar.Data[i] = Data[i];
+        Octosonar.Type = Type;
+        Octosonar.nVal = nVal;
+        Octosonar.Access = Access;
+        for(int i = 0; i < Octosonar.nVal; i++) {
+          Octosonar.Data[i] = Data[i];
         }
-        _octosonar.Error = Error;
+        Octosonar.Error = Error;
       
       break;
       
       case 4: 
       
-        _voltage.Type = Type;
-        _voltage.nVal = nVal;
-        _voltage.Access = Access;
-        for(int i = 0; i < _voltage.nVal; i++) {
-          _voltage.Data[i] = Data[i];
+        Voltage.Type = Type;
+        Voltage.nVal = nVal;
+        Voltage.Access = Access;
+        for(int i = 0; i < Voltage.nVal; i++) {
+          Voltage.Data[i] = Data[i];
         }
-        _voltage.Error = Error;
+        Voltage.Error = Error;
       
       break;
       
       case 5:
       
-        _temp.Type = Type;
-        _temp.nVal = nVal;
-        _temp.Access = Access;
-        for(int i = 0; i < _temp.nVal; i++) {
-          _temp.Data[i] = Data[i];
+        Temp.Type = Type;
+        Temp.nVal = nVal;
+        Temp.Access = Access;
+        for(int i = 0; i < Temp.nVal; i++) {
+          Temp.Data[i] = Data[i];
         }
-        _temp.Error = Error;
+        Temp.Error = Error;
       
       break;
       
       case 6:
       
-        _fan.Type = Type;
-        _fan.nVal = nVal;
-        _fan.Access = Access;
-        for(int i = 0; i < _fan.nVal; i++) {
-          _fan.Data[i] = Data[i];
+        Fan.Type = Type;
+        Fan.nVal = nVal;
+        Fan.Access = Access;
+        for(int i = 0; i < Fan.nVal; i++) {
+          Fan.Data[i] = Data[i];
         }
-        _fan.Error = Error;
+        Fan.Error = Error;
       
       break;
       
       case 7:
       
-        _LED.Type = Type;
-        _LED.nVal = nVal;
-        _LED.Access = Access;
-        for(int i = 0; i < _LED.nVal; i++) {
-          _LED.Data[i] = Data[i];
+        LED.Type = Type;
+        LED.nVal = nVal;
+        LED.Access = Access;
+        for(int i = 0; i < LED.nVal; i++) {
+          LED.Data[i] = Data[i];
         }
-        _LED.Error = Error;
+        LED.Error = Error;
       
       break;
       
@@ -240,13 +240,13 @@ bool LattePandacomms::decode() {
   } 
 
   /*
-  Serial.println(_IMU1.Type);             //DEBUG
-  Serial.println(_IMU1.nVal);
-  Serial.println(_IMU1.Access);
-  for (int i = 0; i < _IMU1.nVal; ++i) {
-    Serial.println(_IMU1.Data[i]);
+  Serial.println(IMU1.Type);             //DEBUG
+  Serial.println(IMU1.nVal);
+  Serial.println(IMU1.Access);
+  for (int i = 0; i < IMU1.nVal; ++i) {
+    Serial.println(IMU1.Data[i]);
   }
-  Serial.println(_IMU1.Error);
+  Serial.println(IMU1.Error);
   Serial.println("");
   */
   

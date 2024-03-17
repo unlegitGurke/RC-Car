@@ -301,7 +301,7 @@ void Task1loop() {
   //ReadTemp();
   //ReadSonar();
   //ReadIMU();
-  //Fan_Control();
+  Fan_Control();
   //VoltageSensor();
   //ConvertVarToString();
   getSerialData();
@@ -420,10 +420,12 @@ void ReadIMU() {
 void Fan_Control() {
 
   for(int i = 0;i < 4;i++) {
+    
+    FanSpeed[i] = LattePanda.Fan.Data[i];   //Read Data from LattePanda
 
-    DutyCycle[i] = map(FanSpeed[i], 0, 100, 0, pow(2, Resolution[i]));
+    DutyCycle[i] = map(FanSpeed[i], 0, 100, 0, pow(2, Resolution[i]));    //Calculate DutyCycle from Speed value 
 
-    ledcWrite(PWMChannel[i], DutyCycle[i]);
+    ledcWrite(PWMChannel[i], DutyCycle[i]);     //Write PWM Signal to Pins
 
   }
 
@@ -506,117 +508,23 @@ void CheckError() {   //Checks if there has been an Error
 void getSerialData() { 	  //If printout = 1 sends back data, 0 doesnt send back data
   
   LattePanda.refresh(startMarker, endMarker);
-  LattePanda.decode();
-  
+  LattePanda.decode(startMarker, endMarker);
+
   /*
-  Serial.print("Type: ");
-  Serial.println(LattePanda.getIMU1(Type));             //DEBUG IMU1
+  Serial.print("Type: ");                       //DEBUG
+  Serial.println(LattePanda.LED.Type);            
   Serial.print("nVal: ");
-  Serial.println(LattePanda.getIMU1(nVal));
-  Serial.println(LattePanda.getIMU1(Access));
-  for (int i = 0; i < LattePanda.getIMU1(nVal); ++i) {
+  Serial.println(LattePanda.LED.nVal);
+  Serial.print("Access: ");
+  Serial.println(LattePanda.LED.Access);
+  for (int i = 0; i < LattePanda.LED.nVal; ++i) {
     Serial.print("Data"); Serial.print(i); Serial.print(": ");
-    Serial.println(LattePanda.getIMU1(Data, i));
+    Serial.println(LattePanda.LED.Data[i]);
   }
   Serial.print("Error: ");
-  Serial.println(LattePanda.getIMU1(Error));
+  Serial.println(LattePanda.LED.Error);
   Serial.println("");
   */
-  
-  /*
-  Serial.print("Type: ");
-  Serial.println(LattePanda.getIMU2(Type));             //DEBUG IMU2
-  Serial.print("nVal: ");
-  Serial.println(LattePanda.getIMU2(nVal));
-  Serial.println(LattePanda.getIMU2(Access));
-  for (int i = 0; i < LattePanda.getIMU2(nVal); ++i) {
-    Serial.print("Data"); Serial.print(i); Serial.print(": ");
-    Serial.println(LattePanda.getIMU2(Data, i));
-  }
-  Serial.print("Error: ");
-  Serial.println(LattePanda.getIMU2(Error));
-  Serial.println("");
-  */
-  
-  Serial.print("Type: ");
-  Serial.println(LattePanda.getOctoSonar(Type));             //DEBUG Octosonar
-  Serial.print("nVal: ");
-  Serial.println(LattePanda.getOctoSonar(nVal));
-  Serial.print("Access: ");
-  Serial.println(LattePanda.getOctoSonar(Access));
-  for (int i = 0; i < LattePanda.getOctoSonar(nVal); ++i) {
-    Serial.print("Data"); Serial.print(i); Serial.print(": ");
-    Serial.println(LattePanda.getOctoSonar(Data, i));
-  }
-  Serial.print("Error: ");
-  Serial.println(LattePanda.getOctoSonar(Error));
-  Serial.println("");
-  
-  
-  /*
-  Serial.print("Type: ");
-  Serial.println(LattePanda.getVoltage(Type));             //DEBUG Voltage Sensors
-  Serial.print("nVal: ");
-  Serial.println(LattePanda.getVoltage(nVal));
-  Serial.print("Access: ");
-  Serial.println(LattePanda.getVoltage(Access));
-  for (int i = 0; i < LattePanda.getVoltage(nVal); ++i) {
-    Serial.print("Data"); Serial.print(i); Serial.print(": ");
-    Serial.println(LattePanda.getVoltage(Data, i));
-  }
-  Serial.print("Error: ");
-  Serial.println(LattePanda.getVoltage(Error));
-  Serial.println("");
-  */    
-  
-  /*
-  Serial.print("Type: ");
-  Serial.println(LattePanda.getTemp(Type));             //DEBUG Temperature Sensors
-  Serial.print("nVal: ");
-  Serial.println(LattePanda.getTemp(nVal));
-  Serial.print("Access: ");
-  Serial.println(LattePanda.getTemp(Access));
-  for (int i = 0; i < LattePanda.getTemp(nVal); ++i) {
-    Serial.print("Data"); Serial.print(i); Serial.print(": ");
-    Serial.println(LattePanda.getTemp(Data, i));
-  }
-  Serial.print("Error: ");
-  Serial.println(LattePanda.getTemp(Error));
-  Serial.println("");
-  */   
-  
-  /*
-  Serial.print("Type: ");
-  Serial.println(LattePanda.getFan(Type));             //DEBUG Fan
-  Serial.print("nVal: ");
-  Serial.println(LattePanda.getFan(nVal));
-  Serial.print("Access: ");
-  Serial.println(LattePanda.getFan(Access));
-  for (int i = 0; i < LattePanda.getFan(nVal); ++i) {
-    Serial.print("Data"); Serial.print(i); Serial.print(": ");
-    Serial.println(LattePanda.getFan(Data, i));
-  }
-  Serial.print("Error: ");
-  Serial.println(LattePanda.getFan(Error));
-  Serial.println("");
-  */  
-  
-  /*
-  Serial.print("Type: ");
-  Serial.println(LattePanda.getLED(Type));             //DEBUG LED
-  Serial.print("nVal: ");
-  Serial.println(LattePanda.getLED(nVal));
-  Serial.print("Access: ");
-  Serial.println(LattePanda.getLED(Access));
-  for (int i = 0; i < LattePanda.getLED(nVal); ++i) {
-    Serial.print("Data"); Serial.print(i); Serial.print(": ");
-    Serial.println(LattePanda.getLED(Data, i));
-  }
-  Serial.print("Error: ");
-  Serial.println(LattePanda.getLED(Error));
-  Serial.println("");
-  */   
-  
 }
 
 void Task2setup( void * pvParameters ) {
@@ -655,7 +563,7 @@ void Task2loop() {
 
   else {
     
-    ReadButtons();
+    ReadState();
     idle();
     
     if(IndicatorRightState == true) {
@@ -700,15 +608,38 @@ void Task2loop() {
 
 }
 
-void ReadButtons() { //Buttons for testing only
+void ReadState() { 
   
-  IndicatorRightState = digitalRead(ButtonPins[0]);
+  uint8_t StateIn = LattePanda.LED.Data[0];
+
+  bool State[8] = {};
+
+  for (int i = 8; i > 0; i--) {
+    State[i] = StateIn%2;
+    StateIn=StateIn/2;
+  }
+
+  
+  for(int i = 0; i < 8; i++) {
+    Serial.print(State[i]);  
+  }
+  Serial.println("");
+  
+  IndicatorRightState = State[0];
+  IndicatorLeftState = State[1];
+  BrakeLightState = State[2];
+  ReverseLightState = State[3];
+  HazardState = State[4];
+
+  /*
+  IndicatorRightState = digitalRead(ButtonPins[0]);   //Buttons for testing only
   IndicatorLeftState = digitalRead(ButtonPins[1]);
   BrakeLightState = digitalRead(ButtonPins[2]);
   ReverseLightState = digitalRead(ButtonPins[3]);
   HazardState = digitalRead(ButtonPins[4]);
-  
-  //Serial.print(IndicatorRightState);
+  */
+
+  //Serial.print(IndicatorRightState);    //DEBUG
   //Serial.print(IndicatorLeftState);
   //Serial.print(BrakeLightState);
   //Serial.print(ReverseLightState);
