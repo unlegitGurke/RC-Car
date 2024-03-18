@@ -614,22 +614,17 @@ void ReadState() {
 
   bool State[8] = {};
 
-  for (int i = 8; i > 0; i--) {
+  for (int i = 7; i >= 0; i--) {
     State[i] = StateIn%2;
     StateIn=StateIn/2;
   }
 
-  
-  for(int i = 0; i < 8; i++) {
-    Serial.print(State[i]);  
-  }
-  Serial.println("");
-  
   IndicatorRightState = State[0];
   IndicatorLeftState = State[1];
   BrakeLightState = State[2];
   ReverseLightState = State[3];
   HazardState = State[4];
+
 
   /*
   IndicatorRightState = digitalRead(ButtonPins[0]);   //Buttons for testing only

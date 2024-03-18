@@ -53,6 +53,7 @@ bool LattePandacomms::refresh(char startMarker, char endMarker) {
       }
       
     }
+
     
   }
   
