@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.0"
+   width="920"
+   height="700">
+  <rect
+     width="920"
+     height="700"
+     x="0"
+     y="0"
+     id="rect3316"
+     style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:3;stroke-linecap:square;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+  <path
+     d="M 2480,372.362 A 460,460 0 1 1 1560,372.362 A 460,460 0 1 1 2480,372.362 z"
+     transform="matrix(0.5,0,0,0.5,-560,193.819)"
+     id="path3202"
+     style="fill:#ececec;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+  <path
+     d="M 20,440 L 780,440 M 50,660 L 50,60"
+     id="path2418"
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <path
+     d="M 45,60 L 55,60 L 50,45 L 45,60 z M 780,435 L 780,445 L 795,440 L 780,435 z"
+     id="path3192"
+     style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  <path
+     d="M 222,407.5 L 710,20"
+     id="path3210"
+     style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <path
+     d="M 640,140 L 520,650"
+     id="path3212"
+     style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <path
+     d="M 859.5,245.5 L 222,408"
+     id="path3214"
+     style="fill:none;fill-rule:evenodd;stroke:#0000ff;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <path
+     d="M 222,408 L 759.5,335.5 M 50,440 L 333,182 M 330,160 L 367.5,450 M 221.5,408 L 607.5,547.5 L 529,164"
+     id="path3505"
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <path
+     d="M 1837.74,374.422 A 15,17 0 0 1 1853.78,388.433"
+     transform="matrix(0.5,0,0,0.5,-560,193.819)"
+     id="path3302"
+     style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+  <path
+     d="M 1843.81,387.362 A 1.81077,1.90086 0 1 1 1840.19,387.362 A 1.81077,1.90086 0 1 1 1843.81,387.362 z"
+     transform="matrix(0.5,0,0,0.5,-558.448,191.864)"
+     id="path3306"
+     style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+  <path
+     d="M 450,382.59 L 450,372.545 M 575,403.5 L 581,403.5 M 546.56,528.078 L 551.51,524.684"
+     id="path3204"
+     style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  <text
+     x="505"
+     y="70"
+     id="text3282"
+     xml:space="preserve"
+     style="font-size:18px;font-style:normal;font-weight:normal;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans">Leistungsgerade</text>
+  <text
+     x="645"
+     y="160"
+     id="text3286"
+     xml:space="preserve"
+     style="font-size:18px;font-style:normal;font-weight:normal;fill:#008000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans">Schlupfgerade</text>
+  <text
+     x="690"
+     y="235"
+     id="text3290"
+     xml:space="preserve"
+     style="font-size:18px;font-style:normal;font-weight:normal;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans">Drehmomentengerade</text>
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"><tspan
+       x="17.5"
+       y="50"
+       id="tspan3300">Re</tspan>
+    <tspan
+       x="17.5"
+       y="430"
+       id="tspan3296">Im</tspan>
+  </text>
+  <text
+     xml:space="preserve"
+     style="font-size:18px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"><tspan
+       x="453"
+       y="393"
+       id="tspan3220">M</tspan>
+    <tspan
+       x="585"
+       y="405"
+       id="tspan3224">1</tspan>
+    <tspan
+       x="360"
+       y="362.5"
+       id="tspan3228">B</tspan>
+    <tspan
+       x="350"
+       y="290.5"
+       id="tspan3232">C</tspan>
+    <tspan
+       x="335"
+       y="167.5"
+       id="tspan3236">P</tspan>
+    <tspan
+       x="201"
+       y="412.5"
+       id="tspan3240">P</tspan>
+    <tspan
+       x="181"
+       y="304.5"
+       id="tspan3248">S</tspan>
+    <tspan
+       x="520"
+       y="150.5"
+       id="tspan3252">P</tspan>
+    <tspan
+       x="665"
+       y="280"
+       id="tspan3260">P</tspan>
+    <tspan
+       x="685"
+       y="365"
+       id="tspan3268">P</tspan>
+    <tspan
+       x="550"
+       y="545"
+       id="tspan3276">0</tspan>
+    <tspan
+       x="610"
+       y="564"
+       id="tspan3280">S</tspan>
+    <tspan
+       x="31"
+       y="462.5"
+       id="tspan3314">0</tspan>
+  </text>
+  <text
+     xml:space="preserve"
+     style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"><tspan
+       x="209"
+       y="418.5"
+       id="tspan3244">0</tspan>
+    <tspan
+       x="529"
+       y="156.5"
+       id="tspan3256">1</tspan>
+    <tspan
+       x="673"
+       y="286"
+       id="tspan3264">∞</tspan>
+    <tspan
+       x="693"
+       y="372"
+       id="tspan3272">Φ</tspan>
+  </text>
+</svg>
