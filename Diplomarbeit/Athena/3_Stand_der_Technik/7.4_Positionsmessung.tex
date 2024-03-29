@@ -11,6 +11,25 @@
 	\end{figure}
 	
 	\subsubsection{Hall-Sensoren}
-		Hall-Sensoren können sind Halb
+		Der Hall-Sensor ist ein magnetotastischer Sensor, er misst das magnetische Gleichfeld innerhalb eines Halbleiterplättchens. Das Feld des Magneten durchsetzt das Plättchen senkrecht, sodass die Ladungsträger aus ihrer Bahn abgelenkt werden. Es kann nun eine zum Feld proportionale Hall-Spannung abgegriffen werden.
+		
+		\begin{equation}
+			U_{H} =  R_{H}*I*\frac{B}{d}
+		\end{equation}
+		
+		$U_{H} \cdots$ Hallspannung \newline
+		$R_{H} \cdots$ Hallkonstante \newline
+		$I \cdots$ Plättchenstrom \newline
+		$B \cdots$ Induktion \newline
+		$d \cdots$ Dicke des Plättchens \newline
+		
+		Indem man 3 solcher Hall Sensoren hinter einem Motor anbringt kann so die Position und Drehzahl des Motors gemessen werden. Die Genauigkeit der Positionsmesung hängt dabei von der Anzahl der Polpaare ab. Desto mehr, desto genauer ist die Messung\cite{JulinHorstkoetter2023}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.5]{./3_Stand_der_Technik/Abbildungen/Hall-Sensor_1}
+			\caption{Ausgangssignal der Hallsensoren je nach Winkel des Rotors\cite{JulinHorstkoetter2023}}
+		\end{figure}
 	
-	\subsubsection{Resolver}
+	\subsubsection{Resolver / Drehgeber}
+		Resolver oder Drehgeber sind beide Sensoren zur genauen Ermittlung der Motorposition. Die Genauigkeit hängt nur noch von der Bauweise des Sonsors ab und nicht von der des Motors. Sie können beide Inkremental oder Absolut den Winkel des Motors angeben. Der Unterschied zwischen beiden liegt darin, dass der Drehgeber ein digitales Signal ausgibt und der Resolver ein analoges.
