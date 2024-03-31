@@ -1,17 +1,43 @@
 \subsection{Energiespeicher}
-	Das Ziel des Energiespeichers ist es möglichst viel Energie in einem möglichst kleinem Volumen zu speichern und diese effizient aufzunehmen und abzugeben. Der Aufbau dieser Batterien besteht meistens aus zwei unterschiedlichen Elektroden und aus einem dazwischen befindlichen Elektrolyt. Die Spannung einer solchen Zelle hängt von  der Elektronegativität der verschiedenen Elektroden ab. Die wichtigsten Eckdaten eines Akkus sind seine Spannung in V, seine Kapazität in Wh und die Endlade- und Laderate in C($\frac{Entladestrom}{Kapazit\ddot{a}t}$). Die meisten Akkus bestehen aus mehreren Zellen die in Serie oder parallel geschalten sind, um entweder Kapazität oder Spannung zu erhöhen. Die wichtigsten Akku-Typen sind folgende:
+	Das Ziel des Energiespeichers ist es möglichst viel Energie in einem möglichst kleinen Volumen zu speichern und diese effizient aufzunehmen und abzugeben. Der Aufbau dieser Batterien besteht meistens aus zwei unterschiedlichen Elektroden und aus einem dazwischen befindlichen Elektrolyt. Die Spannung einer solchen Zelle hängt von  der Differenz der Elektronegativität der beiden Elektroden ab. Die wichtigsten Eckdaten eines Akkus sind seine Spannung in V, seine Kapazität in Wh und die Endlade- und Laderate in C($\frac{Entladestrom}{Kapazit\ddot{a}t}$). Die meisten Akkus bestehen aus mehreren Zellen die in Serie oder parallel geschalten sind, um entweder Spannung oder Kapazität zu erhöhen. Daraus entstehen Bezeichnungen für Akkus wie zum Beispiel 4S2P, welches für 4 Serielle Zellen, 2 mal parllel geschalten steht. 
 	
-		\subsubsection{Alkali-Mangan-Zelle(AlMn)}
-			Alkali-Mangan Batterien sind das am häufigsten verwendete Batteriesystem, sie überzeugen vorallem mit ihrer hohen Verfügbarkeit und günstigen Herstellung. Sie bieten auch eine recht hohe Energiedichte. Sie haben auch eine lange Haltbarkeit und ein niedrige Selbstentladung.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.4]{./3_Stand_der_Technik/Abbildungen/Akku_3}
+		\caption{Serien- und Parallelschaltung von Akkuzellen\cite{heliplanet.com2024}}
+	\end{figure}
+	
+	Bei Akkus mit mehreren Zellen ist es wichtig darauf zu achten, dass die Zellspannung der unterschiedlichen Zellen nicht variiert. Wenn eine Zelle voll geladen und eine zweite komplett entladen ist, wirkt der Akku anhand der gesamten Akku-Spannung als zur Hälfte geladen. Wenn jedoch eine Entladestrom fließt, wird eine Zelle unter ihre Abschaltspannung geladen, was zum Schaden der Zelle oder wie im Fall von Lithium Zellen auch zum Brand oder zur Explosion führen kann. Um diesem Problem vorzubeugen sind auf Akkus mit mehreren Zellen Balance Stecker angebracht, mithilfe von welchen die einzelnen Zellspannungen gemessen und ausgeglichen werden können. Der Ausgleich der Zellspannungen findet meistens bei jedem Ladevorgang statt.
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{./3_Stand_der_Technik/Abbildungen/Akku_4}
+		\caption{Balance-Stecker\cite{heliplanet.com2024}}
+	\end{figure}
+
+	\subsubsection{Alkali-Mangan-Zelle(AlMn)}
+		Alkali-Mangan Batterien sind das am häufigsten verwendete Batteriesystem, sie überzeugen vorallem mit ihrer hohen Verfügbarkeit und günstigen Herstellung. Sie bieten auch eine recht hohe Energiedichte. Sie haben auch eine lange Haltbarkeit und ein niedrige Selbstentladung. Zu den Nachteilen zählt die geringe Entladerate, die oft unter 0,1C liegt und die begrenzte Wideraufladbarkeit. Die häufigste Form dieser Batterie ist die AA und AAA Batterie.\cite{Fricke2007} Die Zellspannung einer Alkali-Mangan-Zelle beträgt 1,5V.
 		
-		\subsubsection{Silberoxid-Zelle(AgO)}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.5]{./3_Stand_der_Technik/Abbildungen/Akku_1}
+			\caption{Alkali-Mangan-Zelle\cite{Fricke2007}}
+		\end{figure}
+	
+	\subsubsection{Silberoxid-Zelle(AgO)}
+		Silberoxid Zellen werden vorwiergend für sehr kleine Knopfzellen verwendet, wo hohe Energiedichte ebenso wie geringes Volumen hohe Priorität hat. Ihr Aufbau ist sehr ähnlich zu dem der Alkali-Mangan-Zelle. Da die Materialien in großen Mengen sehr teuer sind, wird sie meistens nur in geringen Größen verwendet. Die Zellspannung einer Silberoxid-Zelle beträgt 1,6V.\cite{Fricke2007} 
 		
-		\subsubsection{Lithium-Mangandioxid-Zelle(LiMnO2)}
-		
-		\subsubsection{Nickel-Cadmium-Zelle(NiCd)}
-		
-		\subsubsection{Nickel-Metallhybrid-Zelle(NiMH)}
-		
-		\subsubsection{Lithium-Ion-Zelle{Li-Ion}}
-		
-		\subsubsection{Lithium-Polymer-Zelle}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.5]{./3_Stand_der_Technik/Abbildungen/Akku_2}
+			\caption{Silberoxid-Zelle\cite{Fricke2007}}
+		\end{figure}
+	
+	\subsubsection{Nickel-Cadmium-Zelle(NiCd)}
+		Nicke-Cadmium-Zellen überzeugen vorallem durch ihre hohe Belastbarkeit, Schnellladefähigkeit und Kälteresistenz. Sie haben jedoch einen relativ geringen Energieinhalt im Vergleich zu Lithium- oder Alkalisystemen. Ein ebenso großer Nachteil is das Auftreten des Memory-Effekts, wenn die Zelle vor dem Vollständig Entladen wieder aufgeladen wird, können sich Kristalle bilden, die die Kapazität wesentlich verringern. Nickel-Cadmium-Zellen haben eine Zellspannung von 1,2V.
+	
+	\subsubsection{Nickel-Metallhybrid-Zelle(NiMH)}
+	
+	\subsubsection{Lithium-Ion-Zelle{Li-Ion}}
+	
+	\subsubsection{Lithium-Polymer-Zelle}
