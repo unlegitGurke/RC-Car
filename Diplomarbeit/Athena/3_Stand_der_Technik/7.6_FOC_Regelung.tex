@@ -1,9 +1,9 @@
 \subsection{Feldorientierte Regelung (FOC)}\label{Feldorientierte Regelung}
-	Mithilfe der feldorientiereten Regelung ist es möglich das Feld des Stators so anzupassen, dass es dem Feld des Rotors genau so vorläuft, dass Drehmoment und Effizienz maximiert werden. Im Gegensatz zur BLDC-Regelung kann das Statorfeld nicht nur 6 Positionen annehmen, sondern unbegrenzt viele. Man kann mit dieser Methode auch eine etwas höhere Drehzahl erreichen. Um diese 90° Verschiebung des Statorfelds zu erreichen, wird der Feldvektor zunächst in seine zwei Komponenten Id und Iq aufgeteilt:
+	Mithilfe der feldorientiereten Regelung ist es möglich das Feld des Stators so anzupassen, dass es dem Feld des Rotors genau so vorläuft, dass Drehmoment und Effizienz maximiert werden. Im Gegensatz zur BLDC-Regelung kann das Statorfeld nicht nur 6 Positionen annehmen, sondern unbegrenzt viele. Man kann mit dieser Methode auch eine etwas höhere Drehzahl erreichen. Um diese 90° Verschiebung des Statorfelds zu erreichen, wird der Feldvektor zunächst in seine zwei Komponenten Id und Iq, welche 90Grad zueinander liegen, aufgeteilt:
 	
 	\begin{figure}[H]
 			\centering
-			\includegraphics[scale=0.3]{./3_Stand_der_Technik/Abbildungen/FOC_Control_1}
+			\includegraphics[scale=0.25]{./3_Stand_der_Technik/Abbildungen/FOC_Control_1}
 			\caption{Komponenten des Statormagnetfelds\cite{MATLAB2020}}
 	\end{figure}
 	
@@ -13,9 +13,27 @@
 	
 	\begin{figure}[H]
 			\centering
-			\includegraphics[scale=0.3]{./3_Stand_der_Technik/Abbildungen/FOC_Control_2}
+			\includegraphics[scale=0.2]{./3_Stand_der_Technik/Abbildungen/FOC_Control_2}
 			\caption{Aufbau eines FOC-Algorhitmus\cite{MATLAB2021}}
 	\end{figure}
 	
-	Mithilfe von Shunts wird der derzeitige Strom zum Motor gemessen. Diese Werte werden mithilfe von mathematischen Transformationen (Clark- und Park Transformation) in die zwei Anteile Id und Iq aufgeteilt. Auch wird mithilfe eines Positionssensors die Position des Rotors gemessen.
-	Zwei PI-Regler regeln nun Id auf 0 und Iq auf den gewünschten Strom. Anschließend werden die Werte mithilfe von mathematischen Transformationen(inverse Clark Transformation) in die gewünschten Spannungswerte Vd und Vq umgerechnet. 
+	Mithilfe von Shunts wird der derzeitige Statorstrom zum Motor gemessen. Diese Werte werden mithilfe von mathematischen Transformationen (Clark- und Park Transformation) in die zwei Anteile Id und Iq umgerechnet, welche zusammen den Strom des Statorfelds ergeben. Auch wird mithilfe eines Positionssensors die Position des Rotors gemessen.
+	Zwei PI-Regler regeln nun Id auf 0 und Iq auf den gewünschten Eingangsstrom. Anschließend werden die Werte mithilfe von mathematischen Transformationen(inverse Clark Transformation) in die Spannungswerte Vd und Vq umgerechnet. Diese Spannungen entsprechen jedoch noch nicht den gewünschten Strangspannungen des Motors, sondern müssen mithilfe von Ortsvektor-Modulierung in pulsweitenmodulierte Signale für den Wechselrichter umgerechnet werden:
+	
+	Der Ortsvektor des Stators beschreibt die Position des Statormagnetfelds. Es ergibt sich durch Addieren der 3 Strangströme.
+	
+	\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.3]{./3_Stand_der_Technik/Abbildungen/FOC_Control_3}
+			\caption{Ortsvektor\cite{MATLAB2021}}
+	\end{figure}
+	
+	Der Wechselrichter kann grundsätzlich 8 unterschiedliche Schaltpositionen annehmen. Bei zwei von diesen fließt kein Strom. Die anderen entsprechen folgenden 6 Rotorposiotionen
+
+	\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.2]{./3_Stand_der_Technik/Abbildungen/FOC_Control_4}
+			\caption{Ortsvektoren des Wechselrichters\cite{MATLAB2021}}
+	\end{figure}
+	
+	Indem mit hoher Frequenz geziehlt zwischen diesen Ortsvektoren geschalten wird(pulsweitenmodulierte Signale) kann ein resultierender Ortsvektor an jeder Position des Kreises entstehen. So kann Drehmoment und Drehzahl ohne Schwankungen genau geregelt werden.\cite{MATLAB2021}
