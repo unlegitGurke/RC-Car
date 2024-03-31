@@ -1,0 +1,104 @@
+\section{Mechanischer Aufbau}
+
+	Bei dem mechanischen Aufbau von Athena sind viele Faktoren zu beachten. Ein paar dieser Faktoren wären der Verwendungszweck, Kosten und die Belastbarkeit. Ebenfalls gibt es auch Modellautos, welche ihre Funktion und Stabilität schon am Markt bewiesen haben. Da alle bereits existierenden Fahrzeuge die hohen platztechnischen Ansprüche eines solchen Projekts nicht vollständig erfüllen, ist es besser, das Fahrzeug von Grund auf selbst zu konstruieren. Ein Fahrzeug mit hoher Karosserie ist von Vorteil, da ein solches viel Platz bietet.\\
+\\
+	Für den mechanischen Aufbau stehen viele Materialien mit unterschiedlichen Eigenschaften und Preisen zur Verfügung. Auch kann man sich an Teilen von bereits vorhandenen Fahrzeugen bedienen. Dies wurde im Falle von Athena auch getan. So werden mehrere Teile aufgrund der hohen Kosten im Falle der Eigenanfertigung vom etablierten Modell "X-MAXX" der Firma Traxxas genutzt. Diese Teile umfassen die Lager, Dämpfer und große Teile des Antriebsstrangs. Aufgrund der übernommenen Komponenten hat man einen gewissen Rahmen, in dem sich bei der Auslegung der Gesamtgröße bewegen muss. Die Bauteile, die hierbei am meisten ausmachen, sind die Grundplatte und die zentrale Antriebswelle.
+
+\subsection{Grundlegender Aufbau / Montagereihenfolge}
+
+\subsubsection{Antriebsstrang}
+	Beim Zusammenbau von Athena wird der Antriebsstrang als erstes montiert. Seine Hauptaufgabe besteht darin, die Leistung vom Motor auf die Reifen zu übertragen. Der Allradantrieb setzt sich aus drei Differenzialen zusammen. Bei der Konstruktion müssen die Abstände zwischen dem Kegelrad (großes Zahnrad des Differentials) und dem Ritzel berücksichtigt werden. Wenn diese nicht passen, kann dies dazu führen, dass die Zahnräder bei hoher Belastung leichter beschädigt werden. Es ist wichtig, beim Zusammenbau auf die Schmierung des Getriebes und der Differenziale zu achten.
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.8]{./4_Mechanik/Abbildungen/Aufbau_Anleitung_render/Antriebsstrang_1}
+			\caption{ Antriebsstrang ohne obere Getriebegehäuse}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.8]{./4_Mechanik/Abbildungen/Aufbau_Anleitung_render/Antriebsstrang_2}
+			\caption{ Antriebsstrang mit obere Getriebegehäuse}
+		\end{figure}
+
+
+\subsubsection{Aufhängung}
+	Die beiden Feder-Mounts werden auf den Differentialgehäusen platziert und anschließend verschraubt. Die unteren Querlenker werden an den A-Arm-Mounts befestigt, während die oberen Querlenker mit den Feder-Mounts durch Stifte verbunden sind. Zur Verstärkung der Federmounts und zur Sicherung der Stifte vor dem Herausfallen werden Abdeckplatten angebracht. Aufgrund des hohen Gewichts sind stärkere Federn in der Dämpfer-Feder-Kombination verbaut, da die Serienfedern von Traxxas nicht ausreichen.\\
+\\
+Bei der Konstruktion einer Aufhängung ist es wichtig, das "Aufhängungsparallelogramm" einzuhalten. Das bedeutet, dass die oberen und unteren Querlenker parallel zueinander verlaufen müssen. Dies wird erreicht, indem der Abstand zwischen den inneren und äußeren Montagepunkten der gleiche ist für die oberen und unteren Montagestifte. Zudem müssen diese Montagepunkte den gleichen Abstand von der Mitte des Autos haben. Andernfalls ändert sich der Radsturz je nach Fahrwerkshöhe.
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=2]{./4_Mechanik/Abbildungen/Aufbau_Anleitung_render/Aufhaengung_1}
+			\caption{ Fertig montierte Aufhängung}
+		\end{figure}
+
+
+\subsubsection{Lenkung}
+	Die Lenkung besteht aus zwei Zylindern, auf denen die beiden Lenkwinkel mit Kugellagern montiert sind. Jeder Lenkwinkel hat auf einer Seite ein Loch für die Lenkstangen und auf der anderen Seite ein Loch für den Mittelarm, um sicherzustellen, dass sich beide Seiten gleich bewegen. Der linke Lenkwinkel verfügt über eine Aufnahme für die Servolenkstange. Zur Stabilisierung wird auf der Oberseite eine Verbindungsplatte angebracht.\\
+\\
+Es ist wichtig zu beachten, dass die Lenkstangen ebenfalls das "Aufhängungsparallelogramm" einhalten müssen. Die Montagepunkte der Lenkwinkel und die Löcher der Lenkstangen sind ausschlaggebend dafür. Auch bei den vorderen Wheelhubs muss auf die korrekte Ausrichtung der Montagepunkte geachtet werden.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Aufbau_Anleitung_render/Lenkung_1}
+			\caption{Lenkungsmechanismus}
+		\end{figure}
+
+
+\subsubsection{Motor \& Abdeckung-Antriebswelle}
+	Nach der Lenkung sollten die Motorhalterung, der Motor und das passend dimensionierte Ritzel für den Verwendungszweck montiert werden. Zur Absicherung und zum Schutz umliegender Bauteile wird der gesamte Antriebsstrang abgedeckt.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Aufbau_Anleitung_render/Driveshaftcover_1}
+			\caption{Motor \& Abdeckung der Antriebswelle}
+		\end{figure}
+
+
+\subsubsection{Elektronik}
+	Es wird sämtliche Elektronik, die sich im Inneren des Fahrzeugs befindet, montiert. Dazu gehören die Akkus, die Spannungswandler, der Motorcontroller, der Anti-Spark-Switch, jegliche Sensorik-Platinen, die Lüfter, der Lattepanda und das Lattepanda-Shield.\\
+	\\
+	Für die Verbindung der Akkus wird ein eigener Kabelstrang gefertigt. Aufgrund der hohen Stromstärke kommen XT90 und XT150 Stecker zum Einsatz, die mit 6AWG-Leitungen verbunden werden. Alle Akkus werden in Serie geschaltet. Zur Verbindung des Motorcontrollers mit dem Motor werden 8mm-Bulletstecker verwendet, die für solche Anwendungen üblich sind.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Aufbau_Anleitung_render/Elektronik_1}
+			\caption{Elechtronik (Sicht von der linken Seite)}
+		\end{figure}
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Aufbau_Anleitung_render/Elektronik_2}
+			\caption{Elechtronik (Sicht von der rechten Seite)}
+		\end{figure}
+
+\subsubsection{Radkästen, Stoßstangen \& 2.Ebene}
+Die Stoßstangen und Radkästen werden angebracht. Die vordere Stoßstange wird dabei mit den vorderen Lichtern verklebt. Zuerst werden in die vorderen Lichter die LEDs und die Ultraschallsensoren eingebaut. Die hintere Stoßstange hat keine Beleuchtung, daher wird in diese nur der Ultraschallsensor eingebaut. Die zweite Ebene, sowie die seitlichen und hinteren Sensorhalter werden an die Radkästen montiert. Die Magneten werden an den hinteren Radkästen verklebt. Die Magneten sind erforderlich für die Montage der Karosserie. 
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Aufbau_Anleitung_render/Radkasten_1}
+			\caption{Radkästen, Stoßstangen \& 2.Ebene (Front)}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Aufbau_Anleitung_render/Radkasten_2}
+			\caption{Radkästen, Stoßstangen \& 2.Ebene (Heck)}
+		\end{figure}
+
+\subsubsection{Karosserie-Mount, Karosserie, Reifen \& LIDAR-Sensor}
+Aufgrund der Größenbeschränkungen bei kommerziellen 3D-Druckern besteht die Karosserie aus mehreren Karosseriesegmenten. Diese wiederum setzen sich aus mehreren Teilen zusammen, die miteinander verklebt werden. In den Karosserie-Mount und den einzelnen Karosseriesegmenten müssen Magneten angebracht werden. Es kann erforderlich sein, die Karosserie nachzubearbeiten, um die Spaltmaße zwischen den Segmenten anzupassen.\\
+\\
+Der Karosserie-Mount, bestehend aus drei Teilen, wird mit dem hinteren Feder-Mount und der zweiten Ebene verschraubt. Sind die Kabel für den LIDAR-Sensor verlegt, kann die Karosserie befestigt werden. Durch die Magneten hält sie sich fest und richtet sich von selbst aus.\\
+\\
+Nun müssen nur noch der LIDAR-Sensor und die Reifen montiert werden, und der Aufbau von ATHENA ist komplett.
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Aufbau_Anleitung_render/Karosserie_Mount_1}
+			\caption{montierter Karosserie-Mount}
+		\end{figure}
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Aufbau_Anleitung_render/Athena_fertig_4}
+			\caption{zusammengebautes Auto}
+		\end{figure}
