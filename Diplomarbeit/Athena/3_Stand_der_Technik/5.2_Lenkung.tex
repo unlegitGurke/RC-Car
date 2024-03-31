@@ -1,1 +1,30 @@
 \subsection{Lenkung}
+	Die Lenkung ist das mechanische System in einem Fahrzeug, welches es dem Fahrer ermöglicht, die Richtung zu steuern, in die das Fahrzeug fährt. Es wird zwischen zwei Konzepten, welche bei der Konstruktion einer Lenkung angewendet werden können, unterschieden. Die Ackermann-Lenkung und die Anti-Ackermann-Lenkung. Sie hängen mit der 	Geometrie der Lenkung zusammenhängen und unterscheiden sich insbesondere bei Kurvenfahrten.
+
+\subsubsection{Ackermann-Lenkung}
+	Die Ackermann-Lenkung ist eine Geometrie für die Lenkung von Fahrzeugen, die entwickelt wurde, um die Räder auf unterschiedlichen Radien während einer Kurvenfahrt zu lenken. In einer Kurve müssen die inneren und äußeren Räder unterschiedliche Radien abdecken. Die inneren Räder legen einen kleineren Radius zurück als die äußeren Räder. Die Ackermann-Lenkung sorgt dafür, dass die Räder so gelenkt werden, dass sie sich genau um den Mittelpunkt der Kurve drehen, dadurch wird das Untersteuern (auch Schieben genannt) der Reifen in der Kurve minimiert, wodurch das Fahrzeug präziser und stabiler durch die Kurve fahren kann.
+Vorteile: 
+Besseres Kurvenverhalten bei mittlerer Geschwindigkeit, in engen bis mittleren Kurven.
+weniger Reifenverschleiß, geringere Seitenkräfte, bessere Stabilität.
+Nachteile: 
+Unterliegt der Anti-Ackermann-Lenkung bei hohen Geschwindigkeiten und starker Belastung.\cite{Vogel2021}
+
+\subsubsection{Anti-Ackermann-Lenkung}
+	Der Begriff "Anti-Ackermann" bezieht sich darauf, dass die Räder entgegen dem Ackermann-prinzip gelenkt werden. Das bedeutet das der äußere Reifen in einer Kurve einen kleineren Radius fährt als der innere. 
+Ein wichtiger Zusammenhang besteht zwischen Anti-Ackermann und dem Schräglaufwinkel (Slip-Angle im eng.). Der Schräglaufwinkel ist der Winkel zwischen der Richtung, in die das Rad zeigt, und der tatsächlichen Fahrtrichtung. Während ein Fahrzeug eine Kurve durchfährt, erzeugt jede Achse einen Schräglaufwinkel an den Reifen. Dieser Winkel führt dazu, dass der Reifen seitlich rutscht, während er gleichzeitig rollt, was den Grip und die Stabilität des Fahrzeuges  beeinflusst.
+Wie bereits erwähnt werden bei der Anti-Ackermann-Lenkung die äußeren Räder während einer Kurvenfahrt stärker gelenkt als bei der traditionellen Ackermann-Lenkung. Dies bedeutet, dass die äußeren Vorderräder einen größeren Schräglaufwinkel haben können als die inneren Vorderräder. Durch diese verstärkte Lenkung der äußeren Räder entsteht eine größere Reibung, welcher dazu führt das ein Fahrzeug mehr Lateralkraft in einer Kurve aushält, was wiederum stärkere Lenkmanöver möglich macht. Dies kann in bestimmten Situationen vorteilhaft sein, wie z.B. beim Driften oder bei Rennwagen (F1 und IndyCar Series), die ein anderes Kurvenverhalten benötigen. 
+Der optimale Schräglaufwinkel ist abhängig von dem verwendeten Reifen und der Normalkraft, welche auf diesen wirkt. Je höher jedoch der Schräglaufwinkel wird des so stärker wird das Fahrzeug abgebremst. In der Abbildung \ref{fig:Slip_Angle_1} ist der Unterschied von verschiedenen Reifen deutlich zu erkennen. Auch kann man erkennen, dass ab  einem gewissen Schräglaufwinkel die laterale Kraft, welcher der Reifen halten kann, wieder abnimmt. 
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.2]{./3_Stand_der_Technik/Abbildungen/Slip_Angle_1}
+			\caption{ Maximale Lateralkraft, von verschiedenen Reifen, in Abhängigkeit vom Schräglaufwinkel \cite{OliveiraSantos2014}}
+			\label{fig:Slip_Angle_1}
+		\end{figure}
+Nimmt nun die Normalkraft zu so steigt  auch die laterale Kraft an, welcher ein Reifen halten kann. Dies ist in Abbildung \ref{fig:Slip_Angle_2} zu erkennen.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.2]{./3_Stand_der_Technik/Abbildungen/Slip_Angle_2}
+			\caption{ Maximale Lateralkraft, bei unterschiedlicher Normalkraft, in Abhängigkeit vom Schräglaufwinkel \cite{OliveiraSantos2014}}
+			\label{fig:Slip_Angle_2}
+		\end{figure}
+		Die Nachteile dieses Konzeptes sind ein weniger stabiles Kurvenverhalten bei normal Belastung und ein erhöhter Reifenverschleiß. Insgesamt ist die Wahl zwischen Ackermann- und Anti-Ackermann-Lenkung abhängig von den Anforderungen des Fahrzeugs und dem gewünschten Fahrverhalten. Ackermann wird in den meisten Straßenfahrzeugen verwendet, während Anti-Ackermann für spezielle Anwendungen und Motorsportfahrzeuge relevant ist.\cite{raceanalysis2023} \cite{OliveiraSantos2014}
