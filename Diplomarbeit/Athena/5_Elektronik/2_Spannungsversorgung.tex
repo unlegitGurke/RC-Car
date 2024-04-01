@@ -1,0 +1,125 @@
+\fancyfoot[C]{Sandri}
+\section{Spannungsversorgung}
+
+	\subsection{Wahl der Akkus}
+		Bei der Wahl der Akkus sind einige Faktoren zu beachten:
+		
+		\begin{itemize}
+		
+			\item Die Entladerate des Akkus muss hoch genug sein, um den Motor ohne zu Überhitzen mit ausreichen Strom zu versorgen.
+			
+			\item Die Spannung der Zellen muss insgesamt der Versorgungsspannung vom Motor entsprechen.
+			
+			\item Das Gewicht der Batterien sollte nicht zu groß seinn
+			
+		\end{itemize}
+		
+		Aufgrund des sehr hohen Stromverbrauchs des gewählten Motors von bis zu 222A können ein Großteil der verfügbaren Batterie-Typen ausgeschlossen werden. Es bleiben nur einige Lithium-basierte Batterie-Typen über:
+		
+		\begin{itemize}
+		
+			\item \textbf{Li-Ion:} Hohe Energiedichte und hohe Entladerate, es besteht jedoch ein akutes Brandrisiko bei Beschädigung der Zellen
+			
+			\item \textbf{LiPo:} Hohe Energiedichte und höchste Entladerate, vorteilhafter Formfaktor (meist in Quader-artiger Form), es besteht auch beim LiPo akutes Brandrisiko bei Beschädigung des Akkus, preisgünstiger als Li-Ion
+			
+			\item \textbf{LiFePO4:} Relativ hohes Gewicht und nicht allzu hohe Entladerate 
+			
+		\end{itemize}
+		
+		Da im Projetkteam einige Mitglieder schon weitreichende Erfahrung mit der Verwendung von LiPo Akkus haben und ein vergleichbarer Li-Ion Akku ca. das 2-fache kosten würde, ist für Athena eine LiPo Akkukonfiguration die beste Wahl. LiFePO4 Akkus sind mit der benötigten ca. 4-mal so schwer wie das LiPo-System.
+		
+		Laut Datenblatt des Motors soll die Eingangsspannung bis zu 67,5V betragen. Dividiert man diese durch die Ladespannung einer LiPo-Zelle von 4,2V: $\frac{67,5V}{4,2V}=16,07$, ergibt sich eine Konfiguration von 16 Zellen seriell geschalten. Da das Gewicht des Akkus relativ grdoß ist sollter in mindestens zwei Teile auf beiden Seiten des Fahrzeugs angebracht werden.
+		Da 4s-Lipo Batterien etwas weitläufiger verfügbar sind als 8s-Lipo Batterien, werden 4 4s-LiPo verwendet. Das genaue Modell ist vom renomierten Hersteller Gens Ace ein 4s 6750mAh 70C Akku.
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.5]{./5_Elektronik/Abbildungen/Akku_1}
+			\caption{Gens Ace 4s LiPo 6750mAh 70C\cite{Aliexpress2023}}
+		\end{figure}
+		
+		Vier dieser Akkus in Serie geschalten Ergeben nun folgende Eckdaten:
+		
+		\begin{itemize}
+			
+			\item \textbf{Spannung:} Geladen: 67,2V; Nominal: 59,2V; Entladen: 57,6V
+			\item \textbf{Kapazität:} 6750mAH, 400Wh
+			\item \textbf{Entladerate:} Dauerhaft: 70C --> 472,5A Kurzzeitig (unter 10s): 140C --> 945A
+			
+		\end{itemize}
+		
+		Anhnand dieser Daten lasst sich erkennen, dass es nicht nötig ist mehrere dieser Akkus parllel zu schalten, da der Entladestrom bei weitem ausreichend ist.
+		Die Akkus werden mithilfe von einem externen Balance-Ladegeräte geladen und während der Nutzung mithilfe von einem "Lipo-Piepser" überwacht. Dieser gibt eine lautes Geräusch ab, sobald er eine nicht gleichmäßige Entladung einer Zelle erkennt.
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.2]{./5_Elektronik/Abbildungen/Akku_2}
+			\caption{LiPo-Piepser\cite{rchelistore.de2024}}
+		\end{figure}
+
+	\subsection{Spannungswandler}
+		Die Bordelektronik benötigt 12V und 5V es müssen dementsprechend Spannungswandler dimensioniert werden. Es werden dafür 2 Tiefsetzsteller(Buck-Converter) verwendet. Der erste wandelt die Versorgungsspannung vom Akku auf 12V, der zweite wandelt 12V auf 5V. Zur richtigen Dimensionierung muss eine Liste an Verbrauchern erstellt werden und der gesamte Stromverbrauch berechnet werden.
+		
+		\begin{table}
+		\centering
+		\begin{tabular}{|c|c|c|c|}
+		
+			\hline
+			\multicolumn{4}{|c|}{\textbf{Verbraucher}} \\
+			\hline
+			\hline
+			\textbf{Verbraucher} & \textbf{Stromverbrauch} & \textbf{5V} & \textbf{12V} \\
+			\hline
+			45 LEDs Rücklicht & $60mA * 45 = 2,7A$ & x & \\
+			\hline
+			34 LEDs Vorderlicht & $60mA * 34 = 2,04A$ & x & \\
+			\hline
+			8 Ultraschallsensoren & $0,2A * 8 = 1,6A$ & x & \\
+			\hline
+			Servomotor & 2A & x & \\
+			\hline
+			LattePanda & 2A & & x \\
+			\hline
+			5 Lüfter & $0,75A * 5 = 3,75A$ & & x \\
+			\hline
+		
+		\end{tabular}
+		\caption{Stromverbraucher}
+		\end{table}
+		
+		Daraus errechnen sich die benötigten Leistungen der Spannugnswandler:
+		
+		\subsubsection{5V Spannungswandler}
+			$2,7A + 2,04A + 1,6A + 2A = 8,34A \rightarrow 8,34A + Reserve \approx 10A $\newline
+			$10A * 5V = 50W$
+		
+		\subsubsection{12V Spannungswandler}
+			5V Spannungswandler: $\frac{50W}{12V} = 4,16A$ \newline
+			$4,16A + 2A + 3,75A = 9,91A \rightarrow 9,991A + Reserve \approx 15A$ \newline
+			$15A * 12V = 180W$
+		\\	
+		\\
+		Da es effizienter ist Spannungswandler nicht an ihren Grenzen zu verwenden, werden hier Spannungswandler mit einem erheblich höheren Maximal-Strom verwendet:
+		Ein weiterer Grund für die Überdimensionierung der Spannungswandler ist, dass zu Kauf der Wandler die genauen Verbraucher noch nicht zu vollständig klar waren.
+		\\
+		\\
+		Für den 12V --> 5V Wandler wurde ein variabler Spannungswandler von Angeek mit bis 300W Leistung und 20A Ausgangsstrom gewählt:
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.5]{./5_Elektronik/Abbildungen/Spannungswandler_1}
+			\caption{Variabler Tiefsetzsteller\cite{Angeek2024}}
+		\end{figure}
+		
+		Für den Versorgungsspannung --> 12V Wandler wurde ein 12V Spannungswandler von Seafront mit bis zu 240W und 20A Ausgangsstrom gewählt:
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.5]{./5_Elektronik/Abbildungen/Spannungswandler_2}
+			\caption{12V Tiefsetzsteller\cite{Seafront2024}}
+		\end{figure}
+		
+	\subsection{Leitungsdimensionierung}
+		Um einen sicheren Gebrauch aller Komponenten zu gewährleisten und Kabelbrände zu verhindern, ist es nötig alle Leitungen den möglichen Strömen entsprechend zu dimensionieren. Der meiste Strom geht zum Motorcontroller, welcher von Werk aus mit 8AWG($8,34mm^{2}$) Leitungen versehen ist. Aus diesem Grund werden von den Akkus bis zum Motorcontroller ausschließlich Leitungen von diesem Querschnitt verwendet. Wichtig dabei ist es Leitungen mit Silikonmantel zu verwenden, da diese Temperaturen von bis zu 200°C standhalten können ohne zu schmelzen. Es hat sich nach einigen Tests unter hoher Last herrausgestellt, dass diese Leitungen völlig ausreichen.
+		Zu den Spannungswandlern und zur Hauptplatine sind 14AWG($1,63mm^{2}$) Leitungen verlegt, diese sollten kurzzeitig sogar den maximal möglichen Strom von 20A zu den Spannungswandlern standhalten. Auch hier wurden Leitungen mit Silikonmantel verwendet um die Temperaturwiderstandsfähigkeit zu gewährleisten.
+		Alle restlichen Leitungen von der Hauptplatine zu diversen Sensoren sind 22AWG($,64mm^{2}$) Leitungen.
+	
