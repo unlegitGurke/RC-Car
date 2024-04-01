@@ -1,1 +1,49 @@
+\fancyfoot[C]{Sandri}
 \section{Hauptplatine(Athena Control Hub)}
+	Die Hauptplatine soll ein Shield(Aufsteckplatine) für den Boardcomputer sein. Auf dem Shield sollen alle Komponenten des Autos angeschlossen werden können. Die Platine besteht aus folgenden Komponenten:
+	
+		\begin{itemize}
+			
+			\item Stecker für Spannungswandler liefert 12V und 5V an die Platine
+			
+			\item ESP32 Mikrocontroller zum Einlesen und Senden aller Sensordaten an den Boardcomputer, weiters kontrolliert er die LED-Beleuchtung
+			
+			\item Stecker für 6 Temperaturtsensoren, welche im Auto verteilt sind
+			
+			\item Stecker für 4 12V PWM-Lüfter, welche vom ESP32 geregelt werden können
+			
+			\item Stecker für die OctoSonar-Platine, welche bis zu 16Ultraschallsensoren einlesen kann
+			
+			\item Stecker für beide IMUs(linearer Beschleunigungssensor, Gyroskop und Magnetometer)
+			
+			\item Stecker für den Einschalter
+			
+			\item Stecker für die Antisparkswitch
+			
+			\item Stecker um Versorgungsspannung zu messen
+			
+			\item Stecker für vordere und hinter LED-Beleuchtung
+			
+			\item Stecker die unbelegte Ausgänge von Optkopplern für zukünftige Erweiterung hinausführen
+			
+			\item RGB-Status LEDs die den aktuellen Status jeder Komponente darstellen können
+			
+			\item Sensor- und Kontrolllogikschaltungen
+			
+		\end{itemize}
+		
+		In der Mitte der Platine ist des weiteren ein Loch um dem Lüfter vom Boardcomputer ausreichend Kühlleistung zu gewährleisten.
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.3]{./5_Elektronik/Abbildungen/Platine_1}
+			\caption{Vorderseite des Shields}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.3]{./5_Elektronik/Abbildungen/Platine_2}
+			\caption{Rückseite des Shields}
+		\end{figure}
+		
+		Der Stromlaufplan des Shields ist der Arbeit angehängt.
