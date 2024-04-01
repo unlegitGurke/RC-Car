@@ -1,8 +1,8 @@
 \subsection{Gleichspannungswandler}
-	Das Ziel von Gleichspannungswandlern ist es möglichst verlustarm Gleichspannung entweder hochzuwandeln oder runterzuwandeln. Diese Spannungswandler werden in 3 Kategorien geteilt.
+	Das Ziel von Gleichspannungswandlern ist es möglichst verlustarm Gleichspannung entweder hoch- oder runterzuwandeln. Der Aufbau dieser Wandler ist wiefolgt:
 	
 	\subsubsection{Tiefsetzsteller(Buck-Converter)}
-		Der Tiefsetzsteller funktioniert mithilfe von einem Schalttransistor (meist ein MOSFET) welches mit einem bestimmten Duty-Cycle(Tastgrad) ein- und ausgeschalten wird. Wenn der Schalter geschlossen ist, steigt der Strom durch die Induktivität langsam an und es fließt kein Strom durch die Diode. Wenn der Schalter nun geöffnet wird, sinkt der Strom der durch die Diode fließt, linear ab und der Strom fließt nun durch
+		Der Tiefsetzsteller arbeitet mithilfe von einem Schalttransistor, (meist ein MOSFET) welcher mit einem bestimmten Duty-Cycle(Tastgrad) ein- und ausgeschalten wird. Wenn der Schalter geschlossen ist, steigt der Strom durch die Induktivität langsam an und es fließt kein Strom durch die Diode. Wenn der Schalter nun geöffnet wird, sinkt der Strom, der durch die Induktivität fließt, linear ab und fließt durch die Diode. Am Ausgang ist außerdem ein Glättungskondensator, um Spannungsspitzen auszugleichen. Wenn der Duty-Cycle des Schalttransistors geändert wird, ändert sich so die Ausgangsspannung.
 	
 	\begin{figure}[H]
 		\centering
@@ -11,5 +11,10 @@
 	\end{figure}
 	
 	\subsubsection{Hochsetzsteller(Boost-Converter)}
+	Der Hochsetzsteller basiert auch auf einen Schalttransistor, der mit einem bestimmten Tastgrad ein- und ausgeschalten wird. Wenn der Schalttransistor geschlossen ist, fällt die gesamte Eingangsspannung an der Diode ab, wird er nun geöffnet, sorgt die Induktivität dafür, dass sich der Stromfluss nicht ändert und die Spannung steigt an. Diese Überspannung lädt nun den Kondensator am Ausgang höher als die Eingangsspannung, danach widerholt sich der Vorgang.
 	
-	\subsubsection{Hoch- und Tiefsetzsteller(Buck- and Boost-Converter)}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.2]{./3_Stand_der_Technik/Abbildungen/Spannungswandler_2}
+		\caption{Schaltbild eines Hochsetzstelers\cite{Wikipedia2024b}}
+	\end{figure}
