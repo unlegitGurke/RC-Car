@@ -2,8 +2,7 @@
 	
 	Die nachfolgenden Bauteile wurden mithilfe des CAD-Programms Solid Edge konstruiert. Für ihre Herstellung kamen unterschiedliche Verfahren zum Einsatz, darunter 3D-Druck, CNC-Fertigung und Laserschneiden. Zur Erstellung der Prototypen wurde aus Kostengründen zunächst PLA als Druckmaterial gewählt. Später wurden einige Teile auf widerstandsfähigere Filamente umgestellt, um die Haltbarkeit zu erhöhen.
 
-\subsection{Grundplatte}
-
+	\subsection{Grundplatte}
 Die Grundplatte hat die wichtige Funktion, die Stabilität und Struktur des Autos sicherzustellen, während sie gleichzeitig als Befestigung für andere Komponenten dient. Dafür werden entsprechende Bohrungen und Ausschnitte an den passenden Stellen eingeplant. Die Abmessungen der Grundplatte betragen 750mm x 442mm x 5mm.\\
 \\
 Für den Prototypen wurde aus Kostengründen eine Holzplatte verwendet, die mithilfe eines Lasers gefertigt wurde. Im finalen Produkt wird jedoch eine Aluminiumplatte verwendet, um die Festigkeit zu erhöhen. Die Dicke wurde auf 4mm reduziert, da dies eine handelsübliche Größe ist und leicht verfügbar war. Zunächst wurde die Aluminiumplatte gefräst, aber aufgrund kleiner Fehler wurde eine überarbeitete Version benötigt. Diese wurde dann mit einem Laser geschnitten, da sich die große Platte beim Fräsen leicht verbog. Diese Probleme traten beim Laserschneiden nicht auf. In der Nachbearbeitung werden alle Kanten entgratet, Gewinde geschnitten und Löcher gesenkt, um eine saubere und präzise Oberfläche sicherzustellen.
@@ -14,7 +13,8 @@ Für den Prototypen wurde aus Kostengründen eine Holzplatte verwendet, die mithil
 			\caption{ Grundplatte aus Aluminium}
 		\end{figure}
 		
-\subsection{Getriebe / Differentialgehäuse}
+		
+	\subsection{Getriebe / Differentialgehäuse}
 Die Funktion des Getriebe- / Differentialgehäuses besteht darin, die Komponenten des Traxxas X-MAXX sicher zu verankern und als Montagepunkt für den Feder-Mount zu dienen. Im hinteren Gehäuse befinden sich das hintere und mittlere Differential. Im vorderen Gehäuse hingegen ist ausschließlich das Frontdifferential montiert. Beide Gehäusehälften verfügen über Durchgangsbohrungen und Gewinde, die es ermöglichen, die Gehäuse mit der Grundplatte zu verschrauben und gleichzeitig die Lager zu fixieren.\\
 \\
 Ursprünglich war Aluminium als Material für diese Teile vorgesehen, jedoch gestaltete sich die Fertigung aufgrund der Komplexität der Gehäuse als äußerst anspruchsvoll. Aus diesem Grund wurde stattdessen auf den 3D-Druck zurückgegriffen, wobei das verwendete Material PET-CF ist. Zur Gewindeerzeugung wurden metallene Gewindeeinsätze verwendet, da diese eine stabilere Verbindung bieten als gedruckte oder in Kunststoff geschnittene Gewinde. Diese Einsätze sind nicht nur belastbarer, sondern verschleißen auch weniger bei wiederholter Montage und Demontage.
@@ -22,16 +22,203 @@ Ursprünglich war Aluminium als Material für diese Teile vorgesehen, jedoch gesta
 		\begin{figure}[H]
 			\centering
 			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Getriebe_1}
-			\caption{hinteres}
+			\caption{hinteres unteres Getriebegehäuse}
 		\end{figure}
+
 
 \subsection{A-Arm-Mount / Querlenker-Mount}
 	Der A-Arm-Mount verbindet die Grundplatte mit den unteren Querlenkern und ist an der Vorder- und Hinterseite identisch. Er wird mit drei M5-Schrauben an der Grundplatte befestigt. Auf seiner Unterseite befinden sich Ausschnitte für M5-Muttern. Mit seinem 4mm-Spalt an beiden Seiten passt er perfekt auf die Grundplatte und garantiert somit, dass er sich bei starken Schlägen auf die Aufhängung nicht löst. Ein Loch mit einem Durchmesser von 4mm erstreckt sich über das gesamte Teil, an das der Querlenker mit einem Stift montiert wird. Der A-Arm-Mount besteht aus PET-CF.
 	
 		\begin{figure}[H]
 			\centering
-			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Getriebe_1}
-			\caption{ Grundplatte aus Aluminium}
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/A_Arm_Mount_1}
+			\caption{Querlenker-Mount}
+		\end{figure}
+		
+		
+	\subsection{unterer A-Arms / Querlenker}
+Die unteren Querlenker verbinden die Wheel Hubs mit den A-Arm-Mounts. Sie sind mit einer 4mm-Bohrung versehen, in die ein Stift eingeführt wird, um sie am unteren Ende der Dämpfer zu befestigen. Um sicherzustellen, dass dieser Stift nicht herausrutscht, wird er auf einer Seite mit einer M3-Schraube fixiert. Auf der anderen Seite ist das Loch auf 2,5mm verengt, um den Stift im Falle einer Demontage leicht lösen zu können. Der Bereich um diesen Stift herum ist verstärkt, um zu verhindern, dass die Federn bei anspruchsvollen Fahrmanövern aus dem Kunststoff herausbrechen. An beiden Enden der Querlenker befinden sich 4mm-Bohrungen, um sie mit dem A-Arm-Mount und dem Wheel Hub zu verbinden.\\
+\\
+Die Länge der Querlenker ist abhängig von der Länge der verwendeten Achsen, der Breite des Differentials und dem Design der Wheel Hubs. Die vorderen unteren Querlenker sind kürzer als die hinteren, da an der Vorderseite mehr Platz für die Lenkungskomponenten benötigt wird.\\
+\\
+Das verwendete Material ist PAHT-CF. Ein Vorteil von PAHT-CF gegenüber Aluminium ist, dass es sich bei starken Schlägen auf die Aufhängung verbiegt und dann in seine ursprüngliche Form zurückkehrt. Dies dient nicht nur dazu, bei einem Unfall Energie abzubauen, sondern gewährleistet auch, dass die Komponenten in der Regel funktionsfähig bleiben. Im Gegensatz dazu könnte Aluminium nach einem Aufprall dauerhaft verbogen sein.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Querlenker_1}
+			\caption{vorderer unterer rechter Querlenker}
+		\end{figure}
+	
+	
+	\subsection{oberer A-Arms / Querlenker}
+Die oberen Querlenker verbinden die Wheel Hubs mit den Montagelöchern am Feder-Mount. Sie müssen so geformt sein, dass die Dämpfer entweder an ihnen vorbeigehen oder durch sie hindurchgehen können. Bei der Konstruktion ist darauf zu achten, dass die Montagepunkte der oberen und unteren Querlenker auf der X-Achse identisch sind, um ein Parallelogramm zwischen den oberen und unteren Querlenkern zu bilden. Nur so bleibt der Reifensturz beim Einfedern gleich. An beiden Enden befinden sich 4mm-Bohrungen, um den Querlenker mit dem Feder-Mount und dem Wheel Hub zu verbinden. Das verwendete Material ist PAHT-CF.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Querlenker_2}
+			\caption{vorderer oberer rechter Querlenker}
+		\end{figure}
+		
+		\subsection{hinterer Feder-Mount}
+Der hintere Feder-Mount ist eines der komplexesten Teile des Fahrzeugs. Er wird mit der Grundplatte mittels zwei M5x14-Schrauben und mit dem Getriebegehäuse mittels vier M4x16-Schrauben verbunden, um sicherzustellen, dass er fest und spielfrei am Fahrzeug sitzt. An ihm sind nicht nur die Dämpfer mittels eines 4mm-Stifts montiert, sondern auch die hinteren Radkästen, die oberen hinteren Querlenker, die hintere Abdeckplatte und der Bodymount. Er dient in gewissem Maße auch als Radkasten.\\
+\\
+Für den Feder-Mount wurde PLA verwendet. Da dieser Teil bereits in seiner Größe sehr robust ist, wird kein strapazierfähigeres Material benötigt. Für jegliche Gewinde wurden metallene Gewindeeinsätze verwendet.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.4]{./4_Mechanik/Abbildungen/Federmount_1}
+			\caption{hinterer Feder-Mount}
+		\end{figure}
+	
+	\subsection{vorderer Feder-Mount}
+	Der vordere Feder-Mount sitzt auf dem vorderen Differentialgehäuse und ist mit diesem mittels vier M4x16-Schrauben verbunden. An ihm sind nicht nur die Dämpfer mittels eines 4mm-Stifts montiert, sondern auch die vorderen Radkästen, die oberen vorderen Querlenker und die beiden vorderen Abdeckplatten. Zusätzlich wird die Karosserie an ihm befestigt. Hierfür werden vier 10mm x 2mm große Magneten verwendet, was eine schnelle und einfache Demontage ermöglicht.\\
+\\
+Das verwendete Material ist PLA, da dieses bereits in seiner Größe sehr stabil ist und daher kein strapazierfähigeres Material benötigt wird. Für jegliche Gewinde wurden metallene Gewindeeinsätze benutzt.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.4]{./4_Mechanik/Abbildungen/Federmount_2}
+			\caption{vorderer Feder-Mount}
+		\end{figure}
+		
+		
+	\subsection{Abdeckplatte}
+	Die Abdeckplatten geben den Feder-Mounts mehr Stabilität und verhindern, dass sich die Stifte, die für die Montage der Aufhängung verwendet werden, lösen können. Beide Platten sind aus 3mm dickem Aluminium gefertigt worden. Es wird zwischen Abdeckplatte 1 und Abdeckplatte 2 unterschieden.\\
+\\
+Es gibt zwei Stück von Abdeckplatte 1, die am vorderen und hinteren Feder-Mount montiert werden. Diese Platten werden mit jeweils sechs M4x10-Schrauben an der Außenseite des Fahrzeugs befestigt und bieten einen Montagepunkt für die Stoßstange. In der oberen Hälfte jeder Platte befinden sich zwei Ausschnitte: einer dient als Kabeldurchführung, der andere ist für einen Stecker vorgesehen. Dieser Stecker dient als Schnittstelle und Spannungsversorgung für nachgerüstete Anbauten.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Abdeckplatte_1}
+			\caption{Abdeckplatte1}
+		\end{figure}
+Von Abdeckplatte 2 gibt es ein Stück, das mit vier M4x10-Schrauben am vorderen Feder-Mount befestigt wird. Abdeckplatte 2 ist kürzer als Abdeckplatte 1 und enthält keine Ausschnitte.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Abdeckplatte_2}
+			\caption{Abdeckplatte2}
+		\end{figure}
+
+
+	\subsection{hintere Wheelhubs}
+Ihre Aufgabe besteht darin, die Achse zu führen. In ihnen sind jeweils zwei Kugellager montiert, die als Radlager dienen. An zwei Stellen befinden sich 4mm-Bohrungen, an denen die Wheelhubs mit den unteren und oberen Querlenkern verbunden sind. Dabei ist darauf zu achten, dass der Abstand zwischen diesen Bohrungen demselben Abstand entspricht, der zwischen den Montagelöchern am A-Arm-Mount und dem hinteren Feder-Mount besteht. Wenn dies nicht der Fall ist, ändert sich der Reifensturz beim Einfedern. Um sicherzustellen, dass die Stifte, die zur Befestigung verwendet werden, nicht herausfallen, wird einer Seite mit einer M3-Schraube fixiert. Auf der anderen Seite ist das Loch auf 2,5mm verkleinert, um die Stifte im Falle einer Demontage leicht lösen zu können.\\
+\\
+Diese Teile sind aus PAHT-CF gefertigt, da dieses Material sehr bruchfest ist und eine hohe Stabilität bietet.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.4]{./4_Mechanik/Abbildungen/Wheelhub_1}
+			\caption{Abdeckplatte2}
+		\end{figure}
+		
+	\subsection{vordere Wheelhubs}
+Bei den vorderen Wheelhubs wird zwischen dem vorderen Wheelhub1 und dem vorderen Wheelhub2 unterschieden. Das Zusammenspiel dieser beiden ermöglicht das Lenken. Beide sind aus PAHT-CF gefertigt.\\
+\\
+Der vordere Wheelhub2 ähnelt in seiner Struktur einem Ring. Dieser Ring hat in der Mitte eine geringere Dicke, um einen größeren Lenkwinkel zu ermöglichen. Er ist mit dem oberen und unteren Querlenker verbunden. An der Ober- und Unterseite des Rings befinden sich Ausprägungen, in denen 4mm-Löcher vorhanden sind, durch die ein Stift geführt wird. Dabei ist darauf zu achten, dass der Abstand zwischen diesen Löchern demselben Abstand entspricht, der zwischen den Montagelöchern am A-Arm-Mount und dem hinteren Feder-Mount vorliegt. Ist dies nicht der Fall, verändert sich der Reifensturz beim Einfedern. Zusätzlich befinden sich an beiden Enden des Rings 5mm-Bohrungen. An diesen wird mit Hilfe eines weiteren Stifts der vordere Wheelhub1 montiert, der somit in einer Achse frei rotieren kann. Es ist wichtig, dass diese Stifte auf derselben X-Achse liegen wie die anderen, um beim Einfedern keine Vor- oder Nachspur zu haben.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Wheelhub_2}
+			\caption{rechter Wheelhub2}
+		\end{figure}
+Der vordere Wheelhub1 dient als Befestigung für die Radlager und bietet eine Aufnahme für das Lenkgestänge. Da er frei rotieren kann, ermöglicht dies das Lenken. Er besitzt an der Ober- und Unterseite jeweils eine 5mm-Bohrung, durch die derselbe Stift geführt wird, der auch durch den vorderen Wheelhub2 geht. Um sicherzustellen, dass dieser Stift sich nicht löst, wird er mit einer M3-Schraube fixiert, die mit dem Wheelhub1 verschraubt ist.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Wheelhub_3}
+			\caption{rechter vorderer Wheelhub1}
+		\end{figure}
+
+		
+	\subsection{zentrale Antriebswelle}
+		Die zentrale Antriebswelle überträgt die Kraft vom mittleren Differential zum vorderen. An beiden Seiten befindet sich ein Ausschnitt, der das Negativ des Differentialritzels darstellt. Sie besteht aus einer 13mm 	Alustange.\\
+\\
+Aufgrund des aufwendigen Fertigungsprozesses für die Ausschnitte wurde eine vorgefertigte Antriebswelle verwendet. Da eine solche nicht in der richtigen Länge verfügbar war, wurden lediglich die Enden mit den Ausschnitten übernommen und in der Mitte eine längere Stange eingebaut.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Driveshaft_1}
+			\caption{zentrale Antriebswelle}
 		\end{figure}
 
 	
+	\subsection{Motorhalterung}
+Die Aufgabe der Motorhalterung ist selbsterklärend: Der Motor wird mit zwei M4x15-Schrauben befestigt. Die Halterung verfügt über zwei Schlitze, entlang derer der Motor verschoben werden kann. Diese Funktion ist notwendig, da Athena die Möglichkeit bietet, verschiedene Größen von Ritzeln zu verwenden. Dadurch können die Endgeschwindigkeit, die Beschleunigung und das Drehmoment des Fahrzeugs verändert werden. Die Motorhalterung wurde aus Aluminium mit Hilfe einer CNC-Fräse gefertigt
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.6]{./4_Mechanik/Abbildungen/Motorhalterung_1}
+			\caption{Motorhalterung}
+		\end{figure}
+		
+		\subsection{Drehbolzen}
+		Er ist das Stützelement der gesamten Lenkung. Auf ihm werden zwei 9mm x 14mm x 3,5mm große Kugellager montiert, auf denen der Lenkwinkel oder die Servosaverhülse ruht. An der Ober- und Unterseite befinden sich M5x15 Gewinde. Da dieses Bauteil starken Schlägen und Stößen ausgesetzt ist, besteht es aus Aluminium. Es wird aus einer 12mm Stange gedreht.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.4]{./4_Mechanik/Abbildungen/Drehbolzen_1}
+			\caption{Drehbolzen}
+		\end{figure}
+
+
+		\subsection{Lenkwinkel}
+Der linke Lenkwinkel ist um den linken Drehbolzen mit zwei Kugellagern frei rotierbar gelagert. An diesem Teil werden der Lenkmittelarm, die linke Lenkstange und eine Stange, die diesen mit dem Servo verbindet, montiert. Der Lenkmittelarm wird mit einem 4x16mm Stift, für den ein vorgesehenes Loch vorhanden ist, befestigt. Die linke Lenkstange wird mit einer M3x20 Schraube fixiert. Das M3 Gewinde an der seitlichen Ausprägung ist für die Befestigung der Stange vorgesehen, die den Servo mit dem Lenkwinkel verbindet. Der rechte Lenkwinkel ähnelt dem linken, hat jedoch keine seitliche Ausprägung für den Servo. Beide Teile bestehen aus aus PET-CF.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.4]{./4_Mechanik/Abbildungen/Lenkwinkel_1}
+			\caption{ linker Lenkwinkel}
+		\end{figure}
+		
+		
+		\subsection{Lenkmittelarm}
+Seine Aufgabe ist es, den linken und rechten Lenkwinkel miteinander zu verbinden. Dies geschieht durch zwei 4mm-Löcher, die einen Abstand von 58mm zueinander haben, welcher auch dem Abstand der beiden Drehbolzen entspricht. Dieses Teil wird aus PET-CF gefertigt.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.4]{./4_Mechanik/Abbildungen/Mittelarm_1}
+			\caption{Lenkmittelarm}
+		\end{figure}
+
+		\subsection{Servo-Mount}
+Er befestigt den Servo an der Grundplatte. Der Servo wird in einen 41,4 x 20,2mm großen Ausschnitt eingefügt. An der Vorderseite des Servo-Mounts befinden sich vier Löcher für M3-Gewindeeinsätze, die für die Befestigung des Servos verwendet werden. Auf der Unterseite befinden sich zwei weitere Gewindeeinsätze derselben Größe, mit denen die gesamte Konstruktion an der Grundplatte befestigt wird. Das verwendete Material ist PET-CF.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.4]{./4_Mechanik/Abbildungen/Servomount_1}
+			\caption{Servo-Mount}
+		\end{figure}
+
+		\subsection{Chassi-Brace}
+		Das Chassi-Brace dient als Verstärkung der Grundplatte und verhindert, dass diese sich bei starker Belastung des Fahrzeugs verbiegen kann. Es handelt sich um eine Verstrebung zwischen den vorderen und hinteren Feder-Mounts, die an beiden Enden mit diesen verschraubt ist. Zusätzlich dient es als Montagepunkt für Elektronik und Sensorik. Das Chassi-Brace besteht aus einer 3mm Aluminiumplatte, die zunächst gefräst und dann gebogen wird.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.4]{./4_Mechanik/Abbildungen/Chassibrace_1}
+			\caption{Chassi-Brace}
+		\end{figure}
+		
+		\subsection{PCB-Mount \& Sensorcase}
+		Der PCB-Mount dient als Befestigung für die acht Ultraschallsensorplatinen. Diese werden mit M2x10 Standoffs montiert, die in M2-Gewindeeinsätze geschraubt werden. Die Elektronik wird durch das Sensorcase geschützt, welches über diese gestülpt wird. Der PCB-Mount ist auf der vorderen Hälfte des Chassi-Brace montiert. Für eine einfache Kabelführung befinden sich an der Unterseite zwei Ausschnitte. Beide Teile bestehen aus PLA.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.4]{./4_Mechanik/Abbildungen/PCBmount_1}
+			\caption{PCB-Mount \& Sensorcase}
+		\end{figure}
+	
+		\subsection{Driveshaft-Abdeckung1\&2}
+		Die Driveshaft-Abdeckung sorgt dafür, dass nichts mit der drehenden zentralen Antriebswelle in Kontakt kommt. Es wird zwischen der Driveshaft-Abdeckung1 und der Driveshaft-Abdeckung2 unterschieden. Beide verfügen jeweils über vier M3-Gewindeeinsätze auf der Unterseite, über die sie mit der Grundplatte verschraubt werden. Die Driveshaft-Abdeckung2 ist breiter, da sich darin der Clutch-Mount befindet. Außerdem verfügt diese Abdeckung auf einer Seite über einen Ausschnitt für die Lenkung.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.4]{./4_Mechanik/Abbildungen/DriveshaftAB_1}
+			\caption{vordere Driveshaftabdeckung (Drivshaftabdeckung2)}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.4]{./4_Mechanik/Abbildungen/DriveshaftAB_2}
+			\caption{hintere Driveshaftabdeckung (Drivshaftabdeckung1)}
+		\end{figure}
+
+		\subsection{Clutch-Mount}
+		Der Clutch-Mount ist ein Überbleibsel aus einer verworfenen Idee. Früher sollte er als Gehäuse für eine Kupplung dienen, die den Wechsel zwischen Hinterrad- und Allradantrieb ermöglichen sollte. Diese Idee wurde jedoch verworfen. Nun dient er als Befestigung für zwei 21mm x 12mm x 5mm Kugellager, welche die zentrale Antriebswelle führen. Der Clutch-Mount ist mit vier M5x16 Schrauben an der Grundplatte befestigt. Die obere Hälfte wird mit sechs M3x16 Linsenkopfschrauben gehalten. Das verwendete Material ist ASA.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.4]{./4_Mechanik/Abbildungen/Clutchmount_1}
+			\caption{unterer Clutch-Mount}
+		\end{figure}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=1.4]{./4_Mechanik/Abbildungen/Clutchmount_2}
+			\caption{oberer Clutch-Mount}
+		\end{figure}
+		
+		
+		
+		
