@@ -9,7 +9,7 @@
 			\caption{TP5860 Motor Konfigurationen\cite{TPPOWERUSA2024}}
 		\end{figure}
 		
-		Die Motorkonfigurationen 8D und 4Y bilden ein gutes Gleichgewicht zwischen benötiger Spannung und benötigtem Strom, auch ist die Spannung perfekt durhc eine 16S-LiPo Konfiguration erreichbar.
+		Die Motorkonfigurationen 8D und 4Y bilden ein gutes Gleichgewicht zwischen benötiger Spannung und benötigtem Strom, auch ist die Spannung perfekt durch eine 16S-LiPo Konfiguration erreichbar. Gewählt wurde im Endeffekt Konfiguration 8D
 		
 		\subsection{Wahl des Motorcontrollers}
 			Motorcontroller (auch ESCs genannt) sind in alles Größen, Formen und mit beliebigen Funktionen verfügbar. Ein im Modellbau sehr bekanntes Open-Source-Projekt ist das VESC-Projekt\cite{Vedder2022}. VESCs überzeugen durch ihre gut durchdachte Software und vielzählige Funktionen. Auch ist das gesamte Projekt Open-Source und kann so beliebig bearbeitet werden. Es bietet außerdem eine Vielzahl an Schnitstellen zum Ansteuern, wie zum Beispiel UART, I2C, PWM, USB, etc. Der Hersteller FLIPSKY bietet das Model FSESC75200 Pro\cite{FLIPSKY2024} an, welches mit einer maximalen ERPM($Drehzahl * Polpaare$) von 150000, einem maximalen Strom von 300A und einer Spannung von bis 84V perfekt für den gewählten Motor geeignet ist. Es ist außerdem sehr kostengünstig.
@@ -29,7 +29,7 @@
 				
 					\begin{figure}[H]
 						\centering
-						\includegraphics[scale=0.5]{./5_Elektronik/Abbildungen/VESC_16}
+						\includegraphics[scale=0.6]{./5_Elektronik/Abbildungen/VESC_16}
 						\caption{VESC AutoConnect\cite{Vedder2022}}
 					\end{figure}
 			
@@ -37,7 +37,7 @@
 				
 					\begin{figure}[H]
 						\centering
-						\includegraphics[scale=0.7]{./5_Elektronik/Abbildungen/VESC_2}
+						\includegraphics[scale=0.8]{./5_Elektronik/Abbildungen/VESC_2}
 						\caption{VESC Steuerungstyp\cite{Vedder2022}}
 					\end{figure}
 					
@@ -45,11 +45,11 @@
 					
 					\begin{figure}[H]
 						\centering
-						\includegraphics[scale=0.6]{./5_Elektronik/Abbildungen/VESC_3}
+						\includegraphics[scale=0.65]{./5_Elektronik/Abbildungen/VESC_3}
 						\caption{VESC Sensor\cite{Vedder2022}}
 					\end{figure}
 					
-				\item Unter dem Reiter \textbf{Current} können die Strombegrenzungen des Motors und der Batterie eingestellt werden. 	Das wichtigste ist das \textit{Absolute maximum Current} Limit, welches auf 222A gemäß dem Datenblatt vom Motor eingstellt werden sollte. \textit{Motor Current Max} und \textit{Motor Current Max Brake} werden auf 200A gesetzt, dieser Wert muss etwas unter dem absoluten Limit liegen. Das 
+				\item Unter dem Reiter \textbf{Current} können die Strombegrenzungen des Motors und der Batterie eingestellt werden. 	Das wichtigste ist das \textit{Absolute maximum Current} Limit, welches auf 222A gemäß dem Datenblatt vom Motor eingstellt werden sollte. \textit{Motor Current Max} und \textit{Motor Current Max Brake} werden auf 200A gesetzt, dieser Wert muss etwas unter dem absoluten Limit liegen. Das \textit{Battery Current Max} Limit ist essenziell redundant, da der Strom in den Motor schon begrenzt ist, es wird also auf einen Wert etwas höher als das \textit{Motor Current Max} gesetzt um Verluste im Motorcontroller mit einzurechnen. Das \textit{Battery Current Max Regen} ist anhand der maximalen Laderate der Akkus zu wählen welche im Datenblatt mit 2-5C gegeben ist. Es wird ein Wert von 20A gewählt.
 				
 					\begin{figure}[H]
 						\centering
@@ -57,5 +57,66 @@
 						\caption{VESC Current\cite{Vedder2022}}
 					\end{figure}
 				
+				\item Unter dem Reiter \textbf{Voltage} Kann die Spannung eingestellt werden, ab der das ESC sich auschaltet um den Akku zu schützen. Damit dies nicht abrupt auftritt gibt es einen \textit{Battery Voltage Cutoff Start} und einen \textit{Battery Voltage Cutoff End}. LiPo-Zellen sollten nicht niedriger als 3,5 - 3,6V entladen werden, diese Werte müssen mit 16 für die Anzahl der zellen multipliziert werden, daraus folgt für \textit{Battery Voltage Cutoff Start} 57,6V und für den \textit{Battery Voltage Cutoff End} 56V. Das ESC reduziert ab dem Cutoff Start den Strom zum Motor uns schaltet beim Cutoff End komplett aus.
 				
+					\begin{figure}[H]
+						\centering
+						\includegraphics[scale=0.6]{./5_Elektronik/Abbildungen/VESC_5}
+						\caption{VESC Voltage\cite{Vedder2022}}
+					\end{figure}
+					
+				\item	Unter dem Reiter \textbf{RPM} kann die Maximaldrehzahl des Motors in beide Richtungen eingestellt werden. Anzugeben sind ERPM Limits in beide Richtungen. $ERPM = Drehzahl * Polpaare$ Der Motor hat 3 Polpaare und eine Maximaldrehzahl, somit werden in beide Richtungen 150000 eingestellt.
+				
+					\begin{figure}[H]
+						\centering
+						\includegraphics[scale=0.6]{./5_Elektronik/Abbildungen/VESC_6}
+						\caption{VESC RPM\cite{Vedder2022}}
+					\end{figure}
+					
+				\item Unter dem Reiter \textbf{Wattage} kann die Maximalleistung des Motors in beide Richtungen eingestellt werden, sie ist laut Datenblatt 15000Watt.
+				
+					\begin{figure}[H]
+						\centering
+						\includegraphics[scale=0.8]{./5_Elektronik/Abbildungen/VESC_7}
+						\caption{VESC Wattage\cite{Vedder2022}}
+					\end{figure}
+				
+				\item Unter dem Reiter \textbf{Temperature} kann der Temperatursensor des Motors konfiguriert werden. Der Motor hat einen 10kOhm NTC verbaut, dieser wird ausgewählt, der Rest der Einstellungen können so bleiben, wie sie sind.
+				
+					\begin{figure}[H]
+						\centering
+						\includegraphics[scale=0.55]{./5_Elektronik/Abbildungen/VESC_8}
+						\caption{VESC Temperature\cite{Vedder2022}}
+					\end{figure}
+					
+				\item Unter dem Reiter \textbf{Advanced} können die minimale  und maximale Spannung des ESCs eingstellt werden. Weiters der minimale und maximale Duty-Cycle des Motors. Der minimale Duty-Cycle wurde durch ermittelt, indem getestet wurde ab welchem Duty-Cycle sich der Motor zu drehen beginnt, was ab 2\% der Fall war.
+					
+					\begin{figure}[H]
+						\centering
+						\includegraphics[scale=0.6]{./5_Elektronik/Abbildungen/VESC_9}
+						\caption{VESC Temperature\cite{Vedder2022}}
+					\end{figure}
+					
+				\item Nun ist das generelle Setup des Motors abgeschlossen, es kann nun links auf den Reiter \textbf{FOC} gewechselt werden. Im ersten Reiter \textbf{General} wird der Motor vermessen. Bevor dies gemacht werden kann, müssen jedoch zuerst unter dem Reiter \textbf{Filter} \textit{Enable Phase Filters} auf false gestellt werden, da diese laut Datenblatt im ESC nicht verbaut sind und das aktivieren zu Schaden führen kann. Nun kann im Reiter \textbf{General} der Motor vermessen werden.	Als Erstes muss der Strom so eingestellt werden, dass sich der Motor losdrehen kann, in diesem Fall zum Beispiel 100A. Als nächstes kann mit dem RL-Knopf der Innenwiderstand und die Induktivität des Motors gemessen werden. Im nächsten Schritt der magnetische Fluss im Motor. Dieser Werte können dann einfach angewandt werden. Nun kann sich der Motor mithilfe vom ESC drehen.
+				
+					\begin{figure}[H]
+						\centering
+						\includegraphics[scale=0.65]{./5_Elektronik/Abbildungen/VESC_12}
+						\caption{VESC FOC Filters\cite{Vedder2022}}
+					\end{figure}
+					
+					\begin{figure}[H]
+						\centering
+						\includegraphics[scale=0.35]{./5_Elektronik/Abbildungen/VESC_10}
+						\caption{VESC FOC Vermessung des Motors\cite{Vedder2022}}
+					\end{figure}
+					
+				\item Als letzten Schritt werden unter dem Reiter \textbf{Hall-Sensors} noch die Hall-Sensoren vermessen. Dafür einen Strom bei dem der Motor problemlos starten kann einstellen, zum Beispiel 100A, und dann vermessen drücken. Wenn die Messung erfolgreich ist, können die Werte einfach angewandt werden.
+				
+					\begin{figure}[H]
+						\centering
+						\includegraphics[scale=0.35]{./5_Elektronik/Abbildungen/VESC_11}
+						\caption{VESC FOC Vermessung des Hall-Sensors\cite{Vedder2022}}
+					\end{figure}
+			
 			\end{enumerate}
