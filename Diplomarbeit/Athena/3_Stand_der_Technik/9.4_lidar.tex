@@ -1,28 +1,29 @@
-\section{LiDAR Sensoren}
+\subsection{LiDAR Sensoren}
 LiDAR-Sensoren sind ein essenzielles Instrument in der modernen Sensorik, welche ermöglichen, präzise Messungen der Umgebungen zu erstellen. 
 Die einfachsten Sensoren bestehen aus einem Time-of-Flight (TOF) Distanzmesser, welches einen Lichtpuls sendet und die Zeit misst, die es für die Rückkehr benötigt. 
 Die LiDAR Sensoren werden grundsätzlich in 3 Kategorien aufgeteilt:
 
-\subsection{1D-LiDAR}
+\textbf{1D-LiDAR}
 In seiner grundlegendsten Form besteht der LiDAR-Sensor aus einem Distanzmesser, der seine Reichweite in einer einzigen Dimension misst. 
 Dieser Ansatz ermöglicht eine schnelle Erfassung von Entfernungen entlang einer Linie, was als 1D-LiDAR bekannt ist. 
 Die Genauigkeit dieser Messungen hängt von verschiedenen Faktoren ab, wie der Leistung des Laserimpulses, der Empfindlichkeit des Photosensors und der Rotationsgeschwindigkeit der Basis. 
 Diese Geräte sind im Handwerk verbreitet und haben bei geringen Kosten eine hohe Genauigkeit.
 
-\subsection{2D-LiDAR}
+\textbf{2D-LiDAR}
 Durch die kontinuierliche Rotation des Distanzmessers um eine Achse wird der 1D-LiDAR zu einem 2D-LiDAR erweitert. 
 Diese Erweiterung ermöglicht eine Erfassung von Entfernungen entlang einer Linie und gleichzeitig um die eigene Achse herum. 
 Dadurch entsteht eine 2D-Karte der Umgebung, die eine detailliertere Darstellung ermöglicht. 
 Diese Geräte sind mechanisch komplex, da der Sensor im Idealen Fall bei exakt gleich bleibender Geschwindigkeit genau horizontal gedreht werden muss. 
 Diese Sensoren sind bei autonomen Geräten im Indoor-Bereich verbreitet, wie zum Beispiel ein Saug-Roboter oder ein autonomes Lieferfahrzeug in einer Lagerhalle.
+
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=1.0]{./3_Stand_der_Technik/Abbildungen/symbolfoto_lidar_C_YDLIDAR.png}
-    \caption{Symbolfoto 2D LiDAR Sensor, YDLiDAR G2 \cite{quellenangabe}}
+    \includegraphics[scale=0.55]{./3_Stand_der_Technik/Abbildungen/symbolfoto_lidar_C_YDLIDAR.png}
+    \caption{Symbolfoto 2D LiDAR Sensor, YDLiDAR G2 \cite{YDLiDAR2024}}
 \end{figure}
 
-\subsection{3D-LiDAR}
+\textbf{3D-LiDAR}
 Ein weiterer Fortschritt in der LiDAR-Technologie ist der 3D-LiDAR, der nicht nur um eine Achse rotiert, sondern auch in der Höhe verstellbar ist. Durch diese zusätzliche Dimension werden bestimmte Höhen nacheinander abgetastet, wodurch eine vollständige dreidimensionale Punktwolke der Umgebung erstellt wird. Diese Geräte haben entweder mehrere gestapelte Sensoren um eine Art Punktwolke zu erstellen oder modifizieren die Höhe des Lasers von einer einzelnen Quelle. Die Genauigkeit und Auflösung dieser Punktwolke hängt von der Art des Sensors sowie die Präzision und der Rotationsmechanik ab.
 
-\subsubsection{Anwendung und Bedeutung}
+\textbf{Anwendung und Bedeutung}
 LiDAR-Sensoren finden in verschiedenen Anwendungen Anwendung, darunter Gelände- und Gebäudevermessung sowie Unterstützung autonomer Fahrzeuge. Die Möglichkeit, präzise Entfernungen zu messen und detaillierte 3D-Karten zu erstellen, macht sie unverzichtbar für Projekte, die eine genaue Umgebungswahrnehmung erfordern. Die Erfassung der Intensität des reflektierten Lichts ermöglicht zudem eine detaillierte Oberflächencharakterisierung, was in vielen Anwendungen von großem Nutzen ist.
