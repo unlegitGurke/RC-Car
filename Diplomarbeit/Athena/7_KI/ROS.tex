@@ -22,25 +22,25 @@ Beim start ist folgende reihenfolge zu beachten.
 
 \lstset{style=Konsole}
 \begin{lstlisting}[language=bash, caption={Konsole 1:}, 
-label={code:example}]
+label={code:konsole_1}]
 cd catkin_ws
 source install_isolated/setup.bash #Sollte eigentlich im bash script automatisch gemacht werden
 roscore #Startet den ROS dienst, dieser ist unter anderem für den Nachrichtenaustausch verantwortlich
 \end{lstlisting}
 \begin{lstlisting}[language=bash, caption={Konsole 2:}, 
-label={code:example}]
+label={code:konsole_2}]
 cd Documents\GitHub\Athena-LattePanda-Code\python #Startet den IMU publisher
 python3 publisher.py
 \end{lstlisting}
 \begin{lstlisting}[language=bash, caption={Konsole 3:}, 
-label={code:example}]
+label={code:konsole_3}]
 cd catkin_ws
 source install_isolated/setup.bash #Sollte eigentlich im bash script automatisch gemacht werden
 roscore														#Startet den ROS dienst, dieser ist unter anderem für den Nachrichtenaustausch verantwortlich
 roslaunch cartographer_ros athena.launch	#Startet den Cartographer dienst
 \end{lstlisting}
 \begin{lstlisting}[language=bash, caption={Konsole 4:}, 
-label={code:example}]
+label={code:konsole_4}]
 rosrun rviz rviz	#Startet rviz zur visualisierung des Systems und der Karte
 \end{lstlisting}
 

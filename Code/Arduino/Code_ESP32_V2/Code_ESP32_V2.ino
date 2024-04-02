@@ -532,9 +532,9 @@ void Task2setup( void * pvParameters ) {
   FastLED.addLeds<WS2812B, LED_PIN_BACK, GRB>(ledsback, NUM_LEDS_BACK);  //Initlialize Back LEDStrip
   FastLED.addLeds<WS2812B, LED_PIN_FRONT, GRB>(ledsfront, NUM_LEDS_FRONT);  //Initialize Front LEDStrip  
     
-  pinMode(LED_PIN_BACK, OUTPUT);              
+  pinMode(LED_PIN_BACK, OUTPUT);              //Declare Pins Input/Output DEBUG Only
   pinMode(LED_PIN_FRONT, OUTPUT);
-  pinMode(ButtonPins[0], INPUT);      //Declare Pins Input DEBUG Only
+  pinMode(ButtonPins[0], INPUT);
   pinMode(ButtonPins[1], INPUT);
   pinMode(ButtonPins[2], INPUT);
   pinMode(ButtonPins[3], INPUT);
