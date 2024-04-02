@@ -1,0 +1,152 @@
+\subsection{Kern 0 / Sensoren und Kommunikation}
+	Die Hauptaufgabe von Kern 0 ist es, mit dem Bordcomputer zu kommuniziern, alle Sensordaten auszulesen, und Komponenten, wie zum Beispiel Lüfter, zu steuern.
+	Die Seriellen Schnittstellen vom ESP32 und dem Bordcomputer sind mithilfe des Shields verbunden, um eine flüssige Kommunikation zu gewährleisten, ist ein Protokoll nötig:
+	
+	\subsubsection{Aufbau von Paketen zwischen ESP32 und Bordcomputer}
+		Der grundsätzliche Aufbau eines Paktes zwischen ESP32 und Bordcomputer ist immer gleich, er besteht aus folgenden Teilen
+			
+			\begin{enumerate}
+			
+				\item Datentyp: LED, Temp, Volt, IMU1, IMU2, Sonar, FAN, Error //Alle möglichen Daten, die zwischen ESP und Bordcomputer gesendet werden können. 
+				
+				\item Anzahl der Datenwerte
+				
+				\item Access, Read / Write / Both  //Sollen die Daten nur eingelesen werden, wird nur eine Antwort erwartet oder wird beides erwartet?
+				
+				\item Daten, je nach Anzahl der Datenwerte können hier beliebig viele Werte hintereinander geschrieben werden
+				
+				\item Error, wird ein Fehler gemeldet?
+			
+			\end{enumerate}
+			
+			Jedes Datenpaket beginnt mit einem Marker und endet mit einem Marker, in diesem Fall wurde als StartMarker "x" verwendet und als EndMarker "y". Die Daten sind in dazwischen in genannter Reihenfolge mit Beistrichen getrennt.
+			Die Größe der verschiedenen Datenpaktet ist wiefolgt:
+			
+			\begin{table}[H]
+				\centering
+				\caption{Datenpakete}
+				
+				\begin{tabular}{|c|c|c|c|c|c|}
+					
+					\hline
+					\multicolumn{6}{|c|}{\textbf{Datenpakete}}\\
+					\hline
+					\hline
+					\textbf{Name} & \textbf{Datentyp} & \textbf{Anzahl der Variablen} & \textbf{Access} & \textbf{Daten} & \textbf{Error} \\
+					\hline
+					IMU1 & 1 & 6 & 1 & - & 0 \\
+					\hline
+					IMU2 & 2 & 3 & 1 & - & 0 \\
+					\hline
+					OctoSonar & 3 & 16 & 1 & - & 0 \\
+					\hline
+					Spannungssensoren & 4 & 5 & 1 & - & 0 \\
+					\hline
+					Temperatursensoren & 5 & 6 & 1 & - & 0 \\
+					\hline
+					Lüfter & 6 & 4 & 2 & - & 0 \\
+					\hline
+					LEDs & 7 & 4 & 2 & - & 0 \\
+					\hline
+					IsOK & 0 & 0 & 2 & - & 0 \\
+					\hline
+					
+				\end{tabular}
+			\end{table}
+			
+			Access = 0 bedeutet, dass Daten nur vom ESP gelesen werden und es keine Antwort gibt.\\
+			Access = 1 bedeutet, dass Daten an den Bordcomputer vom ESP geschickt werden sollen.\\
+			Access = 2 bedeutet, dass Daten vom ESP eingelesen werden sollen und dass eine Antwort geschickt werden soll.\\
+			\\
+			Error = 0 bedeutet, das kein Fehler vorhanden ist.\\
+			Error = 1 bedeutet, dass eine Warnung vorhanden ist.\\
+			Error = 2 bedeutet, dass ein fataler Fehler vorhanden ist.\\
+			
+		\subsubsection{Einlesen der Pakete am ESP32}
+			Für die Kommunikation zwischen ESP32 und Bordcomputer ist eine eigene Bibliothek verantwortlich, so muss im Hauptprogramm nur eine Objekt "Computer" erstellt werden, um Daten einzulesen beziehungsweise zu empfangen.
+			Die erste Funktion der Bilbiothek ließt die Daten ein und speichert sie in einem Buffer:
+			
+			\lstset{style=VS2017}
+			\begin{lstlisting}[language=C, caption={Einlesen eines Pakets}]
+bool LattePandacomms::refresh(char startMarker, char endMarker) {
+  
+  _inProgress = false;
+  
+  while (Serial.available() > 0) {    //Checks for Serial Data
+    
+    byte x = Serial.read();   //Reads Serial Data
+    
+    if (x == startMarker && _inProgress == false) {    //IF the first Byte = startMarker, start to recieve Data
+       
+      _bytesRecvd = 0;      //Zero bytes have been recieved so far
+      _inProgress = true;   //New Message has started
+      
+      for(int i = 0; i < sizeof(BufferIn); i++) {   //Clear BufferIn Array to make space for new message
+        BufferIn[i] = '\0';
+      }
+      
+    }
+    
+    if (_inProgress ) {   //Has the message started?
+          
+      if (_bytesRecvd<_maxMessage) {    //Does the current length exceed the max Message limit
+        
+        BufferIn[_bytesRecvd++] = x;  //Save current Byte to Buffer
+        
+      }
+      
+      if (x == endMarker) {     //End of message 
+        
+        _inProgress = false;    //Reset inprogress variable
+        //allReceived = true;
+        _nb = _bytesRecvd;
+        return 1;
+        
+      }
+      
+    }
+
+    
+  }
+  
+  //Serial.println(BufferIn);   //DEBUG
+  return 0;
+  
+}			
+			\end{lstlisting}
+			
+			Diese Funktion wartet auf den StartMarker und speichert anschließend bis zum Erscheinen des EndMarkers jede Ziffer in ein Buffer-Array, welches danach weiterverarbeitet werden kann.
+			
+			\subsubsection{Dekodieren der Pakete am ESP32}
+					Um das sich im Buffer befindliche Paket nun zu dekodieren sind zwei zusätzliche Funktionen nötig:\\
+					Die Erste Funktion entfernt den Start-und Endmarker, da diese nicht dekodiert werden müssen.\\
+					Mithilfe von der zweiten Funktion ist möglich den ersten Wert aus einem Char-Array zu löschen. So kann nun immer der erste Wert eingelesen werden und dann gelöscht werden. Dies wird so oft widerholt, bis die gewünschte Anzahl an Variablen(durch Anzahl der Variablen im Paket gegeben) eingelesen ist.\\
+					Diese eingelesen Variablen werden in Komponenten, die durch ein struct definiert sind, im public Teil der Class abgespeichert, so ist es möglich vom Hauptcode auf diese zuzugreifen:
+					
+					\lstset{style=VS2017}
+					\begin{lstlisting}[language=C, caption={Datenspeicherort und Struktur}]
+struct Component {    //Struktur des Datenspeicherorts
+  uint8_t Type;
+  uint8_t nVal;
+  uint8_t Access;
+  uint8_t Data[maxnDataVar];
+  uint8_t Error;
+};
+
+class LattePandacomms {
+public:
+  
+  LattePandacomms();
+
+  Component IsOk;
+  Component IMU1;
+  Component IMU2;
+  Component Octosonar;
+  Component Voltage;
+  Component Temp;
+  Component Fan;
+  Component LED;
+}						
+					\end{lstlisting}
+					
+			\subsubsection{}		

@@ -39,13 +39,13 @@ bool LattePandacomms::refresh(char startMarker, char endMarker) {
           
       if (_bytesRecvd<_maxMessage) {    //Does the current length exceed the max Message limit
         
-        BufferIn[_bytesRecvd++] = x;
+        BufferIn[_bytesRecvd++] = x;  //Save current Byte to Buffer
         
       }
       
-      if (x == endMarker) { 
+      if (x == endMarker) {     //End of message 
         
-        _inProgress = false;
+        _inProgress = false;    //Reset inprogress variable
         //allReceived = true;
         _nb = _bytesRecvd;
         return 1;

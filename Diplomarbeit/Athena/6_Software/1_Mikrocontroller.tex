@@ -1,1 +1,37 @@
-\section{Auslesen der Sensordaten  / Mikrocontroller}
+\fancyfoot[C]{Sandri}
+\section{Programmierung des ESP32-Mikrocontrollers}
+	Die Aufgaben des ESP32 bestehen aus dem Auslesen aller Sensordaten, dem Steuern der Beleuchtung und der Kommunikation mit dem Bordcomputer. Da der ESP32 2 Kerne besitzt wird der Code zwischen diesen aufgeteilt, das Einlesen aller Sensoren und die Kommunikation läuft auf Kern 0, das Programm für die Beleuchtung auf Kern 1. Um den beiden Kernen getrennt Aufgaben zuordnen zu können, müssen im void Setup() 2 Tasks, welche an einen bestimmten Kern gebunden sind, erstellt werden.
+	
+	\lstset{style=VS2017}
+	\begin{lstlisting}[language=C, caption={ESP32 2 Kerne Setup}]
+void setup() {
+
+	Serial.begin(115200);
+
+	xTaskCreatePinnedToCore(
+				Task1setup,   /* Task function. */
+				"Task1",     /* name of task. */
+				10000,       /* Stack size of task */
+				NULL,        /* parameter of the task */
+				1,           /* priority of the task */
+				&Task1,      /* Task handle to keep track of created task */
+				0);          /* pin task to core 0 */                  
+	delay(500); 
+
+	xTaskCreatePinnedToCore(
+				Task2setup,   /* Task function. */
+				"Task2",     /* name of task. */
+				10000,       /* Stack size of task */
+				NULL,        /* parameter of the task */
+				1,           /* priority of the task */
+				&Task2,      /* Task handle to keep track of created task */
+				1);          /* pin task to core 1 */
+	delay(500);
+
+}
+	\end{lstlisting}
+	
+
+	\input{./6_Software/1.1_Sensoren}
+	
+	\input{./6_Software/1.2_Beleuchtung}
