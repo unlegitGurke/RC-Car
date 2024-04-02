@@ -1,1 +1,1300 @@
-\section{Programmcode}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstset{
+   backgroundcolor=\color{white},
+	 commentstyle=\color{blue},
+ 	 keywordstyle=\color{magenta},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+\begin{lstlisting} [language=HTML,caption={HTML-Code Landing Page}]
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> <!-- Deklaration der Zeichenkodierung --> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport-Einstellungen für responsive Darstellung auf verschiedenen Geräten --> 
+    <title>ATHENA</title> <!-- Titel der Webseite --> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Einbindung von Font Awesome für Symbole --> 
+    <link rel="stylesheet" href="style.css"> <!-- Einbindung von externem CSS-Stylesheet --> 
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&display=swap" rel="stylesheet"> <!-- Einbindung von Google Fonts --> 
+    <link href="https://fonts.googleapis.com/css2?family=Ethnocentric&display=swap" rel="stylesheet"> <!-- Einbindung von Google Fonts --> 
+</head> 
+<body> 
+ 
+<section class="header"> <!-- Header-Bereich der Webseite --> 
+    <nav> <!-- Navigationsleiste --> 
+        <a href="http://www.htl-salzburg.ac.at/startseite.html"><img src="images/HTLlogo.png"> </a> <!-- Link zum Startseite-Bild --> 
+        <div class="nav-links" id="nav-links"> <!-- Navigationslinks --> 
+            <i class="fa-solid fa-xmark" onclick="hideMenu()"></i> <!-- Schließen-Symbol mit Klickfunktion --> 
+            <ul> <!-- Ungeordnete Liste für Navigationslinks --> 
+                <li><a href="">HOME</a></li> <!-- Navigationslink "HOME" --> 
+                <li><a href="https://www.instagram.com/projectrccar?igsh=eWhpb2Jtem1wemZt">INSTAGRAM</a></li><!-- Navigationslink "INSTAGRAM" --> 
+                <li><a href="https://www.instagram.com/htl.salzburg?igsh=MzFreDNpaWs5bXp2">HTL-Salzburg</a></li><!-- Navigationslink "HTL-Salzburg" --> 
+            </ul> 
+        </div> 
+        <i class="fa-solid fa-bars" onclick="showMenu()"></i> <!-- Burgermenü-Symbol mit Klickfunktion --> 
+    </nav> 
+ 
+    <div class="text-box"> <!-- Textbox im Header --> 
+        <h1>ATHENA</h1> <!-- Überschrift "ATHENA" --> 
+        <a href="INTERACT.html" class="hero-btn">INTERACT</a> <!-- Button mit Verweis auf "INTERACT.html" --> 
+    </div> 
+</section> 
+ 
+<section class="project"> <!-- Bereich für das Projekt --> 
+    <h2>Project RC-Car</h2> <!-- Überschrift "Project RC-Car" --> 
+    <p>Teile des Projektes</p> <!-- Textabschnitt zur Beschreibung des Projektes --> 
+ 
+    <div class="row"> <!-- Zeile für Kurs-Sektionen --> 
+        <div class="course-col"> <!-- Spalte für den Kurs "Elektronik" --> 
+            <h3>Elektronik</h3> <!-- Überschrift "Elektronik" --> 
+            <a href="elektronik.html" class="elektronik">Elektronik</a> <!-- Verweis auf "elektronik.html" mit Klassenattribut "elektronik" --> 
+        </div> 
+ 
+        <div class="course-col"> <!-- Spalte für den Kurs "Mechanik" --> 
+            <h3>Mechanik</h3> <!-- Überschrift "Mechanik" --> 
+            <a href="mechanik.html" class="mechanik">Mechanik</a> <!-- Verweis auf "mechanik.html" mit Klassenattribut "mechanik" --> 
+        </div> 
+ 
+        <div class="course-col"> <!-- Spalte für den Kurs "Software" --> 
+            <h3>Software</h3> <!-- Überschrift "Software" --> 
+            <a href="software.html" class="software">Software</a> <!-- Verweis auf "software.html" mit Klassenattribut "software" --> 
+        </div> 
+    </div> 
+</section> 
+ 
+<section class="about"> <!-- Bereich für Informationen über das Team --> 
+    <h1>Unser Team</h1> <!-- Überschrift "Unser Team" --> 
+    <p>Philipp Kaltenleitner, Mert G&uuml;rel, Felix Sandri, David Petrovic</p> <!-- Namen der Teammitglieder --> 
+    <div class="einleitung"> <!-- Einleitungstext --> 
+        <h5>Einleitung</h5> <!-- Überschrift "Einleitung" --> 
+        <p>Willkommen auf der Website unseres Diplomarbeitsprojekts "Athena" an der HTLBLuVA Salzburg, Elektrotechnik-Abteilung!<br> <!-- Einleitungstext --> 
+            Seit vier Jahren arbeiten wir leidenschaftlich an der Entwicklung eines selbstfahrenden Modellautos. Als Schüler der Elektrotechnik haben wir an der HTLBLuVA Salzburg ein umfassendes Verständnis für innovative Technologien erworben.<br> <!-- Einleitungstext --> 
+            Unser Projekt "Athena" vereint Elektrotechnik, Programmierung und Robotik, um ein fortschrittliches autonomes Modellauto zu schaffen. Durch intensive Forschung und technologische Innovationen gestalten wir die Zukunft der Mobilit&auml;t mit. <br> <!-- Einleitungstext --> 
+            Erforschen Sie auf dieser Website unsere Reise, Entwicklungen und Erfolge. "Athena" repr&auml;sentiert nicht nur unsere Leidenschaft für Elektrotechnik, sondern auch unseren Beitrag zur Evolution autonomer Fahrzeuge.<br> <!-- Einleitungstext --> 
+            Vielen Dank für Ihr Interesse. Begleiten Sie uns auf unserer Reise durch Innovation und Elektrotechnik. 
+        </p> 
+    </div> 
+</section> 
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{lstlisting} [language=CSS,caption={CSS-Code Landing Page}]
+/* Globale Stile für alle Elemente */ 
+* { 
+    margin: 0; /* Setzt den Außenabstand auf 0, um unerwünschte Leerzeichen zu vermeiden */ 
+    padding: 0; /* Setzt das Innenpolster auf 0, um unerwünschte Leerzeichen zu vermeiden */ 
+    font-family: 'Orbitron', sans-serif; /* Verwendet die Schriftart Orbitron für den gesamten Text */ 
+} 
+ 
+/* Stile für die Ueberschriftsklasse */ 
+.title { 
+    font-family: 'Ethnocentric', sans-serif; /* Verwendet die Schriftart Ethnocentric für Elemente mit der Klasse 'title' */ 
+} 
+ 
+/* Stile für den Header-Bereich */ 
+.header { 
+    min-height: 100vh; /* Setzt die Mindesthoehe auf 100% der Bildschirmhöhe */ 
+    width: 100%; /* Setzt die Breite auf 100% */ 
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/RC_Car.jpeg); /* Verwendet ein lineares Farbverlaufshintergrundbild */ 
+    background-position: center; /* Zentriert das Hintergrundbild */ 
+    background-size: cover; /* Skaliert das Hintergrundbild, um den gesamten Container zu bedecken */ 
+    position: relative; /* Setzt die Position auf relativ, um absolute Positionierung innerhalb des Headers zu ermoeglichen */ 
+} 
+ 
+/* Stile für die Navigationsleiste */ 
+nav { 
+    display: flex; /* Verwendet Flexbox für das Layout */ 
+    padding: 2% 6%; /* Fügt Innenpolster hinzu */ 
+    justify-content: space-between; /* Platzierung der Elemente mit gleichem Abstand dazwischen */ 
+    align-items: center; /* Zentriert die Elemente vertikal */ 
+} 
+ 
+/* Stile für das Logo in der Navigationsleiste */ 
+nav img { 
+    width: 150px; /* Festgelegte Breite des Logos */ 
+    position: absolute; /* Absolute Positionierung für die Positionierung innerhalb des Headers */ 
+    top: 10px; /* Abstand vom oberen Rand */ 
+    left: 15px; /* Abstand vom linken Rand */ 
+} 
+ 
+/* Stile für die Navigationslinks */ 
+.nav-links { 
+    flex: 1; /* Nimmt verfügbaren Platz ein */ 
+    text-align: right; /* Ausrichtung der Links nach rechts */ 
+} 
+ 
+/* Stile für die Navigationslinksliste */ 
+.nav-links ul li { 
+    list-style: none; /* Entfernt die Standardlistenformatierung */ 
+    display: inline-block; /* Platzierung der Links nebeneinander */ 
+    padding: 8px 12px; /* Innenpolster für die Links */ 
+    position: relative; /* Positionierung für den Hover-Effekt */ 
+} 
+ 
+/* Stile für die Navigationslink-Texte */ 
+.nav-links ul li a { 
+    color: black; /* Textfarbe */ 
+    text-decoration: none; /* Entfernt die Unterstreichung der Links */ 
+    font-size: 15px; /* Schriftgroeße */ 
+} 
+ 
+/* Stile für den Hover-Effekt der Navigationslinks */ 
+.nav-links ul li::after { 
+    content: ''; /* Fuegt ein Pseudo-Element hinzu */ 
+    width: 0%; /* Breite auf 0 setzen */ 
+    height: 2px; /* Höhe des Balkens */ 
+    background: #f44336; /* Hintergrundfarbe des Balkens */ 
+    display: block; /* Blockelement */ 
+    margin: auto; /* Zentriert den Balken horizontal */ 
+    transition: 0.5s; /* Animationsübergang */ 
+} 
+ 
+/* Stile für den Hover-Effekt der Navigationslinks */ 
+.nav-links ul li:hover::after { 
+    width: 100%; /* Breite des Balkens auf 100% setzen */ 
+} 
+ 
+/* Stile für die Textbox im Header */ 
+.text-box { 
+    width: 90%; /* Breite der Textbox */ 
+    color: #000000; /* Textfarbe */ 
+    position: absolute; /* Absolute Positionierung innerhalb des Headers */ 
+    top: 50%; /* Positionierung in der Mitte vertikal */ 
+    left: 50%; /* Positionierung in der Mitte horizontal */ 
+    transform: translate(-50%,-50%); /* Zentrierung der Textbox */ 
+    text-align: center; /* Zentrierung des Textes */ 
+} 
+ 
+/* Stile für die Überschrift in der Textbox */ 
+.text-box h1 { 
+    font-size: 60px; /* Schriftgroeße */ 
+} 
+ 
+/* Stile für den Text in der Textbox */ 
+.text-box p { 
+    margin: 10px 0 40px; /* Außenabstand */ 
+    font-size: 14px; /* Schriftgroeße */ 
+    color: #fff; /* Textfarbe */ 
+} 
+ 
+/* Stile für den Hero-Button */ 
+.hero-btn { 
+    display: inline-block; /* Inline-Block-Element */ 
+    text-decoration: none; /* Entfernt die Unterstreichung */ 
+    color: #fff; /* Textfarbe */ 
+    border: 1px solid #fff; /* Randstil */ 
+    padding: 12px 34px; /* Innenpolster */ 
+    font-size: 13px; /* Schriftgroeße */ 
+    background: transparent; /* Transparenter Hintergrund */ 
+    position: relative; /* Positionierung */ 
+    cursor: pointer; /* Zeigercursor */ 
+} 
+/* Stile für den Hover-Effekt des Hero-Buttons */ 
+.hero-btn:hover {border: 1px solid #000000; /* Randfarbe ändern */ 
+    background: #ff3434; /* Hintergrundfarbe aendern */ 
+    transition: 1s; /* Animationsuebergang */ 
+} 
+ 
+/* Stile für das Hamburger-Menue und das Schließen-Symbol */ 
+nav .fa-bars, 
+nav .fa-xmark { 
+    display: none; /* Standardmaeßig ausgeblendet */ 
+    color: #fff; /* Symbolfarbe */ 
+    margin: 10px; /* Außenabstand */ 
+    font-size: 22px; /* Symbolgroeße */ 
+    cursor: pointer; /* Zeigercursor */ 
+} 
+ 
+/* Media Query für die kleinere Bildschirmgroeße */ 
+@media (max-width: 700px) { 
+    .text-box h1 { 
+        font-size: 20px; /* Reduzierte Schriftgroeße für kleine Bildschirme */ 
+    } 
+    .nav-links ul li { 
+        display: block; /* Aendert die Anzeige der Navigationslinks auf Block */ 
+    } 
+    .nav-links { 
+        position: absolute; /* Absolute Positionierung für das Hamburger-Menue */ 
+        background: #f44336; /* Hintergrundfarbe */ 
+        height: 100vh; /* Volle Bildschirmhoehe */ 
+        width: 200px; /* Breite */ 
+        top: 0; /* Positionierung oben */ 
+        right: -200px; /* Startposition außerhalb des Bildschirms */ 
+        text-align: left; /* Links ausgerichtet */ 
+        z-index: 2; /* Stacking-Kontext */ 
+        transition: 1s; /* Animationsübergang */ 
+    } 
+    nav .fa { 
+        display: block; /* Symbol anzeigen */ 
+        color: #fff; /* Symbolfarbe */ 
+        margin: 10px; /* Außenabstand */ 
+        font-size: 22px; /* Symbolgroeße */ 
+        cursor: pointer; /* Zeigercursor */ 
+    } 
+    nav .fa-xmark { 
+        display: none; /* Schließen-Symbol standardmaeßig ausblenden */ 
+    } 
+    .nav-links ul { 
+        padding: 30px; /* Innenpolster für die Navigationslinks */ 
+    } 
+} 
+ 
+/* Stile für den Projektabschnitt */ 
+.project { 
+    width: 80%; /* Breite des Abschnitts */ 
+    margin: auto; /* Zentrierung */ 
+    text-align: center; /* Zentrierung des Textes */ 
+    padding: 30px; /* Innenpolster */ 
+} 
+ 
+/* Stile für die Zeilen in dem Projektabschnitt */ 
+.row { 
+    margin-top: 5%; /* Oberer Außenabstand */ 
+    display: flex; /* Flexbox-Layout */ 
+    justify-content: space-between; /* Platzierung der Elemente mit gleichem Abstand dazwischen */ 
+} 
+ 
+/* Stile für die Kurskolonnen */ 
+.course-col { 
+    flex-basis: 31%; /* Flexbasis */ 
+    background: #fff3f3; /* Hintergrundfarbe */ 
+    border-radius: 10px; /* Randradius */ 
+    margin-bottom: 5%; /* Unterer Außenabstand */ 
+    padding: 20px 12px; /* Innenpolster */ 
+    box-sizing: border-box; /* Box-Sizing */ 
+    transition: 0.5s; /* Animationsübergang */ 
+} 
+ 
+/* Stile für die Ueberschriften der Kurskolonnen */ 
+h3 { 
+    text-align: center; /* Zentrierte Ausrichtung */ 
+    font-weight: 600; /* Fettdruck */ 
+    margin: 10px 0; /* Außenabstand */ 
+} 
+ 
+/* Stile für den Hover-Effekt der Kurskolonnen */ 
+.course-col:hover { 
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.2); /* Schatten hinzufügen */ 
+} 
+ 
+/* Media Query für die kleinere Bildschirmgröße */ 
+@media(max-width: 700px) { 
+    .row { 
+        flex-direction: column; /* Ändert die Flexrichtung auf Spalte */ 
+    } 
+} 
+ 
+/* Stile für den Abschnitt "Über uns" */ 
+.about { 
+    width: 80%; /* Breite des Abschnitts */ 
+    margin: auto; /* Zentrierung */ 
+    text-align: center; /* Zentrierung des Textes */ 
+    padding-top: 30px; /* Oberer Innenabstand */ 
+} 
+ 
+/* Stile für den allgemeinen Text */ 
+p { 
+    color: #000000; /* Textfarbe */ 
+    font-size: 14px; /* Schriftgroeße */ 
+    font-weight: 300; /* Schriftgewicht */ 
+    line-height: 22px; /* Zeilenhoehe */ 
+    padding: 10px; /* Innenpolster */ 
+} 
+ 
+/* Stile für den Footer */ 
+.footer { 
+    position: absolute; /* Absolute Positionierung */ 
+    left: 50%; /* Positionierung in der Mitte horizontal */ 
+    transform: translateX(-50%); /* Zentrierung */ 
+    text-align: center; /* Zentrierung des Textes */ 
+} 
+ 
+/* Stile für die Überschrift im Footer */ 
+.footer h4 { 
+    margin-bottom: 10px; /* Unterer Außenabstand */ 
+    margin-top: 20px; /* Oberer Außenabstand */ 
+    font-weight: 600; /* Fettdruck */ 
+    color: #333; /* Textfarbe */ 
+    font-size: 18px; /* Schriftgroeße */ 
+} 
+ 
+/* Stile für die Social-Media-Icons im Footer */ 
+.icons .fa-instagram { 
+    color: #f44336; /* Icon-Farbe */ 
+    margin: 0 20px; /* Außenabstand */ 
+    cursor: pointer; /* Zeigercursor */ 
+    font-size: 30px; /* Symbolgroeße */ 
+    padding-top: 20px 0; /* Padding für die vertikale Ausrichtung */ 
+    padding-bottom: 15px; /* Padding für die vertikale Ausrichtung */ 
+} 
+\end{lstlisting}
+
+HTML-Code Interaktion-Page:
+\begin{lstlisting} [language=HTML,caption={HTML-Code Interaktion-Page}]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <!-- Metadaten -->
+   <meta charset="UTF-8"> <!-- Zeichencodierung -->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport-Einstellungen -->
+   <title>INTERACT</title> <!-- Titel der Webseite -->
+ 
+   <!-- Einbindung von externen Stylesheets -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- FontAwesome-Bibliothek -->
+   <link rel="stylesheet" href="batterie.css"> <!-- Eigene CSS-Datei für die Batterien -->
+   <link rel="stylesheet" href="style-test.css"> <!-- Eigene CSS-Datei für allgemeine Stildefinitionen -->
+   <link rel="stylesheet" type="text/css" href="thermo.css"> <!-- Eigene CSS-Datei für das Thermometer -->
+   <link rel="stylesheet" href="speedo.css"> <!-- Eigene CSS-Datei für das Geschwindigkeitsmessgerät -->
+   <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Vorabverbindung zu Google Fonts -->
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Vorabverbindung zu Google Fonts -->
+   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&display=swap" rel="stylesheet"> <!-- Google Fonts Schriftart "Orbitron" -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/fontawesome.min.css" integrity="sha384-BY+fdrpOd3gfeRvTSMT+VUZmA728cfF9Z2G42xpaRkUGu2i3DyzpTURDo5A6CaLK" crossorigin="anonymous"> <!-- FontAwesome-Bibliothek (Version 6.4.2) von einem CDN -->
+ 
+</head>
+<body>
+   <!-- Header-Bereich -->
+   <section class="Inter-header">
+       <nav>
+           <a href="http://www.htl-salzburg.ac.at/startseite.html"><img src="images/HTLlogo.png"></a> <!-- Navigationslink mit dem HTL-Logo -->
+       </nav>
+       <h1>Interaktion</h1> <!-- Überschrift "Interaktion" -->
+       <div class="semi_arc e6"> <!-- Bereich für eine Halbkreis-Animation -->
+           <div class="semi_arc_3 e5_1">
+               <div class="semi_arc_3 e5_2">
+                   <div class="semi_arc_3 e5_3">
+                       <div class="semi_arc_3 e5_4"></div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+ 
+  <!-- Geschwindigkeitsmessgerät -->
+<section class="speedometer"> <!-- Abschnitt für das Geschwindigkeitsmessgerät -->
+   <div id="el" data-value="0"> <!-- Element für das Messgerät -->
+       <span id="needle"></span> <!-- Zeiger des Messgeräts -->
+   </div>
+</section>
+ 
+  
+   <!-- Batterien -->
+   <section class="batterie bat-1">
+       <div class="container">
+           <div class="bat-name">Bat-1</div> <!-- Name der Batterie "Bat-1" -->
+           <i class="fas fa-3x fa-battery-full icon"></i> <!-- FontAwesome-Symbol für volle Batterie -->
+           <div class="progress2 progress-moved">
+               <div class="progress-bar2"></div> <!-- Fortschrittsleiste für die Batterie -->
+               <div class="loader" style="--n: 1; --f: 0;"></div> <!-- Ladebalken für die Batterie -->
+           </div>
+       </div>
+   </section>
+  
+   <section class="batterie bat-2">
+       <div class="container">
+           <div class="bat-name">Bat-2</div> <!-- Name der Batterie "Bat-2" -->
+           <i class="fas fa-3x fa-battery-full icon"></i> <!-- FontAwesome-Symbol für volle Batterie -->
+           <div class="progress2 progress-moved">
+               <div class="progress-bar2"></div> <!-- Fortschrittsleiste für die Batterie -->
+               <div class="loader" style="--n: 1; --f: 0;"></div> <!-- Ladebalken für die Batterie -->
+           </div>
+       </div>
+   </section>
+  
+   <section class="batterie bat-3">
+       <div class="container">
+           <div class="bat-name">Bat-3</div> <!-- Name der Batterie "Bat-3" -->
+           <i class="fas fa-3x fa-battery-full icon"></i> <!-- FontAwesome-Symbol für volle Batterie -->
+           <div class="progress2 progress-moved">
+               <div class="progress-bar2"></div> <!-- Fortschrittsleiste für die Batterie -->
+               <div class="loader" style="--n: 1; --f: 0;"></div> <!-- Ladebalken für die Batterie -->
+           </div>
+       </div>
+   </section>
+  
+   <section class="batterie bat-4">
+       <div class="container">
+           <div class="bat-name">Bat-4</div> <!-- Name der Batterie "Bat-4" -->
+           <i class="fas fa-3x fa-battery-full icon"></i> <!-- FontAwesome-Symbol für volle Batterie -->
+           <div class="progress2 progress-moved">
+               <div class="progress-bar2"></div> <!-- Fortschrittsleiste für die Batterie -->
+               <div class="loader" style="--n: 1; --f: 0;"></div> <!-- Ladebalken für die Batterie -->
+           </div>
+       </div>
+   </section>
+ 
+   <section class="batterie bat-5">
+       <div class="container">
+           <div class="bat-name">Batterie</div> <!-- Name der Batterie "Batterie" -->
+           <i class="fas fa-3x fa-battery-full icon"></i> <!-- FontAwesome-Symbol für volle Batterie -->
+           <div class="progress2 progress-moved">
+               <div class="progress-bar2"></div> <!-- Fortschrittsleiste für die Batterie -->
+               <div class="loader" style="--n: 1; --f: 0;"></div> <!-- Ladebalken für die Batterie -->
+           </div>
+       </div>
+   </section>
+  
+ 
+   <!-- Ihr JavaScript-Inhalt -->
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.2/d3.js"></script> <!-- Einbindung von D3.js-Bibliothek -->
+   <script type="text/javascript" src="thermo.js"></script> <!-- JavaScript-Datei für das Thermometer -->
+   <script src="batterie.js"></script> <!-- JavaScript-Datei für die Batterien -->
+   <script src="speedo.js"></script> <!-- JavaScript-Datei für das Geschwindigkeitsmessgerät -->
+ 
+  
+</body>
+</html>
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{lstlisting} [language=JavaScript,caption={JavaScript-Code Temperaturanzeige}]
+// Diese Funktion wird aufgerufen, wenn das Fenster geladen ist.
+window.onload = function initialize() {
+   // Erzeugt die Messgeräte-Pfade
+   createPaths();
+   // Startet die Aktualisierung der Messgeräte im Intervall von 2000 Millisekunden (2 Sekunden)
+   setInterval(updateGauges, 2000);
+};
+ 
+// Ein leeres Array zur Speicherung der Messgeräte
+var gauges = [];
+ 
+// Ein JSON-Objekt mit Beispiel-Temperaturdaten
+var jsonTemp = {
+   "t1": { "temp": 80.45, "peak": 90 }
+};
+ 
+// Funktion zum Erstellen eines Messgeräts mit den angegebenen Parametern
+function createGauge(name, label, min, max, sizebias, gx, gy) {
+   // Konfigurationsobjekt für das Messgerät
+   var config = {
+       size: 200 + sizebias,
+       label: label,
+       min: undefined !== min ? min : 0,
+       max: undefined !== max ? max : 100,
+       coorx: gx,
+       coory: gy
+   };
+ 
+   // Berechnet den Wertebereich des Messgeräts
+   var range = config.max - config.min;
+ 
+   // Erstellt ein neues Messgerät und rendert es
+   gauges[name] = new Gauge(name + "GaugeContainer", config);
+   gauges[name].render();
+}
+ 
+// Funktion zum Erstellen der Pfade für die Positionierung der Messgeräte
+function createPaths() {
+   // Positioniert das Messgerät "t1" auf der linken Seite
+   createGauge("t1", "T1", 5, 100, 0, 100, 200);
+   // Positioniert das Messgerät "t2" auf der rechten Seite
+   createGauge("t2", "T2", 30, 100, 0, window.innerWidth - 300, 220);
+}
+ 
+// Funktion zum Aktualisieren der Messgeräte
+function updateGauges() {
+   // Durchläuft alle Messgeräte im Array
+   for (var key in gauges) {
+       // Generiert einen zufälligen Wert für das Messgerät
+       var value = getRandomValue(gauges[key]);
+       // Aktualisiert das Messgerät mit dem neuen Wert
+       gauges[key].redraw(value);
+   }
+}
+ 
+// Funktion zum Generieren eines zufälligen Werts für ein Messgerät
+function getRandomValue(gauge) {
+   var overflow = 0; //10;
+   return Math.floor(gauge.config.min - overflow + (gauge.config.max - gauge.config.min + overflow * 2) * Math.random());
+}
+ 
+// Konstruktor für ein Messgerät
+function Gauge(placeholderName, configuration) {
+   // Speichert den Namen des Platzhalters für das Messgerät
+   this.placeholderName = placeholderName;
+   var self = this;
+ 
+   // Konstante für Pi
+   var pi = 2 * Math.PI;
+ 
+   // String für das Gradzeichen
+   var degreeString = "00B0";
+   var degreeSign = String.fromCharCode(parseInt(degreeString, 16));
+ 
+   // Standardfarbe für das Messgerät
+   var defaultColor = "#ff5f24";
+   var newColor,
+       hold;
+ 
+   // Methode zur Konfiguration des Messgeräts
+   this.configure = function (configuration) {
+       this.config = configuration;
+ 
+       // Festlegen der Größe, Mindest- und Maximalwerte und anderer Konfigurationseigenschaften
+       this.config.size = this.config.size;
+       this.config.min = undefined !== configuration.min ? configuration.min : 0;
+       this.config.max = undefined !== configuration.max ? configuration.max : 100;
+       this.config.transitionDuration = configuration.transitionDuration || 500;
+       this.config.gaugetype = configuration.gaugetype;
+       this.config.coorx = configuration.coorx;
+       this.config.coory = configuration.coory;
+       this.config.cx = this.config.size / 2;
+       this.config.cy = this.config.size / 2;
+       this.config.inner = this.config.size / (25 / 7);
+       this.config.outer = this.config.size / (25 / 9.5);
+   };
+ 
+   // Methode zum Rendern des Messgeräts
+   this.render = function () {
+       // Funktion zum Erstellen eines Bogen-Generators für das Messgerät
+       var arc = d3.svg.arc()
+           .innerRadius(this.config.inner)
+           .outerRadius(this.config.outer)
+           .startAngle(0);
+ 
+       // Erstellt das Container-Div für das Messgerät
+       this.container = d3.select("body")
+           .append("div")
+           .attr("id", this.config.label + "Temp")
+           .attr("class", "tempContainer")
+           .style("left", this.config.coorx + "px")
+           .style("top", this.config.coory + "px")
+           .style("position", "absolute");
+ 
+       // Erstellt das SVG-Element für das Messgerät
+       this.body = this.container
+           .append("svg")
+           .attr("width", this.config.size)
+           .attr("height", this.config.size);
+ 
+       // Erstellt Filterdefinitionen für visuelle Effekte
+       var defs = this.body.append("defs");
+       var filter = defs.append("filter")
+           .attr("id", "drop-shadow")
+           .attr("height", "130%");
+       filter.append("feGaussianBlur")
+           .attr("in", "SourceAlpha")
+           .attr("stdDeviation", 2)
+           .attr("result", "blur");
+       filter.append("feOffset")
+           .attr("in", "blur")
+           .attr("dx", 0)
+           .attr("dy", 0)
+           .attr("result", "offsetBlur");
+       var feMerge = filter.append("feMerge");
+       feMerge.append("feMergeNode")
+           .attr("in", "offsetBlur");
+       feMerge.append("feMergeNode")
+           .attr("in", "SourceGraphic");
+ 
+       // Erstellt einen Container für den Zeiger des Messgeräts
+       var pointerContainer = this.body.append("g")
+           .attr("class", "pointerContainer")
+           .attr("transform", "translate(" + this.config.size / 2 + "," + this.config.size / 2 + ")")
+           .style("position", "absolute");
+ 
+       // Erstellt den Hintergrund des Messgeräts
+       pointerContainer
+           .append("path")
+           .datum({ endAngle: pi })
+           .style("fill", "#565656")
+           .attr("d", arc);
+       // Erstellt den Vordergrund des Messgeräts
+       pointerContainer
+           .append("path")
+           .datum({ endAngle: this.valueToRadians(this.config.min) })
+           .style("fill", "#ff5f24")
+           .attr("class", "foreground")
+           .attr("d", arc);
+ 
+       // Erstellt den Körper des Messgeräts
+       pointerContainer
+           .append("circle")
+           .style("fill", "#e6e7e8")
+           .style("class", "gaugebody")
+           .style("filter", "url(#drop-shadow)")
+           .attr("r", this.config.inner);
+ 
+       // Berechnet den mittleren Wert des Messgeräts
+       var midValue = (this.config.min + this.config.max) / 2;
+ 
+       // Berechnet die Schriftgröße basierend auf der Größe des Messgeräts
+       var fontSize = Math.round(this.config.size / 15);
+ 
+       // Fügt den Text für die aktuelle Temperatur hinzu
+       pointerContainer
+           .append("text")
+           .attr("x", this.config.cx - (this.config.cx * 1.0))
+           .attr("y", this.config.cy - (this.config.cy * 1.20))
+           .attr("text-anchor", "middle")
+           .attr("fill", "#58585b")
+           .style("font-size", fontSize + "px")
+           .text('Current Temp.');
+ 
+       // Aktualisiert die Schriftgröße für den aktuellen Temperaturwert
+       fontSize = Math.round(this.config.size / 3.5);
+       var current = pointerContainer
+           .append("text")
+           .attr("x", this.config.cx - (this.config.cx * 0.92))
+           .attr("y", this.config.cy - (this.config.cy * 0.7))
+           .attr("class", "current")
+           .attr("text-anchor", "middle")
+           .attr("fill", "#58585b")
+           .style("font-size", fontSize + "px")
+           .text(this.config.min + degreeSign);
+ 
+       // Ruft die redraw-Methode auf, um das Messgerät zu aktualisieren
+       this.redraw(this.config.min, 0);
+   };
+ 
+   // Methode zum Aktualisieren des Messgeräts
+   this.redraw = function (value, transitionDuration) {
+       // Konvertiert den Wert in Grad und Bogenmaß
+       var degreeValue = this.valueToDegrees(value);
+       var pointerValue = this.valueToRadians(value);
+       redrawSize = this.config.size;
+ 
+       // Bogen-Generator für das Messgerät
+       var arc = d3.svg.arc()
+           .innerRadius(this.config.inner)
+           .outerRadius(this.config.outer)
+           .startAngle(0);
+ 
+       // Bestimmt die Farbe des Messgeräts basierend auf dem Wert
+       switch (true) {
+           case (degreeValue >= 270):
+               // Dunkelrot
+               newColor = '#990000';
+               break;
+           case (degreeValue >= 180):
+               // Hellblau
+               newColor = '#ff5f24';
+               break;
+           case (degreeValue >= 90):
+               // Hellrot
+               newColor = '#009eff';
+               break;
+           default:
+               // Dunkelblau
+               newColor = '#065aa9';
+               break;
+       }
+ 
+       // Aktualisiert den Text für die aktuelle Temperatur
+       var current = this.body.select(".pointerContainer");
+       current.select(".current")
+           .transition()
+           .text(value + degreeSign);
+ 
+       // Aktualisiert die Farbe des Vordergrunds des Messgeräts mit Übergang
+       foreground = this.body.select(".pointerContainer");
+       foreground.select(".foreground")
+           .transition()
+           .duration(750)
+           .styleTween("fill", function () {
+               return d3.interpolate(newColor, defaultColor);
+           })
+           .call(arcTween, pointerValue);
+ 
+       // Speichert die Standardfarbe
+       hold = defaultColor;
+       defaultColor = newColor;
+       newColor = hold;
+ 
+       // Funktion für die Übergangsberechnung des Bogens
+       function arcTween(transition, newAngle) {
+           transition.attrTween("d", function (d) {
+               var interpolate = d3.interpolate(d.endAngle, newAngle);
+               return function (t) {
+                   d.endAngle = interpolate(t);
+                   return arc(d);
+               };
+           });
+       }
+   };
+ 
+   // Methode zur Umrechnung eines Werts in Grad
+   this.valueToDegrees = function (value) {
+       return Math.floor(value / this.config.max * 360);
+   };
+ 
+   // Methode zur Umrechnung eines Werts in Bogenmaß
+   this.valueToRadians = function (value) {
+       return this.valueToDegrees(value) * Math.PI / 180;
+   };
+ 
+   // Konfiguriert das Messgerät
+   this.configure(configuration);
+}
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{lstlisting} [language=JavaScript,caption={Batterie.js-Code Akkustand}]
+CSS.registerProperty({
+   name: "--p",
+   syntax: "<integer>",
+   initialValue: 0,
+   inherits: true,
+ });
+\end{lstlisting}
+
+Speedo.js:
+\begin{lstlisting} [language=JavaScript,caption={Speedo.js-Code Speedometer}]
+// Elemente mit den entsprechenden IDs aus dem DOM abrufen
+var needle = document.getElementById('needle'); // Das zu messende Element
+var el = document.getElementById('el'); // Das Element, auf dem der gemessene Winkel als Datenattribut gesetzt wird
+ 
+// Funktion zur Messung der Rotation des Elements 'needle' und Aktualisierung des Winkels im Datenattribut des Elements 'el'
+var measureDeg = function() {
+ // Die Rotation des Elements 'needle' über die CSS-Transformationseigenschaft abrufen
+ var st = window.getComputedStyle(needle, null);
+ var tr = st.getPropertyValue("-webkit-transform") ||
+          st.getPropertyValue("-moz-transform") ||
+          st.getPropertyValue("-ms-transform") ||
+          st.getPropertyValue("-o-transform") ||
+          st.getPropertyValue("transform") ||
+          "fail...";
+ 
+ // Die Transformationsmatrix in einzelne Werte aufteilen
+ var values = tr.split('(')[1];
+     values = values.split(')')[0];
+     values = values.split(',');
+ var a = values[0];
+ var b = values[1];
+ var c = values[2];
+ var d = values[3];
+ 
+ // Die Skalierung des Elements 'needle' berechnen
+ var scale = Math.sqrt(a*a + b*b);
+ 
+ // Den Winkel der Rotation berechnen und in Grad umrechnen
+ var sin = b/scale;
+ var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+ 
+ // Den berechneten Winkel als Datenattribut 'data-value' auf das Element 'el' setzen
+ el.setAttribute('data-value', angle);
+};
+ 
+// Die Funktion 'measureDeg' in regelmäßigen Abständen alle 10 Millisekunden aufrufen, um die Rotation des Elements 'needle' fortlaufend zu messen
+var periodicalID = setInterval(measureDeg, 10);
+\end{lstlisting}
+
+style-test.css:
+\begin{lstlisting} [language=CSS,caption={Style-test.css-Code Interaktion-Page}]
+/* Globale Stile */
+* {
+   margin: 0; /* Alle Seitenränder auf 0 setzen */
+   padding: 0; /* Alle Polster auf 0 setzen */
+   font-family: 'Orbitron', sans-serif; /* Standardschriftart für alle Elemente festlegen */
+}
+ 
+/* Titelstil */
+.title {
+   font-family: 'Ethnocentric', sans-serif; /* Spezifische Schriftart für Elemente mit der Klasse "title" festlegen */
+}
+ 
+/* Header-Stil */
+.header {
+   min-height: 100vh; /* Mindesthöhe des Headers auf 100% der Bildschirmhöhe setzen */
+   width: 100%; /* Volle Breite des Headers */
+   background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/RC_Car.jpeg); /* Hintergrundbild mit Verlauf und Bild */
+   background-position: center; /* Hintergrundbild zentrieren */
+   background-size: cover; /* Hintergrundbild anpassen */
+   position: relative; /* Position relativ für die Positionierung von Kindelementen festlegen */
+}
+ 
+/* Navigationsmenüstil */
+nav {
+   display: flex; /* Flexibles Layout für das Navigationsmenü festlegen */
+   padding: 2% 6%; /* Innenabstand oben und unten 2%, links und rechts 6% */
+   justify-content: space-between; /* Elemente im Navigationsmenü gleichmäßig verteilen */
+   align-items: center; /* Elemente vertikal zentrieren */
+}
+ 
+nav img {
+   width: 150px; /* Breite des Navigationsmenü-Logos */
+   position: absolute; /* Absolute Positionierung für das Logo */
+   top: 10px; /* Abstand vom oberen Rand */
+   left: 15px; /* Abstand vom linken Rand */
+}
+ 
+/* Stil der Navigationslinks */
+.nav-links {
+   flex: 1; /* Flexibles Wachstum für den mittleren Bereich des Navigationsmenüs */
+   text-align: right; /* Text rechts ausrichten */
+}
+ 
+.nav-links ul li {
+   list-style: none; /* Listenpunkte entfernen */
+   display: inline-block; /* Elemente nebeneinander anzeigen */
+   padding: 8px 12px; /* Innenabstand oben und unten 8px, links und rechts 12px */
+   position: relative; /* Relative Positionierung für untergeordnete Elemente */
+}
+ 
+.nav-links ul li a {
+   color: black; /* Textfarbe der Navigationslinks */
+   text-decoration: none; /* Unterstreichung der Links entfernen */
+   font-size: 15px; /* Schriftgröße der Links */
+}
+ 
+.nav-links ul li::after {
+   content: ''; /* Inhalt hinzufügen */
+   width: 0%; /* Breite auf 0% setzen */
+   height: 2px; /* Höhe des Unterstrichs */
+   background: #f44336; /* Hintergrundfarbe des Unterstrichs */
+   display: block; /* Als Blockelement anzeigen */
+   margin: auto; /* Automatische Marge */
+   transition: 0.5s; /* Übergangseffekt für den Unterstrich */
+}
+ 
+.nav-links ul li:hover::after {
+   width: 100%; /* Breite des Unterstrichs auf 100% setzen, wenn der Link gehovered wird */
+}
+ 
+/* Textfeldstil */
+.text-box {
+   width: 90%; /* Breite des Textfelds */
+   color: #000000; /* Textfarbe */
+   position: absolute; /* Absolute Positionierung */
+   top: 50%; /* 50% von oben */
+   left: 50%; /* 50% von links */
+   transform: translate(-50%,-50%); /* Zentrierung des Textfelds */
+   text-align: center; /* Text zentrieren */
+}
+ 
+.text-box h1 {
+   font-size: 60px; /* Schriftgröße der Überschrift */
+}
+ 
+.text-box p {
+   margin: 10px 0 40px; /* Außenabstand oben 10px, unten 40px */
+   font-size: 14px; /* Schriftgröße des Absatzes */
+   color: #fff; /* Textfarbe */
+}
+ 
+/* Helden-Schaltflächenstil */
+.hero-btn {
+   display: inline-block; /* Als Inline-Blockelement anzeigen */
+   text-decoration: none; /* Unterstreichung entfernen */
+   color: #fff; /* Textfarbe */
+   border: 1px solid #fff; /* Randstil */
+   padding: 12px 34px; /* Innenabstand oben und unten 12px, links und rechts 34px */
+   font-size: 13px; /* Schriftgröße */
+   background: transparent; /* Transparenter Hintergrund */
+   position: relative; /* Relative Positionierung */
+   cursor: pointer; /* Zeiger als Cursor */
+}
+ 
+.hero-btn:hover {
+   border: 1px solid #000000; /* Randstil beim Hover-Effekt */
+   background: #ff3434; /* Hintergrundfarbe beim Hover-Effekt */
+   transition: 1s; /* Übergangseffekt */
+}
+ 
+/* Menüsymbolstil */
+nav .fa-bars,
+nav .fa-xmark {
+   display: none; /* Anzeigen des Menüsymbols */
+   color: #fff; /* Farbe des Symbols */
+   margin: 10px; /* Außenabstand */
+   font-size: 22px; /* Symbolgröße */
+   cursor: pointer; /* Zeiger als Cursor */
+}
+ 
+@media (max-width: 700px) {
+   /* Media Query für Bildschirme mit maximaler Breite von 700px */
+   .text-box h1 {
+       font-size: 20px; /* Schriftgröße der Überschrift verringern */
+   }
+   .nav-links ul li {
+       display: block; /* Links als Blockelemente anzeigen */
+   }
+   .nav-links {
+       position: absolute; /* Absolute Positionierung des Navigationsmenüs */
+       background: #f44336; /* Hintergrundfarbe des Menüs */
+       height: 100vh; /* Höhe des Menüs auf 100% der Bildschirmhöhe setzen */
+       width: 200px; /* Breite des Menüs */
+       top: 0; /* Abstand vom oberen Rand */
+       right: -200px; /* Position vom rechten Rand */
+       text-align: left; /* Text linksbündig ausrichten */
+       z-index: 2; /* Z-Index festlegen */
+       transition: 1s; /* Übergangseffekt */
+   }nav .fa {
+       display: block; /* Anzeigen des Font Awesome-Symbols */
+       color: #fff; /* Farbe des Symbols */
+       margin: 10px; /* Außenabstand */
+       font-size: 22px; /* Schriftgröße des Symbols */
+       cursor: pointer; /* Zeiger bei Hover */
+   }
+  
+   /* Stil für das Schließen-Symbol im Navigationsmenü */
+   nav .fa-xmark {
+       display: none; /* Ausblenden des X-Symbols */
+   }
+  
+   /* Stil für die UL-Liste innerhalb des Navigationsmenüs */
+   .nav-links ul {
+       padding: 30px; /* Innenabstand oben/unten 30px */
+   }
+  
+   /* Projekt-Stile */
+   .project {
+       width: 80%; /* Breite auf 80% des Elternelements festlegen */
+       margin: auto; /* Zentrierung des Elements */
+       text-align: center; /* Text zentrieren */
+       padding: 30px; /* Innenabstand oben/unten 30px */
+   }
+  
+   /* Stile für die Reihe innerhalb des Projekts */
+   .row {
+       margin-top: 5%; /* Außenabstand oben 5% */
+       display: flex; /* Anzeigen als Flexbox */
+       justify-content: space-between; /* Verteilung der Elemente entlang der Hauptachse */
+   }
+  
+   /* Stile für die Kurs-Spalten */
+   .course-col {
+       flex-basis: 31%; /* Basisgröße der Flexbox */
+       background: #fff3f3; /* Hintergrundfarbe */
+       border-radius: 10px; /* Abrundung der Ecken */
+       margin-bottom: 5%; /* Außenabstand unten 5% */
+       padding: 20px 12px; /* Innenabstand oben/unten 20px, links/rechts 12px */
+       box-sizing: border-box; /* Box-Modell: Padding und Border innerhalb der Breite */
+       transition: 0.5s; /* Übergangseffekt */
+   }
+  
+   /* Überschriften */
+   h3 {
+       text-align: center; /* Text zentrieren */
+       font-weight: 600; /* Fettschrift */
+       margin: 10px 0; /* Außenabstand oben/unten 10px */
+   }
+  
+   /* Hover-Effekt für die Kurs-Spalten */
+   .course-col:hover {
+       box-shadow: 0 0 20px 0px rgba(0,0,0,0.2); /* Schatten-Effekt */
+   }
+  
+   /* Media Query für Bildschirme kleiner als 700px */
+   @media(max-width: 700px) {
+       .row {
+           flex-direction: column; /* Ändern der Flexbox-Richtung auf Spalten */
+       }
+   }
+  
+   /* Stile für die Projektteile */
+   .elektronik,
+   .mechanik,
+   .software {
+       display: inline-block; /* Anzeigen als Inline-Block */
+       text-decoration: none; /* Keine Textdekoration */
+       color: #000000; /* Textfarbe */
+       border: 1px solid #000000; /* Rahmen */
+       padding: 10px 30px; /* Innenabstand oben/unten 10px, links/rechts 30px */
+       font-size: 13px; /* Schriftgröße */
+       background: transparent; /* Transparenter Hintergrund */
+       position: relative; /* Position relativ */
+       cursor: pointer; /* Zeiger bei Hover */
+   }
+  
+   /* Hover-Effekt für die Projektteile */
+   .elektronik:hover,
+   .mechanik:hover,
+   .software:hover {
+       border: 1px solid #000000; /* Rahmenfarbe bei Hover */
+       background: #ff3434; /* Hintergrundfarbe bei Hover */
+       transition: 1s; /* Übergangseffekt */
+   }
+  
+   /* Stile für den Abschnitt Über uns */
+   .about {
+       width: 80%; /* Breite auf 80% des Elternelements festlegen */
+       margin: auto; /* Zentrierung des Elements */
+       text-align: center; /* Text zentrieren */
+       padding-top: 30px; /* Innenabstand oben 30px */
+   }
+  
+   /* Textstil für den Abschnitt Über uns */
+   p {
+       color: #000000; /* Textfarbe */
+       font-size: 14px; /* Schriftgröße */
+       font-weight: 300; /* Schriftgewicht */
+       line-height: 22px; /* Zeilenhöhe */
+       padding: 10px; /* Innenabstand */
+   }
+  
+   /* Stile für die Einleitung im Abschnitt Über uns */
+   .einleitung {
+       width: 60%; /* Breite auf 60% des Elternelements festlegen */
+       margin: auto; /* Zentrierung des Elements */
+       text-align: center; /* Text zentrieren */
+   }
+/*-------footer-------*/
+.footer {
+   position: fixed; /* Positionierung als fest (bleibt am unteren Rand des Bildschirms) */
+   bottom: 0; /* Positionierung am unteren Rand */
+   left: 0; /* Positionierung am linken Rand */
+   width: 100%; /* 100% Breite des Footers */
+   background-color: #333; /* Hintergrundfarbe des Footers */
+   color: #fff; /* Textfarbe des Footers */
+   padding: 20px 0; /* Innenabstand oben und unten */
+   text-align: center; /* Zentrieren des Inhalts horizontal */
+}
+ 
+.footer h4 {
+   margin-bottom: 10px;
+   margin-top: 20px;
+   font-weight: 600;
+   font-size: 18px;
+}
+ 
+.icons {
+   z-index: 9999; /* Stellen Sie sicher, dass es über anderen Elementen liegt */
+}
+ 
+.icons .fa-instagram {
+   color: #f44336;
+   margin: 0 20px;
+   cursor: pointer;
+   font-size: 30px;
+}
+ 
+/*----elektronik--------*/
+.elektro-header {
+   height: 100vh;
+   width: 100%;
+   background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/Elektronik.jpeg);
+   background-position: center;
+   background-size: cover;
+   text-align: center;
+   color: #fff;
+}
+ 
+/*-------mechanik-------*/
+.mecha-header {
+   height: 100vh;
+   width: 100%;
+   background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/mechanik.jpeg);
+   background-position: center;
+   background-size: cover;
+   text-align: center;
+   color: #fff;
+}
+ 
+/*------softwarte-----*/
+.soft-header {
+   height: 100vh;
+   width: 100%;
+   background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/software.jpeg);
+   background-position: center;
+   background-size: cover;
+   text-align: center;
+   color: #fff;
+}
+ 
+/*------Interact-----*/
+.Inter-header {
+   height: 100vh;
+   width: 100%;
+   background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/software.jpeg);
+   background-position: center;
+   background-size: cover;
+   text-align: center;
+   color: #ff0000;
+}
+\end{lstlisting}
+
+Batterie.css:
+\begin{lstlisting} [language=CSS,caption={Batterie.css-Code Interaktion-Page}]
+/* Setzt den allgemeinen Stil für den Body fest */
+body {
+   font-family: "Montserrat", sans-serif; /* Verwendet die Schriftart Montserrat */
+   background: none; /* Kein Hintergrund */
+   color: white; /* Textfarbe weiß */
+   position: fixed; /* Position ist festgelegt */
+}
+ 
+/* Stil für Batterieelemente */
+.batterie {
+   position: absolute; /* Position ist absolut */
+}
+ 
+/* Containerstil */
+.container {
+   margin: auto; /* Zentriert den Container */
+   width: 140px; /* Breite des Containers */
+   position: relative; /* Macht den Container zu einem Positionierungskontext */
+}
+ 
+/* Stil für den Fortschrittsbalken */
+.progress2 {
+   border-radius: 10px; /* Runde Ecken */
+   background-color: #fff; /* Hintergrundfarbe */
+}
+ 
+/* Stil für den Fortschrittsbalken */
+.progress-bar2 {
+   height: 6.5px; /* Höhe des Fortschrittsbalkens */
+   border-radius: 10px; /* Runde Ecken */
+   transition: 0.4s linear; /* Übergangseffekt */
+   transition-property: width, background-color; /* Übergangseigenschaften */
+}
+ 
+/* Stil für den Fortschrittsbalken, wenn Fortschritt vorhanden ist */
+.progress-moved .progress-bar2 {
+   background-color: #4caf50; /* Hintergrundfarbe ändern */
+   animation: progress 2.5s infinite; /* Progress-Animation */
+}
+ 
+/* Keyframes für die Progress-Animation */
+@keyframes progress {
+   0% {
+       width: 0%; /* Breite ist 0% */
+       background: #f9bcca; /* Hintergrundfarbe */
+   }
+   100% {
+       width: 100%; /* Breite ist 100% */
+       background: #4caf50; /* Hintergrundfarbe */
+       box-shadow: 0 0 20px #4caf50; /* Schatten */
+   }
+}
+ 
+/* Stil für das Batterie-Symbol */
+.icon {
+   color: #4caf50; /* Farbe */
+   animation: icon 2.5s infinite; /* Symbolanimation */
+   background-color: transparent; /* Transparenter Hintergrund */
+   padding-bottom: 7.5px; /* Untere Polsterung */
+   font-size: 1.5em; /* Schriftgröße */
+}
+ 
+/* Stil für das Batterie-Symbol */
+.icon::after {
+   content: attr(data-bat); /* Batterietext anzeigen */
+   position: absolute; /* Position ist absolut */
+   top: -7px; /* Abstand nach oben */
+   left: 2.5px; /* Abstand von links */
+   font-size: 0.20em; /* Schriftgröße */
+   color: black; /* Farbe */
+}
+ 
+/* Keyframes für die Symbolanimation */
+@keyframes icon {
+   0% {
+       opacity: 0.2; /* Undurchsichtigkeit */
+       text-shadow: 0 0 0 #4caf50; /* Schatten */
+   }
+   100% {
+       opacity: 1; /* Undurchsichtigkeit */
+       text-shadow: 0 0 5px #4caf50; /* Schatten */
+   }
+}
+ 
+/* Loader-Stil */
+.loader {
+   --p: 0; /* Prozentvariable */
+   animation: p 2.5s steps(100) infinite; /* Loader-Animation */
+   counter-reset: p var(--p); /* Prozentzähler zurücksetzen */
+   font-size: 0.735em; /* Schriftgröße */
+   position: absolute; /* Position ist absolut */
+   bottom: 16px; /* Abstand von unten */
+   left: 115.5px; /* Abstand von links */
+   color: #4caf50; /* Farbe */
+}
+ 
+/* Loader nach der Prozentanzeige */
+.loader:after {
+   content: counter(p) "%"; /* Prozentwert anzeigen */
+}
+ 
+/* Keyframes für die Prozentanimation */
+@keyframes p {
+   90%, 100% {
+       --p: 100; /* Prozent ist 100 */
+   }
+}
+ 
+/* Positionen und Stile für verschiedene Batteriestände */
+.batterie.bat-1 {
+   bottom: 120px;
+   left: 20px;
+}
+ 
+.batterie.bat-2 {
+   bottom: 20px; /* Beispiel: 20px + Höhe der Batterie 1 */
+   left: 20px;
+}
+ 
+.batterie.bat-3 {
+   bottom: 120px; /* Beispiel: 20px + Höhe der Batterie 1 + Abstand */
+   right: 20px;
+}
+ 
+.batterie.bat-4 {
+   bottom: 20px; /* Beispiel: 20px + Höhe der Batterie 1 + Abstand */
+   right: 20px;
+}
+ 
+/* Stil für Batteriestand 5 */
+.batterie.bat-5 {
+   position: absolute;
+   bottom: 270px; /* Beispiel: 20px + Höhe des Tachometers + Abstand */
+   left: 50%;
+   transform: translateX(-50%); /* Horizontal zentrieren */
+   text-align: center; /* Text zentrieren */
+}
+ 
+/* Stil für den Namen des Batteriestands 5 */
+.batterie.bat-5 .bat-name {
+   font-size: 1,5em; /* Schriftgröße */
+   color: rgb(46, 255, 14); /* Farbe */
+   font-weight: bold; /* Fett */
+   margin: 0; /* Rand */
+}
+ 
+/* Stil für den Loader nach Prozentanzeige in Batteriestand 5 */
+.batterie.bat-5 .loader:after {
+   content: counter(p) "%"; /* Prozentwert anzeigen */
+   display: block; /* Als Block anzeigen */
+   position: fixed; /* Position ist festgelegt */
+   top: calc(100% + 15px); /* Position unter dem Loader */
+   left: 55%; /* Horizontal zentrieren */
+   transform: translateX(-50%); /* Horizontal zentrieren */
+   font-size: 2em; /* Schriftgröße */
+}
+ 
+/* Stil für den Namen */
+.bat-name {
+   font-size: 0,5em; /* Schriftgröße */
+   color: rgb(46, 255, 14); /* Farbe */
+   font-weight: bold; /* Fett */
+}
+\end{lstlisting}
+
+Thermo.css:
+\begin{lstlisting} [language=CSS,caption={Thermo.css-Code Interaktion-Page}]
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+ 
+body {
+   background: black;
+   width: 100%;
+}
+ 
+text {
+   font-family: 'Roboto', sans-serif;
+   font-weight: 300;
+}
+\end{lstlisting}
+
