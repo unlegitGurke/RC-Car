@@ -1,0 +1,48 @@
+\fancyfoot[C]{Gürel}
+\section{Nutzung von Nodes in ROS}
+
+Die Integration von Programmen in ROS erfordert die Verwendung von Konfigurations- und Launch-Dateien. Diese Dateien legen die Rahmenbedingungen für den Betrieb des ROS-Systems fest, konfigurieren die verschiedenen Komponenten und starten die erforderlichen ROS-Knoten. Diese Dateien sind üblicherweise im \texttt{catkin\_ws/src/(node)}-Verzeichnis des ROS-Arbeitsbereichs zu finden.
+
+\paragraph{Konfigurationsdateien}
+
+Um zum Beispiel den Google Cartographer zu verwenden, müssen Konfigurationsdateien erstellt werden, die die Parameter für den SLAM-Prozess festlegen. Die \texttt{athena\_config.lua}-Datei im Verzeichnis \texttt{cartographer\_ros/configuration\_files} definiert grundlegende Einstellungen.
+
+\paragraph{ROS-Launch-Datei vorbereiten}
+
+Die ROS-Launch-Datei dient dazu, die erforderlichen ROS-Knoten zu starten und die Konfiguration für den Google Cartographer bereitzustellen. In der Launch-Datei werden Parameter wie der URDF des Roboters, die Konfiguration der Sensoren und die Pfadangaben zu den Konfigurationsdateien festgelegt. Anschließend werden die ROS-Knoten gestartet, darunter der \texttt{robot\_state\_publisher} für das URDF, der \texttt{ydlidar\_ros\_driver\_node} für den Lidar-Sensor, statische Transformationsknoten und schließlich der \texttt{cartographer\_node} für den Google Cartographer selbst.
+
+\paragraph{Konfiguration der \texttt{athena\_config.lua}-Datei}
+
+Die \texttt{athena\_config.lua}-Datei enthält grundlegende Einstellungen für den Cartographer, darunter die Zuordnung von Frame-Namen, die Verwendung von Sensordaten, die Definition von Trajektorien und die Konfiguration des SLAM-Prozesses. Hier werden Parameter wie die Anzahl der Laser-Scans, die Länge von fehlenden Datenstrahlen, die Verwendung von IMU-Daten und die Scan-Matching-Parameter festgelegt.
+
+\paragraph{Ausführen der ROS-Launch-Datei}
+
+Sobald die Konfigurationsdateien und die ROS-Launch-Datei vorbereitet sind, kann der Google Cartographer gestartet werden. 
+Beim start ist folgende reihenfolge zu beachten.
+
+\lstset{style=Konsole}
+\begin{lstlisting}[language=bash, caption={Konsole 1:}, 
+label={code:example}]
+cd catkin_ws
+source install_isolated/setup.bash #Sollte eigentlich im bash script automatisch gemacht werden
+roscore #Startet den ROS dienst, dieser ist unter anderem für den Nachrichtenaustausch verantwortlich
+\end{lstlisting}
+\begin{lstlisting}[language=bash, caption={Konsole 2:}, 
+label={code:example}]
+cd Documents\GitHub\Athena-LattePanda-Code\python #Startet den IMU publisher
+python3 publisher.py
+\end{lstlisting}
+\begin{lstlisting}[language=bash, caption={Konsole 3:}, 
+label={code:example}]
+cd catkin_ws
+source install_isolated/setup.bash #Sollte eigentlich im bash script automatisch gemacht werden
+roscore														#Startet den ROS dienst, dieser ist unter anderem für den Nachrichtenaustausch verantwortlich
+roslaunch cartographer_ros athena.launch	#Startet den Cartographer dienst
+\end{lstlisting}
+\begin{lstlisting}[language=bash, caption={Konsole 4:}, 
+label={code:example}]
+rosrun rviz rviz	#Startet rviz zur visualisierung des Systems und der Karte
+\end{lstlisting}
+
+
+

@@ -1,0 +1,29 @@
+\fancyfoot[C]{Gürel}
+\section{Überlegung und Ansatz}
+Im Rahmen der Recherche für das Projekt haben sich sehr schnell einige Ideen herauskristallisiert. Ein LiDAR Sensor kann seine Umgebung kartographieren \cite{Kohlbrecher2011} und mit einer dafür speziell trainierten KI Personen erkennen \cite{Jia2021}. Die generellen Ziele vom Fahrzeug sind daher folgende:
+\begin{itemize}
+    \item Kartographierung der Schule
+    \item Personenerkennung
+    \item Routenplanung
+    \item Ein System zur Kontrolle des Fahrzeugs, welches die geplante Route abfährt.
+\end{itemize}
+
+\paragraph{Auswahl Hardware}
+Bei der Auswahl der Hardware wurden verschiedene LiDAR-Sensoren und Computer evaluiert, da sich die Studie zur Personenerkennung mit einem LiDAR als sehr versprechend zeigte \cite{Jia2021}. 
+
+\paragraph{Auswahl LiDAR}
+Der YDLiDAR G2 ist aufgrund seiner 12Hz Messfrequenz und erweiterten Messdistanz bei moderatem Preis vorteilhaft für dieses Projekt \cite{YDLiDAR2024}. 
+
+\paragraph{Auswahl Rechner}
+In Bezug auf den Computer stehen der LattePanda 3 Delta und das NVIDIA Jetson Nano zur Auswahl. Der LattePanda ist aufgrund seiner geringeren Kosten und der bewährten Zuverlässigkeit als "klassischer" x86-basierter Computer bevorzugt \cite{Delta2023} \cite{NVIDIA2024}. Um den LattePanda zu unterstützen, wird eine Google Coral TPU mit einem Adapter angeschlossen, diese wird dann für notwendige Berechnungen von z.B. der Personen Erkennung KI benutzt \cite{Coral2024}. Die Verwendung der Coral TPU Bibliothek schränkt das System auf eine Python Version <3.7 ein.
+
+\paragraph{Verwenden der Sensoren}
+Für die Implementierung ist die ROS (Robot Operating System) Plattform, die vielversprechendste Lösung. ROS bietet eine umfassende und flexible Plattform für die Entwicklung von Robotersystemen, die eine nahtlose Integration von Sensordaten und KI-Anwendungen ermöglicht \cite{SAIL2018}. Das ROS System erfüllt die Anforderungen des Projekts am besten und stellt eine solide Grundlage für die Implementierung der geplanten Funktionen dar. Da bei einem Projekt mit den verschiedensten Sensoren und Ausschlaggebend für die Entscheidung ist dafür die Kartographier Bibliothek von Google, da dieses nur limitierte Eingänge benötigt und am meisten ausgereift ist. Die Bibliothek gibt dementsprechend folgende Versionen vor:
+\begin{itemize}
+    \item Ubuntu 20.04
+    \item ROS 1
+    \item Python <3.8
+\end{itemize}
+
+\paragraph{Auswahl ROS und Ubuntu}
+Die erste Version von ROS ist für dieses Projekt mehr als passend, da durch das Alter die Version etablierter ist. Dementsprechend gibt es mehr Dokumentation und Bibliotheken für diese. Ausschlaggebend für die Versionswahl sind die SLAM-Bibliotheken, die meist für ROS 1 geschrieben sind sowie die LiDAR Bibliothek, welche exklusiv auf ROS 1 funktioniert. Die Auswahl von ROS schreibt dementsprechend auch die Ubuntu Version 20.04 (Codename: „Focal Fossa“).

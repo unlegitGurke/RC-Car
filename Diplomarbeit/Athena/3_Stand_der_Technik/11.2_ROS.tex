@@ -1,0 +1,22 @@
+\fancyfoot[C]{Gürel}
+\subsection{Grundlagen ROS}
+Das Robot Operating System (ROS) bietet ein flexibles und leistungsstarkes Gerüst für die Entwicklung von Software für Roboter und andere automatisierte Maschinen oder Anlagen. Es bietet eine Vielzahl von Werkzeugen, Bibliotheken und Konventionen, die Entwicklern dabei helfen, komplexe Anwendungen zu erstellen.
+
+\paragraph{Modularität und Wiederverwendbarkeit: }
+ROS ist auf Modularität ausgelegt, was bedeutet, dass verschiedene Komponenten eines Projekts als unabhängige Pakete entwickelt und wiederverwendet werden können. Dies ermöglicht eine saubere und strukturierte Entwicklung und erleichtert die Wartung und Skalierung von Systemen.
+
+\paragraph{Kommunikation und Nachrichtenaustausch: }
+Ein zentrales Konzept in ROS ist die Nachrichtenvermittlung, die es ermöglicht, dass verschiedene Teile eines Robotersystems miteinander kommunizieren können. ROS verwendet ein Publisher/Subscriber-Modell, bei dem Knoten Nachrichten über definierte Themen austauschen können. Dies ermöglicht eine lose Kopplung zwischen den Komponenten und erleichtert die Integration neuer Funktionen.
+
+\paragraph{Publisher/Subscriber-Modell: }
+ROS basiert auf einem Publisher/Subscriber-Modell, bei dem Knoten Nachrichten über definierte Themen austauschen können. Ein Knoten kann Nachrichten auf einem Thema veröffentlichen (\textit{publish}), und andere Knoten können sich auf dieses Thema abonnieren (\textit{subscribe}), um die Nachrichten zu empfangen. Dies ermöglicht eine lose Kopplung zwischen den Komponenten und erleichtert die Integration neuer Funktionen.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{./3_Stand_der_Technik/Abbildungen/ExchangeDataWithROSPublishersAndSubscribersExample_01.png}
+    \caption{Illustration vom Nachrichtenaustausch der Nodes \cite{TheMathWorks2024}}
+\end{figure}
+\paragraph{Vordefinierte Nachrichtentypen: }
+ROS bietet eine Vielzahl von vordefinierten Nachrichtentypen, die häufig in der Robotik verwendet werden. Dazu gehören Nachrichten wie \textit{LaserScan}, die Informationen über Laserabtastungen enthalten, oder \textit{IMU} (Inertial Measurement Unit), die Daten über die Orientierung und Bewegung eines Roboters liefern. Diese vordefinierten Nachrichtentypen ermöglichen eine einfache und standardisierte Kommunikation zwischen den verschiedenen Komponenten eines Robotersystems.
+
+\paragraph{Anpassbare Nachrichten: }
+Zusätzlich zu den vordefinierten Nachrichtentypen können Entwickler auch eigene Nachrichtentypen definieren, um spezifische Anforderungen ihrer Anwendung zu erfüllen. Dies ermöglicht eine hohe Flexibilität und Anpassbarkeit bei der Entwicklung von Anwendungen und eröffnet Möglichkeiten für die Integration neuer Sensoren, Aktuatoren und Algorithmen.

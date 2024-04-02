@@ -1,6 +1,12 @@
 \fancyfoot[C]{Gürel}
-\subsection{Löten mit Reflow-Heizplatte}
+\paragraph{Löten mit Reflow-Heizplatte}
 
 Bei dieser Lötmethode wird eine Lötpaste mithilfe einer Schablone auf die Platine aufgetragen. Die Paste besteht größtenteils aus Flussmittel und Trägermaterial, die feine Zinnpartikel enthalten, die in der Flüssigkeit verteilt sind. Der Schmelzpunkt beträgt 140°C und ist schonender für die Komponenten. Mit dieser Methode können Komponenten der Größe 0402 und dicht kontaktierte ICs verlötet werden. Durch die Oberflächenspannung des Lötzinns werden die Komponenten bei Erhitzen zentriert auf die Pads gezogen und müssen nur selten leicht korrigiert werden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.2]{./3_Stand_der_Technik/Abbildungen/stencil.jpg}
+    \caption{Symbolfoto Schablone für eine Platine \cite{YDLiDAR2024}}
+\end{figure}
 
 Die Herstellung und der Versand der Schablone sind kostenintensiv, daher wurde das Online-Tool solder-stencil \cite{Kirberich2016} genutzt. Mit diesem Tool können Schablonen für den 3D-Druck anhand einer Gerber-Datei erstellt werden, welche verschiedene Produktionsdateien wie das Außenprofil, Bohrungen und Leiterbahnen enthält. Dieser erstellt dann eine 3D Datei mit einer festgelegten Dicke und ausschnitte über den Lötpads, diese können mit der Offset Korrektur relativ gesehen kleiner oder grösser gemacht werden um die Menge der Paste besser zu regulieren.

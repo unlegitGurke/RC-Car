@@ -1,0 +1,16 @@
+\fancyfoot[C]{Gürel}
+\subsection{Kartographie Algorithmen}
+In ROS stehen verschiedene Algorithmen zur Verfügung, die es Robotern ermöglichen, ihre Umgebung zu kartieren und eine interne Darstellung der Welt um sie herum zu erstellen. Diese spielen eine entscheidende Rolle bei der Umgebungswahrnehmung und der sicheren Navigation von Robotern.
+
+\paragraph{Hector SLAM}
+Hector SLAM \cite{Kohlbrecher2011}ist ein Kartographie Algorithmus in ROS, der auf der Nutzung von Laserscannern basiert. Dieser Algorithmus verwendet eine Schätzmethode, um die Position und Orientierung eines Roboters basierend auf den Laserdaten zu bestimmen. Durch kontinuierliches Scannen der Umgebung und die Verfolgung von Merkmalen kann Hector SLAM eine präzise Karte der Umgebung erstellen. Ein wesentlicher Vorteil dieses Algorithmus ist seine Effizienz und Robustheit, auch in Umgebungen mit begrenzter Sichtbarkeit oder Bewegungseinschränkungen.
+
+\paragraph{Google Cartographer}
+Google Cartographer \cite{Hess2016}, ein in ROS integrierter Kartographie Algorithmus, basiert auf dem Prinzip der simultanen Lokalisierung und Kartierung (SLAM), wobei er Laserscanner- und IMU-Daten nutzt, um eine Karte der Umgebung zu generieren. Google Cartographer wird häufig in autonomen Fahrzeugen und Robotern eingesetzt, um präzise Umgebungskarten zu erstellen. Eine besonders herausragende Eigenschaft des Google Cartographers liegt in seiner Unabhängigkeit von Odometriedaten, was ihn besonders attraktiv macht, insbesondere bei diesem Projekt, da solche Daten nicht vollständig verfügbar sind. Diese Option erweist sich als vorteilhaft und ermöglicht eine zuverlässige Kartierung auch unter herausfordernden Bedingungen.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.165]{./3_Stand_der_Technik/Abbildungen/google_slam_symbolbild.png}
+    \caption{Symbolbild einer erstellten Karte vom Cartographer \cite{Hess2016}}
+\end{figure}
+\paragraph{Anpassung und Integration}
+Beide Kartographie Algorithmen bieten Möglichkeiten zur Anpassung und Integration in ROS. Entwickler können die Parameter der Algorithmen an die spezifischen Anforderungen ihres Projekts anpassen und sie in bestehende Robotikanwendungen integrieren. Dies ermöglicht es, hochpräzise Karten der Umgebung zu erstellen und sie für die Navigation und Steuerung von Robotern zu verwenden.

@@ -1,0 +1,214 @@
+\fancyfoot[C]{Gürel}
+\section{Einlesen der Sensordaten}
+Die Erfassung von Sensordaten spielt eine zentrale Rolle in der Entwicklung dieses Systems. Sensoren dienen dazu, Informationen über die Umgebung eines Fahrzeugs zu sammeln und sind damit entscheidend für die Navigation, Hinderniserkennung und Steuerung. In diesem Abschnitt wird die Implementierung des Einlesens von Sensordaten für das autonome Fahrzeugprojekt näher betrachtet. Durch die korrekte Erfassung, Verarbeitung und Weitergabe dieser Daten kann das Fahrzeug seine Umgebung bemessen und dementsprechend Entscheidungen treffen.
+
+\subsection{IMU Datenerfassung}
+Der Code \texttt{IMU.py} ist verantwortlich für die Erfassung von Daten über die serielle Schnittstelle, die vom Arduino Leonardo auf dem LattePanda-Board übertragen werden. Die \texttt{IMU}-Klasse initialisiert eine serielle Verbindung zur IMU-Hardware und liest kontinuierlich Daten von dieser Schnittstelle aus.
+
+\paragraph{Initialisierung und Konfiguration}
+Die \texttt{IMU}-Klasse initialisiert eine serielle Verbindung mit einer Baudrate von 230400 zur IMU-Hardware, die mit dem LattePanda über den Arduino Leonardo verbunden ist.
+
+\paragraph{Datenerfassung und Verarbeitung}
+Die \texttt{read}-Methode der \texttt{IMU}-Klasse liest bei Aufruf Daten von der seriellen Schnittstelle und extrahiert relevante Informationen über Quaternionen, Gyroskop- und Beschleunigungswerte. Diese Daten werden lokal in der \texttt{IMU}-Klasse gespeichert und können dann von der ausführenden Partei eingelesen werden.
+
+
+\lstset{style=Python_Code}
+
+\begin{lstlisting}[language=Python, caption={IMU.py}, 
+label={code:example}]
+import serial
+
+class IMU():
+    def __init__(self):
+        # Connect serial to /dev/ttyACM0 at 230400 baud
+        self.ser = serial.Serial('/dev/ttyACM0', 230400)
+        self.quaternion = [0.0, 0.0, 0.0, 0.0]
+        self.avgGX, self.avgGY, self.avgGZ = 0.0, 0.0, 0.0
+        self.avgAX, self.avgAY, self.avgAZ = 0.0, 0.0, 0.0
+
+    def read(self):
+        try:
+            # Read the serial input
+            data = self.ser.readline().decode().strip()
+
+            # Check if "Quaternion:" is present in the data
+            if "Quaternion:" in data:
+                # Split the data into quaternion values
+                quaternion_data = data.split("Quaternion:")[1].strip()
+                # Extract the quaternion values
+                self.quaternion = [float(q) for q in quaternion_data.split("\t")]
+                # Print or process the third value of the quaternion
+                print("Third value of quaternion:", self.quaternion[2])
+
+            # Check if "Gyro:" is present in the data
+            if "Gyro:" in data:
+                # Split the data into gyro values
+                gyro_data = data.split("Gyro:")[1].strip()
+                # Extract the gyro values
+                self.gx, self.gy, self.gz = gyro_data.split("\t")
+                print(f"Gyro:\t{self.gx}\t{self.gy}\t{self.gz}")
+
+            # Check if "Accel:" is present in the data
+            if "Accel:" in data:
+                # Split the data into accelerometer values
+                accel_data = data.split("Accel:")[1].strip()
+                # Extract the accelerometer values
+                self.ax, self.ay, self.az = accel_data.split("\t")
+                print(f"Accel:\t{self.ax}\t{self.ay}\t{self.az}")
+
+
+
+        except Exception as e:
+            print("Error:", e)
+
+if __name__ == "__main__":  
+    imu_instance = IMU()
+    while True:
+        imu_instance.read()
+
+\end{lstlisting}
+
+\subsection{Einlesen der Sensordaten aus dem IMU mittels Arduino}
+
+Der Code dient dazu, Daten von einem IMU-Sensor zu erfassen und über die serielle Schnittstelle auszugeben. Die zwei IMU Module bestehen aus einem mit Beschleunigungsmesser und Gyroskop, das zweite ist ein Magnetometer. Beide werden kombiniert, um genaue Informationen über die Bewegung und Ausrichtung eines Objekts zu liefern. Da es strukturell und von der Funktionsweise keinen Unterschied macht, werden nachfolgend beide als ein einzelnes Modul behandelt.
+
+\paragraph{Initialisierung und Konfiguration}
+
+Der Code beginnt mit der Initialisierung und Konfiguration der erforderlichen Bibliotheken und Variablen. Die Bibliotheken \texttt{Wire.h}, \texttt{BMI160Gen.h} und \texttt{movingAvg.h} werden eingebunden, um auf die I2C-Schnittstelle, den BMI160-Sensor und die Funktionen für die Gleitkommamittelung zugreifen zu können. Zudem werden verschiedene Konfigurationsparameter wie die I2C-Adresse des Magnetometers und die Parameter für die Berechnung der Quaternion-Updates festgelegt.
+
+\paragraph{Vorbereitung und Setup}
+
+Im \texttt{setup()}-Teil werden die serielle Kommunikation gestartet, die IMU-Sensoren initialisiert und die Einstellungen für den Messbereich des Gyroskops festgelegt. Zudem werden die Bewegungsmittelungsfunktionen für die Gyro- und Beschleunigungsmessungen initialisiert.
+
+\paragraph{Hauptprogramm-Schleife (\texttt{Loop})}
+
+In der \texttt{loop()}-Schleife werden kontinuierlich die Rohdaten vom Gyroskop, Beschleunigungsmesser und Magnetometer ausgelesen. Diese Rohdaten werden dann in geeignete Einheiten konvertiert und mit Hilfe der Moving-Average-Filter gemittelt, um Rauschen zu reduzieren. Anschließend werden die Quaternion-Update-Funktionen aufgerufen, um die Ausrichtung des Sensors zu berechnen und zu aktualisieren. Die aktualisierten Quaternionen werden dann über die serielle Schnittstelle ausgegeben, zusammen mit den gemittelten Gyro- und Beschleunigungswerten.
+
+\paragraph{Moving Average Filter}
+Diese Bibliothek ist geschrieben von Jack Christensen. /cite{Christensen2012}
+Die Moving Average-Bibliothek (\texttt{movingAvg}) ist ein Werkzeug für die Glättung von Daten in Echtzeit. Diese Bibliothek ermöglicht es, gleitende Durchschnittswerte über eine bestimmte Anzahl von Datenpunkten zu berechnen. In dem vorliegenden Code wird die \texttt{movingAvg}-Bibliothek verwendet, um die Rohdaten von Gyroskop und Beschleunigungsmesser zu glätten, bevor sie zur weiteren Berechnung verwendet werden. Durch die Anwendung eines gleitenden Durchschnitts können kurzfristige Schwankungen und Rauschen in den Sensorwerten reduziert werden, was zu einer genaueren Schätzung der Ausrichtung des Sensors führt. Die \texttt{movingAvg}-Bibliothek bietet eine einfache und effektive Möglichkeit, die Stabilität und Genauigkeit von Sensordaten in Echtzeit zu verbessern.
+
+\subsection{Berechnung der Quaternion-Updates und Erklärung von Quaternionen}
+
+Die Quaternion-Update-Algorithmen im vorliegenden Code basieren auf den Arbeiten von Sebastian Madgwick und Mahony. Die Implementierung in Arduino Code wurde von Kris Winer geschrieben \cite{Winer2018} und vollständig übernommen.
+
+\paragraph{Erklärung von Quaternionen}
+
+Quaternionen sind eine alternative Methode zur Darstellung von Rotationen im Raum, die häufig in der Robotik, Navigation und Computergrafik verwendet wird. Im Gegensatz zu Euler-Winkeln bieten Quaternionen eine effizientere und weniger anfällige Darstellung von Rotationen.\cite{3Blue1Brown2018} \cite{Wood2018}
+
+\paragraph{Was ist ein Quaternion?}
+
+Ein Quaternion ist eine mathematische Struktur, die aus einem Skalaranteil und einem Vektoranteil besteht. In der Form $q = a + bi + cj + dk$, wobei $a$ der Skalaranteil und $bi + cj + dk$ der Vektoranteil ist. Die Elemente $i$, $j$ und $k$ sind imaginäre Einheiten, die die drei Achsen im Raum repräsentieren. Quaternionen können verwendet werden, um Rotationen um eine beliebige Achse im Raum darzustellen, und sie ermöglichen eine kompakte und effiziente Darstellung von Rotationen.
+
+\paragraph{Berechnung der Quaternion-Updates}
+
+Die Quaternion-Updates werden verwendet, um die aktuelle Ausrichtung des Sensors basierend auf den Rohdaten vom Gyroskop, Beschleunigungsmesser und Magnetometer zu schätzen und zu aktualisieren. Im vorliegenden Code werden zwei verschiedene Update-Algorithmen implementiert: Madgwick und Mahony.
+
+\paragraph{Madgwick-Algorithmus}
+
+Dieser Algorithmus verwendet ein Gradienten-Abstiegsverfahren, um die Quaternionen zu aktualisieren. Es kombiniert die Messungen von Gyroskop und Beschleunigungsmesser, um die aktuelle Ausrichtung des Sensors zu schätzen. Der Algorithmus ist weniger rechenaufwendig als andere Quaternion-Update-Algorithmen und eignet sich daher gut für eingebettete Systeme.
+
+\paragraph{Mahony-Algorithmus}
+
+Dieser Algorithmus verbessert den Madgwick-Algorithmus, indem er proportionalen und integralen Filter auf den Fehler zwischen den geschätzten Referenzvektoren und den gemessenen Werten anwendet. Dadurch werden Ungenauigkeiten und Drift in der Schätzung reduziert und eine genauere Ausrichtung des Sensors erreicht.
+
+\lstset{style=C_Code}
+
+\begin{lstlisting}[language=C++, caption={Teile des IMU.ino codes}, 
+label={code:example}]
+//Konfiguration ist im Anhang oder in der Quelle ersichtlich
+
+//..
+
+..//
+// Function prototypes
+void MadgwickQuaternionUpdate(float ax, float ay, float az, float gx, float gy, float gz, float mx, float my, float mz);
+void MahonyQuaternionUpdate(float ax, float ay, float az, float gx, float gy, float gz, float mx, float my, float mz);
+
+//Die initialisierung ist im Anhang oder in der Quelle ersichtlich
+//..
+
+..//
+void loop() {
+//..
+init Variablen und einlesen der Sensoren
+..//
+
+  // Update quaternion orientation using Madgwick or Mahony algorithm
+  MadgwickQuaternionUpdate(ax, ay, az, gx, gy, gz, mx, my, mz);
+  //MahonyQuaternionUpdate(ax, ay, az, gx, gy, gz, mx, my, mz);
+
+  // Send quaternion orientation data over serial for visualization or further processing
+  Serial.print("Quaternion: ");
+  Serial.print(q[0]);
+  Serial.print("\t");
+  Serial.print(q[1]);
+  Serial.print("\t");
+  Serial.print(q[2]);
+  Serial.print("\t");
+  Serial.println(q[3]);
+
+  // Send gyro x/y/z values over serial
+  Serial.print("Gyro:");
+  Serial.print(avgGX);
+  Serial.print("\t");
+  Serial.print(avgGY);
+  Serial.print("\t");
+  Serial.print(avgGZ);
+  Serial.println();
+
+  // Send accelerometer x/y/z values over serial
+  Serial.print("Accel:");
+  Serial.print(avgAX);
+  Serial.print("\t");
+  Serial.print(avgAY);
+  Serial.print("\t");
+  Serial.print(avgAZ);
+  Serial.println();
+
+
+}
+\end{lstlisting}
+
+
+\subsection{Einlesen der Sensordaten vom Lidar}
+
+Die Datei \texttt{lidar.py} umfasst den Code zur Einbindung des Lidar-Sensors. Dieser initialisiert das LiDAR-Modul und liest deren Daten bei Aufruf ein.
+
+\paragraph{Initialisierung und Konfiguration}
+
+Die Klasse \texttt{Lidar} initialisiert den Lidar-Sensor und konfiguriert die erforderlichen Parameter für den Betrieb. Dabei wird die Bibliothek \texttt{ydlidar} verwendet, um auf das Modul zuzugreifen und mit diesem zu kommunizieren. Die serielle Schnittstelle und die Baudrate werden festgelegt, sowie weitere Konfigurationsoptionen wie die Scanfrequenz und der Scanmodus, diese sind vom Hersteller vorgegeben und sind Modellspezifisch.
+
+\paragraph{Datenabfrage und Verarbeitung}
+
+Die Methode \texttt{scan} ermöglicht es, eine Scanaufnahme durchzuführen und die Daten des Lidar-Sensors zu erfassen. Diese Daten werden in Form von Entfernungs- und Intensitätswerten bei gegebenen Messwinkel gespeichert und können weiterverarbeitet werden. Die Methode aktualisiert auch die relevanten Parameter wie Mindest- und Maximalwinkel, Mindest- und Maximalreichweite und Scanzeit. Diese werden von der LiDAR-Bibliothek lokal gespeichert und müssen nur noch zur Weiterverarbeitung zwischen gespeichert werden.
+
+\paragraph{Abschaltung des Lidar}
+
+Die Methode \texttt{turnOff} wird verwendet, um den Lidar-Sensor ordnungsgemäß auszuschalten und die Verbindung zu beenden. Dies ist wichtig, um eine ordnungsgemäße Nutzung der Ressourcen sicherzustellen und potenzielle Probleme zu vermeiden. Des Weiteren kann es bei unsachgemäßer Abschaltung dazu kommen, dass der LiDAR weiterhin aktiv bleibt und sich weiter dreht, das kann bei versuchtem Wiedereinschalten potenziell zu Problemen führen.
+
+\paragraph{Test und Anwendung}
+
+Der letzte Teil des Codes ist nur zur Testzwecken da. Diese überprüft, ob die Datei selber oder als Bibliothek ausgeführt wird. Bei ersterem wird eine Testsequenz ausgeführt. Diese Testsequenz schaltet den LiDAR ein, liest die Ergebnisse einer Umdrehung ein und gibt sie in der Konsole aus. Danach schaltet sich der LiDAR wieder aus. Diese Methode zum Testen einzelner Module wird in dem Projekt häufig verwendet, da man schnell und unkompliziert einen Überblick über den Code und seine Funktion bekommen kann.
+
+
+\subsection{Publisher.py}
+Publisher für Sensor-Daten
+
+Das ROS-System hat für den Austausch von Daten zwei Funktionen, Publisher und Subscriber (zu Deutsch Veröffentlichter und Abonnent). Mit diesen beiden Funktionen können so genannte „Messages“(Nachrichten) ausgetauscht werden. Die gebräuchlichen Nachrichtentypen sind von ROS definiert, die Definition beinhaltet die erforderlichen Parameter, deren Datentypen und sonstige Hinweise. Für den IMU- und LiDAR-Publisher wird demnach die IMU \cite{SAIL2018a} - und LaserScan \cite{SAIL2018b}-Nachricht verwendet.
+
+\paragraph{Initialisierung und Konfiguration}
+
+Bei der Initialisierung startet der Code die zuvor definierten, selbst geschriebenen LiDAR- und IMU-Codes. Der IMU-Code reserviert sich dadurch die Serielle Schnittstelle und beginnt mit der Kommunikation mit dem Arduino. Der LiDAR-Code reserviert sich ebenfalls eine Serielle Schnittstelle und lässt den LiDAR andrehen. In diesem Prozess wird außerdem eine kleine Selbst-Diagnose des LiDARs gestartet, um einen sicheren Start zu gewährleisten. Außerdem werden die ROS-Knoten aktiviert, sowohl für den Beschleunigungssensor als auch für den LiDAR.
+
+\paragraph{Sensor-Datenveröffentlichung}
+
+Die Methode \texttt{publish\_sensor\_data} dient dazu, fortlaufend Sensordaten zu veröffentlichen. Innerhalb dieser Methode werden die LiDAR- und IMU-Daten durch Aufrufe der entsprechenden Funktionen aus den zugehörigen Bibliotheken eingelesen. Anschließend werden diese Daten in ROS-Nachrichten verpackt und über die entsprechenden Publisher im ROS-Netzwerk verteilt. Für jeden veröffentlichten Datensatz wird ein Zeitstempel hinzugefügt, der die Aktualität der Daten markiert und sicherstellt, dass Empfänger die zeitlichen Eigenschaften der Daten verstehen können. Dies ermöglicht anderen ROS-Knoten eine präzise Synchronisierung und Verarbeitung der empfangenen Sensorinformationen.
+
+\paragraph{Erstellung von ROS-Nachrichten}
+
+Die Methoden \texttt{gen\_laser\_scan\_msg} und \texttt{gen\_imu\_msg} erstellen ROS-Nachrichten mit den aktuellen Daten des LiDAR-Sensors bzw. des IMUs. Dabei werden die relevanten Daten wie Winkel, Entfernungen, Intensitäten, Quaternionen, lineare Beschleunigung und Winkelgeschwindigkeiten in die entsprechenden Nachrichtenfelder eingefügt.
+
+\paragraph{Hauptfunktion}
+
+Die Hauptfunktion \texttt{main} erstellt eine Instanz des LaserScan-Publishers und startet diesen. Dadurch wird der kontinuierliche Betrieb des Publishers gewährleistet, solange keine Unterbrechung durch eine ROS-Exception auftritt. Die Implementierung dieses Publishers ermöglicht es, LiDAR- und IMU-Daten effizient in einem ROS-Netzwerk zu verteilen und anderen Knoten zur Verfügung zu stellen. Diese Daten sind von entscheidender Bedeutung für die Navigation und Steuerung des autonomen Fahrzeugs und tragen zur Gewährleistung seiner sicheren und effektiven Funktionsweise bei.
