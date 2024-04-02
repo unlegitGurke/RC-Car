@@ -1,0 +1,17 @@
+\subsection{RRT (Rapidly-exploring Random Tree) Pathfinding-Algorithmus}
+Der RRT-Algorithmus ist eine fortschrittliche Methode zur Berechnung von Pfaden in einem unbekannten oder komplexen Umfeld. Dieser Algorithmus wurde für autonome Systeme entwickelt, um effiziente und kollisionsfreie Routen zu planen, insbesondere in dynamischen Umgebungen wie Robotern oder autonomen Fahrzeugen.
+
+\textbf{Funktionsweise des RRT-Algorithmus:}
+Der RRT-Algorithmus arbeitet, indem er einen Baum von Pfaden im Umfeld des Startpunkts aufbaut und diesen Baum schrittweise erweitert, um den Zielpunkt zu erreichen. Dabei werden zufällige Punkte im Umfeld generiert und mit dem vorhandenen Baum verbunden. Diese zufälligen Punkte dienen dazu, das Umfeld zu erkunden und potenzielle Wege zum Ziel zu entdecken.
+
+\textbf{Erweiterung des Baumes:}
+Bei jedem Schritt des Algorithmus wird der nächste Punkt in Richtung des Ziels erweitert. Dies geschieht durch das Hinzufügen eines neuen Knotens zum Baum, der durch eine Verbindung mit einem bestehenden Knoten erreicht wird. Die Auswahl des nächsten Punktes erfolgt in der Regel basierend auf der Nähe zum zufällig generierten Punkt und der Sicherstellung, dass die Verbindung zwischen den Punkten kollisionsfrei ist.
+
+\textbf{Dynamische Umgebungen:}
+Der RRT-Algorithmus ist besonders effektiv in dynamischen Umgebungen, da er in der Lage ist, sich an Veränderungen anzupassen und neue Hindernisse zu berücksichtigen. Durch kontinuierliches Erweitern des Baumes kann der Algorithmus neue Wege finden, um Hindernisse zu umgehen oder alternative Routen zu planen, wenn sich die Umgebung ändert.
+
+\textbf{Optimierung und Feinabstimmung:}
+Nachdem der Baum aufgebaut wurde und der Zielpunkt erreicht wurde, können verschiedene Optimierungstechniken angewendet werden, um den gefundenen Pfad zu verbessern. Dazu gehören beispielsweise die Glättung des Pfades, um unnötige Wendungen zu reduzieren, oder die Anpassung des Pfades an spezifische Anforderungen oder Einschränkungen.
+
+\textbf{Anwendungen des RRT-Algorithmus:}
+Der RRT-Algorithmus wird in einer Vielzahl von Anwendungen eingesetzt, darunter autonomes Fahren, Robotik, Videospielentwicklung und Luft- und Raumfahrt. Durch seine Fähigkeit, schnell und effizient kollisionsfreie Pfade zu berechnen, bietet der RRT-Algorithmus eine leistungsstarke Lösung für komplexe Navigationsprobleme in dynamischen Umgebungen.
