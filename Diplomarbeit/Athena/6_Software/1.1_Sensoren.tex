@@ -76,12 +76,12 @@ bool LattePandacomms::refresh(char startMarker, char endMarker) {
     
     byte x = Serial.read();   //Reads Serial Data
     
-    if (x == startMarker && _inProgress == false) {    //IF the first Byte = startMarker, start to recieve Data
+    if (x == startMarker && _inProgress == false) {    //First Byte = startMarker?
        
       _bytesRecvd = 0;      //Zero bytes have been recieved so far
       _inProgress = true;   //New Message has started
       
-      for(int i = 0; i < sizeof(BufferIn); i++) {   //Clear BufferIn Array to make space for new message
+      for(int i = 0; i < sizeof(BufferIn); i++) {   //Clear BufferIn Array
         BufferIn[i] = '\0';
       }
       
@@ -89,7 +89,7 @@ bool LattePandacomms::refresh(char startMarker, char endMarker) {
     
     if (_inProgress ) {   //Has the message started?
           
-      if (_bytesRecvd<_maxMessage) {    //Does the current length exceed the max Message limit
+      if (_bytesRecvd<_maxMessage) {    //Max message limit?
         
         BufferIn[_bytesRecvd++] = x;  //Save current Byte to Buffer
         
@@ -119,8 +119,69 @@ bool LattePandacomms::refresh(char startMarker, char endMarker) {
 			
 			\subsubsection{Dekodieren der Pakete am ESP32}
 					Um das sich im Buffer befindliche Paket nun zu dekodieren sind zwei zusätzliche Funktionen nötig:\\
-					Die Erste Funktion entfernt den Start-und Endmarker, da diese nicht dekodiert werden müssen.\\
-					Mithilfe von der zweiten Funktion ist möglich den ersten Wert aus einem Char-Array zu löschen. So kann nun immer der erste Wert eingelesen werden und dann gelöscht werden. Dies wird so oft widerholt, bis die gewünschte Anzahl an Variablen(durch Anzahl der Variablen im Paket gegeben) eingelesen ist.\\
+					Die Funktion \textit{bool removeMarkers()} entfernt den Start-und Endmarker, da diese nicht dekodiert werden müssen.\\
+					
+					\lstset{style=VS2017}
+					\begin{lstlisting}[language=C, caption={RemoveMarkers()}]
+bool removeMarkers(char* inputMessage,
+                   char* outputMessage, 
+                   char startMarker, 
+                   char endMarker) {   
+  
+  int startIndex = 0;
+  int endIndex = 0;
+
+  for (int i = 0; i < strlen(inputMessage); i++) {
+      if (inputMessage[i] == startMarker) {
+        startIndex = i + 1;     // Skip startMarker
+      } 
+      else if (inputMessage[i] == endMarker) {
+         endIndex = i;
+         break;    // Stop once endMarker is found
+      }
+  }
+  
+	// Extract the substring between startMarker and endMarker into the output message
+  if (endIndex > startIndex) {    
+    strncpy(outputMessage, inputMessage + startIndex, endIndex - startIndex);
+    outputMessage[endIndex - startIndex] = '\0';    // Null-terminate the output message
+    return true;
+  } 
+  
+  else {
+    outputMessage[0] = '\0'; // Empty output message if 'q' is not found after 'x'
+    return false;
+  }  
+  
+}					
+					\end{lstlisting}
+					
+					Mithilfe von der Funktion \textit{bool removeFirstValue()} ist möglich den ersten Wert aus einem Char-Array zu löschen. So kann nun immer der erste Wert eingelesen werden und dann gelöscht werden. Dies wird so oft widerholt, bis die gewünschte Anzahl an Variablen(durch Anzahl der Variablen im Paket gegeben) eingelesen ist.\\
+					
+					\lstset{style=VS2017}
+					\begin{lstlisting}[language=C, caption={RemoveMarkers()}]
+bool removeFirstValue(char* inputMessage, char* outputMessage) { 
+    
+  int commaIndex = 0;
+  
+	//Search for first comma
+  while (inputMessage[commaIndex] != ',' && inputMessage[commaIndex] != '\0') {   
+    commaIndex++;
+  }
+  
+	// If comma is found, copy the substring after first comma into output message
+  if (inputMessage[commaIndex] == ',') {    
+    strcpy(outputMessage, inputMessage + commaIndex + 1);
+    return true;
+  } 
+  
+  else {
+    return false;
+  }
+  
+}					
+					\end{lstlisting}
+					
 					Diese eingelesen Variablen werden in Komponenten, die durch ein struct definiert sind, im public Teil der Class abgespeichert, so ist es möglich vom Hauptcode auf diese zuzugreifen:
 					
 					\lstset{style=VS2017}
@@ -138,7 +199,7 @@ public:
   
   LattePandacomms();
 
-  Component IsOk;
+  Component IsOk;		//Datenspeicher der einzelnen Komponenten
   Component IMU1;
   Component IMU2;
   Component Octosonar;
@@ -149,4 +210,64 @@ public:
 }						
 					\end{lstlisting}
 					
-			\subsubsection{}		
+					Im Hauptprogramm können Daten eingelesen werden indem sie durch das Objekt aufgerufen werden (zum Beispiel: Objekt.IMU1.Data[1];).
+			\subsubsection{Einlesen der Sensordaten}
+					
+					Zusätzlich zur Kommunikation liest Kern 0 auch alle Sensordaten ein und steuert alle Lüfter. Die Funktionen sind essenziell sehr ähnlich aufgebaut. Es werden zuerst die Werte (meist mithilfe von einer Bibliothek) eingelesen und anschließend in das Kommunikationsobjekt gespeichert, oder wie im Fall der Lüfter, aus dem Objekt ausgelesen und übernommen. Der Intervall indem Daten ausgelesen werden, kann außerdem für alle Sensoren festgelegt werden.
+					
+					\lstset{style=VS2017}
+					\begin{lstlisting}[language=C, caption={Einlesen der Spannungssensoren}]	
+void VoltageSensor() {
+  
+  currentMillisVoltage = millis();
+  if(currentMillisVoltage - previousMillisVoltage >= ReadIntervallVoltage) {
+    previousMillisVoltage = currentMillisVoltage;
+
+    for(int i = 0;i < NOSVoltage;i++) {                         
+      float value = analogRead(VoltagePin[i]);          //Reads all the AnalogPins Values
+			
+      //Calculates the voltages from the sensorpins values
+      LattePanda.Voltage.Data[i] = value*(LogicLevel/pow(2, ADCRes))*((R1[i] + R2[i])/R2[i]);    
+    }
+    
+  }
+}					
+					\end{lstlisting}
+					
+					\lstset{style=VS2017}
+					\begin{lstlisting}[language=C, caption={Steuern der Lüfter}]	
+void Fan_Control() {
+
+  for(int i = 0;i < 4;i++) {
+    
+    FanSpeed[i] = LattePanda.Fan.Data[i];   //Read Data from LattePanda
+		
+    //Calculate DutyCycle from Speed Value 
+    DutyCycle[i] = map(FanSpeed[i], 0, 100, 0, pow(2, Resolution[i]));    
+
+    ledcWrite(PWMChannel[i], DutyCycle[i]);     //Write PWM Signal to Pins
+
+  }
+
+}					
+					\end{lstlisting}
+					Die Loop-Schleife von Kern 0 ruft dauerhaft folgende Funktionen auf:
+					
+					\lstset{style=VS2017}
+					\begin{lstlisting}[language=C, caption={Steuern der Lüfter}]	
+void Task1loop() {
+  
+  CheckError();
+  ReadTemp();
+  ReadSonar();
+  ReadIMU();
+  Fan_Control();
+  VoltageSensor();
+  getSerialData();
+	SendSerialData();
+
+  delay(1);
+
+}					
+					\end{lstlisting}
+					

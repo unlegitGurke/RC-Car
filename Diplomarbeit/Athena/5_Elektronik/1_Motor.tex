@@ -1,7 +1,7 @@
 \fancyfoot[C]{Sandri}
 \section{Motor und Motorcontroller}
 	\subsection{Wahl des Motors}
-		Wie schon in \ref{Motoren} Elektrische Antriebsmaschinen beschrieben, gibt es eine Vielzahl an möglichen Maschinen zum Antrieb eines solchen Fahrzeugs. Da die Motordrehzahl hier genau geregelt werden muss eignet sich die Synchronmaschine am besten. Verwendet wird eine BLDC-Syncrhonmaschine, da diese kostengünstiger wie eine PMSM ist, trotzdem aber eine ähnliche Charakteristik bietet. Um eine etwas bessere Kontrolle bei langsamen Drehzahlen zu erreichen werden außerdem Hall-Effekt-Sensoren am Motor angebracht. Der Hersteller TP-Power bietet zu einem günstigen Preis die Möglichkeit, Motoren auf Wunsch anzupassen und zu fertigen, gewählt wurder Motor TP5860 mit Hall-Effekt-Sensor er ist in folgenden Varianten verfügbar:
+		Wie schon in \ref{Motoren} Elektrische Antriebsmaschinen beschrieben, gibt es eine Vielzahl an möglichen Maschinen zum Antrieb eines solchen Fahrzeugs. Da die Motordrehzahl hier genau geregelt werden muss eignet sich die Synchronmaschine am besten. Verwendet wird eine BLDC-Synchronmaschine, da diese kostengünstiger wie eine PMSM ist, trotzdem aber eine ähnliche Charakteristik bietet. Um eine etwas bessere Kontrolle bei langsamen Drehzahlen zu erreichen werden außerdem Hall-Effekt-Sensoren am Motor angebracht. Der Hersteller TP-Power bietet zu einem günstigen Preis die Möglichkeit, Motoren auf Wunsch anzupassen und zu fertigen, gewählt wurder Motor TP5860 mit Hall-Effekt-Sensor er ist in folgenden Varianten verfügbar:
 		
 		\begin{figure}[H]
 			\centering
@@ -9,7 +9,7 @@
 			\caption{TP5860 Motor Konfigurationen\cite{TPPOWERUSA2024}}
 		\end{figure}
 		
-		Die Motorkonfigurationen 8D und 4Y bilden ein gutes Gleichgewicht zwischen benötiger Spannung und benötigtem Strom, auch ist die Spannung perfekt durch eine 16S-LiPo Konfiguration erreichbar. Gewählt wurde im Endeffekt Konfiguration 8D
+		Die Motorkonfigurationen 8D und 4Y bilden ein gutes Gleichgewicht zwischen benötiger Spannung und benötigtem Strom, auch ist die Spannung perfekt durch eine 16S-LiPo Konfiguration erreichbar. Gewählt wurde schließlich die Konfiguration 8D.
 		
 		\subsection{Wahl des Motorcontrollers}
 			Motorcontroller (auch ESCs genannt) sind in alles Größen, Formen und mit beliebigen Funktionen verfügbar. Ein im Modellbau sehr bekanntes Open-Source-Projekt ist das VESC-Projekt\cite{Vedder2022}. VESCs überzeugen durch ihre gut durchdachte Software und vielzählige Funktionen. Auch ist das gesamte Projekt Open-Source und kann so beliebig bearbeitet werden. Es bietet außerdem eine Vielzahl an Schnitstellen zum Ansteuern, wie zum Beispiel UART, I2C, PWM, USB, etc. Der Hersteller FLIPSKY bietet das Model FSESC75200 Pro\cite{FLIPSKY2024} an, welches mit einer maximalen ERPM($Drehzahl * Polpaare$) von 150000, einem maximalen Strom von 300A und einer Spannung von bis 84V perfekt für den gewählten Motor geeignet ist. Es ist außerdem sehr kostengünstig.
@@ -81,7 +81,7 @@
 						\caption{VESC Wattage\cite{Vedder2022}}
 					\end{figure}
 				
-				\item Unter dem Reiter \textbf{Temperature} kann der Temperatursensor des Motors konfiguriert werden. Der Motor hat einen 10kOhm NTC verbaut, dieser wird ausgewählt, der Rest der Einstellungen können so bleiben, wie sie sind.
+				\item Unter dem Reiter \textbf{Temperature} kann der Temperatursensor des Motors konfiguriert werden. Der Motor hat einen 10k$\Omega$ NTC verbaut, dieser wird ausgewählt, der Rest der Einstellungen kann so bleiben, wie er ist.
 				
 					\begin{figure}[H]
 						\centering

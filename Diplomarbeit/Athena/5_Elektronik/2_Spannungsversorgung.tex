@@ -10,7 +10,7 @@
 			
 			\item Die Spannung der Zellen muss insgesamt der Versorgungsspannung vom Motor entsprechen.
 			
-			\item Das Gewicht der Batterien sollte nicht zu groß seinn
+			\item Das Gewicht der Batterien sollte nicht zu groß sein
 			
 		\end{itemize}
 		
@@ -69,24 +69,24 @@
 			\hline
 			\textbf{Verbraucher} & \textbf{Stromverbrauch} & \textbf{5V} & \textbf{12V} \\
 			\hline
-			45 LEDs Rücklicht & $60mA * 45 = 2,7A$ & x & \\
+			45 LEDs Rücklicht & $60\,\mathrm{mA} * 45 = 2,7\,\mathrm{A}$ & x & \\
 			\hline
-			34 LEDs Vorderlicht & $60mA * 34 = 2,04A$ & x & \\
+			34 LEDs Vorderlicht & $60\,\mathrm{mA} * 34 = 2,04\,\mathrm{A}$ & x & \\
 			\hline
-			8 Ultraschallsensoren & $0,2A * 8 = 1,6A$ & x & \\
+			8 Ultraschallsensoren & $0,2\,\mathrm{A} * 8 = 1,6\,\mathrm{A}$ & x & \\
 			\hline
 			Servomotor & 2A & x & \\
 			\hline
 			LattePanda & 2A & & x \\
 			\hline
-			5 Lüfter & $0,75A * 5 = 3,75A$ & & x \\
+			5 Lüfter & $0,75\,\mathrm{A} * 5 = 3,75\,\mathrm{A}$ & & x \\
 			\hline
 		
 		\end{tabular}
 		\caption{Stromverbraucher}
 		\end{table}
 		
-		Daraus errechnen sich die benötigten Leistungen der Spannugnswandler:
+		Daraus errechnen sich die benötigten Leistungen der Spannungswandler:
 		
 		\subsubsection{5V Spannungswandler}
 			$2,7A + 2,04A + 1,6A + 2A = 8,34A \rightarrow 8,34A + Reserve \approx 10A $\newline
@@ -121,5 +121,5 @@
 	\subsection{Leitungsdimensionierung}
 		Um einen sicheren Gebrauch aller Komponenten zu gewährleisten und Kabelbrände zu verhindern, ist es nötig alle Leitungen den möglichen Strömen entsprechend zu dimensionieren. Der meiste Strom geht zum Motorcontroller, welcher von Werk aus mit 8AWG($8,34mm^{2}$) Leitungen versehen ist. Aus diesem Grund werden von den Akkus bis zum Motorcontroller ausschließlich Leitungen von diesem Querschnitt verwendet. Wichtig dabei ist es Leitungen mit Silikonmantel zu verwenden, da diese Temperaturen von bis zu 200°C standhalten können ohne zu schmelzen. Es hat sich nach einigen Tests unter hoher Last herrausgestellt, dass diese Leitungen völlig ausreichen.
 		Zu den Spannungswandlern und zur Hauptplatine sind 14AWG($1,63mm^{2}$) Leitungen verlegt, diese sollten kurzzeitig sogar den maximal möglichen Strom von 20A zu den Spannungswandlern standhalten. Auch hier wurden Leitungen mit Silikonmantel verwendet um die Temperaturwiderstandsfähigkeit zu gewährleisten.
-		Alle restlichen Leitungen von der Hauptplatine zu diversen Sensoren sind 22AWG($,64mm^{2}$) Leitungen.
+		Alle restlichen Leitungen von der Hauptplatine zu diversen Sensoren sind 22AWG($0,64mm^{2}$) Leitungen.
 	
