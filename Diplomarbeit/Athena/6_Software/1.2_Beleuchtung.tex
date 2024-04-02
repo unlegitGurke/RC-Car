@@ -1,4 +1,38 @@
 \subsection{Kern 1 / Beleuchtung}
-	Das Programm auf Kern 1 ist dafÃ¼r zustÃ¤ndig die Fahrzeugbeleuchtung zu steuern. Vom Computer wird ein Effekt empfangen, anhand von welchem dann Blinker, Bremslicht oder RÃ¼cklicht eingeschalten werden sollen. Um den guten Ablauf von Animationen zu erlauben, ist es wichtig, dass keine delay(); Funktion im Code verwendet wird. Zum Ansteuern der LEDs wird die FastLED-Bibliothek verwendet. Diese ermÃ¶glicht das leichte Steuern von adressierbaren LED-Streifen. Der Code ist in einige Teile aufgeteilt:
+	Das Programm auf Kern 1 ist dafür zuständig die Fahrzeugbeleuchtung zu steuern. Vom Computer wird ein Effekt empfangen, anhand von welchem dann Blinker, Bremslicht oder Rücklicht eingeschalten werden sollen. Um den guten Ablauf von Animationen zu erlauben, ist es wichtig, dass keine delay(); Funktion im Code verwendet wird. Zum Ansteuern der LEDs wird die FastLED-Bibliothek verwendet. Diese ermöglicht das leichte Steuern von adressierbaren LED-Streifen. Der Code ist in einige Teile aufgeteilt:
 	
-		\subsubsection{}
+		\subsubsection{Setup}
+			Im Setup werden als Erstes der vordere und hintere LED-Streifen initialisiert. Die verwendeten Streifen sind WS2812B-Streifen und haben 45, beziehungsweise 34LEDs. Danach werden die LEDs ausgeschalten und es wird die Startup-Animation initialisiert. Wenn das Setup abgeschlossen ist, läuft es in eine unendliche for-Schleife in welcher der Rest des Programmes ausgeführt wird.
+			
+			\lstset{style=VS2017}
+			\begin{lstlisting}[language=C, caption={Steuern der Lüfter}]	
+void Task2setup( void * pvParameters ) {
+  
+	//Initlialize LEDStrips
+  FastLED.addLeds<WS2812B, LED_PIN_BACK, GRB>(ledsback, NUM_LEDS_BACK);  
+  FastLED.addLeds<WS2812B, LED_PIN_FRONT, GRB>(ledsfront, NUM_LEDS_FRONT);  
+    
+  pinMode(LED_PIN_BACK, OUTPUT);              
+  pinMode(LED_PIN_FRONT, OUTPUT);
+
+  fill_solid(ledsback, NUM_LEDS_BACK, CRGB::Black);    //Turn off all LEDs at startup
+  fill_solid(ledsfront, NUM_LEDS_FRONT, CRGB::Black);
+  FastLED.show();
+
+  IsStartup = 1;    //Run Startup Animation
+
+  for(;;){
+    Task2loop();
+  }
+    
+}			
+			\end{lstlisting}
+			
+		\subsubsection{Loop}
+			Der Loop prüft als Erstes ob die Startup-Animation läuft, wenn ja spielt er sie bis zum Ende ab. Wenn diese fertig ist, wird eingelesen, welcher Effekt derzeit auf der Beleuchtung abgespielt werden soll. Wenn kein Effekt aufgerufen wurde, wird die \textit{idle();} Funktion aufgerufen, in dieser ist das Standlicht definiert. Wenn ein Effekt gewünscht ist werden hier die entsprechenden Funktionen wie der Blinker, das Bremslicht, oder das Rücklicht aufgerufen. Diese Effekte können auch beliebig kombiniert werden.
+		
+		\subsubsection{Blinker}
+			Die Funktion Blinker prüft als Erstes ob  der linke Blinker, der rechter Blinker oder beide laufen sollen. Danach startet er eine Ablaufsteuerung in der die Lauflichtanimation abgespielt wird. Anstatt die delay(); Funktion zu verwenden wird auch hier die millis(); Funktion verwendet um mehrere Effekte gleiche Effekt zu ermöglichen. Alle anderen Funktionen, wie Rücklicht und Bremslicht, funktionieren ähnlich wie die Blinker Funktion.
+			
+		\subsubsection{FadeToColor}
+			Die FadeToColor Funktion kann wird innerhalb von anderen Funktionen aufgerufen um die Farbe einer oder mehreren LEDs auf eine andere Farbe innerhalb eines Intervalls zu ändern. Dafür werden zuerst für rot, grün und blau die Differenzen zwischen akuteller Farbe und Zielfarbe berechnet. Anhand der größten Differenz, wird eine for-Schleife gestartet, in der die Variablen einander angenähert werden.
