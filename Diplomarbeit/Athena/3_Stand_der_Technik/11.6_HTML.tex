@@ -1,0 +1,103 @@
+\subsection{HTML}
+
+\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.3]{./3_Stand_der_Technik/Abbildungen/HTML_LOGO}
+			\caption{HTML-Logo \cite{Wikipedia2024c}}
+		\end{figure}
+
+Das Ziel dieses Projektes mittels HTML ist es, eine Website zu entwickeln die sich mit allen Themen des Autos befasst. Der Mechanik, der Elektronik und der Software. Alle Teile werden dort beschrieben und erklärt. Der wichtigste Teil der Website ist jedoch der Telemetrie Teil. Die Website soll Echtzeitdaten von unserem Fahrzeug anzeigen und auch die Map-Erstellung anzeigen. Als Grundlegende Sprache haben wir dafür HTML ausgewählt. 
+	\subsubsection{Übersicht HTML:Was bedeutet HTML überhaupt?} 
+HTML bedeutet Hyper Text Markup Language.  
+Was ist nun HTML? 
+HTML ist eine der am häufigsten genützten Auszeichnung sprachen weltweit. Die Stärken von HTML liegen in einer übersichtlichen Struktur einem kotenlosen Open-Source-Ansatz und einer steilen Lernkurve. 
+Was bedeutet das jetzt alles vereinfacht? 
+HTML ist in einfachen Worten gefasst eine Grundlage für Website-herstellung. Sie besteht aus sogenannten „Tags“ als auch inhaltsleeren Elementen.  
+Wann wurde HTML entwickelt?  
+Tim Berners-Lee, auch bekannt als Erfinder vom World Wide Web (WWW), fing 1992 mit den ersten HTML-Spezifikationen an. 1999 erklärte das World Wide Web Consortium HTML in der Version 4.0-Version zum offiziellen Standard. Die derzeitige Version von HTML ist die 5.1 (beziehungsweise HTML5).  
+Was ist das Word Wide Web Consortium? 
+Das World Wide Consortium ist eine Gruppe von Leuten die daran Arbeiten das Internet besser zu machen. Sie erstellen Regeln und Standards, damit Websites und Programme gut miteinander funktionieren. Zum Beispiel machen sie Regeln dafür, wie Webseiten aussehen und wie sie Daten austauschen. Das Ziel deren ist einfach das Web für alle zugänglicher und benutzerfreundlicher zu machen. 
+Ist HTML eine Programmiersprache?  
+Nein HTML zählt nicht zu den Programmiersprachen. Im Gegensatz zu sprachen wie JavaScript oder PHP fehlen HTML Befehl Strukturen keine Algorithmen, Aufgaben, Bedingungen oder Schleifen Erstellung. Jedoch kombiniert man HTML mit Programmiersprachen wie JavaScript und erstellt somit dynamische Inhalte oder sonstiges. Aus was bestehen nun HTML-Elemente? 
+HTML-Elemente bestehen aus zwei Tags. Einmal einem Opening-Tag und einem Closing-Tag. Zwischen diesen zwei Elementen ist der sichtbare Inhalt, also zum Beispiel <p>Dies ist ein Absatz. </p>. <p> ist der Opening-Tag und </p> ist der Closing-Tag. Dazwischen ist der Text in diesem Fall „Dies ist ein Absatz“.  Man kann sich tags einfach als Anweisungen vorstellen, die dem Webbrowser sagen, wie er den Inhalt einer Website anzeigen soll. Weitere Syntax Elemente sind zum Beispiel Attribute, Elemente, Nesting und Kommentare.\cite{ionos.at2024}
+Wie sieht nun die Strukturierung aus? 
+Am Anfang kommt die sogenannte Dokumenttyp-Deklaration (DOCTYPE). Daraufhin folgt der HTML-Kopf und im Anhang der HTML-Körper. 
+	\subsubsection{Wichtige HTML-Tags und Attribute} 
+HTML-Tags kennen wir nun, aber was sind gängige HTML-Tags? 
+<html>: Definiert den Beginn und das Ende eines HTML-Dokuments. 
+<head>: Enthält Metainformationen über das HTML-Dokument, wie z.B. Titel, Stilanweisungen und Skripte. 
+<title>: Definiert den Titel des HTML-Dokuments, der im Browser-Titel angezeigt wird. 
+<body>: Enthält den sichtbaren Inhalt der Webseite, wie z.B. Text, Bilder, Links usw. 
+<h1>, <h2>, <h3>, <h4>, <h5>, <h6>: Definieren Überschriften verschiedener Hierarchieebenen, wobei <h1> die wichtigste und <h6> die am wenigsten wichtige ist. 
+<p>: Definiert einen Absatz von Text. 
+<a>: Definiert einen Hyperlink zu einer anderen Seite oder Ressource. 
+<img>: Fügt ein Bild in die Webseite ein. 
+<ul> und <ol>: Definieren unsortierte und geordnete Listen. 
+<li>: Definiert ein Listenelement innerhalb einer Liste. 
+<div> und <span>: Werden verwendet, um Gruppen von Elementen zu definieren, die gemeinsam gestaltet oder manipuliert werden sollen. 
+ 
+Was sind aber nun Attribute? 
+HTML-Attribute sind Zusatzinformationen, die hinzugefügt werden können, um die Funktionalität oder Darstellung anzupassen. Sie werden zwischen dem Opening und Closing-Tags platziert und bestehen aus Attributnamen und Wert. 
+Gängige HTML-Attribute sind: 
+src: Sagt dem Browser, wo er etwas finden kann wie z.B.: src=“bild.jbg“ 
+Dieses Attribut gibt ein Foto namens bild.jbg aus 
+href: Sagt dem Browser, wo ein Hyperlink hinführen soll, z.B.: href=https://example.com  
+Dieses Attribut führt zur Seite Example.com 
+alt: Stellt einen Text da, wenn ein Foto nicht geladen werden kann, z.B.; alt=“Beschreibung des bildes“  
+Dieses Attribut gibt die Beschreibung eines Bildes wenn das Foto nicht geladen werden kann. 
+id: Gibt einem Element eine eindeutige Identifikation, später hilfreich in Zusammenarbeit mit CSS (design), z.B.: id=“Header“  
+Dieses Attribut beschreibt einen Header der später im CSS bearbeitet werden kann. 
+class: Fügt einem Element eine oder mehrere Klassen hinzu. 
+ 
+Klassen werden verwendet, um Gruppen von Elementen zu bestimmen die denselben Stil besitzen sollen. Zum Beispiel: class="box"  
+Dieses Attribut fügt eine Gruppeneinteilung hinzu, alle Gruppenteilnehmer sind identisch.\cite{ionos.at2024}
+
+\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.25]{./3_Stand_der_Technik/Abbildungen/HTML_Bsp}
+			\caption{HTML-Beispiel \cite{htmlseminar.de2024}}
+		\end{figure}
+
+	\subsubsection{Aufbau einer HTML-Datei}
+Struktur einer typischen HTML-Datei 
+<!DOCTYPE html>: Deklaration des HTML-Dokumenttyps. 
+<html lang="de">: Beginn des HTML-Dokuments mit der Angabe der Sprache (hier Deutsch). 
+<head>: Enthält Metainformationen wie die Zeichenkodierung, den Titel der Webseite und Verweise auf externe Ressourcen wie CSS- und JavaScript-Dateien. 
+<body>: Enthält den sichtbaren Inhalt der Webseite, wie Überschriften, Absätze, Links, Bilder usw. 
+	\subsubsection{Einbindung von externen Ressourcen} Verwendung von <link>-Tags für CSS-Dateien und <script>-Tags für JavaScript-Dateien.\cite{ionos.at2024} 
+Einbindung von externen Ressourcen wie CSS- und JS-Dateien: 
+Einbindung von CSS-Dateien: <link rel="stylesheet" href="styles.css"> 
+Einbindung von JavaScript-Dateien: <script src="script.js"></script> 
+Hinweise zur semantischen Strukturierung von HTML-Dokumenten: 
+Verwendung semantischer Tags wie <header>, <nav>, <main>, <footer> zur logischen Strukturierung der Webseite.\cite{ionos.at2024}
+	\subsubsection{Formulare und Eingabefehler}
+Formulare sind ein wesentlicher Bestandteil interaktiver Webseiten, die es Benutzern ermöglichen, Daten einzugeben und an den Server zu senden. Durch die Verwendung von HTML-Elementen wie <input>, <textarea> und <select> können verschiedene Arten von Eingabefeldern erstellt werden, die es Benutzern ermöglichen, Texte zu schreiben, Optionen aus Dropdown-Menüs auszuwählen und vieles mehr. Diese Formulare spielen eine wichtige Rolle in der Dateneingabe und -verarbeitung im Web, sei es bei der Registrierung für einen Dienst oder dem Absenden von Feedback. Mit Hilfe von HTML5-Validierungsattributen und JavaScript können Formulardaten einfach validiert und verarbeitet werden, um eine reibungslose Benutzererfahrung zu gewährleisten und die Qualität der übermittelten Daten sicherzustellen."
+
+<input>: Dieses Element wird verwendet, um Felder auf Websiten zu erstellen wie z.B. Textfelder, Checkboxen usw. 
+<textarea>: Dieses Element ermöglicht es denn Benützern mehrzeilige Texteingaben zu machen, wie z.B. für Kommentare oder Nachrichten. 
+<select> und <option>: Diese Elemente generieren eine Auswahl durch ein Dropdown-Menü. Die Benützer können, denn die verschiedenen Optionen dann auswählen.  
+Verwendung von Formularen zur Dateneingabe und -verarbeitung: 
+Formulare werden verwendet, um Benutzereingaben zu sammeln und an einen Server zu senden, um sie zu verarbeiten. Nachdem ein Benutzer Daten in ein Formularfeld eingegeben hat, kann er das Formular absenden, indem er auf die Schaltfläche "Senden" klickt. Die eingegebenen Daten werden dann an den Server gesendet, der sie verarbeiten kann.\cite{seokueche.de2024}
+	\subsubsection{Multimedia-Inhalte} 
+Multimedia-Inhalte wie Bilder, Audio- und Videodateien bereichern das Web und ermöglichen eine vielfältige Benutzererfahrung. Durch die Verwendung von HTML-Elementen wie <img>, <audio> und <video> können diese Inhalte nahtlos in Webseiten integriert werden. Dabei ist es wichtig, die unterstützten Formate und Methoden zur Einbindung zu beachten sowie Best Practices zur Optimierung der Multimedia-Ressourcen zu verwenden. So können Webentwickler eine reibungslose Darstellung und schnelle Ladezeiten sicherstellen, während sie gleichzeitig ansprechende Inhalte präsentieren. 
+Einbindung von Bildern, Audio- und Videodateien in HTML-Dokumente: 
+Bilder: Verwende das <img>-Element, um Bilder in eine Webseite einzubinden. Beispiel: <img src="bild.jpg" alt="Beschreibung des Bildes"> 
+Audio: Verwende das <audio>-Element, um Audio-Dateien einzubinden. Beispiel: <audio src="audio.mp3" controls> 
+Video: Verwende das <video>-Element, um Video-Dateien einzubinden. Beispiel: <video src="video.mp4" controls> 
+Unterstützte Formate und Methoden zur Einbindung von Multimedia-Inhalten: 
+Bilder: Gängige Bildformate wie JPEG, PNG und GIF werden von den meisten Browsern unterstützt. Das <img>-Element wird verwendet, um Bilder direkt in eine Webseite einzubinden. 
+Audio: Gängige Audioformate wie MP3, OGG und WAV werden unterstützt. Das <audio>-Element ermöglicht die Wiedergabe von Audioinhalten direkt in der Webseite. 
+Video: Gängige Videoformate wie MP4, WebM und OGG werden unterstützt. Das <video>-Element ermöglicht die Wiedergabe von Videodateien direkt in der Webseite. \cite{seokueche.de2024}
+	\subsubsection{Zusammenfassung der wichtigsten Punkte und Erkenntnisse} 
+Zusammenfassung der wichtigsten Punkte und Erkenntnisse: HTML bildet die Grundlage des World Wide Web und ermöglicht die Erstellung von Webseiten durch die Verwendung von Tags und Elementen. 
+Wichtige HTML-Elemente und -Attribute wurden erläutert, einschließlich Formularelemente, Multimedia-Inhalte. 
+Das selbstfahrende Fahrzeugprojekt und die Telemetrie-Website zeigen die Anwendung von HTML in realen Projekten zur Datenerfassung und -visualisierung. 
+Ausblick auf zukünftige Entwicklungen im Bereich HTML und Webtechnologien: 
+Fortschritte in HTML und anderen Webtechnologien werden erwartet, um die Interaktivität und Benutzererfahrung von Webanwendungen weiter zu verbessern. 
+Die Einführung neuer HTML-Versionen und APIs wird dazu beitragen, leistungsfähigere und benutzerfreundlichere Webanwendungen zu entwickeln. 
+
+Mögliche Anwendungsbereiche und Weiterentwicklungsmöglichkeiten für das selbstfahrende Fahrzeugprojekt und die Telemetrie-Website: 
+Das selbstfahrende Fahrzeugprojekt könnte durch Integration fortschrittlicherer Sensoren und Algorithmen weiter verbessert werden, um die Genauigkeit und Zuverlässigkeit des autonomen Systems zu steigern. 
+Die Telemetrie-Website könnte um zusätzliche Funktionen erweitert werden, wie Echtzeitdatenvisualisierung, Benutzerkonten und Datenanalysewerkzeuge, um eine umfassendere Überwachung und Steuerung des Fahrzeugs zu ermöglichen. 
+Die Integration von Machine Learning und künstlicher Intelligenz könnte die Automatisierung von Entscheidungsprozessen und die Verbesserung der Fahrzeugleistung ermöglichen. 
+Insgesamt bieten HTML und Webtechnologien eine solide Grundlage für die Entwicklung von vielfältigen und innovativen Webanwendungen, während Projekte wie das selbstfahrende Fahrzeug und die Telemetrie-Website spannende Möglichkeiten für die Anwendung und Weiterentwicklung dieser Technologien bieten. \cite{seokueche.de2024}

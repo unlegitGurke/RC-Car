@@ -1,6 +1,4 @@
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% HEADER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -73,7 +71,7 @@
 
 \setlength{\cftfignumwidth}{35pt}
 
-%% Farbschema für C++ Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Farbschema für C++ Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \definecolor{clr-background}{RGB}{255,255,255}
 \definecolor{clr-text}{RGB}{0,0,0}
@@ -101,22 +99,23 @@
 	numbers=left
 }
 
-%% Packages für Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Farbschema für C Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \definecolor{gruen}{rgb}{0,0.6,0}
 \definecolor{grau}{rgb}{0.5,0.5,0.5}
 \definecolor{lila}{rgb}{0.58,0,0.82}
 \definecolor{Hintergrund}{rgb}{0.95,0.95,0.92}
-
 \definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
 \definecolor{brightgreen}{rgb}{0.4, 1.0, 0.0}
 \definecolor{brilliantrose}{rgb}{1.0, 0.33, 0.64}
+
 \lstdefinestyle{C_Code}{
     backgroundcolor=\color{Hintergrund},
     commentstyle=\color{gruen},
     keywordstyle=\color{magenta},
     numberstyle=\tiny\color{grau},
     stringstyle=\color{lila},
-    basicstyle=\ttfamily\footnotesize,
+    basicstyle=\ttfamily\scriptsize,
     breakatwhitespace=false,
     breaklines=true,
     captionpos=b,
@@ -126,6 +125,8 @@
     showspaces=false,
     showstringspaces=false,
 }
+
+%% Farbschema für Python Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \lstdefinestyle{Python_Code}{
     backgroundcolor=\color{Hintergrund},
@@ -133,7 +134,7 @@
     keywordstyle=\color{magenta},
     numberstyle=\tiny\color{grau},
     stringstyle=\color{lila},
-    basicstyle=\ttfamily\footnotesize,
+    basicstyle=\ttfamily\scriptsize,
     breakatwhitespace=false,
     breaklines=true,
     captionpos=b,
@@ -144,13 +145,15 @@
     showstringspaces=false,
 }
 
+%% Farbschema für Konsole %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \lstdefinestyle{Konsole}{
     backgroundcolor=\color{airforceblue},
-    commentstyle=\color{brilliantrose},
-    keywordstyle=\color{brightgreen},
+    commentstyle=\color{green},
+    keywordstyle=\color{orange},
     numberstyle=\tiny\color{brilliantrose},
     stringstyle=\color{brightgreen},
-    basicstyle=\ttfamily\footnotesize,
+    basicstyle=\ttfamily\scriptsize,
     breakatwhitespace=false,
     breaklines=true,
     captionpos=b,
@@ -160,6 +163,10 @@
     showspaces=false,
     showstringspaces=false,
 }
+
+%% Rename listing to Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\lstlistingname}{Code}
+\renewcommand{\lstlistlistingname}{Codeverzeichnis}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% DOKUMENT

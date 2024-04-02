@@ -1,0 +1,205 @@
+\fancyfoot[C]{Petrovic}
+\section{Benutzeroberfläche / Website}
+\subsection{Website}
+Nach eingehender Diskussion haben wir uns entschieden, mehrere Seiten für unsere Website zu erstellen. Eine Hauptseite wird erstellt, auf der alle wichtigen Teile des Projekts übersichtlich präsentiert werden. Zusätzlich wird es eine Interaktionsseite geben, auf der Benutzer mit den Telemetriedaten des Fahrzeugs interagieren können. Des weiteren werden drei Seiten eingerichtet, die jeweils die Bereiche Mechanik, Elektronik und Software des Projekts im Detail erklären. Diese Struktur ermöglicht es unseren Besuchern, einen umfassenden Einblick in das Projekt zu erhalten und sich gezielt über verschiedene Aspekte zu informieren. 
+\subsubsection{Landing-Page}
+Die ersten Schritte zur Erstellung unserer Website begannen mit einer einfachen Skizze, auf der die wichtigsten Teile der Webseite grob dargestellt wurden. Nach ausführlichen Diskussionen und Zusammenarbeit im Team haben wir uns auf ein endgültiges Design geeinigt. Dieses Design wurde dann in einer Skizze festgehalten, um es visuell zu veranschaulichen und das Programmieren später einfacher zu gestalten. 
+
+Durch diese Skizze konnten wir eine klare Vorstellung davon bekommen, wie die Website aussehen und funktionieren soll. Sie diente als Leitfaden für die Programmierung und half uns, den Fokus auf die wichtigsten Funktionen und Inhalte zu legen. 
+
+\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.5]{./6_Software/Abbildungen/Skizze1-Main}
+			\caption{Skizze der ersten Gestaltung der Website}
+		\end{figure}
+
+Entgültiges Design der Hauptwebsite: 
+Für das endgültige Design unserer Website haben wir uns für eine klare und benutzerfreundliche Gestaltung entschieden. Die Hauptseite präsentiert alle wichtigen Informationen übersichtlich und ansprechend. Zusätzlich gibt es eine Interaktionsseite für direkte Telemetriedaten-Interaktion. Darunter finden Sie Bilder, wie die Main-site aussieht. 
+
+\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.55]{./6_Software/Abbildungen/MainSite-1}
+			\caption{Websitedesign Landing Page}
+		\end{figure}
+		
+\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.55]{./6_Software/Abbildungen/MainSite-2}
+			\caption{Websitedesign Landing Page 2}
+		\end{figure}
+		
+\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.55]{./6_Software/Abbildungen/MainSite3}
+			\caption{Websitedesign Landing Page 3}
+		\end{figure}
+		
+Codierung der Main-Site
+
+Auf den folgenden Seiten werden wir den Code hinter unserer Website genauer erläutern. Dabei werden wir die verschiedenen Technologien und Frameworks, die wir verwendet haben, sowie die Funktionalitäten und Besonderheiten unseres Codes beschreiben. Unser Ziel ist es, Ihnen einen Einblick in die Programmierung unserer Website zu geben und Ihnen zu zeigen, wie wir die verschiedenen Herausforderungen gemeistert haben, um eine benutzerfreundliche und funktionale Website für unser selbstfahrendes Fahrzeugprojekt zu entwickeln.
+
+\begin{itemize}
+\item HTML: Code ist der Arbeit angehängt: HTML-Code Landing Page
+\end{itemize}
+
+Der vorliegende HTML-Code bildet das Grundgerüst unserer Website für das Projekt "ATHENA". Hier ist eine Beschreibung der wichtigsten Elemente:
+\begin{enumerate}
+\item **<!DOCTYPE html>**: Deklaration des HTML-Dokumenttyps für die Browser-Kompatibilität.
+\item **<html lang="en">**: Die Wurzel des HTML-Dokuments, wobei "lang" die Sprache angibt.
+\item **<head>**: Dieser Bereich enthält Meta-Informationen wie die Zeichenkodierung, die Viewport-Einstellungen, den Titel der Webseite und Verweise auf externe Ressourcen wie CSS-Stylesheets und Schriftarten.
+\item **<body>**: Der Hauptinhalt der Webseite beginnt hier.
+\item **<section class="header">**: Der Header-Bereich der Webseite mit der Navigationsleiste und der Überschrift "ATHENA".
+\item **<section class="project">**: Bereich für Informationen über das Projekt, einschließlich einer Beschreibung und Links zu den einzelnen Teilen (Elektronik, Mechanik, Software).
+\item **<section class="about">**: Bereich mit Informationen über das Team und eine Einleitung zum Projekt "ATHENA".
+\item **<section class="footer">**: Der Footer-Bereich der Webseite, der Platz für Feedback und Kontaktinformationen bietet.
+\end{enumerate}
+Dieser HTML-Code bildet das Grundgerüst unserer Webseite, das durch CSS ergänzt wird, um ein ansprechendes und interaktives Benutzererlebnis zu bieten.
+
+\begin{itemize}
+\item CSS: Code ist der Arbeit angehängt: CSS-Code Landing Page
+\end{itemize}
+
+
+Dieser CSS-Code dient der Gestaltung der Webseite und enthält präzise definierte Stilelemente für eine ansprechende visuelle Darstellung. Im Folgenden wird eine detaillierte Beschreibung der einzelnen Abschnitte gegeben: 
+\begin{enumerate}
+\item	Globale Stile für alle Elemente: Setzt den Außenabstand und das Innenpolster aller Elemente auf 0 und definiert die Schriftart für den gesamten Text als Orbitron.
+\item	Stile für die Überschriftsklasse (.title): Definiert die Schriftart für Elemente mit der Klasse "title" als Ethnocentric.
+\item	Stile für den Header-Bereich (.header): Legt die Mindesthöhe auf 100% der Bildschirmhöhe fest, verwendet ein Hintergrundbild mit einem Farbverlauf und positioniert es zentriert.
+\item	Stile für die Navigationsleiste (nav): Verwendet Flexbox für das Layout, setzt Innenpolster und Platzierung der Elemente.
+\item	Stile für das Logo in der Navigationsleiste (nav img): Definiert die Breite, Position und Abstand des Logos.
+\item	Stile für die Navigationslinks (.nav-links): Legt den verfügbaren Platz, Textausrichtung und Formatierung der Links fest.
+\item	Stile für die Navigationslink-Texte (.nav-links ul li a): Definiert Farbe, Textdekoration und Schriftgröße der Navigationslinks.
+\item	Hover-Effekt für die Navigationslinks (.nav-links ul li::after): Fügt einen unterstrichenen Balken hinzu, der beim Schweben über einem Link erscheint.
+\item	Stile für die Textbox im Header (.text-box): Positioniert und zentriert den Text im Header.
+\item	Stile für Überschrift und Text in der Textbox (.text-box h1, .text-box p): Definiert Schriftgröße, Farbe und Abstand für den Text.
+\item	Stile für den Hero-Button (.hero-btn): Definiert Stile für einen Button mit Animationseffekten beim Schweben.
+\item	Media Query für kleinere Bildschirmgrößen (@media (max-width: 700px)): Ändert das Layout und die Stile für Bildschirme mit einer Breite von maximal 700 Pixeln, um eine bessere Benutzererfahrung auf mobilen Geräten zu ermöglichen.
+\item	Stile für den Projektabschnitt (.project): Legt Breite, Ausrichtung und Polsterung für den Projektabschnitt fest.
+\item	Stile für die Zeilen in dem Projektabschnitt (.row): Definiert das Layout der Zeilen mit Flexbox und Abstand zwischen den Elementen.
+\item	Stile für die Kurskolonnen (.course-col): Definiert Breite, Hintergrundfarbe, Randradius und Schatten für die Kurskolonnen.
+\item	Stile für die Überschriften der Kurskolonnen (h3): Definiert Schriftgröße, Ausrichtung und Fettdruck für die Überschriften.
+\item	Hover-Effekt für die Kurskolonnen (.course-col:hover): Definiert einen Schatteneffekt beim Schweben über die Kurskolonnen.
+\item	Stile für den Abschnitt "Über uns" (.about): Legt Breite, Ausrichtung und Polsterung für den Abschnitt "Über uns" fest.
+\item	Stile für allgemeinen Text (p): Definiert Farbe, Schriftgröße, Gewicht und Abstand für allgemeinen Text.
+\item	Stile für den Footer (.footer): Definiert Position, Ausrichtung und Polsterung für den Footer-Bereich.
+\item	Stile für die Überschrift im Footer (.footer h4): Definiert Schriftgröße, Gewicht, Farbe und Abstand für die Überschrift im Footer.
+\item	Stile für die Social-Media-Icons im Footer (.icons .fa-instagram): Definiert Farbe, Abstand und Cursor für die Social-Media-Icons.
+\end{enumerate}
+
+\subsection{Interaktion-Website}
+Die Interaktions-Website stellt einen integralen Bestandteil unseres Diplomarbeitsprojekts dar. Sie dient als zentrale Plattform, auf der wir uns auf die Visualisierung und Darstellung der wichtigsten Daten unseres Fahrzeugs konzentrieren. Hier werden die entscheidenden Informationen, die unser Fahrzeug liefert, übersichtlich und zugänglich präsentiert.
+
+Temperaturanzeigen: Ein Schlüsselelement unseres Projekts sind Temperaturanzeigen, die es ermöglichen, die Umgebungstemperatur in Echtzeit zu überwachen. Durch die präzise Erfassung und Anzeige der Temperatur schaffen wir eine wichtige Grundlage für die optimale Funktion unseres autonomen Fahrzeugs.
+Geschwindigkeitsanzeigen: Die exakte Erfassung und Anzeige der Geschwindigkeit ist von entscheidender Bedeutung für die Leistung und Sicherheit unseres Modellautos. Unsere Geschwindigkeitsanzeigen bieten eine detaillierte Darstellung der aktuellen Fahrgeschwindigkeit und ermöglichen dem Fahrzeug eine intelligente und effiziente Navigation.
+
+Batterieanzeigen: Die Batterieanzeige ist ein weiteres essenzielles Element unseres Projekts, da sie den aktuellen Ladestand der Batterie anzeigt. Diese Anzeigen gewährleisten eine kontinuierliche Energieversorgung des Modellautos und sind somit unverzichtbar für einen reibungslosen Betrieb.
+Skizze der ersten Planung: Die beigefügte Skizze illustriert die grundlegende Struktur und Funktionalität unseres autonomen Modellautos. Sie dient als Ausgangspunkt für die weiteren Entwicklungen und vermittelt einen ersten Eindruck von Design und Funktionalität des Fahrzeugs.
+
+\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.55]{./6_Software/Abbildungen/Skizze-Inter}
+			\caption{Skizze von der Interaktionswebsite}
+		\end{figure}
+		
+Entgültiges Design der Hauptwebsite
+Für das endgültige Design unserer Website haben wir uns für eine klare und benutzerfreundliche Gestaltung entschieden. Die Hauptseite präsentiert alle wichtigen Informationen übersichtlich und ansprechend. Zusätzlich gibt es eine Interaktionsseite für direkte Telemetriedaten-Interaktion. Darunter finden Sie Bilder, wie die Main-site aussieht.
+
+\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.55]{./6_Software/Abbildungen/Inter1}
+			\caption{Fertige Interaktionswebsite}
+		\end{figure}
+		
+\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.9]{./6_Software/Abbildungen/Inter2}
+			\caption{Fertige Interaktionswebsite (LiDAR)}
+		\end{figure}
+		
+Im Folgenden wird der HTML-Code erklärt, der die Grundlage unserer Interaktions-Website bildet. Dieser Code definiert die Struktur und das Layout der Seite sowie die verschiedenen Elemente, die für die Anzeige und Interaktion mit den Daten unseres selbstfahrenden Modellautos verantwortlich sind.
+
+HTML: Code ist der Arbeit angehängt: HTML-Code Interaktion-Page
+
+Dieser HTML-Code bildet das Grundgerüst unserer Interaktions-Website für das Diplomarbeitsprojekt. Hier ist eine Erklärung der wichtigsten Elemente:
+
+\begin{enumerate}
+\item `<!DOCTYPE html>`: Diese Zeile definiert den Typ des Dokuments als HTML5, was die Standardsyntax für moderne Webseiten ist.
+
+\item `<html lang="en">`: Das `<html>`-Tag markiert den Beginn des HTML-Dokuments und definiert die Sprache als Englisch.
+
+\item `<head>`: Der `<head>`-Bereich enthält Metadaten wie Zeichencodierung, Titel der Webseite und Verweise auf externe Ressourcen wie Stylesheets und Skripte.
+
+\item Metadaten: Die `<meta>`-Tags definieren die Zeichenkodierung (`charset`), den Viewport für die responsive Darstellung auf verschiedenen Geräten und den Titel der Webseite.
+
+\item Einbindung externer Ressourcen: Die `<link>`-Tags verweisen auf externe Stylesheets für das Styling der Seite sowie auf externe Bibliotheken wie FontAwesome und Google Fonts.
+
+\item `<body>`: Das `<body>`-Tag enthält den eigentlichen Inhalt der Webseite, einschließlich Header, Abschnitten für das Geschwindigkeitsmessgerät und die Batterien sowie Skriptreferenzen.
+
+\item Header-Bereich (`<section class="Inter-header">`): Dieser Bereich enthält die Navigationsleiste mit dem HTL-Logo und die Überschrift "Interaktion".
+
+\item Geschwindigkeitsmessgerät (`<section class="speedometer">`): Hier wird das Geschwindigkeitsmessgerät mit einem Zeiger dargestellt, um die Geschwindigkeit des Fahrzeugs anzuzeigen.
+
+\item Batterien (`<section class="batterie bat-1">`, `<section class="batterie bat-2">`, usw.): Diese Abschnitte repräsentieren die verschiedenen Batterien des Fahrzeugs und zeigen ihren Ladestand mit Fortschrittsleisten an.
+
+\item JavaScript-Inhalt: Die `<script>`-Tags verweisen auf JavaScript-Dateien, die für die Funktionalität der Thermometer, Batterien und des Geschwindigkeitsmessgeräts verantwortlich sind.
+\end{enumerate}
+
+Dieser Code legt die Struktur und das Layout der Interaktions-Website fest und integriert verschiedene visuelle Elemente sowie die Funktionalität zur Anzeige und Interaktion mit den Daten des Fahrzeugs
+
+JavaScript
+
+Nachdem das Grundgerüst der Interaktions-Website festgelegt wurde, beinhaltet der HTML-Code auch Verweise auf drei externe JavaScript-Dateien. Diese sind für die Funktionalität der verschiedenen Elemente auf der Seite verantwortlich. Hier ist eine kurze Erklärung zu jeder dieser JavaScript-Dateien:
+ 	thermo.js: Diese JavaScript-Datei ist für die Funktionalität des Thermometers auf der Seite zuständig. Sie steuert die Anzeige der aktuellen Umgebungstemperatur und ermöglicht möglicherweise auch interaktive Funktionen wie das Anpassen von Messbereichen oder das Hinzufügen von Warnungen bei extremen Temperaturen.
+ 	batterie.js: Die Datei batterie.js ist für die Batterieanzeigen auf der Seite verantwortlich. Sie regelt die Anzeige des Ladestands der verschiedenen Batterien des Fahrzeugs und steuert möglicherweise auch interaktive Elemente wie die Aktualisierung der Ladestandsanzeige in Echtzeit.
+ 	speedo.js: Diese JavaScript-Datei steuert die Funktionalität des Geschwindigkeitsmessgeräts auf der Seite. Sie ermöglicht die Anzeige der aktuellen Geschwindigkeit des Fahrzeugs und möglicherweise auch zusätzliche Funktionen wie das Hinzufügen von Warnungen bei Überschreitung bestimmter Geschwindigkeitsgrenzen oder das Anpassen der Anzeige an unterschiedliche Maßstäbe.
+Durch die Einbindung dieser externen JavaScript-Dateien wird die Interaktions-Website um dynamische Funktionen erweitert, die eine interaktive und informative Benutzererfahrung ermöglichen
+
+
+Thermo.js: Code ist der Arbeit angehängt: Thermo.js-Code
+
+Dieser Code definiert eine JavaScript-Anwendung, die verschiedene Messgeräte auf einer Webseite rendert und aktualisiert. Hier ist eine Beschreibung des Codes:
+\begin{enumerate}
+
+\item **Initialization on Window Load:**
+   - Die Funktion `initialize()` wird ausgeführt, wenn das Fenster geladen ist.
+   - `createPaths()` wird aufgerufen, um die Messgeräte zu erstellen.
+   - `updateGauges()` wird alle 2000 Millisekunden (2 Sekunden) aufgerufen, um die Messwerte zu aktualisieren.
+
+\item **Variablen und Daten:**
+   - `gauges`: Ein Array zur Speicherung der Messgeräte.
+   - `jsonTemp`: Ein Objekt, das Beispiel-Temperaturdaten enthält.
+
+\item **Funktionsdefinitionen:**
+   - `createGauge(name, label, min, max, sizebias, gx, gy)`: Eine Funktion zum Erstellen eines einzelnen Messgeräts mit den angegebenen Parametern.
+   - `createPaths()`: Eine Funktion zum Erstellen der Pfade für die Positionierung der Messgeräte auf der Webseite.
+   - `updateGauges()`: Eine Funktion, die alle Messgeräte aktualisiert, indem sie zufällige Werte generiert und die `redraw()`-Methode jedes Messgeräts aufruft.
+   - `getRandomValue(gauge)`: Eine Funktion zum Generieren eines zufälligen Werts für ein bestimmtes Messgerät.
+
+\item **Konstruktor für ein Messgerät (`Gauge`):**
+   - `Gauge(placeholderName, configuration)`: Der Konstruktor für ein Messgerät, der verschiedene Eigenschaften und Methoden für die Messgeräte definiert.
+   - `this.configure(configuration)`: Eine Methode zur Konfiguration des Messgeräts mit den angegebenen Einstellungen.
+   - `this.render()`: Eine Methode zum Rendern des Messgeräts auf der Webseite.
+   - `this.redraw(value, transitionDuration)`: Eine Methode zum Aktualisieren des Messgeräts mit einem neuen Wert und einer optionalen Übergangszeit.
+   - `this.valueToDegrees(value)` und `this.valueToRadians(value)`: Methoden zur Konvertierung von Messwerten in Grad und Bogenmaß.
+\end{enumerate}
+
+Der Code verwendet auch die D3.js-Bibliothek (`d3.svg.arc()` und `d3.select()`) für das Rendern von SVG-Elementen und Animationen der Messgeräte. Es werden verschiedene Stile und Filter für visuelle Effekte angewendet, um die Messgeräte ansprechend darzustellen.
+
+Batterie.js: Code ist der Arbeit angehängt: Batterie.js-Code 
+
+Dieser Code erstellt eine neue benutzerdefinierte CSS-Eigenschaft namens "--p", die eine ganze Zahl erwartet. Der Standardwert für diese Eigenschaft ist 0, und wenn sie nicht explizit festgelegt wird, wird sie von untergeordneten Elementen übernommen.
+
+speedo.js: Code ist der Arbeit angehängt: speedo.js-Code 
+Dieser Code definiert eine Funktion measureDeg, die die Rotation eines HTML-Elements mit der ID 'needle' misst und dann den berechneten Winkel als Datenattribut 'data-value' auf das HTML-Element mit der ID 'el' setzt. Die Rotation des Elements 'needle' wird über die CSS-Transformationseigenschaft ermittelt. Die Funktion wird in regelmäßigen Abständen alle 10 Millisekunden durch setInterval aufgerufen, um sicherzustellen, dass die Messung aktuell bleibt.
+
+CSS-files:
+style-test.css:Code ist der Arbeit angehängt: style-test.css-Code 
+
+Dieser CSS-Code definiert Stile für eine Webseite, einschließlich des Headers, der Navigation, der Textfelder, der Helden-Schaltflächen, usw. 
+
+Batterie.css:Code ist der Arbeit angehängt: Batterie.css-Code 
+
+Dieser Code definiert verschiedene Stile für Batterie- und Ladeanzeige-Elemente sowie für den Fortschrittsbalken und verschiedene Positionen dieser Elemente auf der Seite. Es werden auch Animationen definiert, um den Fortschrittsbalken und einige Symbole zu animieren.
+
+Thermo.css: Code ist der Arbeit angehängt: Thermo.css-Code 
+Body und Schrift wurde geändert.
