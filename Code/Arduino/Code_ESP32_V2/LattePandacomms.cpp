@@ -90,7 +90,7 @@ bool removeMarkers(char* inputMessage, char* outputMessage, char startMarker, ch
   
 }
 
-bool removeFirstValue(char* inputMessage, char* outputMessage) {    //Removes the first valie from a message
+bool removeFirstValue(char* inputMessage, char* outputMessage) {    //Removes the first value from a message
     
   int commaIndex = 0;
   
@@ -254,8 +254,6 @@ bool LattePandacomms::decode(char startMarker, char endMarker) {
   return 0;
   
 }
-
-
 
 bool LattePandacomms::send() {
   
