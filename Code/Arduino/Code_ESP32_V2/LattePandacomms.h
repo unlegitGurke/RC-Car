@@ -26,6 +26,7 @@ public:
   Component IsOk;
   Component IMU1;
   Component IMU2;
+  Component IMU3;
   Component Octosonar;
   Component Voltage;
   Component Temp;
@@ -38,7 +39,7 @@ private:
   int _nb = 0;
   bool _inProgress = false;
   
-  const int _ExpectedAccess[8] = {
+  const int _ExpectedAccess[9] = {
     1,    //IMU1 Request only
     1,    //IMU2 Request only
     1,    //Octosonar Request only
@@ -47,6 +48,7 @@ private:
     2,    //PWM Fan Speed --> Write to ESP --> confirm to LattePanda
     2,    //LEDs --> Write Effect to ESP --> confirm to LattePanda
     1,    //Error --> Write to ESP --> Send back to LattePanda
+    1     //IMU3 Quaternions Request only
   };
   
   int _commsError = 0;

@@ -530,6 +530,7 @@ void ReadIMU() {    //Reads IMU Sensor Data and filters it
   //MahonyQuaternionUpdate(ax, ay, az, gx, gy, gz, mx, my, mz);
 
   // Send quaternion orientation data over serial for visualization or further processing
+  /*
   Serial.print("Quaternion: ");
   Serial.print(IMUq[0]);
   Serial.print("\t");
@@ -538,8 +539,14 @@ void ReadIMU() {    //Reads IMU Sensor Data and filters it
   Serial.print(IMUq[2]);
   Serial.print("\t");
   Serial.println(IMUq[3]);
+  */
+  LattePanda.IMU3.Data[0] = IMUq[0];
+  LattePanda.IMU3.Data[1] = IMUq[1];
+  LattePanda.IMU3.Data[2] = IMUq[2];
+  LattePanda.IMU3.Data[3] = IMUq[3];
 
   // Send gyro x/y/z values over serial
+  /*
   Serial.print("Gyro:");
   Serial.print(avgGX);
   Serial.print("\t");
@@ -547,8 +554,13 @@ void ReadIMU() {    //Reads IMU Sensor Data and filters it
   Serial.print("\t");
   Serial.print(avgGZ);
   Serial.println();
+  */
+  LattePanda.IMU1.Data[3] = avgGX;
+  LattePanda.IMU1.Data[4] = avgGY;
+  LattePanda.IMU1.Data[5] = avgGZ;
 
   // Send accelerometer x/y/z values over serial
+  /*
   Serial.print("Accel:");
   Serial.print(avgAX);
   Serial.print("\t");
@@ -556,6 +568,10 @@ void ReadIMU() {    //Reads IMU Sensor Data and filters it
   Serial.print("\t");
   Serial.print(avgAZ);
   Serial.println();
+  */
+  LattePanda.IMU1.Data[3] = avgAX;
+  LattePanda.IMU1.Data[4] = avgAY;
+  LattePanda.IMU1.Data[5] = avgAZ;  
 
   // Convert raw magnetometer data to appropriate units
   float mxScaled = mx / 32768.0; // Assuming magnetometer range is ±2 Gauss
@@ -563,12 +579,17 @@ void ReadIMU() {    //Reads IMU Sensor Data and filters it
   float mzScaled = mz / 32768.0;
 
   // Send magnetometer x/y/z values over serial
+  /*
   Serial.print("Magnetometer:");
   Serial.print(mxScaled);
   Serial.print("\t");
   Serial.print(myScaled);
   Serial.print("\t");
   Serial.println(mzScaled);
+  */
+  LattePanda.IMU2.Data[0] = mxScaled;
+  LattePanda.IMU2.Data[1] = myScaled;
+  LattePanda.IMU2.Data[2] = mzScaled;  
   
 }
 

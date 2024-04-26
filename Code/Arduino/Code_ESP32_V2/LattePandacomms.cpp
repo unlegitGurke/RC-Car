@@ -235,6 +235,18 @@ bool LattePandacomms::decode(char startMarker, char endMarker) {
         LED.Error = Error;
       
       break;
+
+      case 8:
+
+        IMU3.Type = Type;
+        IMU3.nVal = nVal;
+        IMU3.Access = Access;
+        for(int i = 0; i < IMU3.nVal; i++) {
+          IMU3.Data[i] = Data[i];
+        }
+        IMU3.Error = Error;
+
+      break;
       
     }  
     
