@@ -114,7 +114,7 @@ bool LattePandacomms::decode(char startMarker, char endMarker) {
   uint8_t Type = 0;
   uint8_t nVal = 0;
   uint8_t Access = 0;
-  uint8_t Data[maxnDataVar] = {0};
+  float Data[maxnDataVar] = {0};
   uint8_t Error = 0;
   
   removeMarkers(BufferIn, decodingBuffer, startMarker, endMarker);   //Removes the "x" and "q" Markers from the message
@@ -127,7 +127,7 @@ bool LattePandacomms::decode(char startMarker, char endMarker) {
   
   for(int i = 0; i < nVal; i++) {                       //Parse Data Variables and remove them from buffer
     
-    sscanf(decodingBuffer, "%u", &Data[i]);
+    sscanf(decodingBuffer, "%f", &Data[i]);
     removeFirstValue(decodingBuffer, decodingBuffer);
     
   }

@@ -137,7 +137,7 @@ void loop() {
   //MahonyQuaternionUpdate(ax, ay, az, gx, gy, gz, mx, my, mz);
 
 
-// Send quaternion orientation data over serial for visualization or further processing
+  // Send quaternion orientation data over serial for visualization or further processing
   Serial.print("Quaternion: ");
   Serial.print(q[0]);
   Serial.print("\t");

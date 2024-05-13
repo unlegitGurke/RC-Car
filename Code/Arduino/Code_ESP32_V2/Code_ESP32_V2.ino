@@ -10,17 +10,12 @@
   //General Values
 
   const int ADCRes = 12;  //Resolution of ADC in Bits (Arduino Nano: 10, ESP32: 12)
-  const int ErrorCnt = 11;   //Amount of Error Variables 
-  bool ErrorESP[ErrorCnt] = {0,0,0,0,0,0,0,0,0,0,0};   //Error Codes are saved in here:  0 - 6 : Temp Sensor Error, 
-                                                    //7 - 11 : Max Voltage too HIGH for Microcontroller
-  bool IsError = 0;    //True if theres any Error
-  bool IsErrorPanda = 0;    //True, if theres an Error on the LattePanda
   
   ////////// C O R E 1 //////////  
 
   //Declare PWM Fan Controller
 
-  const int Fan_Pin[4] = {17, 5, 18, 19};   //Pins, the PWM Pins of the fans are connected to
+  const int Fan_Pin[4] = {19, 18, 5, 17};   //Pins, the PWM Pins of the fans are connected to
 
   const int PWMChannel[4] = {0, 2, 4, 6};   //Which PWM Channel of Microncontroller will be used
 
@@ -37,6 +32,7 @@
   #include <Wire.h>           // I2C Arduino Library
   #include <DFRobot_BMI160.h> // DFRobot BMI160 Library
   #include <movingAvg.h>      // Moving Average Library
+  #include <QMC5883LCompass.h> //QMC5883L Library
 
   DFRobot_BMI160 bmi160;
   const int8_t i2c_addr = 0x69;
@@ -49,30 +45,20 @@
   movingAvg avgAccelY(2);
   movingAvg avgAccelZ(2);
 
+  movingAvg avgMagX(3); // Define moving average objects for each axis
+  movingAvg avgMagY(3);
+  movingAvg avgMagZ(3);
+  
+  //init magnetometer
+  QMC5883LCompass compass;
 
-  #define MAG_ADDR 0x0D   // I2C address of the QMC5883L
-
-
-  #define Mode_Standby    0b00000000    // Values for the QMC5883 control register 1
-  #define Mode_Continuous 0b00000001
-  #define ODR_10Hz        0b00000000
-  #define ODR_50Hz        0b00000100
-  #define ODR_100Hz       0b00001000
-  #define ODR_200Hz       0b00001100
-  #define RNG_2G          0b00000000
-  #define RNG_8G          0b00010000
-  #define OSR_512         0b00000000
-  #define OSR_256         0b01000000
-  #define OSR_128         0b10000000
-  #define OSR_64          0b11000000
-
-    // Quaternion variables
-  float IMUq[4] = {1.0f, 0.0f, 0.0f, 0.0f};  // Initialize quaternion
+  // Quaternion variables
+  float quat[4] = {1.0f, 0.0f, 0.0f, 0.0f};  // Initialize quaternion
   float beta = 0.1f;  // Beta parameter for sensor fusion algorithms
   float deltat = 0.01f;  // Time interval between sensor updates (in seconds)
   float Kp = 2.0f; // Proportional gain for Mahony filter
   float Ki = 0.005f; // Integral gain for Mahony filter
-  float eInt[3] = {0.0f, 0.0f, 0.0f}; // Integral error  
+  float eInt[3] = {0.0f, 0.0f, 0.0f}; // Integral error 
 
   //Declare Ultrasonic Sensors
 
@@ -84,7 +70,6 @@
 
   const int ReadIntervallSonar = 200; //Time between Sensor Readingsd in millisceonds
   uint32_t last_print = 0;
-  uint8_t SonarValues[16];
 
   OctoSonarX2 myOcto(SONAR_ADDR, SONAR_INT);
 
@@ -94,30 +79,25 @@
   const float temprangemax = 398.15;
 
   const int NrOfSensors = 6;              //Define Number of Sensors connected to the Analog Pins of the Arduino
-  const int SensorPins[NrOfSensors] = {34,35,32,33,25,26}; //Define Pins of Sensors
-
-  const int ErrorLedPin = 4; //Pin for Error LED
+  const int SensorPins[NrOfSensors] = {26,25,33,32,35,34}; //Define Pins of Sensors
   
-  int TempUnit = 2;   //Choose which Unit the Temperature will be printed in, 1 for Kelvin, 2 for Celcius, 3 for Fahrenheit
+  int TempUnit = 2;   //Choose which Unit the Temperature will be saved in, 1 for Kelvin, 2 for Celcius, 3 for Fahrenheit
 
   const unsigned int ReadIntervallTemp = 200; //Time between Sensor Readings in milliseconds
   unsigned long previousMillisTemp = 0;
   unsigned long currentMillisTemp;
 
-  float temp[NrOfSensors + 1][3];
-
   //Declare Voltage Sensors
 
-  const float R1[] = {100000, 100000, 100000, 100000, 100000};   //Voltage Divider Resistor Values
-  const float R2[] = {4700, 4700, 4700, 4700, 4700};
+  const float R1[] = {100000, 100000, 100000, 100000};   //Voltage Divider Resistor Values
+  const float R2[] = {4700, 4700, 4700, 4700};
 
   const int NOSVoltage = 4;   //Number of Sensors plugged in
-  const int VoltagePin[] = {12, 13, 14, 27};  //Sensor Pins
+  const int VoltagePin[] = {27, 14, 12, 13};  //Sensor Pins
   const float LogicLevel = 3.3;   //Logic Level of the microcontroller
   const float MaxVoltage = 80;  //Max Voltage that will be measured
 
-  float Voltage[NOSVoltage];  //Voltage Data will be saved in here
-  float InputVoltage[5] = {0,0,0,0};
+  float InputVoltage[4] = {0,0,0,0};
 
   const unsigned int ReadIntervallVoltage = 10;   //Time between Sensor Readings in milliseconds
   unsigned long previousMillisVoltage = 0;
@@ -152,6 +132,19 @@
   char tempBufferOut[maxMessage];
   
   int nb = 0;
+  
+  //Internal Error LEDs
+  
+  #include <FastLED.h>
+
+  #define NUM_LEDS_INTERNAL 8
+  #define LED_PIN_INTERNAL 16 
+  
+  const unsigned long GoodCol = 0x00FF00;
+  const unsigned long WarningCol = 0xFFFF00;
+  const unsigned long ErrorCol = 0xFF0000;
+
+  CRGB ledsinternal[NUM_LEDS_INTERNAL];  
 
   ////////// C O R E 2 //////////
 
@@ -159,20 +152,14 @@
 
   // Declare FastLED
 
-  #include <FastLED.h>
-
   #define NUM_LEDS_BACK 45    //Declare Back LEDStrip
   #define LED_PIN_BACK 23
 
   #define NUM_LEDS_FRONT 34   //Declare Front LED-Strip
   #define LED_PIN_FRONT 0
 
-  #define NUM_LEDS_INTERNAL 8
-  #define LED_PIN_INTERNAL 16
-
   CRGB ledsback[NUM_LEDS_BACK];
   CRGB ledsfront[NUM_LEDS_FRONT];
-  CRGB ledsinternal[NUM_LEDS_INTERNAL];
 
   unsigned int Effekt = 0;
 
@@ -293,21 +280,18 @@ void Task1setup( void * pvParameters ) {
   
   //MPU 
 
-  Wire.begin();
-  Serial.println("Start IMU Init:");
-  softReset();
-  setCtrlRegister(OSR_128, RNG_2G, ODR_100Hz, Mode_Continuous);
-  Serial.println("Init done");
-
-  if (bmi160.softReset() != BMI160_OK){
-    Serial.println("BMI160 reset failed");
-    while(1);
+  while (bmi160.softReset() != BMI160_OK){  //init the hardware bmin160  
+    Serial.println(" BMI160 reset false, retrying in 1 sec");
+    delay(1000);
+  }
+  
+  while (bmi160.I2cInit(i2c_addr) != BMI160_OK){  //set and init the bmi160 i2c address
+    Serial.println("BMI160 init false, retrying in 1 sec");
+    delay(1000);
   }
 
-  if (bmi160.I2cInit(i2c_addr) != BMI160_OK){
-    Serial.println("BMI160 init failed");
-    while(1);
-  }
+  //init magnetometer
+  compass.init();
 
   avgGyroX.begin(); // Initialize moving averages for each axis for the Gyro
   avgGyroY.begin();
@@ -316,6 +300,10 @@ void Task1setup( void * pvParameters ) {
   avgAccelX.begin(); // Initialize moving averages for each axis for the Accel
   avgAccelY.begin();
   avgAccelZ.begin();
+
+  avgMagX.begin(); // Initialize moving averages for each axis for the Magnetometer
+  avgMagY.begin();
+  avgMagZ.begin();
 
   //Octosonar
 
@@ -344,12 +332,17 @@ void Task1setup( void * pvParameters ) {
   for(int i = 0; i < 5; i++) {
     InputVoltage[i] = MaxVoltage / ((R1[i] + R2[i])/R2[i]);     //Calculate Voltage which is applied to GPIO at MaxVoltage    
     if(InputVoltage[i] > LogicLevel) {   //If the Voltage applied to the GPIOS can be too high, set Error HIGH
-      ErrorESP[7+i] = 1;
+      //ErrorESP[7+i] = 1;
     }
     else {
-      ErrorESP[7+i] = 0;
+      //ErrorESP[7+i] = 0;
     }
   }
+  
+  //Internal LEDs
+  pinMode(LED_PIN_INTERNAL, OUTPUT);
+  FastLED.addLeds<WS2812B, LED_PIN_INTERNAL, GRB>(ledsinternal, NUM_LEDS_INTERNAL);
+  fill_solid(ledsinternal, NUM_LEDS_INTERNAL, CRGB::Black);
 
   for(;;){
     Task1loop();   
@@ -359,13 +352,13 @@ void Task1setup( void * pvParameters ) {
 
 void Task1loop() {
   
-  //CheckError();
-  //ReadTemp();
-  //ReadSonar();
+  CheckError();
+  ReadTemp();
+  ReadSonar();
   ReadIMU();
   Fan_Control();
-  //VoltageSensor();
-  //ESCPower();
+  VoltageSensor();
+  ESCPower();
   //ConvertVarToString();
   getSerialData();
 
@@ -381,58 +374,50 @@ void ReadTemp() {
   if(currentMillisTemp - previousMillisTemp >= ReadIntervallTemp) {
     previousMillisTemp = currentMillisTemp;
   
-    ErrorESP[6] = 0;
+    LattePanda.Temp.Error = 0;
     
-    for(int i = 0;i <= NrOfSensors - 1;i++){    //Read Temps from all sensors and prints them
-      SaveTemp(SensorPins[i], i);
-      //Serial.print("Temp");                   //DEBUG Only
-      //Serial.print(i + 1);
-      //Serial.print(": ");
-      //Serial.print(temp[i][TempUnit]);
-      //Serial.print(" C Error: ");
-      //Serial.println(ErrorESP[i]);
-  
-      if(ErrorESP[i] == 1) {
-        ErrorESP[6] = 1;              
-      }
+    for(int i = 0; i < NrOfSensors; i++){    //Read Temps from all sensors and prints them
       
-    }
-  
-    if(ErrorESP[6] == 1) {
-      digitalWrite(ErrorLedPin, HIGH);
-    }
-    else {
-      digitalWrite(ErrorLedPin, LOW);
-    }
+      int tempReading = analogRead(SensorPins[i]);
+      double tempK = log(10000.0 * ((pow(2,ADCRes) / tempReading - 1)));
+      tempK = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * tempK * tempK )) * tempK );       //  Temp Kelvin
+      float tempC = tempK - 273.15;            // Convert Kelvin to Celcius
+      float tempF = (tempC * 9.0)/ 5.0 + 32.0; // Convert Celcius to Fahrenheit
+
+      if(tempK > temprangemin && tempK < temprangemax) {
+        
+        switch(TempUnit) {
+          
+          case 1:
+          
+          LattePanda.Temp.Data[i] = tempK;
+          break;
+          
+          case 2:
+          
+          LattePanda.Temp.Data[i] = tempC;
+          break;
+          
+          case 3:
+          
+          LattePanda.Temp.Data[i] = tempF;
+          break;
+          
+        }
+        
+      }
+      else {
+      
+        LattePanda.Temp.Data[i] = 0;  
+        LattePanda.Temp.Error = 1;
+      }
     
-    //Serial.println(" ");
-    
+    }
+   
   }
   
 }
 
-void SaveTemp(int Pin, int Pos) {   //Pin of Sensor and Position of Value in temp Array
-  
-  int tempReading = analogRead(Pin);
-  double tempK = log(10000.0 * ((pow(2,ADCRes) / tempReading - 1)));
-  tempK = 1 / (0.001129148 + (0.000234125 + (0.0000000876741 * tempK * tempK )) * tempK );       //  Temp Kelvin
-  float tempC = tempK - 273.15;            // Convert Kelvin to Celcius
-  float tempF = (tempC * 9.0)/ 5.0 + 32.0; // Convert Celcius to Fahrenheit
-
-  if(tempK > temprangemin && tempK < temprangemax) {
-    temp[Pos][1] = tempK;
-    temp[Pos][2] = tempC;
-    temp[Pos][3] = tempF;    
-    ErrorESP[Pos] = 0;
-  }
-  else {
-    temp[Pos][1] = 0;
-    temp[Pos][2] = 0;
-    temp[Pos][3] = 0;    
-    ErrorESP[Pos] = 1;
-  }
-  
-}
 
 void ReadSonar() {
   OctoSonar::doSonar();  // call every cycle, OctoSonar handles the spacing
@@ -440,80 +425,59 @@ void ReadSonar() {
   if (last_print + ReadIntervallSonar < millis()) {   
     last_print = millis();
     for (uint8_t i = 0; i < 16; i++) {
-      SonarValues[i] = myOcto.read(i);
-      Serial.print(SonarValues[i]); Serial.print("   ");
+      LattePanda.Octosonar.Data[i] = myOcto.read(i);
+      //Serial.print(LattePanda.Octosonar.Data[i]); Serial.print("   ");
       
     }
-    Serial.println();
+    //Serial.println();   //DEBUG
   }  
 }
 
 void MadgwickQuaternionUpdate(float ax, float ay, float az, float gx, float gy, float gz, float mx, float my, float mz);    //IMU// / Function prototypes
 void MahonyQuaternionUpdate(float ax, float ay, float az, float gx, float gy, float gz, float mx, float my, float mz);    //IMU// / Function prototypes
 
-void IMUwriteRegister(uint8_t reg, uint8_t val) {    //IMU// / Function to write data into a register on QMC5883L
-  Wire.beginTransmission(MAG_ADDR); // Start talking
-  Wire.write(reg);
-  Wire.write(val);
-  Wire.endTransmission();
-}
+void readBMI160(float &ax, float &ay, float &az, float &gx, float &gy, float &gz){
+  int rslt;
+  int16_t accelGyro[6]={0}; 
+  float floatVal[6] = {0};
 
-
-void IMUreadData(uint16_t * x, uint16_t * y, uint16_t * z) {   //IMU// / Function to read results from QMC5883L
-  Wire.beginTransmission(MAG_ADDR);
-  Wire.write(0x00);
-  Wire.endTransmission();
-  Wire.requestFrom(MAG_ADDR, 6);
-  *x = Wire.read(); // LSB  x
-  *x |= Wire.read() << 8; // MSB  x
-  *y = Wire.read(); // LSB  z
-  *y |= Wire.read() << 8; // MSB z
-  *z = Wire.read(); // LSB y
-  *z |= Wire.read() << 8; // MSB y
-}
-
-
-void setCtrlRegister(uint8_t overSampling, uint8_t range, uint8_t dataRate, uint8_t mode) {   //IMU// / Function to set the control register 1 on QMC5883L
-  IMUwriteRegister(9, overSampling | range | dataRate | mode);
-}
-
-void softReset() {    //IMU// / Function to reset QMC5883L 
-  IMUwriteRegister(0x0a, 0x80);
-  IMUwriteRegister(0x0b, 0x01);
+  //get both accel and gyro data from bmi160
+  //parameter accelGyro is the pointer to store the data
+  rslt = bmi160.getAccelGyroData(accelGyro);
+  if(rslt == 0){
+    for(int i=0;i<6;i++){
+      if (i<3){
+        //the first three are gyro data
+        floatVal[i] = float(accelGyro[i])*3.14/180.0;
+      }else{
+        //the following three data are accel data
+        floatVal[i] = float(accelGyro[i])/16384.0;
+      }
+    }
+    //assign values to output variables
+    gx = floatVal[0];
+    gy = floatVal[1];
+    gz = floatVal[2];
+    ax = floatVal[3];
+    ay = floatVal[4];
+    az = floatVal[5];
+  }
 }
 
 void ReadIMU() {    //Reads IMU Sensor Data and filters it
-  
-  int gxRaw, gyRaw, gzRaw; // Raw gyro values
-  int axRaw, ayRaw, azRaw; // Raw accelerometer values
-  uint16_t mx, my, mz; // Raw magnetometer values
+  int mx, mz, my;
+  float ax, ay, az, gx, gy, gz;
 
-  // Read raw gyro measurements from device
-  int16_t gyroRaw[3];
-  bmi160.getGyroData(gyroRaw);
-  gxRaw = gyroRaw[0];
-  gyRaw = gyroRaw[1];
-  gzRaw = gyroRaw[2];
+  readBMI160(ax, ay, az, gx, gy, gz);
 
-  // Read raw accelerometer measurements from device
-  int16_t accelRaw[3];
-  bmi160.getAccelData(accelRaw);
-  axRaw = accelRaw[0];
-  ayRaw = accelRaw[1];
-  azRaw = accelRaw[2];
+  // Read compass values
+  compass.read();
 
-  // Read raw magnetometer measurements from device
-  IMUreadData(&mx, &my, &mz);
+  // Return XYZ readings
+  mx = compass.getX();
+  my = compass.getY();
+  mz = compass.getZ();
 
-  // Convert raw sensor data to appropriate units
-  float ax = axRaw / 2048.0; // Convert accelerometer raw values to g
-  float ay = ayRaw / 2048.0;
-  float az = azRaw / 2048.0;
-  
-  float gx = gxRaw * 0.007629; // Convert gyroscope raw values to degrees/second
-  float gy = gyRaw * 0.007629;
-  float gz = gzRaw * 0.007629;
-  
   // Update moving averages Gyro
   float avgGX = avgGyroX.reading(gx);
   float avgGY = avgGyroY.reading(gy);
@@ -524,29 +488,47 @@ void ReadIMU() {    //Reads IMU Sensor Data and filters it
   float avgAY = avgAccelY.reading(ay);
   float avgAZ = avgAccelZ.reading(az);
 
-  
+  // Update moving averages Mag
+  float avgMX = avgMagX.reading(ax);
+  float avgMY = avgMagY.reading(ay);
+  float avgMZ = avgMagZ.reading(az);
+
+
   // Update quaternion orientation using Madgwick or Mahony algorithm
-  MadgwickQuaternionUpdate(ax, ay, az, gx, gy, gz, mx, my, mz);
+  MadgwickQuaternionUpdate(avgAX, avgAY, avgAZ, avgGX, avgGY, avgGZ, avgMX, avgMY, avgMZ);
   //MahonyQuaternionUpdate(ax, ay, az, gx, gy, gz, mx, my, mz);
 
-  // Send quaternion orientation data over serial for visualization or further processing
-  /*
-  Serial.print("Quaternion: ");
-  Serial.print(IMUq[0]);
+
+  // Send quaternion orientation data over serial for visualization or further processing 
+
+  LattePanda.IMU1.Data[3] = avgGX;
+  LattePanda.IMU1.Data[4] = avgGY;
+  LattePanda.IMU1.Data[5] = avgGZ;
+
+  LattePanda.IMU1.Data[3] = avgAX;
+  LattePanda.IMU1.Data[4] = avgAY;
+  LattePanda.IMU1.Data[5] = avgAZ;  
+
+  LattePanda.IMU2.Data[0] = avgMX;
+  LattePanda.IMU2.Data[1] = avgMY;
+  LattePanda.IMU2.Data[2] = avgMZ;  
+  
+  LattePanda.IMU3.Data[0] = quat[0];
+  LattePanda.IMU3.Data[1] = quat[1];
+  LattePanda.IMU3.Data[2] = quat[2];
+  LattePanda.IMU3.Data[3] = quat[3];
+  
+  /*                                  
+  Serial.print("Quaternion: ");                         //DEBUG
+  Serial.print(quat[0]);
   Serial.print("\t");
-  Serial.print(IMUq[1]);
+  Serial.print(quat[1]);
   Serial.print("\t");
-  Serial.print(IMUq[2]);
+  Serial.print(quat[2]);
   Serial.print("\t");
-  Serial.println(IMUq[3]);
-  */
-  LattePanda.IMU3.Data[0] = IMUq[0];
-  LattePanda.IMU3.Data[1] = IMUq[1];
-  LattePanda.IMU3.Data[2] = IMUq[2];
-  LattePanda.IMU3.Data[3] = IMUq[3];
+  Serial.println(quat[3]);
 
   // Send gyro x/y/z values over serial
-  /*
   Serial.print("Gyro:");
   Serial.print(avgGX);
   Serial.print("\t");
@@ -554,13 +536,8 @@ void ReadIMU() {    //Reads IMU Sensor Data and filters it
   Serial.print("\t");
   Serial.print(avgGZ);
   Serial.println();
-  */
-  LattePanda.IMU1.Data[3] = avgGX;
-  LattePanda.IMU1.Data[4] = avgGY;
-  LattePanda.IMU1.Data[5] = avgGZ;
 
   // Send accelerometer x/y/z values over serial
-  /*
   Serial.print("Accel:");
   Serial.print(avgAX);
   Serial.print("\t");
@@ -568,29 +545,15 @@ void ReadIMU() {    //Reads IMU Sensor Data and filters it
   Serial.print("\t");
   Serial.print(avgAZ);
   Serial.println();
-  */
-  LattePanda.IMU1.Data[3] = avgAX;
-  LattePanda.IMU1.Data[4] = avgAY;
-  LattePanda.IMU1.Data[5] = avgAZ;  
-
-  // Convert raw magnetometer data to appropriate units
-  float mxScaled = mx / 32768.0; // Assuming magnetometer range is ±2 Gauss
-  float myScaled = my / 32768.0;
-  float mzScaled = mz / 32768.0;
 
   // Send magnetometer x/y/z values over serial
-  /*
   Serial.print("Magnetometer:");
-  Serial.print(mxScaled);
+  Serial.print(avgMX);
   Serial.print("\t");
-  Serial.print(myScaled);
+  Serial.print(avgMY);
   Serial.print("\t");
-  Serial.println(mzScaled);
+  Serial.println(avgMZ);
   */
-  LattePanda.IMU2.Data[0] = mxScaled;
-  LattePanda.IMU2.Data[1] = myScaled;
-  LattePanda.IMU2.Data[2] = mzScaled;  
-  
 }
 
 // Implementation of Sebastian Madgwick's "...efficient orientation filter for... inertial/magnetic sensor arrays"
@@ -601,7 +564,8 @@ void ReadIMU() {    //Reads IMU Sensor Data and filters it
 // but is much less computationally intensive---it can be performed on a 3.3 V Pro Mini operating at 8 MHz!
 // This code is directly copied from the https://github.com/kriswiner/MPU9250/blob/master/quaternionFilters.ino reposotory, written by Kris Winer.
 void MadgwickQuaternionUpdate(float ax, float ay, float az, float gx, float gy, float gz, float mx, float my, float mz) {
-  float q1 = IMUq[0], q2 = IMUq[1], q3 = IMUq[2], q4 = IMUq[3];   // short name local variable for readability
+  
+  float q1 = quat[0], q2 = quat[1], q3 = quat[2], q4 = quat[3];   // short name local variable for readability
   float norm;
   float hx, hy, _2bx, _2bz;
   float s1, s2, s3, s4;
@@ -684,15 +648,15 @@ void MadgwickQuaternionUpdate(float ax, float ay, float az, float gx, float gy, 
   q4 += qDot4 * deltat;
   norm = sqrt(q1 * q1 + q2 * q2 + q3 * q3 + q4 * q4);    // normalise quaternion
   norm = 1.0f/norm;
-  IMUq[0] = q1 * norm;
-  IMUq[1] = q2 * norm;
-  IMUq[2] = q3 * norm;
-  IMUq[3] = q4 * norm;
+  quat[0] = q1 * norm;
+  quat[1] = q2 * norm;
+  quat[2] = q3 * norm;
+  quat[3] = q4 * norm;
 
 }
   
-void MahonyQuaternionUpdate(float ax, float ay, float az, float gx, float gy, float gz, float mx, float my, float mz) {   // Similar to Madgwick scheme but uses proportional and integral filtering on the error between estimated reference vectors and measured ones. 
-  float q1 = IMUq[0], q2 = IMUq[1], q3 = IMUq[2], q4 = IMUq[3];   // short name local variable for readability
+void MahonyQuaternionUpdate(float ax, float ay, float az, float gx, float gy, float gz, float mx, float my, float mz) {
+  float q1 = quat[0], q2 = quat[1], q3 = quat[2], q4 = quat[3];   // short name local variable for readability
   float norm;
   float hx, hy, bx, bz;
   float vx, vy, vz, wx, wy, wz;
@@ -775,10 +739,10 @@ void MahonyQuaternionUpdate(float ax, float ay, float az, float gx, float gy, fl
   // Normalise quaternion
   norm = sqrt(q1 * q1 + q2 * q2 + q3 * q3 + q4 * q4);
   norm = 1.0f / norm;
-  IMUq[0] = q1 * norm;
-  IMUq[1] = q2 * norm;
-  IMUq[2] = q3 * norm;
-  IMUq[3] = q4 * norm;
+  quat[0] = q1 * norm;
+  quat[1] = q2 * norm;
+  quat[2] = q3 * norm;
+  quat[3] = q4 * norm;
 
 }
 
@@ -791,7 +755,7 @@ void Fan_Control() {
     DutyCycle[i] = map(FanSpeed[i], 0, 100, 0, pow(2, Resolution[i]));    //Calculate DutyCycle from Speed value 
 
     ledcWrite(PWMChannel[i], DutyCycle[i]);     //Write PWM Signal to Pins
-
+    
   }
 
 }
@@ -804,14 +768,10 @@ void VoltageSensor() {
 
     for(int i = 0;i < NOSVoltage;i++) {                         
       float value = analogRead(VoltagePin[i]);                              //Reads all the AnalogPins Values
-      Voltage[i] = value * (LogicLevel/pow(2, ADCRes)) * ((R1[i] + R2[i])/R2[i]);    //Calculates the voltages from the sensorpins values
+      LattePanda.Voltage.Data[i] = value * (LogicLevel/pow(2, ADCRes)) * ((R1[i] + R2[i])/R2[i]);    //Calculates the voltages from the sensorpins values
     }
     
-  /*for(int i = 0;i < NOSVoltage;i++) {   //Prints all Voltages to Serial monitor DEBUG Only
-      Serial.print(Voltage[0]);
-      Serial.print(" ");
-    }
-  */}
+  }
 }
 
 void ESCPower() {   //Turns ESC on and off
@@ -821,17 +781,17 @@ void ESCPower() {   //Turns ESC on and off
   if(ESCButtonState == HIGH) {
     ESCState = true;
   }
-  else{
+  
+  else {
     ESCState = false;
   }
 
   if(ESCState == HIGH) {
     digitalWrite(ESC_PIN, HIGH);
-    //Serial.println("HIGH");     //DEBUG
   }
-  else{
+  
+  else {
     digitalWrite(ESC_PIN, LOW);
-    //Serial.println("LOW");      //DEBUG
   }
 
 }
@@ -841,6 +801,7 @@ void ConvertVarToString() {   //Converts Data from Variables to a String to be s
   //int NOSVoltage = 5;     //DEBUG ONLY
   //float Voltage[5] = {12.1, 56.4, 89.2, 23.5, 74.2};    //DEBUG ONLY
   
+  /*    //LEGACY CODE
   char BufferSonar[128];
   char BufferIMU[64];
   char StringIMUTemp[7];
@@ -868,23 +829,102 @@ void ConvertVarToString() {   //Converts Data from Variables to a String to be s
   //strcat(tempBufferOut, BufferTemp);
 
   //Serial.println(tempBufferOut);
+  
+  */
 
 }
 
 void CheckError() {   //Checks if there has been an Error
 
-  IsError = false;  
-
-  for (int i = 0; i < ErrorCnt; i++) {
-    
-    if (ErrorESP[i]) {  
-      
-      IsError = true;  
-       
-    }
-    
+  if(LattePanda.IMU1.Error == 0) {
+    ledsinternal[0] = GoodCol;
   }
-
+  else if(LattePanda.IMU1.Error == 1) {
+    ledsinternal[0] = WarningCol;
+  }
+  else if(LattePanda.IMU1.Error == 2) {
+    ledsinternal[0] = ErrorCol;
+  }
+  
+  
+  if(LattePanda.IMU2.Error == 0) {
+    ledsinternal[1] = GoodCol;
+  }
+  else if(LattePanda.IMU2.Error == 1) {
+    ledsinternal[1] = WarningCol;
+  }
+  else if(LattePanda.IMU2.Error == 2) {
+    ledsinternal[1] = ErrorCol;
+  }
+  
+  
+  if(LattePanda.Octosonar.Error == 0) {
+    ledsinternal[2] = GoodCol;
+  }
+  else if(LattePanda.Octosonar.Error == 1) {
+    ledsinternal[2] = WarningCol;
+  }
+  else if(LattePanda.Octosonar.Error == 2) {
+    ledsinternal[2] = ErrorCol;
+  }
+  
+  
+  if(LattePanda.Voltage.Error == 0) {
+    ledsinternal[3] = GoodCol;
+  }
+  else if(LattePanda.Voltage.Error == 1) {
+    ledsinternal[3] = WarningCol;
+  }
+  else if(LattePanda.Voltage.Error == 2) {
+    ledsinternal[3] = ErrorCol;
+  }
+  
+  
+  if(LattePanda.Temp.Error == 0) {
+    ledsinternal[4] = GoodCol;
+  }
+  else if(LattePanda.Temp.Error == 1) {
+    ledsinternal[4] = WarningCol;
+  }
+  else if(LattePanda.Temp.Error == 2) {
+    ledsinternal[4] = ErrorCol;
+  }
+  
+  
+  if(LattePanda.Fan.Error == 0) {
+    ledsinternal[5] = GoodCol;
+  }
+  else if(LattePanda.Fan.Error == 1) {
+    ledsinternal[5] = WarningCol;
+  }
+  else if(LattePanda.Fan.Error == 2) {
+    ledsinternal[5] = ErrorCol;
+  }
+  
+  
+  if(LattePanda.LED.Error == 0) {
+    ledsinternal[6] = GoodCol;
+  }
+  else if(LattePanda.LED.Error == 1) {
+    ledsinternal[6] = WarningCol;
+  }
+  else if(LattePanda.LED.Error == 2) {
+    ledsinternal[6] = ErrorCol;
+  }
+  
+  
+  if(LattePanda.IMU3.Error == 0) {
+    ledsinternal[7] = GoodCol;
+  }
+  else if(LattePanda.IMU3.Error == 1) {
+    ledsinternal[7] = WarningCol;
+  }
+  else if(LattePanda.IMU3.Error == 2) {
+    ledsinternal[7] = ErrorCol;
+  }
+  
+  Serial.println(LattePanda.IMU1.Error);
+  
 }
 
 void getSerialData() { 	  //If printout = 1 sends back data, 0 doesnt send back data
@@ -894,17 +934,17 @@ void getSerialData() { 	  //If printout = 1 sends back data, 0 doesnt send back 
 
   /*
   Serial.print("Type: ");                       //DEBUG
-  Serial.println(LattePanda.LED.Type);            
+  Serial.println(LattePanda.IMU1.Type);            
   Serial.print("nVal: ");
-  Serial.println(LattePanda.LED.nVal);
+  Serial.println(LattePanda.IMU1.nVal);
   Serial.print("Access: ");
-  Serial.println(LattePanda.LED.Access);
-  for (int i = 0; i < LattePanda.LED.nVal; ++i) {
+  Serial.println(LattePanda.IMU1.Access);
+  for (int i = 0; i < LattePanda.IMU1.nVal; ++i) {
     Serial.print("Data"); Serial.print(i); Serial.print(": ");
-    Serial.println(LattePanda.LED.Data[i]);
+    Serial.println(LattePanda.IMU1.Data[i]);
   }
   Serial.print("Error: ");
-  Serial.println(LattePanda.LED.Error);
+  Serial.println(LattePanda.IMU1.Error);
   Serial.println("");
   */
 }
@@ -913,11 +953,9 @@ void Task2setup( void * pvParameters ) {
   
   FastLED.addLeds<WS2812B, LED_PIN_BACK, GRB>(ledsback, NUM_LEDS_BACK);  //Initlialize Back LEDStrip
   FastLED.addLeds<WS2812B, LED_PIN_FRONT, GRB>(ledsfront, NUM_LEDS_FRONT);  //Initialize Front LEDStrip  
-  FastLED.addLeds<WS2812B, LED_PIN_INTERNAL, GRB>(ledsinternal, NUM_LEDS_INTERNAL);
     
   pinMode(LED_PIN_BACK, OUTPUT);              //Declare Pins Input/Output DEBUG Only
   pinMode(LED_PIN_FRONT, OUTPUT);
-  pinMode(LED_PIN_INTERNAL, OUTPUT);
   //pinMode(ButtonPins[0], INPUT);
   //pinMode(ButtonPins[1], INPUT);
   //pinMode(ButtonPins[2], INPUT);
@@ -927,7 +965,6 @@ void Task2setup( void * pvParameters ) {
 
   fill_solid(ledsback, NUM_LEDS_BACK, CRGB::Black);    //Turn off all LEDs at startup
   fill_solid(ledsfront, NUM_LEDS_FRONT, CRGB::Black);
-  fill_solid(ledsinternal, NUM_LEDS_INTERNAL, CRGB::Red);
   FastLED.show();
 
   IsStartup = 1;    //Run Startup Animation
@@ -1009,7 +1046,6 @@ void ReadState() {
   BrakeLightState = State[2];
   ReverseLightState = State[3];
   HazardState = State[4];
-
 
   /*
   IndicatorRightState = digitalRead(ButtonPins[0]);   //Buttons for testing only

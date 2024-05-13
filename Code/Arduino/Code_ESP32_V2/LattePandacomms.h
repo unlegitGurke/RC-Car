@@ -9,7 +9,7 @@ struct Component {    //Struktur des Datenspeicherorts
   uint8_t Type;
   uint8_t nVal;
   uint8_t Access;
-  uint8_t Data[maxnDataVar];
+  float Data[maxnDataVar];
   uint8_t Error;
 };
 
