@@ -10,6 +10,12 @@ char BufferOut[_maxMessage];   //Buffer for outgoing messages
 
 char decodingBuffer[_maxMessage];
 
+int TestType = 1;
+int TestnVal = 3;
+int TestAccess = 2;
+float TestData[3] = {1.23, 2.45, 3.56};
+int TestError = 17;
+
 LattePandacomms::LattePandacomms() {
   
   
@@ -267,10 +273,89 @@ bool LattePandacomms::decode(char startMarker, char endMarker) {
   
 }
 
+void SendVar(int Type, int nVal, int Access, float* Data, int Error) {
+
+  sprintf(BufferOut, "x%u,%u,%u,", Type, nVal, Access);
+
+  for(int i = 0; i < nVal; i++) {
+
+    char tmp[16];
+
+    sprintf(tmp, "%.2f,", Data[i]);
+
+    strcat(BufferOut, tmp);
+
+  }
+
+  char tmp1[16];
+
+  sprintf(tmp1, "%uq", Error);
+  
+  strcat(BufferOut, tmp1);
+  
+  Serial.println(BufferOut);
+
+}
+
 bool LattePandacomms::send() {
   
-  
+  if(Queue & 0b10000000) {    //If requesteed send IMU1 Data to LattePanda
+
+    SendVar(IMU1.Type, IMU1.nVal, IMU1.Access, IMU1.Data, IMU1.Error);
+
+    Queue &= ~0b10000000;
+  }
+
+  if(Queue & 0b01000000) {    //If requesteed send IMU2 Data to LattePanda
+
+    SendVar(IMU2.Type, IMU2.nVal, IMU2.Access, IMU2.Data, IMU2.Error);
+    
+    Queue &= ~0b01000000;
+  }
+
+  if(Queue & 0b00100000) {    //If requesteed send Octosonar Data to LattePanda
+
+    SendVar(Octosonar.Type, Octosonar.nVal, Octosonar.Access, Octosonar.Data, Octosonar.Error);
+    
+    Queue &= ~0b0010000;
+  }
+
+  if(Queue & 0b00010000) {    //If requesteed send Voltage Sensor Data to LattePanda
+
+    SendVar(Voltage.Type, Voltage.nVal, Voltage.Access, Voltage.Data, Voltage.Error);
+    
+    Queue &= ~0b00010000;
+  }
+
+  if(Queue & 0b00001000) {    //If requesteed send Temp Sensor Data to LattePanda
+
+    SendVar(Temp.Type, Temp.nVal, Temp.Access, Temp.Data, Temp.Error);
+    
+    Queue &= ~0b00001000;
+  }
+
+  if(Queue & 0b00000100) {    //If requesteed send Fan Data to LattePanda
+
+    SendVar(Fan.Type, Fan.nVal, Fan.Access, Fan.Data, Fan.Error);
+    
+    Queue &= ~0b00000100;
+  }
+
+  if(Queue & 0b00000010) {    //If requesteed send IMU3 Data to LattePanda
+
+    SendVar(LED.Type, LED.nVal, LED.Access, LED.Data, LED.Error);
+    
+    Queue &= ~0b00000010;
+  }
+
+  if(Queue & 0b00000001) {    //If requesteed send IMU1 Data to LattePanda
+
+    SendVar(IMU3.Type, IMU3.nVal, IMU3.Access, IMU3.Data, IMU3.Error);
+    
+    Queue &= ~0b00000001;
+  }
   
   return 0;
   
 }
+

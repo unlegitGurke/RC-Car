@@ -276,8 +276,6 @@ void Task1setup( void * pvParameters ) {
   //Serial.print("Task1 running on core ");
   //Serial.println(xPortGetCoreID());
 
-  delay(3000);
-  
   //MPU 
 
   while (bmi160.softReset() != BMI160_OK){  //init the hardware bmin160  
@@ -341,8 +339,11 @@ void Task1setup( void * pvParameters ) {
   
   //Internal LEDs
   pinMode(LED_PIN_INTERNAL, OUTPUT);
-  FastLED.addLeds<WS2812B, LED_PIN_INTERNAL, GRB>(ledsinternal, NUM_LEDS_INTERNAL);
+  FastLED.addLeds<SK6812, LED_PIN_INTERNAL, GRB>(ledsinternal, NUM_LEDS_INTERNAL);
   fill_solid(ledsinternal, NUM_LEDS_INTERNAL, CRGB::Black);
+  fill_solid(ledsinternal, NUM_LEDS_INTERNAL, CRGB::Blue);
+  delay(2000);
+  //InternalLEDStartupAnim();
 
   for(;;){
     Task1loop();   
@@ -359,12 +360,21 @@ void Task1loop() {
   Fan_Control();
   VoltageSensor();
   ESCPower();
-  //ConvertVarToString();
   getSerialData();
+  sendSerialData();
 
   //Serial.println("Test");
 
   delay(1);
+
+}
+
+void InternalLEDStartupAnim() {
+  
+  for(int i = 0; i < 9; i++) {
+    ledsinternal[i] = 0x0000FF;
+    delay(200);
+  }
 
 }
 
@@ -374,6 +384,9 @@ void ReadTemp() {
   if(currentMillisTemp - previousMillisTemp >= ReadIntervallTemp) {
     previousMillisTemp = currentMillisTemp;
   
+    LattePanda.Temp.Type = 5;
+    LattePanda.Temp.nVal = 6;
+    LattePanda.Temp.Access = 1;
     LattePanda.Temp.Error = 0;
     
     for(int i = 0; i < NrOfSensors; i++){    //Read Temps from all sensors and prints them
@@ -421,6 +434,10 @@ void ReadTemp() {
 
 void ReadSonar() {
   OctoSonar::doSonar();  // call every cycle, OctoSonar handles the spacing
+
+  LattePanda.Octosonar.Type = 3;
+  LattePanda.Octosonar.nVal = 16;
+  LattePanda.Octosonar.Access = 1;
 
   if (last_print + ReadIntervallSonar < millis()) {   
     last_print = millis();
@@ -501,17 +518,29 @@ void ReadIMU() {    //Reads IMU Sensor Data and filters it
 
   // Send quaternion orientation data over serial for visualization or further processing 
 
+  LattePanda.IMU1.Type = 1;
+  LattePanda.IMU1.nVal = 6;
+  LattePanda.IMU1.Access = 1;
+
   LattePanda.IMU1.Data[3] = avgGX;
   LattePanda.IMU1.Data[4] = avgGY;
   LattePanda.IMU1.Data[5] = avgGZ;
 
-  LattePanda.IMU1.Data[3] = avgAX;
-  LattePanda.IMU1.Data[4] = avgAY;
-  LattePanda.IMU1.Data[5] = avgAZ;  
+  LattePanda.IMU1.Data[0] = avgAX;
+  LattePanda.IMU1.Data[1] = avgAY;
+  LattePanda.IMU1.Data[2] = avgAZ; 
+
+  LattePanda.IMU2.Type = 2;
+  LattePanda.IMU2.nVal = 3; 
+  LattePanda.IMU2.Access = 1;
 
   LattePanda.IMU2.Data[0] = avgMX;
   LattePanda.IMU2.Data[1] = avgMY;
   LattePanda.IMU2.Data[2] = avgMZ;  
+
+  LattePanda.IMU3.Type = 8;
+  LattePanda.IMU3.nVal = 4;
+  LattePanda.IMU3.Access = 1;
   
   LattePanda.IMU3.Data[0] = quat[0];
   LattePanda.IMU3.Data[1] = quat[1];
@@ -527,7 +556,7 @@ void ReadIMU() {    //Reads IMU Sensor Data and filters it
   Serial.print(quat[2]);
   Serial.print("\t");
   Serial.println(quat[3]);
-
+  
   // Send gyro x/y/z values over serial
   Serial.print("Gyro:");
   Serial.print(avgGX);
@@ -545,7 +574,7 @@ void ReadIMU() {    //Reads IMU Sensor Data and filters it
   Serial.print("\t");
   Serial.print(avgAZ);
   Serial.println();
-
+  
   // Send magnetometer x/y/z values over serial
   Serial.print("Magnetometer:");
   Serial.print(avgMX);
@@ -766,6 +795,10 @@ void VoltageSensor() {
   if(currentMillisVoltage - previousMillisVoltage >= ReadIntervallVoltage) {
     previousMillisVoltage = currentMillisVoltage;
 
+    LattePanda.Voltage.Type = 4;
+    LattePanda.Voltage.nVal = 5;
+    LattePanda.Voltage.Access = 1;
+
     for(int i = 0;i < NOSVoltage;i++) {                         
       float value = analogRead(VoltagePin[i]);                              //Reads all the AnalogPins Values
       LattePanda.Voltage.Data[i] = value * (LogicLevel/pow(2, ADCRes)) * ((R1[i] + R2[i])/R2[i]);    //Calculates the voltages from the sensorpins values
@@ -796,134 +829,118 @@ void ESCPower() {   //Turns ESC on and off
 
 }
 
-void ConvertVarToString() {   //Converts Data from Variables to a String to be sent
-
-  //int NOSVoltage = 5;     //DEBUG ONLY
-  //float Voltage[5] = {12.1, 56.4, 89.2, 23.5, 74.2};    //DEBUG ONLY
-  
-  /*    //LEGACY CODE
-  char BufferSonar[128];
-  char BufferIMU[64];
-  char StringIMUTemp[7];
-  char StringVoltage[5][5];
-  char BufferVoltage[32];
-  char StringTemp[6][6];
-  char BufferTemp[32];
-  
-  
-  for(int i = 0; i < NOSVoltage; i++) {           //Converts Voltage Floats to String
-    dtostrf(Voltage[i], 3, 1, StringVoltage[i]);
-  }
-  
-  for(int i = 0; i < NrOfSensors; i++) {           //Converts Temp Floats to String
-    dtostrf(temp[i][TempUnit], 3, 1, StringTemp[i]);
-  }
-  
-  sprintf(BufferSonar, "x%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,", SonarValues[0], SonarValues[1], SonarValues[2], SonarValues[3], SonarValues[4], SonarValues[5], SonarValues[6], SonarValues[7], SonarValues[8], SonarValues[9], SonarValues[10], SonarValues[11], SonarValues[12], SonarValues[13], SonarValues[14], SonarValues[15]);    //convert all Variables into substrings
-  sprintf(BufferVoltage, "%s,%s,%s,%s,%s,", StringVoltage[0], StringVoltage[1], StringVoltage[2], StringVoltage[3], StringVoltage[4]);
-  sprintf(BufferTemp, "%s,%s,%s,%s,%s,%s,%huq", StringTemp[0], StringTemp[1], StringTemp[2], StringTemp[3], StringTemp[4], StringTemp[5], IsError);
-  sprintf(tempBufferOut, "%s%s%s%s", BufferSonar, BufferIMU, BufferVoltage, BufferTemp); //Combine all substrings into one
-  //strcat(tempBufferOut, BufferSonar);
-  //strcat(tempBufferOut, BufferIMU);
-  //strcat(tempBufferOut, BufferVoltage);
-  //strcat(tempBufferOut, BufferTemp);
-
-  //Serial.println(tempBufferOut);
-  
-  */
-
-}
-
 void CheckError() {   //Checks if there has been an Error
 
   if(LattePanda.IMU1.Error == 0) {
     ledsinternal[0] = GoodCol;
+    FastLED.show();
   }
   else if(LattePanda.IMU1.Error == 1) {
     ledsinternal[0] = WarningCol;
+    FastLED.show();
   }
   else if(LattePanda.IMU1.Error == 2) {
     ledsinternal[0] = ErrorCol;
+    FastLED.show();
   }
   
   
   if(LattePanda.IMU2.Error == 0) {
     ledsinternal[1] = GoodCol;
+    FastLED.show();
   }
   else if(LattePanda.IMU2.Error == 1) {
     ledsinternal[1] = WarningCol;
+    FastLED.show();
   }
   else if(LattePanda.IMU2.Error == 2) {
     ledsinternal[1] = ErrorCol;
+    FastLED.show();
   }
   
   
   if(LattePanda.Octosonar.Error == 0) {
     ledsinternal[2] = GoodCol;
+    FastLED.show();
   }
   else if(LattePanda.Octosonar.Error == 1) {
     ledsinternal[2] = WarningCol;
+    FastLED.show();
   }
   else if(LattePanda.Octosonar.Error == 2) {
     ledsinternal[2] = ErrorCol;
+    FastLED.show();
   }
   
   
   if(LattePanda.Voltage.Error == 0) {
     ledsinternal[3] = GoodCol;
+    FastLED.show();
   }
   else if(LattePanda.Voltage.Error == 1) {
     ledsinternal[3] = WarningCol;
+    FastLED.show();
   }
   else if(LattePanda.Voltage.Error == 2) {
     ledsinternal[3] = ErrorCol;
+    FastLED.show();
   }
   
   
   if(LattePanda.Temp.Error == 0) {
     ledsinternal[4] = GoodCol;
+    FastLED.show();
   }
   else if(LattePanda.Temp.Error == 1) {
     ledsinternal[4] = WarningCol;
+    FastLED.show();
   }
   else if(LattePanda.Temp.Error == 2) {
     ledsinternal[4] = ErrorCol;
+    FastLED.show();
   }
   
   
   if(LattePanda.Fan.Error == 0) {
     ledsinternal[5] = GoodCol;
+    FastLED.show();
   }
   else if(LattePanda.Fan.Error == 1) {
     ledsinternal[5] = WarningCol;
+    FastLED.show();
   }
   else if(LattePanda.Fan.Error == 2) {
     ledsinternal[5] = ErrorCol;
+    FastLED.show();
   }
   
   
   if(LattePanda.LED.Error == 0) {
     ledsinternal[6] = GoodCol;
+    FastLED.show();
   }
   else if(LattePanda.LED.Error == 1) {
     ledsinternal[6] = WarningCol;
+    FastLED.show();
   }
   else if(LattePanda.LED.Error == 2) {
     ledsinternal[6] = ErrorCol;
+    FastLED.show();
   }
   
   
   if(LattePanda.IMU3.Error == 0) {
     ledsinternal[7] = GoodCol;
+    FastLED.show();
   }
   else if(LattePanda.IMU3.Error == 1) {
     ledsinternal[7] = WarningCol;
+    FastLED.show();
   }
   else if(LattePanda.IMU3.Error == 2) {
     ledsinternal[7] = ErrorCol;
+    FastLED.show();
   }
-  
-  Serial.println(LattePanda.IMU1.Error);
   
 }
 
@@ -947,6 +964,10 @@ void getSerialData() { 	  //If printout = 1 sends back data, 0 doesnt send back 
   Serial.println(LattePanda.IMU1.Error);
   Serial.println("");
   */
+}
+
+void sendSerialData() {
+  LattePanda.send();
 }
 
 void Task2setup( void * pvParameters ) {
@@ -1081,7 +1102,7 @@ void startup() {
     
     case 11:
       
-      if(StartupState[1] <= NUM_LEDS_BACK && currentMillisLED - previousMillisStartup[0] >= StartupAnimTime) {
+      if(StartupState[1] < NUM_LEDS_BACK && currentMillisLED - previousMillisStartup[0] >= StartupAnimTime) {
          
         ledsback[StartupState[1]] = idlecolback;
         ledsback[StartupState[2]] = idlecolback;
@@ -1114,7 +1135,7 @@ void startup() {
         
       }
       
-      if(StartupState[1] >= NUM_LEDS_BACK) {
+      if(StartupState[1] >= NUM_LEDS_BACK - 1) {      //CHANGED -1
         
         StartupState[0]++; 
         
@@ -1125,7 +1146,7 @@ void startup() {
     
     case 12:
     
-      StartupState[2] = NUM_LEDS_BACK;
+      StartupState[2] = NUM_LEDS_BACK - 1;
       StartupState[3] = fr1length; 
       StartupState[0]++;
     
@@ -1133,7 +1154,7 @@ void startup() {
     
     case 13:
 
-      if(StartupState[4] <= NUM_LEDS_BACK / 2 && currentMillisLED - previousMillisStartup[1] >= StartupAnimTime) {
+      if(StartupState[4] < NUM_LEDS_BACK / 2 && currentMillisLED - previousMillisStartup[1] >= StartupAnimTime) {
         ledsback[StartupState[4]] = idlecolback;
         ledsback[StartupState[2]] = idlecolback;
         SwitchFrontLedColor(StartupState[3],frontcoldim,2);
@@ -1146,7 +1167,7 @@ void startup() {
         previousMillisStartup[1] = currentMillisLED;   
       } 
     
-      if(StartupState[4] >= NUM_LEDS_BACK / 2) {
+      if(StartupState[4] >= NUM_LEDS_BACK / 2 - 1) {          //Changed -1
         
          StartupState[0]++;
         
@@ -1166,7 +1187,7 @@ void startup() {
     
     case 15:
       
-      if(StartupState[5] <= NUM_LEDS_BACK && currentMillisLED - previousMillisStartup[2] >= StartupAnimTime) {
+      if(StartupState[5] < NUM_LEDS_BACK && currentMillisLED - previousMillisStartup[2] >= StartupAnimTime) {
         ledsback[StartupState[5]] = brakecol; 
         ledsback[StartupState[2]] = brakecol;
         SwitchFrontLedColor(StartupState[3],frontcol,2);
@@ -1180,7 +1201,7 @@ void startup() {
       
       }
       
-      if(StartupState[5] >= NUM_LEDS_BACK) {
+      if(StartupState[5] >= NUM_LEDS_BACK - 1) {    //Changed -1
         
         StartupState[0]++;
         
@@ -1228,7 +1249,7 @@ void idle() {
     
     //Checks if Right Indicator is running, if not lights up right side of the Strip
     if(IndicatorRightState == false && ReverseLightState == false && HazardState == false) {
-      for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize; i <= NUM_LEDS_BACK;i++) {
+      for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize; i < NUM_LEDS_BACK;i++) {
         ledsback[i] = idlecolback;
       }
     }
@@ -1263,7 +1284,7 @@ void BrakeLight() {
     
     //Checks if Right Indicator is running, if not lights up right side of the Strip
     if(IndicatorRightState == false && ReverseLightState == false && HazardState == false && BrakeLightState == true) {
-      for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize; i <= NUM_LEDS_BACK;i++) {
+      for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize; i < NUM_LEDS_BACK;i++) {
         ledsback[i] = brakecol;
       }
     
@@ -1278,7 +1299,7 @@ void BrakeLight() {
 void ReverseLight() {  
 
   if(IndicatorRightState == false && HazardState == false && ReverseLightState == true) {  
-    for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i <=NUM_LEDS_BACK;i++) {
+    for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i < NUM_LEDS_BACK;i++) {
       ledsback[i] = reversecol;
     }
   }
@@ -1390,7 +1411,7 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right
       
       case 11:
       
-        if(IndicatorState[5] <= NUM_LEDS_BACK && currentMillisLED - previousMillisIndicator[3] >= IndicatorAnimTime) {    //Animation
+        if(IndicatorState[5] < NUM_LEDS_BACK && currentMillisLED - previousMillisIndicator[3] >= IndicatorAnimTime) {    //Animation
         
           ledsback[IndicatorState[5]] = indicatorcol;
           SwitchFrontLedColor(IndicatorState[4],indicatorcol,0);
@@ -1404,7 +1425,7 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right
           
         } 
         
-        if(IndicatorState[5] > NUM_LEDS_BACK) {
+        if(IndicatorState[5] >= NUM_LEDS_BACK - 1) {
           
           IndicatorState[3]++;
           previousMillisIndicator[4] = currentMillisLED;
@@ -1426,7 +1447,7 @@ void Indicator(int dir) {    //dir = 1 for left, dir = 0 for right
       
       case 13:
       
-        for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i <= NUM_LEDS_BACK;i++) {
+        for(int i = NUM_LEDS_BACK - NUM_LEDS_BACK * IndicatorSize;i < NUM_LEDS_BACK;i++) {
           ledsback[i] = idlecolback;
           SwitchFrontLedColor(IndicatorState[4],idlecolfront,0);
           IndicatorState[4]++;
@@ -1498,7 +1519,7 @@ bool FadeToColor(unsigned long Color1, unsigned long Color2, unsigned int timein
   
   //Fade the colors
   
-  if(FadeToColorState <= FadeToColorsteps /*&& FadeToColorsteps > 0*/ ) {    
+  if(FadeToColorState < FadeToColorsteps /*&& FadeToColorsteps > 0*/ ) {    
     if(currentMillisLED - previousMillisFadeToColor >= (timeinms / FadeToColorsteps)) {
       //Checks if current of r1 value is under, over or equals the final value r2 and adjusts it one step towards r2
       if(r1 > r2) {
@@ -1533,7 +1554,7 @@ bool FadeToColor(unsigned long Color1, unsigned long Color2, unsigned int timein
         b1++;
       }
       
-      for(int i = ledbegin; i <= ledend;i++) {   //All the LEDS are set to the current RGB Values
+      for(int i = ledbegin; i < ledend;i++) {   //All the LEDS are set to the current RGB Values
         ledsback[i].setRGB(r1, g1, b1);  
       }
       
