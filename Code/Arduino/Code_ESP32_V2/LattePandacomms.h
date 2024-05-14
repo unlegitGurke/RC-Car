@@ -51,7 +51,7 @@ private:
     1     //IMU3 Quaternions Request only
   };
   
-  uint8_t Queue = 0b10000000;   //Queue for sending Data to LattePanda
+  uint8_t Queue = 0b00000000;   //Queue for sending Data to LattePanda
                                 //0b10000000 IMU1
                                 //0b01000000 IMU2
                                 //0b00100000 Octosonar

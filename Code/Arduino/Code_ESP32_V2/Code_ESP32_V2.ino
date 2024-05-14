@@ -343,7 +343,7 @@ void Task1setup( void * pvParameters ) {
   fill_solid(ledsinternal, NUM_LEDS_INTERNAL, CRGB::Black);
   fill_solid(ledsinternal, NUM_LEDS_INTERNAL, CRGB::Blue);
   delay(2000);
-  //InternalLEDStartupAnim();
+
 
   for(;;){
     Task1loop();   
@@ -369,14 +369,6 @@ void Task1loop() {
 
 }
 
-void InternalLEDStartupAnim() {
-  
-  for(int i = 0; i < 9; i++) {
-    ledsinternal[i] = 0x0000FF;
-    delay(200);
-  }
-
-}
 
 void ReadTemp() {
 

@@ -139,6 +139,10 @@ bool LattePandacomms::decode(char startMarker, char endMarker) {
   }
   
   sscanf(decodingBuffer, "%hhu", &Error);     //Parse the Error variable.
+
+  for(int i = 0; i < sizeof(BufferIn); i++) {
+    BufferIn[i] = '\0';
+  }
   
   //Write Data to Data structure
   
@@ -258,6 +262,63 @@ bool LattePandacomms::decode(char startMarker, char endMarker) {
     
   } 
 
+
+  if(Access != 0) {
+    
+    switch(Type) {
+      
+      case 1:       //Queue IMU1 to send back Data
+      
+        Queue |= 0b10000000;
+
+      break;
+      
+      case 2:      //Queue IMU2 to send back Data
+      
+        Queue |= 0b01000000;
+      
+      break;
+      
+      case 3:       //Queue IOctosonar to send back Data
+      
+        Queue |= 0b00100000;
+      
+      break;
+      
+      case 4:       //Queue Voltage Sensors to send back Data
+      
+        Queue |= 0b00010000;
+      
+      break;
+      
+      case 5:       //Queue Temp Sensors to send back Data
+      
+        Queue |= 0b00001000;
+      
+      break;
+      
+      case 6:       //Queue Fans to send back Data
+      
+        Queue |= 0b00000100;
+      
+      break;
+      
+      case 7:       //Queue LEDs to send back Data
+      
+        Queue |= 0b00000010;
+      
+      break;
+
+      case 8:       //Queue IMU3 to send back Data
+
+        Queue |= 0b00000001;
+
+      break;
+      
+    }  
+    
+  }
+
   /*
   Serial.println(IMU1.Type);             //DEBUG
   Serial.println(IMU1.nVal);
@@ -317,7 +378,7 @@ bool LattePandacomms::send() {
 
     SendVar(Octosonar.Type, Octosonar.nVal, Octosonar.Access, Octosonar.Data, Octosonar.Error);
     
-    Queue &= ~0b0010000;
+    Queue &= ~0b00100000;
   }
 
   if(Queue & 0b00010000) {    //If requesteed send Voltage Sensor Data to LattePanda
