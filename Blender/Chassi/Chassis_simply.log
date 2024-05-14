@@ -1,8 +1,8 @@
-Solid Edge in 3MF konvertieren
-Datum: Monday,May 13,2024 04:16PM
-Ausgabedatei: C:\Users\phili\Documents\GitHub\RC-Car\Blender\Chassi\Chassis_simply.3mf
-Autor: Unknown
-Organisation: Unknown
+Solid Edge-Konvertierung in OBJ
+Datum: Montag,Mai 13,2024 04:53
+Ausgabedatei: C:\Users\phili\Documents\GitHub\RC-Car\Blender\Chassi\Chassis_simply.obj
+Autor: Unbekannt
+Organisation: Unbekannt
 Ausgangssystem: SOLID EDGE
 
 Hardware:
@@ -13,97 +13,22 @@ Installierter Speicher: 15.92 GB
 Software-Informationen:
 Parasolid-Version: 35.0.239
 PSBodyshop-Version: 35.0.102
-3MF-Adapterversion:11.0.82
+OBJ-Adapter-Version: 11.0.82
 Solid Edge-Version: 223.00.03.004 x64
 
-3MF-Exportoptionen
+OBJ-Exportoptionen:
 Konstruktionsvolumen exportieren: Aus
 Angezeigte Teile exportieren: Aus
+Konstruktionsbleche exportieren: Aus
 Protokollierung aktivieren:Ein
-AllowInvalid3mfObjects:Aus
+Texturen exportieren: Aus
 Reduzierte Baugruppe exportieren:On
+Konstruktionsvolumenk�rper und -fl�chen exportieren, wenn Entwurfsk�rper nicht vorhanden sind: Aus
 Einheiten exportieren:Millimeters
-Toleranzwert exportieren:0.001000
+Toleranzwert exportieren:1.250000
 Toleranztyp exportieren:Custom
-Fl�chenplanwinkelwert exportieren:0.017453
-Autor exportieren:Unknown
-Beschreibung exportieren:Unknown
-Organisation exportieren:Unknown
-Programmname exportieren:Unknown
+Fl�chenplanwinkelwert exportieren:0.523599
 
 Konvertierungsfortschritt:
-Phase 1 von 1 - Parasolid in Fremddatentypen konvertieren...
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M4x8.1 may not satisfy the specified faceting tolerances
-Fehler!Rejecting an invalid mesh object produced by tessellating Parasolid body in node Body_2_mitte_Bambu
-Fehler!Rejecting an invalid mesh object produced by tessellating Parasolid body in node Body_2_mitte_rechts_Bambu
-Warn: Failed to output any facets for very thin face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel 2 gespiegelt using prescribed values of tessellation parameters
-Warn: Failed to output any facets for very thin face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Fehler!Failed to tessellate a face of a Parasolid body in node Extreme_Kotflügel_richtig_ausschnitt using prescribed values of tessellation parameters
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M5x9.5 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M5x9.5 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M5x9.5 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M5x9.5 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M5x9.5 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M5x9.5 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M5x9.5 may not satisfy the specified faceting tolerances
-Warn: One or more facets generated for a parasolid body in node ruthex_RX-M5x9.5 may not satisfy the specified faceting tolerances
-Fehler!Fehler!
+Konvertierungsvorgang ist abgeschlossen
+Zum Konvertieren ben�tigte Zeit:00 : 00 : 33

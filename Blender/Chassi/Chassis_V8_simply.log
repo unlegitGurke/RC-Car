@@ -1,0 +1,34 @@
+Solid Edge-Konvertierung in OBJ
+Datum: Montag,Mai 13,2024 06:40
+Ausgabedatei: C:\Users\phili\Documents\GitHub\RC-Car\Blender\Chassi\Chassis_V8_simply.obj
+Autor: Unbekannt
+Organisation: Unbekannt
+Ausgangssystem: SOLID EDGE
+
+Hardware:
+Prozessor: Intel(R) Core(TM) i7-8700 CPU @ 3.20GHz
+Betriebssystem: Windows 10
+Installierter Speicher: 15.92 GB
+
+Software-Informationen:
+Parasolid-Version: 35.0.239
+PSBodyshop-Version: 35.0.102
+OBJ-Adapter-Version: 11.0.82
+Solid Edge-Version: 223.00.03.004 x64
+
+OBJ-Exportoptionen:
+Konstruktionsvolumen exportieren: Aus
+Angezeigte Teile exportieren: Aus
+Konstruktionsbleche exportieren: Aus
+Protokollierung aktivieren:Ein
+Texturen exportieren: Aus
+Reduzierte Baugruppe exportieren:On
+Konstruktionsvolumenkörper und -flächen exportieren, wenn Entwurfskörper nicht vorhanden sind: Aus
+Einheiten exportieren:Millimeters
+Toleranzwert exportieren:0.350000
+Toleranztyp exportieren:Custom
+Flächenplanwinkelwert exportieren:0.130900
+
+Konvertierungsfortschritt:
+Konvertierungsvorgang ist abgeschlossen
+Zum Konvertieren benötigte Zeit:00 : 01 : 34
